@@ -27,7 +27,8 @@ order: 4
 > Develop me
 <div>
     <img height="165" align="left" src="https://github-readme-stats.vercel.app/api?username=leonooo13&theme=calm&show_icons=true" />
-    <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=leonooo13&hide=html,css,Jupyter+Notebook,ruby,javascript&theme=calm&langs_count=6&layout=compact" />
+    <img height="165" align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=leonooo13&hide=html,css,Jupyter+Notebook,ruby,javascript&theme=calm&langs_count=6&layout=compact" />
+
 </div>
 
 ## 🤖[Git]
@@ -44,9 +45,7 @@ order: 4
 </div>
 
 ## 🥵[Visit]
-<h3 align='left'>
-
-![Visitor Count](https://profile-counter.glitch.me/leonooo13/count.svg)
-
+<h3 align='center'>
+  <img alt="Visitors" src="https://profile-counter.glitch.me/leonooo13/count.svg">
 </h3>
 

@@ -14,7 +14,7 @@ order: 4
 
 🕶️ **Information Security**
 
-🌱 **CTFer** | **SecT00ls** | **Excavate Src**  | **Cipher**
+🌱 **CTFer**  - **SecT00ls** - **Excavate Src**  - **Cipher**
 
 🤔  **Write and Coding** 
 

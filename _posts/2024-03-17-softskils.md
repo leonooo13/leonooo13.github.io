@@ -1,6 +1,5 @@
 ---
 title: 社会中的软技能 # 文章名称
-date:   2024-03-17# 创建时间，例：2022-07-16 15:22:06
 tags: [skills]
 categories: [career]
 description: 社会中的软技能  # 文章描述

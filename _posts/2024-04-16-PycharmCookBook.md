@@ -9,4 +9,5 @@ image:
 PyCharm
 =======
 
-1. 
+1. `shadows build-in name` 
+    避免使用`python`内置函数名称

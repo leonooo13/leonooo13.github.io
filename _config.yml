@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 
 title: Devi_leo # the main title
 
-tagline: A Sec and Dev Coder, aim to be Bounty Hunter # it will display as the sub-title
+tagline: A Information Sec and Backend Dev Coder # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -66,7 +66,7 @@ goatcounter:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode: light # [light | dark]
+theme_mode:  # [light | dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url

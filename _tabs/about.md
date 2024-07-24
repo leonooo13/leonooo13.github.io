@@ -10,7 +10,7 @@ order: 4
 <h1 align='center'> Hi! This is leonooo13</h1>
 <h1> Yoo, I'm Leonooo13 👋</h1>
 
-👁️ **keep your mind Creative** 
+👁️ **Know and then Do** 
 
 🕶️ **Information Security**
 
@@ -20,9 +20,7 @@ order: 4
 
 🔭 ``Python`` and ``C`` or ``C++``
 
-🚀 The ``golang`` and ``CipherCoin`` is **learning** ,Produce convenient tools 
-
-📫 **Contect me：**<a href= "mailto:lidefree@qq.com">MAIL</a>
+📫 **Contect me：**<a href= "mailto:imxiaoli@qq.com">MAIL</a>
 ## 🌠[Coding]
 > Develop me
 <div>

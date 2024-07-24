@@ -14,7 +14,7 @@ timezone: Asia/Shanghai
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Devi_leo # the main title
+title: BytesSec # the main title
 
 tagline: A Information Sec and Backend Dev Coder # it will display as the sub-title
 
@@ -29,12 +29,12 @@ github:
   username: leonooo13 # change to your github username
 
 twitter:
-  username: twitter_username # change to your twitter username
+  username: leonooo13 # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: Devi_Leo
+  name: 知行
   email: imxiaoli@outlook.com # change to your email address
   links:
     # The first element serves as the copyright owner's link

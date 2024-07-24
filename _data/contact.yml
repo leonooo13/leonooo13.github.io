@@ -3,6 +3,9 @@
 - type: github
   icon: "fab fa-github"
 
+- type: weixin
+  icon: "bfa-brands fa-weixin"
+
 - type: twitter
   icon: "fa-brands fa-x-twitter"
 

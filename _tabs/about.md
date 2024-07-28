@@ -20,7 +20,7 @@ order: 4
 
 🔭 ``Python`` and ``C`` or ``C++``
 
-📫 **Contect me：**<a href= "mailto:imxiaoli@qq.com">MAIL</a>
+
 ## 🌠[Coding]
 > Develop me
 <div>

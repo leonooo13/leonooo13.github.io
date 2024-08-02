@@ -1,10 +1,10 @@
 ---
-title: [SWPUCTF-2021-新生赛]jicao 
-tags: [代码审计,CTF]
+title: easy的代码审计 
+tags: [Netsec,代码审计]
 categories: [CTF]
 ---
 
-# [SWPUCTF-2021-新生赛]jicao
+代码审计
+======
 
-====
-
+![alt text](../assets/img/image-71.png)

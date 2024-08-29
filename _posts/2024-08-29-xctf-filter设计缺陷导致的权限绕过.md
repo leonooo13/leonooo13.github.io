@@ -18,6 +18,8 @@ User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 F
 Accept-Encoding: gzip, deflate
 ```
 
+![alt text](../assets/img/image-75.png)
+
 # 总结
 
 1. 必须要知道访问的html文件的路径

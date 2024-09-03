@@ -46,8 +46,8 @@ not_found:
   statement: 抱歉，我们放错了该 URL，或者它指向了不存在的内容。
 
 notification:
-  update_found: 发现新版本的内容。
-  update: 更新
+  update_found: 有新东西了吼！
+  update: 阅
 
 # ----- Posts related labels -----
 

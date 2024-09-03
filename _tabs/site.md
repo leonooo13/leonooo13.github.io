@@ -4,12 +4,17 @@ icon: fas fa-link
 order: 5
 ---
 
-## 好用的工具箱
+## 🧰好用的工具箱
 
 [命令执行编码](https://payloads.net/Runtime.exec/)
 
-## 推荐的微信公众号
+## 🔑社工密码
 
-> **ByteSec**
+📃 密码类型：  
+1. https://www.cmd5.com/password.aspx
 
-![alt text](../assets/img/image-79.png)
+👀 密码CMD5解密：
+
+1. https://www.somd5.com/ (免费，国内)
+2. https://hashkiller.co.uk/ (免费，国外) 
+3. https://cmd5.com/ (收费，国内)

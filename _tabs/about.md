@@ -21,10 +21,8 @@ order: 4
 </div>
 
 
-## 🌠[Coding]
-> Develop me
-<div>
-    <img height="165" width="450" align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=leonooo13&hide=html,css,Jupyter+Notebook,ruby,javascript&theme=calm&langs_count=6&layout=compact" />
-
+## 🌠[Amost Coding]
+<div align= 'center'>
+    <img height="155" width="250" src="https://github-readme-stats.vercel.app/api/top-langs/?username=leonooo13&hide=html,css,Jupyter+Notebook,ruby,javascript&theme=calm&langs_count=6&layout=compact" />
 </div>
 

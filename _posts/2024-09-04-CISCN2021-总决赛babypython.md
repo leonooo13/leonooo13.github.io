@@ -1,5 +1,5 @@
 ---
-title: [CISCN2021 总决赛]babypython 
+title: CISCN2021总决赛babypython 
 tags: [CTF,Web]
 categories: [WebSec]
 image:

@@ -5,5 +5,5 @@ categories: [HTB]
 ---
 
 1. sql注入
-![alt text](../assets/img/image-106.png)
-  admin:
+   ![alt text](../assets/img/image-106.png)
+   admin:

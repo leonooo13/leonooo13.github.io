@@ -1,6 +1,5 @@
 ---
 title: JB全家桶破解指南 
-tags: [,]
 categories: [JetBrains]
 ---
 

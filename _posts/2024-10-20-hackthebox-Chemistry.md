@@ -6,4 +6,4 @@ categories: [网络安全]
 
 # 思路
 
-![alt text](../assets/img/image-118.png)
+![alt text](../assets/img/image-119.png)

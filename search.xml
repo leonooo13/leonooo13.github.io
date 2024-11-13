@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>some_thinks</title>
+      <link href="/2024/11/13/some-thinks/"/>
+      <url>/2024/11/13/some-thinks/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="人类"><a href="#人类" class="headerlink" title="人类"></a>人类</h1><p>在历史长河中人类就近扮演者什么样的角色, 造物者? 毁灭者? 亦或者是 一粒尘埃?<br>人生不过五六十年, 何必非要在不喜欢的事情上堵上自己的一生.人类最终的归途都是走向灭亡. 超过三代 你在世界上的痕迹便不存在了.</p><p>做点自己喜欢的.</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 胡思乱想 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>update_blog</title>
       <link href="/2024/11/13/update-blog/"/>
       <url>/2024/11/13/update-blog/</url>

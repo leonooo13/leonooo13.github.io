@@ -8,7 +8,7 @@
       <link href="/2024/11/13/update-blog/"/>
       <url>/2024/11/13/update-blog/</url>
       
-        <content type="html"><![CDATA[<h2 id="迁移博客"><a href="#迁移博客" class="headerlink" title="迁移博客"></a>迁移博客</h2><p>使用OBS来进行博文管理<br>使用Hexo 来进行 页面生成</p><p>之前采用的是采用 <a href="https://jekyllrb.com/">Jekyll</a> 主题 <a href="https://github.com/cotes2020/jekyll-theme-chirpy">Chirpy</a>对于写笔记来说不太灵活，有点耗时。<br>不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。</p><p>![[Pasted image 20241113201822.png]]</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="迁移博客"><a href="#迁移博客" class="headerlink" title="迁移博客"></a>迁移博客</h2><p>使用OBS来进行博文管理<br>使用Hexo 来进行 页面生成</p><p>之前采用的是采用 <a href="https://jekyllrb.com/">Jekyll</a> 主题 <a href="https://github.com/cotes2020/jekyll-theme-chirpy">Chirpy</a>对于写笔记来说不太灵活，有点耗时。<br>不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。</p><p><img src="/../assets/img/Pasted%20image%2020241113201822.png"></p><p><img src="/../assets/img/Pasted%20image%2020241113205749.png"></p><p><img src="/../assets/img/Pasted%20image%2020241113210121.png"></p>]]></content>
       
       
       

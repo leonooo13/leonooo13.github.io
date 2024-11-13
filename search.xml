@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2024/11/13/Mimikatz/"/>
+      <url>/2024/11/13/Mimikatz/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><strong>Mimikatz</strong> 是一个开源的、功能强大的安全工具，广泛用于渗透测试和网络安全审计。由 Benjamin Delpy 开发，它的主要功能是提取 Windows 系统中的用户凭证，包括密码、哈希、PIN 等。Mimikatz 通常用于模拟真实攻击以验证系统的安全性，并协助管理员理解和改进 Windows 系统的安全防护措施。</p><h3 id="Mimikatz-的主要功能"><a href="#Mimikatz-的主要功能" class="headerlink" title="Mimikatz 的主要功能"></a>Mimikatz 的主要功能</h3><ol><li><p><strong>内存中提取明文密码</strong>：能够从 Windows 系统的 LSASS 进程中提取出明文密码，但需要管理员权限。</p></li><li><p><strong>提取 NTLM 和 Kerberos Hash</strong>：可以获取 NTLM 和 Kerberos 哈希，供攻击者使用其他工具进行哈希传递攻击 (Pass-the-Hash)。</p></li><li><p><strong>Pass-the-Hash (PTH) 攻击</strong>：允许使用提取的 NTLM 哈希，而不需要明文密码，从而模拟用户身份。</p></li><li><p><strong>Pass-the-Ticket (PTT) 攻击</strong>：利用 Kerberos ticket（TGT或TGS）进行攻击，实现对目标系统的访问。</p></li><li><p>**金票 (Golden Ticket)**：Mimikatz 可以生成一个有效的伪造 Kerberos TGT，从而获得对目标域环境的持久访问权限。</p></li><li><p>**银票 (Silver Ticket)**：生成伪造的服务票据 (TGS) 来访问特定的服务。</p></li><li><p><strong>权限提升</strong>：通过利用 Windows 系统的漏洞提升用户权限。</p></li></ol><h3 id="使用-Mimikatz-的基本步骤"><a href="#使用-Mimikatz-的基本步骤" class="headerlink" title="使用 Mimikatz 的基本步骤"></a>使用 Mimikatz 的基本步骤</h3><ol><li><p><strong>启动 Mimikatz</strong>：<br>下载并运行 Mimikatz，通常需要管理员权限或 SYSTEM 权限。</p></li><li><p><strong>启用权限</strong>：<br>使用以下命令来启用所需权限：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br></pre></td></tr></table></figure></li><li><p><strong>提取密码或哈希</strong>：</p><ul><li>提取明文密码：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure></li><li>获取 NTLM 哈希：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure></li></ul></li></ol><h3 id="常见的安全防护措施"><a href="#常见的安全防护措施" class="headerlink" title="常见的安全防护措施"></a>常见的安全防护措施</h3><p>由于 Mimikatz 能够轻松提取凭证和模拟攻击，企业通常会采取多层次的防护措施来抵御此类攻击，例如：</p><ul><li>使用 Windows Credential Guard 和 LSA Protection 来保护凭证。</li><li>强化用户权限控制，避免不必要的管理员权限分配。</li><li>定期监控系统日志，识别和阻止恶意活动。</li></ul><p>由于其功能强大且潜在的破坏性，Mimikatz 应仅在获得授权的合法渗透测试中使用，不得用于未经许可的入侵或破坏行为。</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>想要什么</title>
       <link href="/2024/11/13/%E6%83%B3%E8%A6%81%E4%BB%80%E4%B9%88/"/>
       <url>/2024/11/13/%E6%83%B3%E8%A6%81%E4%BB%80%E4%B9%88/</url>

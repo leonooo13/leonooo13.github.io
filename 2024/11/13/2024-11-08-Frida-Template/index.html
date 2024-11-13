@@ -67,6 +67,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -184,7 +186,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <blockquote>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
 <p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p>
 </blockquote>
 <h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure>
@@ -194,8 +196,13 @@
 <h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p>
-<h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><img src="/../assets/img/image-120.png" alt="alt text"></p>
-
+<h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -371,6 +378,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

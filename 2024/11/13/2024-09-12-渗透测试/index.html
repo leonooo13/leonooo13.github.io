@@ -84,6 +84,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -201,7 +203,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <ul>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ul>
 <li><h1 id="信息安全概述"><a href="#信息安全概述" class="headerlink" title="信息安全概述"></a>信息安全概述</h1></li>
 </ul>
 <hr>
@@ -291,7 +293,7 @@
 </ul>
 <hr>
 <p>  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Virtual_private_network">虚拟专用网络 （VPN）</a> 允许我们连接到专用（内部）网络并访问主机和资源，就像我们直接连接到目标专用网络一样。它是通过共享公共网络连接到专用网络（即员工从家中远程连接到公司网络）的安全通信通道。VPN 通过加密通道上的通信来防止窃听和访问通过通道的数据，从而提供一定程度的隐私和安全性。  </p>
-<p>  <img src="https://academy.hackthebox.com/storage/modules/77/GettingStarted.png" alt="图像">{:height 556, :width 778}  </p>
+<p>  <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/GettingStarted.png" title="图像" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/GettingStarted.png" alt="图像"></a>{:height 556, :width 778}  </p>
 <p>  概括地说，VPN 的工作原理是通过目标 VPN 的私人服务器而不是我们的互联网服务提供商 （ISP） 来路由我们连接设备的互联网连接。当连接到 VPN 时，数据来自 VPN 服务器而不是我们的计算机，并且看起来似乎来自我们自己的公共 IP 地址。  </p>
 <p>  远程访问 VPN 有两种主要类型：基于客户端的 VPN 和 SSL VPN。SSL VPN 使用 Web 浏览器作为 VPN 客户端。在浏览器之间建立连接，SSL VPN 网关可以配置为仅允许访问基于 Web 的应用程序，例如电子邮件和内部网站，甚至内部网络，但不需要最终用户安装或使用任何专用软件。基于客户端的 VPN 需要使用客户端软件来建立 VPN 连接。连接后，用户的主机将像直接连接到公司网络一样工作，并且能够访问服务器配置允许的任何资源（应用程序、主机、子网等）。一些公司 VPN 将为员工提供对公司内部网络的完全访问权限，而另一些 VPN 会将用户放置在为远程工作人员保留的特定网段上。  </p>
 <hr>
@@ -326,10 +328,10 @@
 <li><h2 id="使用-Tmux"><a href="#使用-Tmux" class="headerlink" title="使用 Tmux"></a>使用 Tmux</h2><p>终端多路复用器（如 or）是扩展标准 Linux 终端功能的绝佳实用程序，例如在一个终端中拥有多个窗口并在它们之间跳转。让我们看看一些使用 的例子，这是两者中更常见的。如果我们的 Linux 系统上不存在，我们可以使用以下命令安装它：<code>tmux``Screen``tmux``tmux</code>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** sudo apt install tmux -y</span><br></pre></td></tr></table></figure>
 
-<p>一旦我们有了 ，我们就可以通过输入命令来启动它：<code>tmux``tmux</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" alt="tmux_1">  </p>
-<p>输入命令 prefix 的默认键是 。为了在 中打开一个新窗口，我们可以点击前缀 ‘i.e. ‘，然后点击 ：<code>tmux``[CTRL + B]``tmux``[CTRL + B]``C</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" alt="tmux_2">  </p>
-<p>我们在底部看到编号的窗口。我们可以通过点击前缀然后输入窗口编号来切换到每个窗口，例如 或 .我们还可以通过点击前缀将窗口垂直拆分为多个窗格，然后按 ：<code>0``1``[SHIFT + %]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" alt="tmux_3">  </p>
-<p>我们还可以通过点击前缀，然后按 ：<code>[SHIFT + &quot;]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" alt="tmux_4">  </p>
+<p>一旦我们有了 ，我们就可以通过输入命令来启动它：<code>tmux``tmux</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" title="tmux_1" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" alt="tmux_1"></a>  </p>
+<p>输入命令 prefix 的默认键是 。为了在 中打开一个新窗口，我们可以点击前缀 ‘i.e. ‘，然后点击 ：<code>tmux``[CTRL + B]``tmux``[CTRL + B]``C</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" title="tmux_2" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" alt="tmux_2"></a>  </p>
+<p>我们在底部看到编号的窗口。我们可以通过点击前缀然后输入窗口编号来切换到每个窗口，例如 或 .我们还可以通过点击前缀将窗口垂直拆分为多个窗格，然后按 ：<code>0``1``[SHIFT + %]</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" title="tmux_3" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" alt="tmux_3"></a>  </p>
+<p>我们还可以通过点击前缀，然后按 ：<code>[SHIFT + &quot;]</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" title="tmux_4" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" alt="tmux_4"></a>  </p>
 <p>我们可以通过点击前缀，然后点击 or 箭头进行水平切换或 or 箭头进行垂直切换，从而在窗格之间切换。上面的命令涵盖了一些基本用法。它是一个强大的工具，可以用于许多事情，包括日志记录，这在任何技术参与中都非常重要。这个<a target="_blank" rel="noopener" href="https://tmuxcheatsheet.com/">作弊表</a>是一个非常方便的参考。此外，这个 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Lqehvpe_djs">tmux 简介</a>视频值得您花时间。<code>left``right``up``down``tmux``ippsec</code></p>
 </li>
 </ul>
@@ -338,9 +340,9 @@
 <li><h2 id="使用-Vim"><a href="#使用-Vim" class="headerlink" title="使用 Vim"></a>使用 Vim</h2><p><a target="_blank" rel="noopener" href="https://linuxcommand.org/lc3_man_pages/vim1.html">Vim</a> 是一个很棒的文本编辑器，可用于在 Linux 系统上编写代码或编辑文本文件。使用鼠标的一大好处是它完全依赖于键盘，因此您不必使用鼠标，这（一旦我们掌握了它）将显着提高您编写&#x2F;编辑代码的生产力和效率。我们通常会找到或安装在受感染的 Linux 系统上，因此学习如何使用它使我们能够即使在远程系统上编辑文件。 还有许多其他功能，例如扩展和插件，可以显着扩展其使用并使其成为出色的代码编辑器。让我们看看 的一些基础知识。要使用 打开文件，我们可以在文件后添加文件名：<code>Vim``Vim``Vi``Vim``Vim``Vim</code>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** vim /etc/hosts</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" alt="vim_1">  </p>
+<p><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" title="vim_1" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" alt="vim_1"></a>  </p>
 <p>如果我们要创建一个新文件，请输入新文件名，然后打开一个包含该文件的新窗口。打开文件后，我们处于 只读 ，这允许我们导航和读取文件。要编辑文件，我们按 输入 ，如 底部的 “” 所示。之后，我们可以移动文本光标并编辑文件：<code>Vim``normal mode``i``insert mode``-- INSERT --``Vim</code>  </p>
-<p><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" alt="vim_2">  </p>
+<p><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" title="vim_2" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" alt="vim_2"></a>  </p>
 <p>完成文件编辑后，我们可以按 Esc 键退出 ，返回 。当我们在 ，我们可以使用以下键来执行一些有用的快捷方式：<code>esc``insert mode``normal mode``normal mode</code>  </p>
 <table>
 <thead>
@@ -375,7 +377,7 @@
 </tr>
 </tbody></table>
 <p>提示： 我们可以通过在命令前添加一个数字来将任何命令乘以多次运行。例如，’4yw’ 将复制 4 个单词而不是 1 个单词，依此类推。  </p>
-<p>如果我们要 保存文件 或 退出 ，我们必须按 进入 .完成后，我们将在 vim 窗口底部看到我们键入的任何命令：<code>Vim``:``command mode</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" alt="vim_3">  </p>
+<p>如果我们要 保存文件 或 退出 ，我们必须按 进入 .完成后，我们将在 vim 窗口底部看到我们键入的任何命令：<code>Vim``:``command mode</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" title="vim_3" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" alt="vim_3"></a>  </p>
 <p>我们可以使用许多命令。以下是其中的一些：  </p>
 <table>
 <thead>
@@ -423,12 +425,12 @@
 
 <p>  这将返回更多信息。我们看到，扫描 65,535 个端口所花费的时间比扫描 1,000 个端口的时间要长得多。这些区域 and 选项还会增加扫描的持续时间，因为它们不会执行简单的 TCP 握手，而是执行更多的检查。我们注意到这次有一个 VERSION 标题，如果可以识别，它会报告服务版本和操作系统。<code>-sC``-sV</code>  </p>
 <p>  到目前为止，我们知道操作系统是 Ubuntu Linux。应用程序版本还可以帮助显示目标 OS 版本。以 OpenSSH 为例。我们看到报告的版本是 。从其他 Ubuntu SSH 包<a target="_blank" rel="noopener" href="https://launchpad.net/ubuntu/yakkety/+source/openssh/+changelog">更改日志</a>的检查中，我们看到发布版本采用格式。更新我们的版本以适应这种格式，我们得到 .在线快速搜索此版本显示它包含在 Ubuntu Linux Focal Fossa 20.04 中。<code>OpenSSH 8.2p1 Ubuntu 4ubuntu0.1``1:7.3p1-1ubuntu0.1``1:8.2p1-4ubuntu0.1</code>  </p>
-<p>  <img src="https://academy.hackthebox.com/storage/modules/77/google1.png" alt="谷歌1">  </p>
+<p>  <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/google1.png" title="谷歌1" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/google1.png" alt="谷歌1"></a>  </p>
 <p>  Another quick search reveals that the release date of this OS is April 23rd, 2020.  </p>
-<p>  <img src="https://academy.hackthebox.com/storage/modules/77/google2.png" alt="google2">  </p>
+<p>  <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/google2.png" title="google2" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/google2.png" alt="google2"></a>  </p>
 <p>  However, it is worth noting that this cross-referencing technique is not entirely reliable, as it is possible to install more recent application packages on an older OS version. The script scan flag causes to report the server headers page and the page title for any web page hosted on the webserver. The web page title indicates that this is a PHPInfo file, which is often manually created to confirm that PHP has been successfully installed. The title (and PHPInfo page) also reveals the PHP version, which is worth noting if it is vulnerable.<code>-sC``Nmap``http-server-header``http-title``PHP 7.4.3 - phpinfo()</code>  </p>
 <p>     </p>
-<p>  <img src="https://academy.hackthebox.com/storage/modules/77/phpinfo.png">  </p>
+<p>  <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/phpinfo.png" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/phpinfo.png"></a>  </p>
 <h4 id="Nmap-脚本"><a href="#Nmap-脚本" class="headerlink" title="Nmap 脚本"></a>Nmap 脚本</h4><p>  指定将针对目标运行许多有用的默认脚本，但在某些情况下需要运行特定脚本。例如，在评估范围内，系统可能会要求我们审核大型 Citrix 安装。我们可以使用<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/cyberstruggle/DeltaGroup/master/CVE-2019-19781/CVE-2019-19781.nse">此</a>脚本来审核严重的 Citrix NetScaler 漏洞 （<a target="_blank" rel="noopener" href="https://blog.rapid7.com/2020/01/17/active-exploitation-of-citrix-netscaler-cve-2019-19781-what-you-need-to-know/">CVE-2019–19781</a>），同时还可以使用其他脚本来审核 Citrix 安装。<code>-sC``Nmap``Nmap</code>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** locate scripts/citrix</span><br><span class="line"></span><br><span class="line">/usr/share/nmap/scripts/citrix-brute-xml.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-apps-xml.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-apps.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-servers-xml.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-servers.nse</span><br></pre></td></tr></table></figure>
 
@@ -495,18 +497,18 @@
 <h2 id="使用-Tmux-1"><a href="#使用-Tmux-1" class="headerlink" title="使用 Tmux"></a>使用 Tmux</h2><p>  终端多路复用器（如 or）是扩展标准 Linux 终端功能的绝佳实用程序，例如在一个终端中拥有多个窗口并在它们之间跳转。让我们看看一些使用 的例子，这是两者中更常见的。如果我们的 Linux 系统上不存在，我们可以使用以下命令安装它：<code>tmux``Screen``tmux``tmux</code>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** sudo apt install tmux -y</span><br></pre></td></tr></table></figure>
 
-<p>  一旦我们有了 ，我们就可以通过输入命令来启动它：<code>tmux``tmux</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" alt="tmux_1">  </p>
-<p>  输入命令 prefix 的默认键是 。为了在 中打开一个新窗口，我们可以点击前缀 ‘i.e. ‘，然后点击 ：<code>tmux``[CTRL + B]``tmux``[CTRL + B]``C</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" alt="tmux_2">  </p>
-<p>  我们在底部看到编号的窗口。我们可以通过点击前缀然后输入窗口编号来切换到每个窗口，例如 或 .我们还可以通过点击前缀将窗口垂直拆分为多个窗格，然后按 ：<code>0``1``[SHIFT + %]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" alt="tmux_3">  </p>
-<p>  我们还可以通过点击前缀，然后按 ：<code>[SHIFT + &quot;]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" alt="tmux_4">  </p>
+<p>  一旦我们有了 ，我们就可以通过输入命令来启动它：<code>tmux``tmux</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" title="tmux_1" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" alt="tmux_1"></a>  </p>
+<p>  输入命令 prefix 的默认键是 。为了在 中打开一个新窗口，我们可以点击前缀 ‘i.e. ‘，然后点击 ：<code>tmux``[CTRL + B]``tmux``[CTRL + B]``C</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" title="tmux_2" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" alt="tmux_2"></a>  </p>
+<p>  我们在底部看到编号的窗口。我们可以通过点击前缀然后输入窗口编号来切换到每个窗口，例如 或 .我们还可以通过点击前缀将窗口垂直拆分为多个窗格，然后按 ：<code>0``1``[SHIFT + %]</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" title="tmux_3" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" alt="tmux_3"></a>  </p>
+<p>  我们还可以通过点击前缀，然后按 ：<code>[SHIFT + &quot;]</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" title="tmux_4" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" alt="tmux_4"></a>  </p>
 <p>  我们可以通过点击前缀，然后点击 or 箭头进行水平切换或 or 箭头进行垂直切换，从而在窗格之间切换。上面的命令涵盖了一些基本用法。它是一个强大的工具，可以用于许多事情，包括日志记录，这在任何技术参与中都非常重要。这个<a target="_blank" rel="noopener" href="https://tmuxcheatsheet.com/">作弊表</a>是一个非常方便的参考。此外，这个 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Lqehvpe_djs">tmux 简介</a>视频值得您花时间。<code>left``right``up``down``tmux``ippsec</code>  </p>
 <hr>
 <h2 id="使用-Vim-1"><a href="#使用-Vim-1" class="headerlink" title="使用 Vim"></a>使用 Vim</h2><p>  <a target="_blank" rel="noopener" href="https://linuxcommand.org/lc3_man_pages/vim1.html">Vim</a> 是一个很棒的文本编辑器，可用于在 Linux 系统上编写代码或编辑文本文件。使用鼠标的一大好处是它完全依赖于键盘，因此您不必使用鼠标，这（一旦我们掌握了它）将显着提高您编写&#x2F;编辑代码的生产力和效率。我们通常会找到或安装在受感染的 Linux 系统上，因此学习如何使用它使我们能够即使在远程系统上编辑文件。 还有许多其他功能，例如扩展和插件，可以显着扩展其使用并使其成为出色的代码编辑器。让我们看看 的一些基础知识。要使用 打开文件，我们可以在文件后添加文件名：<code>Vim``Vim``Vi``Vim``Vim``Vim</code>  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** vim /etc/hosts</span><br></pre></td></tr></table></figure>
 
-<p>  <img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" alt="vim_1">  </p>
+<p>  <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" title="vim_1" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" alt="vim_1"></a>  </p>
 <p>  如果我们要创建一个新文件，请输入新文件名，然后打开一个包含该文件的新窗口。打开文件后，我们处于 只读 ，这允许我们导航和读取文件。要编辑文件，我们按 输入 ，如 底部的 “” 所示。之后，我们可以移动文本光标并编辑文件：<code>Vim``normal mode``i``insert mode``-- INSERT --``Vim</code>  </p>
-<p>  <img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" alt="vim_2">  </p>
+<p>  <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" title="vim_2" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" alt="vim_2"></a>  </p>
 <p>  完成文件编辑后，我们可以按 Esc 键退出 ，返回 。当我们在 ，我们可以使用以下键来执行一些有用的快捷方式：<code>esc``insert mode``normal mode``normal mode</code>  </p>
 <table>
 <thead>
@@ -541,7 +543,7 @@
 </tr>
 </tbody></table>
 <p>  提示： 我们可以通过在命令前添加一个数字来将任何命令乘以多次运行。例如，’4yw’ 将复制 4 个单词而不是 1 个单词，依此类推。  </p>
-<p>  如果我们要 保存文件 或 退出 ，我们必须按 进入 .完成后，我们将在 vim 窗口底部看到我们键入的任何命令：<code>Vim``:``command mode</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" alt="vim_3">  </p>
+<p>  如果我们要 保存文件 或 退出 ，我们必须按 进入 .完成后，我们将在 vim 窗口底部看到我们键入的任何命令：<code>Vim``:``command mode</code><a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" title="vim_3" class="gallery-item"><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" alt="vim_3"></a>  </p>
 <p>  我们可以使用许多命令。以下是其中的一些：  </p>
 <table>
 <thead>
@@ -572,7 +574,12 @@
 </tr>
 </tbody></table>
 <p>  <code>Vim</code>是一个非常强大的工具，并且具有许多其他命令和功能。此<a target="_blank" rel="noopener" href="https://vimsheet.com/">备忘单</a>是进一步释放 .<code>Vim</code></p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -748,6 +755,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

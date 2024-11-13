@@ -64,6 +64,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -171,7 +173,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="NTFS-与共享权限"><a href="#NTFS-与共享权限" class="headerlink" title="NTFS 与共享权限"></a><strong>NTFS 与共享权限</strong></h1><hr>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="NTFS-与共享权限"><a href="#NTFS-与共享权限" class="headerlink" title="NTFS 与共享权限"></a><strong>NTFS 与共享权限</strong></h1><hr>
 <p>Microsoft 在使用 Windows 的桌面操作系统上拥有超过 <a target="_blank" rel="noopener" href="https://gs.statcounter.com/os-market-share/desktop/worldwide/#monthly-201804-202104">70%</a> 的全球市场份额。这解释了为什么大多数恶意软件作者选择为 Windows 编写恶意软件，以及为什么许多人认为 Windows 不如其他操作系统安全。从商业角度来看，恶意软件作者花费资源编写 Windows 恶意软件是有意义的。这是一个高价值的目标。任何操作系统都不受恶意软件影响的想法是一种技术谬误。如果可以为操作系统编写软件，那么可以为操作系统编写病毒。请记住，根据定义，病毒是出于恶意编写的软件，可以为任何操作系统编写。为 Windows 编写的许多恶意软件变体可以通过应用了宽松权限的网络共享在网络上传播。还值得注意的是，直到今天，这个臭名昭著的漏洞仍然困扰着正在运行的未打补丁的 Windows 系统，并且经常为勒索软件关闭组织铺平道路。<code>EternalBlueSMBv1</code></p>
 <p>（） 在 Windows 中用于连接共享资源，如文件和打印机。它用于大型、中型和小型企业环境。请参阅下图以直观地了解此概念：<code>Server Message Block protocolSMB</code></p>
 <p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/smb_diagram.png">https://academy.hackthebox.com/storage/modules/49/smb_diagram.png</a></p>
@@ -355,7 +357,12 @@
 <p>我们可以在 ， 中四处探索，并了解它为我们提供了什么信息。如果我们协助个人或组织应对与 SMB 相关的违规行为，这些都是检查并开始了解违规行为可能如何发生以及可能留下什么的好地方。<code>SharesSessionsOpen Files</code></p>
 <h3 id="在-Event-Viewer-中查看共享访问日志"><a href="#在-Event-Viewer-中查看共享访问日志" class="headerlink" title="在 Event Viewer 中查看共享访问日志"></a><strong>在 Event Viewer 中查看共享访问日志</strong></h3><p><code>Event Viewer</code>是调查在 Windows 上完成的操作的另一个好位置。几乎每个操作系统都有一个日志记录机制和一个实用程序来查看捕获的日志。要知道，日志就像计算机的日志条目，计算机在其中记下执行的所有操作以及与该操作相关的许多详细信息。我们可以查看为我们在访问 Windows 10 目标框以及创建、编辑和访问共享文件夹时执行的每项操作创建的日志。</p>
 <p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/event_viewer.png">https://academy.hackthebox.com/storage/modules/49/event_viewer.png</a></p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -531,6 +538,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

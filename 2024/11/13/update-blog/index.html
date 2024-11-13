@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="迁移博客使用OBS来进行博文管理使用Hexo 来进行 页面生成 之前采用的是采用 Jekyll 主题 Chirpy对于写笔记来说不太灵活，有点耗时。不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。">
+    <meta name="description" content="迁移博客使用OBS来进行博文管理使用Hexo 来进行 页面生成 之前采用的是采用 Jekyll 主题 Chirpy对于写笔记来说不太灵活，有点耗时。不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。    if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {         var options &#x3D; {">
 <meta property="og:type" content="article">
 <meta property="og:title" content="update_blog">
 <meta property="og:url" content="https://imli.ink/2024/11/13/update-blog/index.html">
 <meta property="og:site_name" content="安全杂谈">
-<meta property="og:description" content="迁移博客使用OBS来进行博文管理使用Hexo 来进行 页面生成 之前采用的是采用 Jekyll 主题 Chirpy对于写笔记来说不太灵活，有点耗时。不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。">
+<meta property="og:description" content="迁移博客使用OBS来进行博文管理使用Hexo 来进行 页面生成 之前采用的是采用 Jekyll 主题 Chirpy对于写笔记来说不太灵活，有点耗时。不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。    if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {         var options &#x3D; {">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241113201822.png">
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241113205749.png">
@@ -68,6 +68,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -178,12 +180,17 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="迁移博客"><a href="#迁移博客" class="headerlink" title="迁移博客"></a>迁移博客</h2><p>使用OBS来进行博文管理<br>使用Hexo 来进行 页面生成</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="迁移博客"><a href="#迁移博客" class="headerlink" title="迁移博客"></a>迁移博客</h2><p>使用OBS来进行博文管理<br>使用Hexo 来进行 页面生成</p>
 <p>之前采用的是采用 <a target="_blank" rel="noopener" href="https://jekyllrb.com/">Jekyll</a> 主题 <a target="_blank" rel="noopener" href="https://github.com/cotes2020/jekyll-theme-chirpy">Chirpy</a>对于写笔记来说不太灵活，有点耗时。<br>不适用 github action 的原因是不想把为未经过渲染的文件也放到github上，有点乱。</p>
-<p><img src="/../assets/img/Pasted%20image%2020241113201822.png"></p>
-<p><img src="/../assets/img/Pasted%20image%2020241113205749.png"></p>
-<p><img src="/../assets/img/Pasted%20image%2020241113210121.png"></p>
-
+<p><a href="/../assets/img/Pasted%20image%2020241113201822.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241113201822.png"></a></p>
+<p><a href="/../assets/img/Pasted%20image%2020241113205749.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241113205749.png"></a></p>
+<p><a href="/../assets/img/Pasted%20image%2020241113210121.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241113210121.png"></a></p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -359,6 +366,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

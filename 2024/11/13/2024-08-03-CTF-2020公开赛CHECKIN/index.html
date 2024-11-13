@@ -68,6 +68,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -185,7 +187,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>&#x3D;&#x3D;&#x3D;&#x3D;</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>&#x3D;&#x3D;&#x3D;&#x3D;</p>
 <h1 id="直接代码审计"><a href="#直接代码审计" class="headerlink" title="直接代码审计"></a>直接代码审计</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">flag_file = <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line"><span class="comment"># flag = flag_file.read()</span></span><br><span class="line"><span class="comment"># flag_file.close()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># @app.route(&#x27;/flag&#x27;)</span></span><br><span class="line"><span class="comment"># def flag():</span></span><br><span class="line"><span class="comment">#     return flag</span></span><br><span class="line"><span class="comment">#     ## want flag? naive!</span></span><br><span class="line"><span class="comment">#     # You will never find the thing you want:)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/shell&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">shell</span>():</span><br><span class="line">    os.system(<span class="string">&quot;rm -f flag.txt&quot;</span>)</span><br><span class="line">    exec_cmd = request.args.get(<span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">    os.system(exec_cmd)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;1&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">source</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">open</span>(<span class="string">&quot;app.py&quot;</span>, <span class="string">&quot;r&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <h2 id="walk-through"><a href="#walk-through" class="headerlink" title="walk through"></a>walk through</h2><ol>
@@ -194,10 +196,15 @@
 <li>我拿到shell 是不是能hui复原flag.txt呢？</li>
 </ol>
 <h2 id="由于buuoj不能读取外网"><a href="#由于buuoj不能读取外网" class="headerlink" title="由于buuoj不能读取外网"></a>由于buuoj不能读取外网</h2><p>拿到一个linux lab</p>
-<p><img src="/../assets/img/image-72.png" alt="alt text"></p>
+<p><a href="/../assets/img/image-72.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-72.png" alt="alt text"></a></p>
 <p>获取到不到交互式shell</p>
-<p><img src="/../assets/img/image-73.png" alt="alt text"></p>
-
+<p><a href="/../assets/img/image-73.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-73.png" alt="alt text"></a></p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -373,6 +380,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

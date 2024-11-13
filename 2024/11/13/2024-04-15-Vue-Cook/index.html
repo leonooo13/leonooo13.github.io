@@ -65,6 +65,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -182,14 +184,19 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>Vue.js 是一个流行的 JavaScript 框架，用于构建现代的交互式 Web 应用程序。它提供了一种简单而灵活的方式来创建用户界面，使开发者能够轻松地构建复杂的单页面应用（SPA）和动态网页。Vue.js 的核心库只关注视图层，因此它易于集成到现有项目中，并且可以与其他库和框架（如 React 和 Angular）一起使用。</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>Vue.js 是一个流行的 JavaScript 框架，用于构建现代的交互式 Web 应用程序。它提供了一种简单而灵活的方式来创建用户界面，使开发者能够轻松地构建复杂的单页面应用（SPA）和动态网页。Vue.js 的核心库只关注视图层，因此它易于集成到现有项目中，并且可以与其他库和框架（如 React 和 Angular）一起使用。</p>
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p><code>npm run dev</code> 启动开发服务器</p>
 <h2 id="基本文件"><a href="#基本文件" class="headerlink" title="基本文件"></a>基本文件</h2><ul>
 <li><code>App.vue</code>：Vue 应用程序的入口文件，包含根组件的挂载点。</li>
 </ul>
 <p>文件如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h2&gt;&#123;&#123; count &#125;&#125;&lt;/h2&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;TodoItem/&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import TodoItem from &#x27;./components/TodoItem.vue&#x27;</span><br><span class="line">  export default&#123;</span><br><span class="line">    name: &quot;App&quot;,</span><br><span class="line">    components:&#123;TodoItem&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -365,6 +372,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

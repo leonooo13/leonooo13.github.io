@@ -64,6 +64,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -171,7 +173,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="超文本传输协议-（HTTP）"><a href="#超文本传输协议-（HTTP）" class="headerlink" title="超文本传输协议 （HTTP）"></a><strong>超文本传输协议 （HTTP）</strong></h1><p>今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2616">HTTP</a> 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。<code>hypertext</code></p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="超文本传输协议-（HTTP）"><a href="#超文本传输协议-（HTTP）" class="headerlink" title="超文本传输协议 （HTTP）"></a><strong>超文本传输协议 （HTTP）</strong></h1><p>今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2616">HTTP</a> 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。<code>hypertext</code></p>
 <p>HTTP 通信由客户端和服务器组成，其中客户端向服务器请求资源。服务器处理请求并返回请求的资源。HTTP 通信的默认端口是 port ，但可以根据 Web 服务器配置将其更改为任何其他端口。当我们使用互联网访问不同的网站时，会使用相同的请求。我们输入 （） 作为 （） 以访问所需的网站，例如 <a target="_blank" rel="noopener" href="http://www.hackthebox.com/">www.hackthebox.com</a>。<code>80Fully Qualified Domain NameFQDNUniform Resource LocatorURL</code></p>
 <hr>
 <h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h1><p>通过 HTTP 上的资源是通过 访问的，它提供了更多的规范，而不仅仅是指定我们想要访问的网站。让我们看看 URL 的结构：</p>
@@ -249,7 +251,12 @@
 
 <p>这一次，cURL 没有打印任何内容，因为输出已保存到文件中。最后，我们可以使用该标志来查看我们可以对 cURL 使用哪些其他选项：<code>index.html-h</code></p>
 <p>超文本传输协议 （HTTP）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -hUsage: curl [options...] &lt;url&gt;</span><br><span class="line"> -d, --data &lt;data&gt;   HTTP POST data</span><br><span class="line"> -h, --help &lt;category&gt; Get help for commands</span><br><span class="line"> -i, --include       Include protocol response headers in the output</span><br><span class="line"> -o, --output &lt;file&gt; Write to file instead of stdout</span><br><span class="line"> -O, --remote-name   Write output to a file named as the remote file</span><br><span class="line"> -s, --silent        Silent mode</span><br><span class="line"> -u, --user &lt;user:password&gt; Server user and password</span><br><span class="line"> -A, --user-agent &lt;name&gt; Send User-Agent &lt;name&gt; to server</span><br><span class="line"> -v, --verbose       Make the operation more talkative</span><br><span class="line"></span><br><span class="line">This is not the full help, this menu is stripped into categories.</span><br><span class="line">Use &quot;--help category&quot; to get an overview of all categories.</span><br><span class="line">Use the user manual `man curl` or the &quot;--help all&quot; flag for all options.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -hUsage: curl [options...] &lt;url&gt;</span><br><span class="line"> -d, --data &lt;data&gt;   HTTP POST data</span><br><span class="line"> -h, --help &lt;category&gt; Get help for commands</span><br><span class="line"> -i, --include       Include protocol response headers in the output</span><br><span class="line"> -o, --output &lt;file&gt; Write to file instead of stdout</span><br><span class="line"> -O, --remote-name   Write output to a file named as the remote file</span><br><span class="line"> -s, --silent        Silent mode</span><br><span class="line"> -u, --user &lt;user:password&gt; Server user and password</span><br><span class="line"> -A, --user-agent &lt;name&gt; Send User-Agent &lt;name&gt; to server</span><br><span class="line"> -v, --verbose       Make the operation more talkative</span><br><span class="line"></span><br><span class="line">This is not the full help, this menu is stripped into categories.</span><br><span class="line">Use &quot;--help category&quot; to get an overview of all categories.</span><br><span class="line">Use the user manual `man curl` or the &quot;--help all&quot; flag for all options.</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -425,6 +432,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

@@ -65,6 +65,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -178,7 +180,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <ol>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol>
 <li><strong>漏洞相关</strong>：<ul>
 <li><strong>挖洞经历和CTF经历</strong>：要求介绍自认为有趣的相关经历。</li>
 <li><strong>常用漏洞</strong>：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。</li>
@@ -317,7 +319,12 @@
 </ul>
 </li>
 </ol>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -487,6 +494,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

@@ -16,8 +16,8 @@
 <meta property="article:published_time" content="2024-11-13T11:02:59.722Z">
 <meta property="article:modified_time" content="2024-03-30T16:07:55.057Z">
 <meta property="article:author" content="Leon">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="Code">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
     
     
@@ -65,6 +65,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -178,14 +180,19 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p><code>isinstance</code> 是 Python 编程语言中的一个内置函数，它用于检查一个对象是否是指定类或者是该类所定义的类的实例。</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><code>isinstance</code> 是 Python 编程语言中的一个内置函数，它用于检查一个对象是否是指定类或者是该类所定义的类的实例。</p>
 <p>具体来说，<code>isinstance()</code> 函数接受两个参数：第一个参数是需要检查的对象，第二个参数是一个类或者包含多个类的元组。如果第一个参数是第二个参数指定的类或者是从属于这个类的子类，那么 <code>isinstance()</code> 函数将返回 <code>True</code>，否则返回 <code>False</code>。</p>
 <p>这个函数在面向对象编程中非常有用，尤其是在需要根据对象的类型来执行不同操作或者在处理继承和多态性时。它可以帮助开发者确保对象具有期望的类型，从而避免类型错误和潜在的运行时异常。</p>
 <p>下面是一个简单的使用 <code>isinstance</code> 函数的例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>):</span><br><span class="line">        <span class="variable language_">self</span>.name = name</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>(<span class="title class_ inherited__">Animal</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(name)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个 Dog 类的实例</span></span><br><span class="line">my_dog = Dog(<span class="string">&quot;Buddy&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 isinstance 检查 my_dog 是否是 Dog 类的实例</span></span><br><span class="line">is_dog = <span class="built_in">isinstance</span>(my_dog, Dog)</span><br><span class="line"><span class="built_in">print</span>(is_dog)  <span class="comment"># 输出: True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 my_dog 是否是 Animal 类的实例</span></span><br><span class="line">is_animal = <span class="built_in">isinstance</span>(my_dog, Animal)</span><br><span class="line"><span class="built_in">print</span>(is_animal)  <span class="comment"># 输出: True</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 my_dog 是否是 str 类型的实例</span></span><br><span class="line">is_str = <span class="built_in">isinstance</span>(my_dog, <span class="built_in">str</span>)</span><br><span class="line"><span class="built_in">print</span>(is_str)  <span class="comment"># 输出: False</span></span><br></pre></td></tr></table></figure>
 
 <p>在这个例子中，<code>my_dog</code> 是 <code>Dog</code> 类的一个实例，而 <code>Dog</code> 继承自 <code>Animal</code> 类。因此，<code>isinstance(my_dog, Dog)</code> 和 <code>isinstance(my_dog, Animal)</code> 都返回 <code>True</code>，而 <code>isinstance(my_dog, str)</code> 返回 <code>False</code>，因为 <code>my_dog</code> 不是字符串类型的实例。</p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -355,6 +362,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

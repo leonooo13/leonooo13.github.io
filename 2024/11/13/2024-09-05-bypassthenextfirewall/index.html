@@ -73,6 +73,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -190,7 +192,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>防火墙是网络安全的关键部分，它充当受信任的内部网络和不受信任的外部网络（如 Internet）之间的屏障。根据预定义的安全规则监控和控制传入和传出的网络流量。</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>防火墙是网络安全的关键部分，它充当受信任的内部网络和不受信任的外部网络（如 Internet）之间的屏障。根据预定义的安全规则监控和控制传入和传出的网络流量。</p>
 <p>防火墙可以作为硬件设备、软件应用程序或两者的组合来实现。它们有多种用途：</p>
 <ol>
 <li><p><strong>存取控制：</strong> 防火墙根据配置的规则来调节允许或阻止哪些网络连接。</p>
@@ -214,9 +216,9 @@
 <p>此行为的一个具体示例可以在 <code>Cisco Firepower </code>威胁防御 （FTD） 中看到，它使用 Snort 引擎进行深度数据包检测。根据 Cisco 文档：</p>
 <p>“为了让 <code>Snort </code>引擎确定应用程序，它必须检查几个数据包（通常为 3-10 个，具体取决于应用程序解码器）。因此，允许某些数据包通过 FTD 并到达目的地。允许的数据包仍根据“在确定访问控制规则之前使用的 <code>Access Policy &gt; Advanced &gt; Intrusion Policy</code>”选项进行入侵策略控制。</p>
 <p>这意味着，即使连接似乎已启动，防火墙也可能在解析这些初始数据包后阻止它。这种方法允许防火墙对流量做出更明智的决策，但也可能导致出现实际上无法访问的“开放”端口。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:952/0*dCFT-ep3rUNhCjGj"></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:952/0*dCFT-ep3rUNhCjGj" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:952/0*dCFT-ep3rUNhCjGj"></a></p>
 <p>要了解这种情况是如何发生的，了解 TCP 连接的工作原理会很有帮助。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:700/0*lOZrpK46ED6M3_z0"></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:700/0*lOZrpK46ED6M3_z0" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:700/0*lOZrpK46ED6M3_z0"></a></p>
 <p>建立 TCP 连接：</p>
 <p>1. <strong>SYN：</strong> 客户端发送一个序列号为随机 A 的 SYN 数据包。</p>
 <p>2. <strong>SYN-ACK：</strong> 服务器以 SYN-ACK 响应。确认编号为 A + 1，并将其自己的序列号设置为 B。</p>
@@ -229,9 +231,9 @@
 <p>4. <strong>Acknowledgment：</strong> 第一个主机发送最终 ACK。</p>
 <h1 id="回归基础"><a href="#回归基础" class="headerlink" title="回归基础"></a>回归基础</h1><p>到目前为止，我们知道 IPS&#x2F;IDS 引擎最初会允许一些数据包通过，直到它确定它是否是恶意&#x2F;恶意流量。因此，我们可以改变常见的编程实践并利用此功能。</p>
 <p>套接字调度的一般架构如下所示：</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*n2MMEogst5L7XF46"></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/0*n2MMEogst5L7XF46" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:1400/0*n2MMEogst5L7XF46"></a></p>
 <p>我们可以连接、发送数据、接收响应、关闭套接字并重复。这有助于避免被 IDS&#x2F;IPS 系统检测到，否则可能会阻止连接。修改后的算法如下所示：</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*0Rq3FOJj6U9pkb1P"></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/0*0Rq3FOJj6U9pkb1P" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:1400/0*0Rq3FOJj6U9pkb1P"></a></p>
 <p>这正是 <code>Fragtunnel</code> 所做的！</p>
 <h2 id="Fragtunnel"><a href="#Fragtunnel" class="headerlink" title="Fragtunnel"></a>Fragtunnel</h2><p>这种基于 Python 的 TCP 隧道工具提供了一种绕过下一代防火墙的独特方法：</p>
 <p><strong>基本功能：</strong></p>
@@ -265,13 +267,18 @@
 <li>-T， –Tunnel：指定隧道服务器的 IP 地址和端口，以便于本地应用程序和目标服务器之间的连接。</li>
 </ul>
 <p>一旦 <code>tunnel </code>客户端执行并连接到 <code>tunnel</code> 服务器，您就可以与目标进行交互，就像直接在计算机上本地访问它一样。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*qqUHgxReL14a9lXi"></p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*ljeH8mwFDWsGjslX"></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/0*qqUHgxReL14a9lXi" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:1400/0*qqUHgxReL14a9lXi"></a></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/0*ljeH8mwFDWsGjslX" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:1400/0*ljeH8mwFDWsGjslX"></a></p>
 <p>如果我们运行 tcpdump，我们会注意到所有通信都是与服务器进行的，在本例中为 AWS。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*20hXmz0-tmMvVrN8"></p>
+<p><a target="_blank" rel="noopener" href="https://miro.medium.com/v2/resize:fit:1400/0*20hXmz0-tmMvVrN8" class="gallery-item"><img src="https://miro.medium.com/v2/resize:fit:1400/0*20hXmz0-tmMvVrN8"></a></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在许多情况下，当我们进行侦察时，我们注意到我们可以扫描服务器并获取端口信息，但是当我们尝试连接到系统时，它被防火墙阻止了。对这些下一代系统的工作原理有一点了解可以帮助我们克服它们。</p>
 <p>大多数下一代防火墙使用的 IDS&#x2F;IPS 引擎允许一些数据包到达目的地，同时收集足够的信息来判断是允许还是阻止流量。这是一个设计缺陷，可以利用它让我们使用 <code>fragtunnel </code>等工具不受限制地访问服务器。</p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -447,6 +454,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

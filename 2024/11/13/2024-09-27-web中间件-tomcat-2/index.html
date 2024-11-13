@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="端口扫描 tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。 https:&#x2F;&#x2F;github.com&#x2F;leonooo13&#x2F;CNVD-2020-10487-Tomcat-Ajp-lfi">
+    <meta name="description" content="端口扫描 tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。 https:&#x2F;&#x2F;github.com&#x2F;leonooo13&#x2F;CNVD-2020-10487-Tomcat-Ajp-lfi  if (typeof lightGallery !&#x3D;&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web中间件-Tomcat9-CVE-2020-1938">
 <meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat-2/index.html">
 <meta property="og:site_name" content="安全杂谈">
-<meta property="og:description" content="端口扫描 tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。 https:&#x2F;&#x2F;github.com&#x2F;leonooo13&#x2F;CNVD-2020-10487-Tomcat-Ajp-lfi">
+<meta property="og:description" content="端口扫描 tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。 https:&#x2F;&#x2F;github.com&#x2F;leonooo13&#x2F;CNVD-2020-10487-Tomcat-Ajp-lfi  if (typeof lightGallery !&#x3D;&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://imli.ink/assets/img/image-111.png">
 <meta property="og:image" content="https://imli.ink/assets/img/image-112.png">
@@ -70,6 +70,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -183,12 +185,17 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p><img src="/../assets/img/image-111.png" alt=" "></p>
-<p>端口扫描<br><img src="/../assets/img/image-112.png" alt="alt text"></p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><a href="/../assets/img/image-111.png" title=" " class="gallery-item"><img src="/../assets/img/image-111.png" alt=" "></a></p>
+<p>端口扫描<br><a href="/../assets/img/image-112.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-112.png" alt="alt text"></a></p>
 <p>tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi">https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi</a></p>
-<p><img src="/../assets/img/image-114.png" alt="alt text"></p>
-
+<p><a href="/../assets/img/image-114.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-114.png" alt="alt text"></a></p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -358,6 +365,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

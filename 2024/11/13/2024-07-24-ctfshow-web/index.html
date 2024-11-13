@@ -65,6 +65,8 @@
     
 	<!-- mathjax -->
 	
+  
+  
 <meta name="generator" content="Hexo 7.3.0"></head>
 
 <body class="max-width mx-auto px3 ltr">
@@ -97,7 +99,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-07-25-ctfshow-web9/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-07-05-CVE-2024-36991/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -182,7 +184,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>没事打打CTF 也是一种乐趣，这里记录一下一些Web方向的题目，以及解题思路。</p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>没事打打CTF 也是一种乐趣，这里记录一下一些Web方向的题目，以及解题思路。</p>
 <h2 id="SQLMap"><a href="#SQLMap" class="headerlink" title="SQLMap"></a>SQLMap</h2><p>在上述命令中，–batch 选项用于自动执行操作而无需手动干预，–level&#x3D;4 选项增加了测试强度，–tamper&#x3D;space2comment 选项用于规避防护机制。</p>
 <p>命令的基本格式和说明如下：<br><code>python .\sqlmap.py -u &lt;目标URL&gt; --batch --level=4 --tamper=space2comment</code><br>对于你的具体需求，命令如下：</p>
 <p><code>python .\sqlmap.py -u https://a2020962-4979-41f6-8eb4-cf91bf04c2f8.challenge.ctf.show/index.php?id=2 --batch --level=4 --tamper=space2comment</code></p>
@@ -210,7 +212,12 @@
 <p> 这个命令会从指定的表和列中提取数据。</p>
 </li>
 </ol>
-
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -386,6 +393,10 @@
           (document.getElementById('utterances_thread')).appendChild(script);
       }());
   </script>
+
+
+
+<!-- FancyBox -->
 
 </body>
 </html>

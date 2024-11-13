@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="NTFS 与共享权限 Microsoft 在使用 Windows 的桌面操作系统上拥有超过 70% 的全球市场份额。这解释了为什么大多数恶意软件作者选择为 Windows 编写恶意软件，以及为什么许多人认为 Windows 不如其他操作系统安全。从商业角度来看，恶意软件作者花费资源编写 Windows 恶意软件是有意义的。这是一个高价值的目标。任何操作系统都不受恶意软件影响的想法是一种技术谬误。如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="NTFS 与共享权限 Microsoft 在使用 Windows 的桌面操作系统上拥有超过 70% 的全球市场份额。这解释了为什么大多数恶意软件作者选择为 Windows 编写恶意软件，以及为什么许多人认为 Windows 不如其他操作系统安全。从商业角度来看，恶意软件作者花费资源编写 Windows 恶意软件是有意义的。这是一个高价值的目标。任何操作系统都不受恶意软件影响的想法是一种技术谬误。如">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:45.103Z">
+<meta property="article:modified_time" content="2024-09-18T10:18:44.862Z">
+<meta property="article:author" content="Leon">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hexo</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-19-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-16-MonitorsThree-htb/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NTFS-%E4%B8%8E%E5%85%B1%E4%BA%AB%E6%9D%83%E9%99%90"><span class="toc-number">1.</span> <span class="toc-text">NTFS 与共享权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E6%9D%83%E9%99%90"><span class="toc-number">1.0.1.</span> <span class="toc-text">共享权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E5%9F%BA%E6%9C%AC%E6%9D%83%E9%99%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">NTFS 基本权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="toc-number">1.0.3.</span> <span class="toc-text">NTFS 特殊权限</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB"><span class="toc-number">2.</span> <span class="toc-text">创建网络共享</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.0.1.</span> <span class="toc-text">创建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E5%A4%B9%E8%AE%BE%E4%B8%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.0.2.</span> <span class="toc-text">将文件夹设为共享文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E6%9D%83%E9%99%90-ACL%EF%BC%88%E2%80%9C%E5%85%B1%E4%BA%AB%E2%80%9D%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%89"><span class="toc-number">2.0.3.</span> <span class="toc-text">共享权限 ACL（“共享”选项卡）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-smbclient-%E5%88%97%E5%87%BA%E5%8F%AF%E7%94%A8%E7%9A%84%E5%85%B1%E4%BA%AB"><span class="toc-number">2.0.4.</span> <span class="toc-text">使用 smbclient 列出可用的共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%85%AC%E5%8F%B8%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB"><span class="toc-number">2.0.5.</span> <span class="toc-text">连接到公司数据共享</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-Defender-%E9%98%B2%E7%81%AB%E5%A2%99%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.</span> <span class="toc-text">Windows Defender 防火墙注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E6%9D%83%E9%99%90-ACL%EF%BC%88%E2%80%9C%E5%AE%89%E5%85%A8%E2%80%9D%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%89"><span class="toc-number">3.0.1.</span> <span class="toc-text">NTFS 权限 ACL（“安全”选项卡）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E5%88%B0%E5%85%B1%E4%BA%AB"><span class="toc-number">3.0.2.</span> <span class="toc-text">挂载到共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-CIFS-%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.0.3.</span> <span class="toc-text">安装 CIFS 实用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Net-Share-%E6%98%BE%E7%A4%BA%E5%85%B1%E4%BA%AB"><span class="toc-number">3.0.4.</span> <span class="toc-text">使用 Net Share 显示共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%A1%E7%90%86%E4%B8%AD%E7%9B%91%E6%8E%A7%E5%85%B1%E4%BA%AB"><span class="toc-number">3.0.5.</span> <span class="toc-text">从计算机管理中监控共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Event-Viewer-%E4%B8%AD%E6%9F%A5%E7%9C%8B%E5%85%B1%E4%BA%AB%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97"><span class="toc-number">3.0.6.</span> <span class="toc-text">在 Event Viewer 中查看共享访问日志</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.103Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-09-18T10:18:44.862Z" class="dt-updated" itemprop="dateModified">2024-09-18</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="NTFS-与共享权限"><a href="#NTFS-与共享权限" class="headerlink" title="NTFS 与共享权限"></a><strong>NTFS 与共享权限</strong></h1><hr>
+<p>Microsoft 在使用 Windows 的桌面操作系统上拥有超过 <a target="_blank" rel="noopener" href="https://gs.statcounter.com/os-market-share/desktop/worldwide/#monthly-201804-202104">70%</a> 的全球市场份额。这解释了为什么大多数恶意软件作者选择为 Windows 编写恶意软件，以及为什么许多人认为 Windows 不如其他操作系统安全。从商业角度来看，恶意软件作者花费资源编写 Windows 恶意软件是有意义的。这是一个高价值的目标。任何操作系统都不受恶意软件影响的想法是一种技术谬误。如果可以为操作系统编写软件，那么可以为操作系统编写病毒。请记住，根据定义，病毒是出于恶意编写的软件，可以为任何操作系统编写。为 Windows 编写的许多恶意软件变体可以通过应用了宽松权限的网络共享在网络上传播。还值得注意的是，直到今天，这个臭名昭著的漏洞仍然困扰着正在运行的未打补丁的 Windows 系统，并且经常为勒索软件关闭组织铺平道路。<code>EternalBlueSMBv1</code></p>
+<p>（） 在 Windows 中用于连接共享资源，如文件和打印机。它用于大型、中型和小型企业环境。请参阅下图以直观地了解此概念：<code>Server Message Block protocolSMB</code></p>
+<p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/smb_diagram.png">https://academy.hackthebox.com/storage/modules/49/smb_diagram.png</a></p>
+<p>注意：每当您看到某个概念的可视化&#x2F;图表时，请花时间彻底理解它。一张图片可能胜过千言万语，但在阅读时非常诱人地跳过。</p>
+<p>NTFS 权限和共享权限通常被理解为相同。请注意，它们并不相同，但通常适用于相同的共享资源。让我们看一下可以设置的各个权限，以保护&#x2F;授予对象对运行 NTFS 文件系统的 Windows 操作系统上托管的网络共享的访问权限。</p>
+<h3 id="共享权限"><a href="#共享权限" class="headerlink" title="共享权限"></a><strong>共享权限</strong></h3><table>
+<thead>
+<tr>
+<th><strong>许可</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Full Control</code></td>
+<td>允许用户执行更改和读取权限提供的所有操作，以及更改 NTFS 文件和子文件夹的权限</td>
+</tr>
+<tr>
+<td><code>Change</code></td>
+<td>允许用户读取、编辑、删除和添加文件和子文件夹</td>
+</tr>
+<tr>
+<td><code>Read</code></td>
+<td>用户可以查看文件和子文件夹内容</td>
+</tr>
+</tbody></table>
+<h3 id="NTFS-基本权限"><a href="#NTFS-基本权限" class="headerlink" title="NTFS 基本权限"></a><strong>NTFS 基本权限</strong></h3><table>
+<thead>
+<tr>
+<th><strong>许可</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Full Control</code></td>
+<td>用户可以添加、编辑、移动、删除文件和文件夹，以及更改适用于所有允许文件夹的NTFS权限。</td>
+</tr>
+<tr>
+<td><code>Modify</code></td>
+<td>允许用户查看和修改文件和文件夹的权限。这包括添加或删除文件</td>
+</tr>
+<tr>
+<td><code>Read &amp; Execute</code></td>
+<td>允许用户或拒绝读取文件内容和执行程序的权限</td>
+</tr>
+<tr>
+<td><code>List folder contents</code></td>
+<td>允许用户或拒绝用户查看文件和子文件夹列表的权限</td>
+</tr>
+<tr>
+<td><code>Read</code></td>
+<td>允许或拒绝用户读取文件内容的权限</td>
+</tr>
+<tr>
+<td><code>Write</code></td>
+<td>允许或拒绝用户对文件写入更改以及将新文件添加到文件夹的权限</td>
+</tr>
+<tr>
+<td><code>Special Permissions</code></td>
+<td>各种高级权限选项</td>
+</tr>
+</tbody></table>
+<h3 id="NTFS-特殊权限"><a href="#NTFS-特殊权限" class="headerlink" title="NTFS 特殊权限"></a><strong>NTFS 特殊权限</strong></h3><table>
+<thead>
+<tr>
+<th><strong>许可</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Full control</code></td>
+<td>用户有权添加、编辑、移动、删除文件和文件夹，以及更改适用于所有允许文件夹的NTFS权限。</td>
+</tr>
+<tr>
+<td><code>Traverse folder / execute file</code></td>
+<td>允许或拒绝用户访问目录结构中的子文件夹的权限，即使拒绝用户访问父文件夹级别的内容也是如此。用户也可能被允许或拒绝执行程序的权限</td>
+</tr>
+<tr>
+<td><code>List folder/read data</code></td>
+<td>允许用户或拒绝用户查看父文件夹中包含的文件和文件夹的权限。还可以允许用户打开和查看文件</td>
+</tr>
+<tr>
+<td><code>Read attributes</code></td>
+<td>允许用户或拒绝查看文件或文件夹的基本属性的权限。基本属性示例：system、archive、read-only 和 hidden</td>
+</tr>
+<tr>
+<td><code>Read extended attributes</code></td>
+<td>允许用户或拒绝查看文件或文件夹的扩展属性的权限。属性因程序而异</td>
+</tr>
+<tr>
+<td><code>Create files/write data</code></td>
+<td>允许用户或拒绝用户在文件夹中创建文件和更改文件的权限</td>
+</tr>
+<tr>
+<td><code>Create folders/append data</code></td>
+<td>允许用户或拒绝在文件夹中创建子文件夹的权限。可以将数据添加到文件中，但不能覆盖预先存在的内容</td>
+</tr>
+<tr>
+<td><code>Write attributes</code></td>
+<td>允许或拒绝用户更改文件属性。此权限不授予创建文件或文件夹的权限</td>
+</tr>
+<tr>
+<td><code>Write extended attributes</code></td>
+<td>允许用户或拒绝用户更改文件或文件夹的扩展属性的权限。属性因程序而异</td>
+</tr>
+<tr>
+<td><code>Delete subfolders and files</code></td>
+<td>允许用户删除子文件夹和文件的权限。不会删除父文件夹</td>
+</tr>
+<tr>
+<td><code>Delete</code></td>
+<td>允许用户或拒绝用户删除父文件夹、子文件夹和文件的权限。</td>
+</tr>
+<tr>
+<td><code>Read permissions</code></td>
+<td>允许或拒绝用户读取文件夹的权限</td>
+</tr>
+<tr>
+<td><code>Change permissions</code></td>
+<td>允许用户或拒绝用户更改文件或文件夹的权限</td>
+</tr>
+<tr>
+<td><code>Take ownership</code></td>
+<td>允许用户或拒绝用户获得文件或文件夹的所有权。文件所有者具有更改任何权限的完全权限</td>
+</tr>
+</tbody></table>
+<p>请记住，NTFS 权限适用于托管文件夹和文件的系统。默认情况下，在 NTFS 中创建的文件夹会从父文件夹继承权限。可以禁用继承以设置对父文件夹和子文件夹的自定义权限，就像我们稍后将在本模块中所做的那样。当通过 SMB 访问文件夹时（通常从网络中的其他系统访问），共享权限适用。这意味着在本地或通过 RDP 登录到计算机的人只需导航到文件系统上的位置即可访问共享文件夹和文件，并且只需要考虑 NTFS 权限。NTFS 级别的权限使管理员能够更精细地控制用户可以在文件夹或文件中执行的操作。</p>
+<hr>
+<h1 id="创建网络共享"><a href="#创建网络共享" class="headerlink" title="创建网络共享"></a><strong>创建网络共享</strong></h1><p>为了对 SMB 及其与 NTFS 的关系有一个扎实的基本理解，我们将在 上创建一个网络共享。<code>Windows 10 target box</code></p>
+<p>注意：让 Pwnbox 在单独的显示器上全屏打开是一种理想的学习体验，这样我们至少可以有一个显示器专门用于显示书面内容，还有一个显示器用于我们正在交互的盒子。或者，如果我们只能访问一个显示器，我们可以将该显示器用于与盒子和智能手机或平板电脑交互以引用写入的内容。</p>
+<p>在这种情况下，我们将首先在 Windows 10 桌面上创建一个新文件夹来创建共享文件夹。请记住，在大多数大型企业环境中，共享是在存储区域网络 （SAN）、网络连接存储设备 （NAS） 或通过服务器操作系统（如 Windows Server）访问的驱动器上的单独分区上创建的。如果我们在桌面操作系统上遇到共享，它可能是一家小型企业，也可能是渗透测试人员或恶意攻击者用来收集和泄露数据的滩头系统。</p>
+<p>我们将使用 Windows 中的 GUI 完成此过程。</p>
+<h3 id="创建文件夹"><a href="#创建文件夹" class="headerlink" title="创建文件夹"></a><strong>创建文件夹</strong></h3><p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/creating_directory.png">https://academy.hackthebox.com/storage/modules/49/creating_directory.png</a></p>
+<p>我们将使用该选项来配置我们的共享。<code>Advanced Sharing</code></p>
+<h3 id="将文件夹设为共享文件夹"><a href="#将文件夹设为共享文件夹" class="headerlink" title="将文件夹设为共享文件夹"></a><strong>将文件夹设为共享文件夹</strong></h3><p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/configuring_share.png">https://academy.hackthebox.com/storage/modules/49/configuring_share.png</a></p>
+<p>请注意共享名称如何自动默认为文件夹的名称。此外，我们可以看到可以限制可以同时连接到此共享的用户数。在实际环境中，管理员最好根据经常需要访问正在共享的资源的用户数来设置此数字。</p>
+<p>与 NTFS 权限类似，有一个 （） 用于共享资源。我们可以将此视为 SMB 权限列表。请记住，对于共享资源，SMB 和 NTFS 权限列表都适用于在 Windows 中共享的每个资源。ACL 包含 （）。通常这些ACEs由&amp;（也称为安全主体）组成，因为它们是管理和跟踪对共享资源的访问的合适机制。<code>access control listACLaccess control entriesACEsusersgroups</code></p>
+<p>请注意默认的 access control entry 和 permissions 设置。</p>
+<h3 id="共享权限-ACL（“共享”选项卡）"><a href="#共享权限-ACL（“共享”选项卡）" class="headerlink" title="共享权限 ACL（“共享”选项卡）"></a><strong>共享权限 ACL（“共享”选项卡）</strong></h3><p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/share_permissions.png">https://academy.hackthebox.com/storage/modules/49/share_permissions.png</a></p>
+<p>现在，我们将应用这些设置来测试此 ACL 的效果以及按原样应用的权限。我们将通过打开终端并使用 来测试 Pwnbox 的连接。<code>smbclient</code></p>
+<p>注意：从技术上讲，服务器是一种用于为客户端请求提供服务的软件功能。在这种情况下，Pwnbox 是我们的客户端，而 Windows 10 目标框是我们的服务器。</p>
+<h3 id="使用-smbclient-列出可用的共享"><a href="#使用-smbclient-列出可用的共享" class="headerlink" title="使用 smbclient 列出可用的共享"></a><strong>使用 smbclient 列出可用的共享</strong></h3><p>NTFS 与共享权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ smbclient -L SERVER_IP -U htb-studentEnter WORKGROUP\htb-student&#x27;s password:</span><br><span class="line"></span><br><span class="line">	Sharename       Type      Comment</span><br><span class="line">	---------       ----      -------</span><br><span class="line">	ADMIN$          Disk      Remote Admin	C$              Disk      Default share	Company Data    Disk</span><br><span class="line">	IPC$            IPC       Remote IPC</span><br></pre></td></tr></table></figure>
+
+<h3 id="连接到公司数据共享"><a href="#连接到公司数据共享" class="headerlink" title="连接到公司数据共享"></a><strong>连接到公司数据共享</strong></h3><p>NTFS 与共享权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ smbclient &#x27;\\SERVER_IP\Company Data&#x27; -U htb-studentPassword for [WORKGROUP\htb-student]:</span><br><span class="line">Try &quot;help&quot; to get a list of possible commands.</span><br><span class="line"></span><br><span class="line">smb: \&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果我们的所有条目都正确无误，并且我们的权限列表中存在至少具有读取权限的 Everyone 组，那么什么可能会阻止我们访问此共享？</p>
+<hr>
+<h1 id="Windows-Defender-防火墙注意事项"><a href="#Windows-Defender-防火墙注意事项" class="headerlink" title="Windows Defender 防火墙注意事项"></a><strong>Windows Defender 防火墙注意事项</strong></h1><p>Windows Defender 防火墙可能会阻止对 SMB 共享的访问。由于我们从基于 Linux 的系统进行连接，因此防火墙已阻止来自任何未加入同一设备的访问 .同样重要的是要注意，当 Windows 系统是工作组的一部分时，所有请求都会根据该特定 Windows 系统的数据库进行身份验证。当 Windows 系统加入 Windows 域环境时，所有 netlogon 请求都将根据 进行身份验证。工作组和 Windows 域在身份验证方面的主要区别在于，工作组使用本地 SAM 数据库，而在 Windows 域中使用基于网络的集中式数据库 （Active Directory）。我们在尝试登录和验证Windows系统时必须知道这些信息。考虑 htb-student 账户的托管位置以正确连接到目标。<code>workgroupnetlogonSAMActive Directory</code></p>
+<p>在防火墙阻止连接方面，可以通过在 Windows 中完全停用每个防火墙配置文件或在 中启用特定的预定义入站防火墙规则来测试。像大多数防火墙一样，Windows Defender防火墙允许或拒绝流量（在这种情况下是访问和连接请求）流动和&#x2F;或<code>Windows Defender Firewall advanced security settingsinboundoutbound</code></p>
+<p>不同的入站和出站规则与 Defender 中的不同防火墙配置文件相关联。</p>
+<p>Windows Defender 防火墙配置文件：</p>
+<ul>
+<li><code>Public</code></li>
+<li><code>Private</code></li>
+<li><code>Domain</code></li>
+</ul>
+<p>最佳实践是启用预定义规则或添加自定义例外，而不是完全停用防火墙。不幸的是，为了方便或缺乏理解而完全停用防火墙是很常见的。通过使用组策略加入 Windows 域环境时，可以集中管理桌面系统上的防火墙规则。组策略概念和配置超出了本模块的范围。</p>
+<p>启用适当的防火墙规则后，我们将成功连接到共享。请记住，我们只能连接到共享，因为我们使用的用户帐户 （） 位于 .回想一下，我们将 Everyone 组的特定共享权限设置为 Read，这实际上意味着我们将只能读取此共享上的文件。一旦与共享建立连接，我们就可以创建一个从 Pwnbox 到 Windows 10 目标框的文件系统。在这里，我们还必须考虑 NTFS 权限与共享权限一起应用。回想一下，NTFS 是 Windows 中的默认文件系统。让我们跳回到 Windows 10 目标框的 xfreerdp 会话，看看 Company Data 文件夹的 NTFS 权限。<code>inboundhtb-studentEveryone groupmount point</code></p>
+<h3 id="NTFS-权限-ACL（“安全”选项卡）"><a href="#NTFS-权限-ACL（“安全”选项卡）" class="headerlink" title="NTFS 权限 ACL（“安全”选项卡）"></a><strong>NTFS 权限 ACL（“安全”选项卡）</strong></h3><p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/ntfs.png">https://academy.hackthebox.com/storage/modules/49/ntfs.png</a></p>
+<p>NTFS 权限可以应用于用户和组，从而进行更精细的控制。每当我们在权限旁边看到灰色复选标记时，它都是从父目录继承的。默认情况下，所有 NTFS 权限都是从父目录继承的。在 Windows 世界中，它是统治所有目录的父目录，除非系统管理员在新创建的文件夹的高级安全设置中禁用继承。<code>C:\ drive</code></p>
+<p>在许多情况下，组织的系统管理员将负责决定用户或用户组对网络资源获得哪些权限。这就是为什么许多鱼叉式网络钓鱼攻击都是针对系统管理员和其他 IT 领导者的原因。他们对他们所监督的环境中允许的内容有很大的影响力，在许多情况下甚至比组织的非技术 C 级领导者还要大。例如，在医院工作的医生或管理人员将不具有对网络的管理权限，但系统管理员可以。</p>
+<p>现在让我们在共享级别为 Everyone 组提供，并通过尝试从 Pwnbox 的桌面创建到共享的挂载点来测试更改的影响<code>Full control</code></p>
+<h3 id="挂载到共享"><a href="#挂载到共享" class="headerlink" title="挂载到共享"></a><strong>挂载到共享</strong></h3><p>NTFS 与共享权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ sudo mount -t cifs -o username=htb-student,password=Academy_WinFun! //ipaddoftarget/&quot;Company Data&quot; /home/user/Desktop/</span><br></pre></td></tr></table></figure>
+
+<p>如果此命令不起作用，请检查语法。如果语法正确但命令仍然不起作用，则可能需要安装。这可以通过以下命令完成：<code>cifs-utils</code></p>
+<h3 id="安装-CIFS-实用程序"><a href="#安装-CIFS-实用程序" class="headerlink" title="安装 CIFS 实用程序"></a><strong>安装 CIFS 实用程序</strong></h3><p>NTFS 与共享权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ sudo apt-get install cifs-utils</span><br></pre></td></tr></table></figure>
+
+<p>一旦我们在 Pwnbox 的桌面上成功创建了挂载点，我们应该看看 Windows 内置的几个工具，它们将允许我们跟踪和监控我们所做的工作。</p>
+<p>该命令允许我们查看系统上的所有共享文件夹。请注意我们创建的共享以及 C：\ 驱动器。<code>net share</code></p>
+<p><code>Do you remember us sharing the C:\ drive?</code></p>
+<p>我们没有手动共享 C：。Windows 系统上包含最重要文件的最重要的驱动器在安装时通过 SMB 共享。这意味着任何具有适当访问权限的人都可以远程访问网络上每个 Windows 系统的整个 C：\。</p>
+<p>我们还可以看到我们创建的共享。</p>
+<h3 id="使用-Net-Share-显示共享"><a href="#使用-Net-Share-显示共享" class="headerlink" title="使用 Net Share 显示共享"></a><strong>使用 Net Share 显示共享</strong></h3><p>NTFS 与共享权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\htb-student&gt; net share</span><br><span class="line"></span><br><span class="line">Share name   Resource                        Remark</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">C$           C:\                             Default share</span><br><span class="line">IPC$                                         Remote IPC</span><br><span class="line">ADMIN$       C:\WINDOWS                      Remote Admin</span><br><span class="line">Company Data C:\Users\htb-student\Desktop\Company Data</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>Computer Management</code>是我们可以用来识别和监控 Windows 系统上共享资源的另一种工具。</p>
+<h3 id="从计算机管理中监控共享"><a href="#从计算机管理中监控共享" class="headerlink" title="从计算机管理中监控共享"></a><strong>从计算机管理中监控共享</strong></h3><p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/computer_management.png">https://academy.hackthebox.com/storage/modules/49/computer_management.png</a></p>
+<p>我们可以在 ， 中四处探索，并了解它为我们提供了什么信息。如果我们协助个人或组织应对与 SMB 相关的违规行为，这些都是检查并开始了解违规行为可能如何发生以及可能留下什么的好地方。<code>SharesSessionsOpen Files</code></p>
+<h3 id="在-Event-Viewer-中查看共享访问日志"><a href="#在-Event-Viewer-中查看共享访问日志" class="headerlink" title="在 Event Viewer 中查看共享访问日志"></a><strong>在 Event Viewer 中查看共享访问日志</strong></h3><p><code>Event Viewer</code>是调查在 Windows 上完成的操作的另一个好位置。几乎每个操作系统都有一个日志记录机制和一个实用程序来查看捕获的日志。要知道，日志就像计算机的日志条目，计算机在其中记下执行的所有操作以及与该操作相关的许多详细信息。我们可以查看为我们在访问 Windows 10 目标框以及创建、编辑和访问共享文件夹时执行的每项操作创建的日志。</p>
+<p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/49/event_viewer.png">https://academy.hackthebox.com/storage/modules/49/event_viewer.png</a></p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NTFS-%E4%B8%8E%E5%85%B1%E4%BA%AB%E6%9D%83%E9%99%90"><span class="toc-number">1.</span> <span class="toc-text">NTFS 与共享权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E6%9D%83%E9%99%90"><span class="toc-number">1.0.1.</span> <span class="toc-text">共享权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E5%9F%BA%E6%9C%AC%E6%9D%83%E9%99%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">NTFS 基本权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="toc-number">1.0.3.</span> <span class="toc-text">NTFS 特殊权限</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB"><span class="toc-number">2.</span> <span class="toc-text">创建网络共享</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.0.1.</span> <span class="toc-text">创建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%96%87%E4%BB%B6%E5%A4%B9%E8%AE%BE%E4%B8%BA%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.0.2.</span> <span class="toc-text">将文件夹设为共享文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E6%9D%83%E9%99%90-ACL%EF%BC%88%E2%80%9C%E5%85%B1%E4%BA%AB%E2%80%9D%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%89"><span class="toc-number">2.0.3.</span> <span class="toc-text">共享权限 ACL（“共享”选项卡）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-smbclient-%E5%88%97%E5%87%BA%E5%8F%AF%E7%94%A8%E7%9A%84%E5%85%B1%E4%BA%AB"><span class="toc-number">2.0.4.</span> <span class="toc-text">使用 smbclient 列出可用的共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0%E5%85%AC%E5%8F%B8%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB"><span class="toc-number">2.0.5.</span> <span class="toc-text">连接到公司数据共享</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-Defender-%E9%98%B2%E7%81%AB%E5%A2%99%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">3.</span> <span class="toc-text">Windows Defender 防火墙注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E6%9D%83%E9%99%90-ACL%EF%BC%88%E2%80%9C%E5%AE%89%E5%85%A8%E2%80%9D%E9%80%89%E9%A1%B9%E5%8D%A1%EF%BC%89"><span class="toc-number">3.0.1.</span> <span class="toc-text">NTFS 权限 ACL（“安全”选项卡）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E5%88%B0%E5%85%B1%E4%BA%AB"><span class="toc-number">3.0.2.</span> <span class="toc-text">挂载到共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-CIFS-%E5%AE%9E%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.0.3.</span> <span class="toc-text">安装 CIFS 实用程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Net-Share-%E6%98%BE%E7%A4%BA%E5%85%B1%E4%BA%AB"><span class="toc-number">3.0.4.</span> <span class="toc-text">使用 Net Share 显示共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%A1%E7%90%86%E4%B8%AD%E7%9B%91%E6%8E%A7%E5%85%B1%E4%BA%AB"><span class="toc-number">3.0.5.</span> <span class="toc-text">从计算机管理中监控共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-Event-Viewer-%E4%B8%AD%E6%9F%A5%E7%9C%8B%E5%85%B1%E4%BA%AB%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97"><span class="toc-number">3.0.6.</span> <span class="toc-text">在 Event Viewer 中查看共享访问日志</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

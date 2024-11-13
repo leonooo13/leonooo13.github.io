@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="信息安全概述     信息安全 （infosec） 是一个广阔的领域。该领域在过去几年中取得了长足的发展和发展。它提供许多专业，包括但不限于：    网络和基础设施安全  应用程序安全性  安全测试  系统审计  业务连续性规划  数字取证  事件检测和响应 简而言之，信息安全是保护数据免受未经授权的访问、更改、非法使用、中断等的做法。信息安全专业人员还会采取行动减少任何此类事件的整体影响。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="信息安全概述     信息安全 （infosec） 是一个广阔的领域。该领域在过去几年中取得了长足的发展和发展。它提供许多专业，包括但不限于：    网络和基础设施安全  应用程序安全性  安全测试  系统审计  业务连续性规划  数字取证  事件检测和响应 简而言之，信息安全是保护数据免受未经授权的访问、更改、非法使用、中断等的做法。信息安全专业人员还会采取行动减少任何此类事件的整体影响。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/GettingStarted.png">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/google1.png">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/google2.png">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/phpinfo.png">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg">
+<meta property="og:image" content="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg">
+<meta property="article:published_time" content="2024-11-13T11:03:45.049Z">
+<meta property="article:modified_time" content="2024-09-16T15:08:06.435Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="渗透测试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://academy.hackthebox.com/storage/modules/77/GettingStarted.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>渗透测试</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&text=渗透测试"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&is_video=false&description=渗透测试"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=渗透测试&body=Check out this article: https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&name=渗透测试&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&t=渗透测试"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">信息安全概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">风险管理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E9%98%9F-vs-%E8%93%9D%E9%98%9F"><span class="toc-number">1.2.</span> <span class="toc-text">红队 vs. 蓝队</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BA%BA%E5%91%98%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">渗透测试人员的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">文件夹结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-VPN-%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">使用 VPN 连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-number">3.</span> <span class="toc-text">基本工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SSH"><span class="toc-number">3.1.</span> <span class="toc-text">使用 SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Netcat"><span class="toc-number">3.2.</span> <span class="toc-text">使用 Netcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Tmux"><span class="toc-number">3.3.</span> <span class="toc-text">使用 Tmux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Vim"><span class="toc-number">3.4.</span> <span class="toc-text">使用 Vim</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%89%AB%E6%8F%8F"><span class="toc-number">4.</span> <span class="toc-text">服务扫描</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nmap"><span class="toc-number">4.1.</span> <span class="toc-text">Nmap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Nmap-%E8%84%9A%E6%9C%AC"><span class="toc-number">4.1.0.1.</span> <span class="toc-text">Nmap 脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.</span> <span class="toc-text">攻击网络服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%AA%E5%B9%85%E6%8A%93%E5%8F%96"><span class="toc-number">4.2.0.1.</span> <span class="toc-text">横幅抓取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FTP-%EF%BC%88%E8%87%AA%E7%94%B1%E8%B4%B8%E6%98%93%E5%8D%8F%E5%AE%9A"><span class="toc-number">4.2.0.2.</span> <span class="toc-text">FTP （自由贸易协定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SMB-%EF%BC%88%E4%B8%AD%E5%B0%8F%E5%9E%8B%E4%BC%81%E4%B8%9A%EF%BC%89"><span class="toc-number">4.2.0.3.</span> <span class="toc-text">SMB （中小型企业）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%82%A1%E7%A5%A8"><span class="toc-number">4.2.0.4.</span> <span class="toc-text">股票</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SNMP-%EF%BC%88SNMP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">4.2.0.5.</span> <span class="toc-text">SNMP （SNMP 协议）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">4.3.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7-1"><span class="toc-number">5.</span> <span class="toc-text">基本工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SSH-1"><span class="toc-number">5.1.</span> <span class="toc-text">使用 SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Netcat-1"><span class="toc-number">5.2.</span> <span class="toc-text">使用 Netcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Tmux-1"><span class="toc-number">5.3.</span> <span class="toc-text">使用 Tmux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Vim-1"><span class="toc-number">5.4.</span> <span class="toc-text">使用 Vim</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        渗透测试
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.049Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-09-16T15:08:06.435Z" class="dt-updated" itemprop="dateModified">2024-09-16</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <ul>
+<li><h1 id="信息安全概述"><a href="#信息安全概述" class="headerlink" title="信息安全概述"></a>信息安全概述</h1></li>
+</ul>
+<hr>
+<p>  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Information_security">信息安全</a> （infosec） 是一个广阔的领域。该领域在过去几年中取得了长足的发展和发展。它提供许多专业，包括但不限于：  </p>
+<ul>
+<li><p>网络和基础设施安全</p>
+</li>
+<li><p>应用程序安全性</p>
+</li>
+<li><p>安全测试</p>
+</li>
+<li><p>系统审计</p>
+</li>
+<li><p>业务连续性规划</p>
+</li>
+<li><p>数字取证</p>
+</li>
+<li><p>事件检测和响应</p>
+<p>简而言之，信息安全是保护数据免受未经授权的访问、更改、非法使用、中断等的做法。信息安全专业人员还会采取行动减少任何此类事件的整体影响。  </p>
+<p>数据可以是电子的，也可以是有形的（例如，设计蓝图）或无形的（知识）。在我们的信息安全职业生涯中，一个经常出现的短语是保护“数据的机密性、完整性和可用性”，或 .<code>CIA triad</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="风险管理流程"><a href="#风险管理流程" class="headerlink" title="风险管理流程"></a>风险管理流程</h2><p>数据保护必须专注于高效而有效的策略实施，而不会对组织的业务运营和生产力产生负面影响。为此，组织必须遵循一个称为 .此过程包括以下 5 个步骤：<code>risk management process</code>  </p>
+<table>
+<thead>
+<tr>
+<th>步</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Identifying the Risk</code></td>
+<td>识别企业面临的风险，例如法律、环境、市场、监管和其他类型的风险。</td>
+</tr>
+<tr>
+<td><code>Analyze the Risk</code></td>
+<td>分析风险以确定其影响和概率。风险应映射到组织的各种策略、程序和业务流程。</td>
+</tr>
+<tr>
+<td><code>Evaluate the Risk</code></td>
+<td>评估、排序和确定风险的优先级。然后，组织必须决定接受 （不可避免）、避免 （更改计划）、控制 （缓解） 或转移风险 （保险）。</td>
+</tr>
+<tr>
+<td><code>Dealing with Risk</code></td>
+<td>尽可能消除或控制风险。这是通过直接与与风险相关的系统或流程的利益干系人沟通来处理的。</td>
+</tr>
+<tr>
+<td><code>Monitoring Risk</code></td>
+<td>必须持续监控所有风险。应持续监控风险，以发现任何可能改变其影响评分的情况变化。<code>i.e., from low to medium or high impact</code></td>
+</tr>
+</tbody></table>
+<p>如前所述，信息安全的核心原则是信息保障，或维护数据并确保数据在事件发生时不会以任何方式、形状或形式受到损害。事件可能是自然灾害、系统故障或安全事件。<code>CIA</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="红队-vs-蓝队"><a href="#红队-vs-蓝队" class="headerlink" title="红队 vs. 蓝队"></a>红队 vs. 蓝队</h2><p>在信息安全中，我们通常会听到术语 和 。用最简单的话来说，The 扮演攻击者的角色，而 the 扮演防御者的角色。<code>red team``blue team``red team``blue team</code>  </p>
+<p>红队成员通常在闯入组织时扮演对手角色，以识别真正的攻击者可能利用的任何潜在弱点来打破组织的防御。红队方面最常见的任务是渗透测试、社会工程和其他类似的进攻技术。  </p>
+<p>另一方面，蓝队构成了信息安全工作的大部分。它负责通过分析风险、提出策略、响应威胁和事件以及有效使用安全工具和其他类似任务来加强组织的防御。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="渗透测试人员的作用"><a href="#渗透测试人员的作用" class="headerlink" title="渗透测试人员的作用"></a>渗透测试人员的作用</h2><p>安全评估员（网络渗透测试员、Web 应用程序渗透测试员、红队成员等）帮助组织识别其外部和内部网络中的风险。这些风险可能包括网络或 Web 应用程序漏洞、敏感数据泄露、错误配置或可能导致声誉受损的问题。优秀的测试人员可以与客户合作，识别其组织面临的风险，提供有关如何重现这些风险的信息，以及有关缓解或修复测试期间发现的问题的指导。  </p>
+<p>评估可以采取多种形式，从针对所有范围内系统和应用程序的白盒渗透测试以识别尽可能多的漏洞，到网络钓鱼评估以评估风险或员工的安全意识，再到围绕场景构建的有针对性的红队评估以模拟真实世界的威胁行为者。  </p>
+</li>
+<li><p>我们必须全面了解组织面临的风险及其环境，以便准确评估和评估测试过程中发现的漏洞。对于信息安全初学者来说，深入了解风险管理流程至关重要。</p>
+<p>本模块将重点介绍如何从动手实践的角度开始信息安全和渗透测试，特别是选择和导航渗透测试发行版，了解常见技术和基本工具，学习渗透测试的级别和基础知识，破解我们在 HTB 上的第一个盒子，如何最有效地查找和寻求帮助， 常见的潜在问题，以及如何浏览 Hack the Box 平台。  </p>
+</li>
+<li><p>虽然本模块使用 Hack The Box 平台和故意易受攻击的机器作为示例，但所展示的基本技能适用于任何环境。</p>
+</li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="文件夹结构"><a href="#文件夹结构" class="headerlink" title="文件夹结构"></a>文件夹结构</h2><p>在攻击单个机器、实验室或客户端环境时，我们应该在攻击机器上有一个清晰的文件夹结构来保存数据，例如：范围信息、枚举数据、利用尝试的证据、敏感数据（如凭证）以及在侦察、利用和利用后获得的其他数据。示例文件夹结构可能如下所示：</p>
+<p>保持井井有条</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]**$** tree Projects/</span><br><span class="line"></span><br><span class="line">Projects/</span><br><span class="line">└── Acme Company</span><br><span class="line">  ├── EPT</span><br><span class="line">  │   ├── evidence</span><br><span class="line">  │   │   ├── credentials</span><br><span class="line">  │   │   ├── data</span><br><span class="line">  │   │   └── screenshots</span><br><span class="line">  │   ├── logs</span><br><span class="line">  │   ├── scans</span><br><span class="line">  │   ├── scope</span><br><span class="line">  │   └── tools</span><br><span class="line">  └── IPT</span><br><span class="line">      ├── evidence</span><br><span class="line">      │   ├── credentials</span><br><span class="line">      │   ├── data</span><br><span class="line">      │   └── screenshots</span><br><span class="line">      ├── logs</span><br><span class="line">      ├── scans</span><br><span class="line">      ├── scope</span><br><span class="line">      └── tools</span><br></pre></td></tr></table></figure>
+
+<p>在这里，我们为客户提供了一个文件夹，其中包含两个评估，即内部渗透测试 （IPT） 和外部渗透测试 （EPT）。在每个文件夹下，我们有用于保存扫描数据、任何相关工具、日志记录输出、范围信息（即要提供给我们的扫描工具的 IP&#x2F;网络列表）的子文件夹，以及一个证据文件夹，该文件夹可能包含评估期间检索的任何凭据、检索的任何相关数据以及屏幕截图。<code>Acme Company</code></p>
+<p>这是个人喜好，但有些人为每个目标主机创建一个文件夹并在其中保存屏幕截图。其他人按主机或网络组织他们的笔记，并将屏幕截图直接保存到笔记工具中。尝试文件夹结构，看看什么最适合您保持井井有条并最高效地工作。</p>
+<hr>
+<ul>
+<li><h1 id="使用-VPN-连接"><a href="#使用-VPN-连接" class="headerlink" title="使用 VPN 连接"></a>使用 VPN 连接</h1></li>
+</ul>
+<hr>
+<p>  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Virtual_private_network">虚拟专用网络 （VPN）</a> 允许我们连接到专用（内部）网络并访问主机和资源，就像我们直接连接到目标专用网络一样。它是通过共享公共网络连接到专用网络（即员工从家中远程连接到公司网络）的安全通信通道。VPN 通过加密通道上的通信来防止窃听和访问通过通道的数据，从而提供一定程度的隐私和安全性。  </p>
+<p>  <img src="https://academy.hackthebox.com/storage/modules/77/GettingStarted.png" alt="图像">{:height 556, :width 778}  </p>
+<p>  概括地说，VPN 的工作原理是通过目标 VPN 的私人服务器而不是我们的互联网服务提供商 （ISP） 来路由我们连接设备的互联网连接。当连接到 VPN 时，数据来自 VPN 服务器而不是我们的计算机，并且看起来似乎来自我们自己的公共 IP 地址。  </p>
+<p>  远程访问 VPN 有两种主要类型：基于客户端的 VPN 和 SSL VPN。SSL VPN 使用 Web 浏览器作为 VPN 客户端。在浏览器之间建立连接，SSL VPN 网关可以配置为仅允许访问基于 Web 的应用程序，例如电子邮件和内部网站，甚至内部网络，但不需要最终用户安装或使用任何专用软件。基于客户端的 VPN 需要使用客户端软件来建立 VPN 连接。连接后，用户的主机将像直接连接到公司网络一样工作，并且能够访问服务器配置允许的任何资源（应用程序、主机、子网等）。一些公司 VPN 将为员工提供对公司内部网络的完全访问权限，而另一些 VPN 会将用户放置在为远程工作人员保留的特定网段上。  </p>
+<hr>
+<ul>
+<li><h1 id="基本工具"><a href="#基本工具" class="headerlink" title="基本工具"></a>基本工具</h1></li>
+</ul>
+<hr>
+<p>  工具是必不可少的，大多数信息安全专业人员每天都在使用。虽然这些工具不是为了成为渗透测试工具，但它们对渗透测试过程至关重要，因此我们必须掌握它们。  </p>
+<ul>
+<li><code>SSH``Netcat``Tmux``Vim</code></li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="使用-SSH"><a href="#使用-SSH" class="headerlink" title="使用 SSH"></a>使用 SSH</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/SSH_(Secure_Shell)">Secure Shell （SSH）</a> 是一种默认在端口上运行的网络协议，为系统管理员等用户提供了一种远程访问计算机的安全方式。SSH 可以配置密码身份验证，也可以使用 SSH 公钥&#x2F;私钥对的<a target="_blank" rel="noopener" href="https://serverpilot.io/docs/how-to-use-ssh-public-key-authentication/">公钥身份验证</a>进行无密码配置。SSH 可用于通过 Internet 远程访问同一网络上的系统，使用端口转发&#x2F;代理促进与其他网络中的资源的连接，以及向远程系统上传&#x2F;下载文件。<code>22</code>  </p>
+<p>SSH 使用客户端-服务器模型，将运行 SSH 客户端应用程序（例如）的用户连接到 SSH 服务器。在攻击机器或进行实际评估时，我们通常会获得明文凭证或 SSH 私钥，这些凭证或 SSH 私钥可用于通过 SSH 直接连接到系统。SSH 连接通常比反向 shell 连接稳定得多，并且通常可以用作“跳转主机”来枚举和攻击网络中的其他主机、传输工具、设置持久性等。如果我们获取了一组凭证，我们可以使用 SSH 通过用户名远程服务器 IP 远程登录服务器，如下所示：<code>OpenSSH``@</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** ssh Bob@10.10.10.10</span><br><span class="line"></span><br><span class="line">Bob@remotehost&#x27;s password: *********</span><br><span class="line"></span><br><span class="line">Bob@remotehost#</span><br></pre></td></tr></table></figure>
+
+<p>也可以在受感染的系统上读取本地私钥或添加我们的公钥以获得对特定用户的 SSH 访问权限，我们将在后面的部分中讨论。正如我们所看到的，SSH 是安全连接到远程机器的绝佳工具。它还提供了一种将远程计算机上的本地端口映射到我们的 localhost 的方法，这有时会变得很方便。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="使用-Netcat"><a href="#使用-Netcat" class="headerlink" title="使用 Netcat"></a>使用 Netcat</h2><p><a target="_blank" rel="noopener" href="https://linux.die.net/man/1/nc">Netcat</a> 或 是用于与 TCP&#x2F;UDP 端互的出色网络实用程序。在渗透测试期间，它可以用于很多事情。它的主要用途是连接到 shell，我们将在本模块后面讨论。除此之外，还可用于连接到任何侦听端口并与该端口上运行的服务进行交互。例如，被编程为处理通过端口 22 的连接以发送所有数据和密钥。我们可以通过以下方式连接到 TCP 端口 22：<code>ncat``nc``netcat``SSH``netcat</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** netcat 10.10.10.10 22</span><br><span class="line"></span><br><span class="line">SSH-2.0-OpenSSH_8.4p1 Debian-3</span><br></pre></td></tr></table></figure>
+
+<p>正如我们所看到的，端口 22 向我们发送了它的横幅，说明它正在运行。此技术称为 ，可帮助识别特定端口上运行的服务。 预装在大多数 Linux 发行版中。我们还<a target="_blank" rel="noopener" href="https://nmap.org/download.html">可以从此链接</a>下载 Windows 计算机的副本。还有另一种 Windows 替代方案，称为 <a target="_blank" rel="noopener" href="https://github.com/besimorhino/powercat">PowerCat</a>。 也可用于在机器之间传输文件，我们将在后面讨论。<code>SSH``Banner Grabbing``Netcat``netcat``Netcat</code>  </p>
+<p>另一个类似的网络实用程序是 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/socat">socat</a>，它有一些不支持的功能，例如转发端口和连接到串行设备。 还可用于<a target="_blank" rel="noopener" href="https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method-2-using-socat">将 shell 升级为完全交互式 TTY</a>。我们将在后面的部分中看到一些示例。 是一个非常方便的实用程序，应该是每个渗透测试人员工具包的一部分。在获取远程代码执行后，可以将 的<a target="_blank" rel="noopener" href="https://github.com/andrew-d/static-binaries">独立二进制文件</a>传输到系统中，以获得更稳定的反向 shell 连接。<code>netcat``Socat``Socat``Socat</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="使用-Tmux"><a href="#使用-Tmux" class="headerlink" title="使用 Tmux"></a>使用 Tmux</h2><p>终端多路复用器（如 or）是扩展标准 Linux 终端功能的绝佳实用程序，例如在一个终端中拥有多个窗口并在它们之间跳转。让我们看看一些使用 的例子，这是两者中更常见的。如果我们的 Linux 系统上不存在，我们可以使用以下命令安装它：<code>tmux``Screen``tmux``tmux</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** sudo apt install tmux -y</span><br></pre></td></tr></table></figure>
+
+<p>一旦我们有了 ，我们就可以通过输入命令来启动它：<code>tmux``tmux</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" alt="tmux_1">  </p>
+<p>输入命令 prefix 的默认键是 。为了在 中打开一个新窗口，我们可以点击前缀 ‘i.e. ‘，然后点击 ：<code>tmux``[CTRL + B]``tmux``[CTRL + B]``C</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" alt="tmux_2">  </p>
+<p>我们在底部看到编号的窗口。我们可以通过点击前缀然后输入窗口编号来切换到每个窗口，例如 或 .我们还可以通过点击前缀将窗口垂直拆分为多个窗格，然后按 ：<code>0``1``[SHIFT + %]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" alt="tmux_3">  </p>
+<p>我们还可以通过点击前缀，然后按 ：<code>[SHIFT + &quot;]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" alt="tmux_4">  </p>
+<p>我们可以通过点击前缀，然后点击 or 箭头进行水平切换或 or 箭头进行垂直切换，从而在窗格之间切换。上面的命令涵盖了一些基本用法。它是一个强大的工具，可以用于许多事情，包括日志记录，这在任何技术参与中都非常重要。这个<a target="_blank" rel="noopener" href="https://tmuxcheatsheet.com/">作弊表</a>是一个非常方便的参考。此外，这个 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Lqehvpe_djs">tmux 简介</a>视频值得您花时间。<code>left``right``up``down``tmux``ippsec</code></p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><h2 id="使用-Vim"><a href="#使用-Vim" class="headerlink" title="使用 Vim"></a>使用 Vim</h2><p><a target="_blank" rel="noopener" href="https://linuxcommand.org/lc3_man_pages/vim1.html">Vim</a> 是一个很棒的文本编辑器，可用于在 Linux 系统上编写代码或编辑文本文件。使用鼠标的一大好处是它完全依赖于键盘，因此您不必使用鼠标，这（一旦我们掌握了它）将显着提高您编写&#x2F;编辑代码的生产力和效率。我们通常会找到或安装在受感染的 Linux 系统上，因此学习如何使用它使我们能够即使在远程系统上编辑文件。 还有许多其他功能，例如扩展和插件，可以显着扩展其使用并使其成为出色的代码编辑器。让我们看看 的一些基础知识。要使用 打开文件，我们可以在文件后添加文件名：<code>Vim``Vim``Vi``Vim``Vim``Vim</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" alt="vim_1">  </p>
+<p>如果我们要创建一个新文件，请输入新文件名，然后打开一个包含该文件的新窗口。打开文件后，我们处于 只读 ，这允许我们导航和读取文件。要编辑文件，我们按 输入 ，如 底部的 “” 所示。之后，我们可以移动文本光标并编辑文件：<code>Vim``normal mode``i``insert mode``-- INSERT --``Vim</code>  </p>
+<p><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" alt="vim_2">  </p>
+<p>完成文件编辑后，我们可以按 Esc 键退出 ，返回 。当我们在 ，我们可以使用以下键来执行一些有用的快捷方式：<code>esc``insert mode``normal mode``normal mode</code>  </p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x</code></td>
+<td>剪切字符</td>
+</tr>
+<tr>
+<td><code>dw</code></td>
+<td>剪切字</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>Cut full line （切割全线）</td>
+</tr>
+<tr>
+<td><code>yw</code></td>
+<td>复制单词</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>复制整行</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>糊</td>
+</tr>
+</tbody></table>
+<p>提示： 我们可以通过在命令前添加一个数字来将任何命令乘以多次运行。例如，’4yw’ 将复制 4 个单词而不是 1 个单词，依此类推。  </p>
+<p>如果我们要 保存文件 或 退出 ，我们必须按 进入 .完成后，我们将在 vim 窗口底部看到我们键入的任何命令：<code>Vim``:``command mode</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" alt="vim_3">  </p>
+<p>我们可以使用许多命令。以下是其中的一些：  </p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:1</code></td>
+<td>转到第 1 行。</td>
+</tr>
+<tr>
+<td><code>:w</code></td>
+<td>写入文件，保存</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>退出</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>退出而不保存</td>
+</tr>
+<tr>
+<td><code>:wq</code></td>
+<td>写入并退出</td>
+</tr>
+</tbody></table>
+<p><code>Vim</code>是一个非常强大的工具，并且具有许多其他命令和功能。此<a target="_blank" rel="noopener" href="https://vimsheet.com/">备忘单</a>是进一步释放 .<code>Vim</code></p>
+<h1 id="服务扫描"><a href="#服务扫描" class="headerlink" title="服务扫描"></a>服务扫描</h1></li>
+</ul>
+<hr>
+<p>  我们已经准备好更进一步，开始探索机器！我们需要做的第一件事是确定操作系统和可能正在运行的任何可用服务。服务是在计算机上运行的应用程序，它为其他用户或计算机执行一些有用的功能。我们将这些托管这些有用服务的专用机器称为“服务器”而不是工作站，允许用户与这些不同的服务进行交互和使用。我们感兴趣的是配置错误或存在漏洞的服务。我们感兴趣的是，我们是否可以强制服务执行一些支持我们目标的意外操作，例如执行我们选择的命令，而不是执行作为服务一部分的预期操作。  </p>
+<p>  为计算机分配一个 IP 地址，该地址允许它们在网络上被唯一标识和访问。可以为这些计算机上运行的服务分配一个端口号，以使服务可访问。如前所述，端口号的范围从 1 到 65,535，众所周知的端口 1 到 1,023 的范围是为特权服务保留的。端口 0 是 TCP&#x2F;IP 网络中的保留端口，不用于 TCP 或 UDP 消息。如果有任何内容尝试绑定到端口 0（例如服务），它将绑定到端口 1,024 上方的下一个可用端口，因为端口 0 被视为“通配符”端口。  </p>
+<p>  要远程访问服务，我们需要使用正确的 IP 地址和端口号进行连接，并使用服务可以理解的语言。手动检查所有 65,535 个端口以查找任何可用服务将非常费力，因此已经创建了工具来自动化此过程并为我们扫描端口范围。最常用的扫描工具之一是 Nmap（Network Mapper）。  </p>
+<hr>
+<h2 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h2><p>  让我们从最基本的扫描开始。假设我们要对位于 10.129.42.253 的目标执行基本扫描。为此，我们应该键入并按 return。我们看到扫描很快就完成了。这是因为如果我们不指定任何额外的选项，Nmap 默认只扫描 1,000 个最常见的端口。扫描输出显示端口 21、22、80、139 和 445 可用。<code>nmap 10.129.42.253``Nmap</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** nmap 10.129.42.253</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2021-02-25 16:07 EST</span><br><span class="line">Nmap scan report for 10.129.42.253</span><br><span class="line">Host is up (0.11s latency).</span><br><span class="line">Not shown: 995 closed ports</span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">21/tcp  open  ftp</span><br><span class="line">22/tcp  open  ssh</span><br><span class="line">80/tcp  open  http</span><br><span class="line">139/tcp open  netbios-ssn</span><br><span class="line">445/tcp open  microsoft-ds</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2.19 seconds</span><br></pre></td></tr></table></figure>
+
+<p>  在标题下，它还告诉我们这些是 TCP 端口。默认情况下，将执行 TCP 扫描，除非特别要求执行 UDP 扫描。<br>  标题确认这些端口已打开。有时，我们会看到列出的其他端口具有不同的状态，例如 .如果防火墙仅允许从特定地址访问端口，则可能会发生这种情况。<br>  标题告诉我们服务的名称通常映射到特定的端口号。但是，默认扫描不会告诉我们该端口上正在侦听什么。在我们指示与该服务交互并尝试梳理出识别信息之前，它可能完全是另一项服务。<code>PORT``Nmap``STATE``filtered``SERVICE``Nmap</code>  </p>
+<p>  随着我们逐渐熟悉，我们会注意到几个端口通常与 Windows 或 Linux 相关联。例如，端口 3389 是远程桌面服务的默认端口，可以很好地指示目标是 Windows 计算机。在我们当前场景中，端口 22 （SSH） 可用表示目标正在运行 Linux&#x2F;Unix，但也可以在 Windows 上配置此服务。让我们运行更高级的扫描并收集有关目标设备的更多信息。<code>Nmap</code>  </p>
+<p>  我们可以使用该参数来指定应该使用脚本来尝试获取更详细的信息。该参数指示执行版本扫描。在这次扫描中，Nmap 将对目标系统上的服务进行指纹识别，并识别服务协议、应用程序名称和版本。版本扫描以包含 1000 多个服务签名的综合数据库为基础。最后，告诉 Nmap 我们要扫描所有 65,535 个 TCP 端口。<code>-sC``Nmap``-sV``Nmap``-p-</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** nmap -sV -sC -p- 10.129.42.253</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2021-02-25 16:18 EST</span><br><span class="line">Nmap scan report for 10.129.42.253</span><br><span class="line">Host is up (0.11s latency).</span><br><span class="line">Not shown: 65530 closed ports</span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">21/tcp  open  ftp         vsftpd 3.0.3</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">|_drwxr-xr-x    2 ftp      ftp          4096 Feb 25 19:25 pub</span><br><span class="line">| ftp-syst: </span><br><span class="line">|   STAT: </span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to ::ffff:10.10.14.2</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 2</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">22/tcp  open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80/tcp  open  http        Apache httpd 2.4.41 ((Ubuntu))</span><br><span class="line">|_http-server-header: Apache/2.4.41 (Ubuntu)</span><br><span class="line">|_http-title: PHP 7.4.3 - phpinfo()</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 4.6.2</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 4.6.2</span><br><span class="line">Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_nbstat: NetBIOS name: GS-SVCSCAN, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)</span><br><span class="line">| smb2-security-mode: </span><br><span class="line">|   2.02: </span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time: </span><br><span class="line">|   date: 2021-02-25T21:21:51</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 233.68 seconds</span><br></pre></td></tr></table></figure>
+
+<p>  这将返回更多信息。我们看到，扫描 65,535 个端口所花费的时间比扫描 1,000 个端口的时间要长得多。这些区域 and 选项还会增加扫描的持续时间，因为它们不会执行简单的 TCP 握手，而是执行更多的检查。我们注意到这次有一个 VERSION 标题，如果可以识别，它会报告服务版本和操作系统。<code>-sC``-sV</code>  </p>
+<p>  到目前为止，我们知道操作系统是 Ubuntu Linux。应用程序版本还可以帮助显示目标 OS 版本。以 OpenSSH 为例。我们看到报告的版本是 。从其他 Ubuntu SSH 包<a target="_blank" rel="noopener" href="https://launchpad.net/ubuntu/yakkety/+source/openssh/+changelog">更改日志</a>的检查中，我们看到发布版本采用格式。更新我们的版本以适应这种格式，我们得到 .在线快速搜索此版本显示它包含在 Ubuntu Linux Focal Fossa 20.04 中。<code>OpenSSH 8.2p1 Ubuntu 4ubuntu0.1``1:7.3p1-1ubuntu0.1``1:8.2p1-4ubuntu0.1</code>  </p>
+<p>  <img src="https://academy.hackthebox.com/storage/modules/77/google1.png" alt="谷歌1">  </p>
+<p>  Another quick search reveals that the release date of this OS is April 23rd, 2020.  </p>
+<p>  <img src="https://academy.hackthebox.com/storage/modules/77/google2.png" alt="google2">  </p>
+<p>  However, it is worth noting that this cross-referencing technique is not entirely reliable, as it is possible to install more recent application packages on an older OS version. The script scan flag causes to report the server headers page and the page title for any web page hosted on the webserver. The web page title indicates that this is a PHPInfo file, which is often manually created to confirm that PHP has been successfully installed. The title (and PHPInfo page) also reveals the PHP version, which is worth noting if it is vulnerable.<code>-sC``Nmap``http-server-header``http-title``PHP 7.4.3 - phpinfo()</code>  </p>
+<p>     </p>
+<p>  <img src="https://academy.hackthebox.com/storage/modules/77/phpinfo.png">  </p>
+<h4 id="Nmap-脚本"><a href="#Nmap-脚本" class="headerlink" title="Nmap 脚本"></a>Nmap 脚本</h4><p>  指定将针对目标运行许多有用的默认脚本，但在某些情况下需要运行特定脚本。例如，在评估范围内，系统可能会要求我们审核大型 Citrix 安装。我们可以使用<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/cyberstruggle/DeltaGroup/master/CVE-2019-19781/CVE-2019-19781.nse">此</a>脚本来审核严重的 Citrix NetScaler 漏洞 （<a target="_blank" rel="noopener" href="https://blog.rapid7.com/2020/01/17/active-exploitation-of-citrix-netscaler-cve-2019-19781-what-you-need-to-know/">CVE-2019–19781</a>），同时还可以使用其他脚本来审核 Citrix 安装。<code>-sC``Nmap``Nmap</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** locate scripts/citrix</span><br><span class="line"></span><br><span class="line">/usr/share/nmap/scripts/citrix-brute-xml.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-apps-xml.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-apps.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-servers-xml.nse</span><br><span class="line">/usr/share/nmap/scripts/citrix-enum-servers.nse</span><br></pre></td></tr></table></figure>
+
+<p>  运行 Nmap 脚本的语法是 。<code>nmap --script &lt;script name&gt; -p&lt;port&gt; &lt;host&gt;</code>  </p>
+<p>  <code>Nmap</code>脚本是增强扫描功能的好方法，检查可用选项将带来回报。查看<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/module/details/19">使用 Nmap 进行网络枚举</a>模块，了解该工具的更详细研究。<code>Nmap</code>  </p>
+<hr>
+<h2 id="攻击网络服务"><a href="#攻击网络服务" class="headerlink" title="攻击网络服务"></a>攻击网络服务</h2><h4 id="横幅抓取"><a href="#横幅抓取" class="headerlink" title="横幅抓取"></a>横幅抓取</h4><p>  如前所述，横幅抓取是一种快速对服务进行指纹识别的有用技术。通常，一旦启动连接，服务就会通过显示横幅来标识自己。如果指定了语法，Nmap 将尝试获取横幅。我们也可以使用 .让我们再举一个例子，使用 的版本 ：<code>nmap -sV --script=banner &lt;target&gt;``Netcat``nc``Netcat</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** nc -nv 10.129.42.253 21</span><br><span class="line"></span><br><span class="line">(UNKNOWN) [10.129.42.253] 21 (ftp) open</span><br><span class="line">220 (vsFTPd 3.0.3)</span><br></pre></td></tr></table></figure>
+
+<p>  这表明服务器上的 版本为 。我们还可以使用强大的脚本引擎来自动化此过程：.<code>vsFTPd``3.0.3``Nmap&#39;s``nmap -sV --script=banner -p21 10.10.10.0/24</code>  </p>
+<h4 id="FTP-（自由贸易协定"><a href="#FTP-（自由贸易协定" class="headerlink" title="FTP （自由贸易协定"></a>FTP （自由贸易协定</h4><p>  熟悉 FTP 是值得的，因为它是一种标准协议，并且此服务通常可以包含有趣的数据。扫描 FTP 的默认端口（21）会显示我们之前确定的 vsftpd 3.0.3 安装。此外，它还报告已启用匿名身份验证，并且目录可用。<code>Nmap``pub</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** nmap -sC -sV -p21 10.129.42.253</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2020-12-20 00:54 GMT</span><br><span class="line">Nmap scan report for 10.129.42.253</span><br><span class="line">Host is up (0.081s latency).</span><br><span class="line"></span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">21/tcp open  ftp     vsftpd 3.0.3</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">|_drwxr-xr-x    2 ftp      ftp          4096 Dec 19 23:50 pub</span><br><span class="line">| ftp-syst: </span><br><span class="line">|   STAT: </span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to ::ffff:10.10.14.2</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 3</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">Service Info: OS: Unix</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.78 seconds</span><br></pre></td></tr></table></figure>
+
+<p>  Let us connect to the service using the command-line utility.<code>ftp</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** ftp -p 10.129.42.253</span><br><span class="line"></span><br><span class="line">Connected to 10.129.42.253.</span><br><span class="line">220 (vsFTPd 3.0.3)</span><br><span class="line">Name (10.129.42.253:user): anonymous</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"></span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (10,129,42,253,158,60).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">drwxr-xr-x    2 ftp      ftp          4096 Feb 25 19:25 pub</span><br><span class="line">226 Directory send OK.</span><br><span class="line"></span><br><span class="line">ftp&gt; cd pub</span><br><span class="line">250 Directory successfully changed.</span><br><span class="line"></span><br><span class="line">ftp&gt; ls</span><br><span class="line">227 Entering Passive Mode (10,129,42,253,182,129).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 ftp      ftp            18 Feb 25 19:25 login.txt</span><br><span class="line">226 Directory send OK.</span><br><span class="line"></span><br><span class="line">ftp&gt; get login.txt</span><br><span class="line">local: login.txt remote: login.txt</span><br><span class="line">227 Entering Passive Mode (10,129,42,253,181,53).</span><br><span class="line">150 Opening BINARY mode data connection for login.txt (18 bytes).</span><br><span class="line">226 Transfer complete.</span><br><span class="line">18 bytes received in 0.00 secs (165.8314 kB/s)</span><br><span class="line"></span><br><span class="line">ftp&gt; exit</span><br><span class="line">221 Goodbye.</span><br></pre></td></tr></table></figure>
+
+<p>  在上面的 shell 中，我们看到 FTP 支持常见的命令，例如 and，并允许我们使用该命令下载文件。检查下载的凭据会显示我们可以用来进一步访问系统的凭据。<code>cd``ls``get``login.txt</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** cat login.txt </span><br><span class="line"></span><br><span class="line">admin:ftp@dmin123</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="SMB-（中小型企业）"><a href="#SMB-（中小型企业）" class="headerlink" title="SMB （中小型企业）"></a>SMB （中小型企业）</h4><p>  SMB（服务器消息块）是 Windows 计算机上流行的协议，它为垂直和横向移动提供了许多矢量。敏感数据（包括凭据）可能位于网络文件共享中，并且某些 SMB 版本可能容易受到 RCE 漏洞（如 <a target="_blank" rel="noopener" href="https://www.avast.com/c-eternalblue">EternalBlue</a>）的攻击。仔细列举这个相当大的潜在攻击面至关重要。 有许多用于枚举 SMB 的脚本，例如 <a target="_blank" rel="noopener" href="https://nmap.org/nsedoc/scripts/smb-os-discovery.html">smb-os-discovery.nse</a>，它将与 SMB 服务交互以提取报告的操作系统版本。<code>Nmap</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** nmap --script smb-os-discovery.nse -p445 10.10.10.40</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.91 ( https://nmap.org ) at 2020-12-27 00:59 GMT</span><br><span class="line">Nmap scan report for doctors.htb (10.10.10.40)</span><br><span class="line">Host is up (0.022s latency).</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE</span><br><span class="line">445/tcp open  microsoft-ds</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb-os-discovery: </span><br><span class="line">|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)</span><br><span class="line">|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional</span><br><span class="line">|   Computer name: CEO-PC</span><br><span class="line">|   NetBIOS computer name: CEO-PC\x00</span><br><span class="line">|   Workgroup: WORKGROUP\x00</span><br><span class="line">|_  System time: 2020-12-27T00:59:46+00:00</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 2.71 seconds</span><br></pre></td></tr></table></figure>
+
+<p>  在这种情况下，主机运行的是旧版 Windows 7 操作系统，我们可以进行进一步的枚举以确认它是否容易受到 EternalBlue 的攻击。Metasploit 框架有几个用于 EternalBlue 的<a target="_blank" rel="noopener" href="https://www.rapid7.com/db/modules/exploit/windows/smb/ms17_010_eternalblue/">模块</a>，可用于验证漏洞并利用它，我们将在下一节中看到。我们可以针对此模块的目标部分运行扫描，以从 SMB 服务收集信息。我们可以确定主机运行的是 Linux 内核，Samba 版本 4.6.2，主机名是 GS-SVCSCAN。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** nmap -A -p445 10.129.42.253</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.80 ( https://nmap.org ) at 2021-02-25 16:29 EST</span><br><span class="line">Nmap scan report for 10.129.42.253</span><br><span class="line">Host is up (0.11s latency).</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 4.6.2</span><br><span class="line">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="line">Aggressive OS guesses: Linux 2.6.32 (95%), Linux 3.1 (95%), Linux 3.2 (95%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (94%), ASUS RT-N56U WAP (Linux 3.4) (93%), Linux 3.16 (93%), Adtran 424RG FTTH gateway (92%), Linux 2.6.39 - 3.2 (92%), Linux 3.1 - 3.2 (92%), Linux 3.2 - 4.9 (92%)</span><br><span class="line">No exact OS matches for host (test conditions non-ideal).</span><br><span class="line">Network Distance: 2 hops</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_nbstat: NetBIOS name: GS-SVCSCAN, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)</span><br><span class="line">| smb2-security-mode: </span><br><span class="line">|   2.02: </span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time: </span><br><span class="line">|   date: 2021-02-25T21:30:06</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">TRACEROUTE (using port 445/tcp)</span><br><span class="line">HOP RTT       ADDRESS</span><br><span class="line">1   111.62 ms 10.10.14.1</span><br><span class="line">2   111.89 ms 10.129.42.253</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 12.72 seconds</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="股票"><a href="#股票" class="headerlink" title="股票"></a>股票</h4><p>  SMB 允许用户和管理员共享文件夹，并允许其他用户远程访问这些文件夹。这些共享通常包含包含敏感信息（如密码）的文件。<a target="_blank" rel="noopener" href="https://www.samba.org/samba/docs/current/man-html/smbclient.1.html">smbclient</a> 是一种可以枚举 SMB 共享并与之交互的工具。该标志指定我们要检索远程主机上的可用共享列表，同时禁止显示密码提示。<code>-L``-N</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** smbclient -N -L \\\\10.129.42.253</span><br><span class="line"></span><br><span class="line">Sharename       Type      Comment</span><br><span class="line">---------       ----      -------</span><br><span class="line">print**$**          Disk      Printer Drivers</span><br><span class="line">users           Disk      </span><br><span class="line">IPC**$**            IPC       IPC Service (gs-svcscan server (Samba, Ubuntu))</span><br><span class="line">SMB1 disabled -- no workgroup available</span><br></pre></td></tr></table></figure>
+
+<p>  这将显示非默认共享 。让我们尝试以 guest 用户身份进行连接。<code>users</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** smbclient \\\\10.129.42.253\\users</span><br><span class="line"></span><br><span class="line">Enter WORKGROUP\users&#x27;s password: </span><br><span class="line">Try &quot;help&quot; to get a list of possible commands.</span><br><span class="line"></span><br><span class="line">smb: \&gt; ls</span><br><span class="line">NT_STATUS_ACCESS_DENIED listing \*</span><br><span class="line"></span><br><span class="line">smb: \&gt; exit</span><br></pre></td></tr></table></figure>
+
+<p>  该命令导致 access denied 消息，指示不允许 guest 访问。让我们使用用户 bob （） 的凭证重试。<code>ls``bob:Welcome1</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** smbclient -U bob \\\\10.129.42.253\\users</span><br><span class="line"></span><br><span class="line">Enter WORKGROUP\bob&#x27;s password: </span><br><span class="line">Try &quot;help&quot; to get a list of possible commands.</span><br><span class="line"></span><br><span class="line">smb: \&gt; ls</span><br><span class="line">.                                   D        0  Thu Feb 25 16:42:23 2021</span><br><span class="line">..                                  D        0  Thu Feb 25 15:05:31 2021</span><br><span class="line">bob                                 D        0  Thu Feb 25 16:42:23 2021</span><br><span class="line"></span><br><span class="line">4062912 blocks of size 1024. 1332480 blocks available</span><br><span class="line"></span><br><span class="line">smb: \&gt; cd bob</span><br><span class="line"></span><br><span class="line">smb: \bob\&gt; ls</span><br><span class="line">.                                   D        0  Thu Feb 25 16:42:23 2021</span><br><span class="line">..                                  D        0  Thu Feb 25 16:42:23 2021</span><br><span class="line">passwords.txt                       N      156  Thu Feb 25 16:42:23 2021</span><br><span class="line"></span><br><span class="line">4062912 blocks of size 1024. 1332480 blocks available</span><br><span class="line"></span><br><span class="line">smb: \bob\&gt; get passwords.txt </span><br><span class="line">getting file \bob\passwords.txt of size 156 as passwords.txt (0.3 KiloBytes/sec) (average 0.3 KiloBytes/sec)</span><br></pre></td></tr></table></figure>
+
+<p>  我们成功地使用凭据访问了共享，并获得了对 感兴趣文件的访问权限 ，可以使用命令下载该文件。<code>users``passwords.txt``get</code>  </p>
+<hr>
+<h4 id="SNMP-（SNMP-协议）"><a href="#SNMP-（SNMP-协议）" class="headerlink" title="SNMP （SNMP 协议）"></a>SNMP （SNMP 协议）</h4><p>  SNMP 社区字符串提供有关路由器或设备的信息和统计信息，帮助我们访问它。制造商默认的社区字符串 和 通常保持不变。在 SNMP 版本 1 和 2c 中，使用纯文本社区字符串控制访问，如果我们知道名称，就可以访问它。加密和身份验证仅在 SNMP 版本 3 中添加。可以从 SNMP 获得很多信息。检查进程参数可能会发现在命令行上传递的凭证，鉴于企业环境中密码重用的普遍性，这些凭证可能可以重新用于其他外部可访问的服务。路由信息、绑定到其他接口的服务以及已安装软件的版本也会被揭示。<code>public``private</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** snmpwalk -v 2c -c public 10.129.42.253 1.3.6.1.2.1.1.5.0</span><br><span class="line"></span><br><span class="line">iso.3.6.1.2.1.1.5.0 = STRING: &quot;gs-svcscan&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** snmpwalk -v 2c -c private  10.129.42.253 </span><br><span class="line"></span><br><span class="line">Timeout: No Response from 10.129.42.253</span><br></pre></td></tr></table></figure>
+
+<p>  可以使用 <a target="_blank" rel="noopener" href="https://github.com/trailofbits/onesixtyone">onesixtyone</a> 等工具使用常见社区字符串的字典文件（例如该工具的 GitHub 存储库中包含的文件）暴力破解社区字符串名称。<code>dict.txt</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** onesixtyone -c dict.txt 10.129.42.254</span><br><span class="line"></span><br><span class="line">Scanning 1 hosts, 51 communities</span><br><span class="line">10.129.42.254 [public] Linux gs-svcscan 5.4.0-66-generic **#**74-Ubuntu SMP Wed Jan 27 22:54:38 UTC 2021 x86_64</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>  服务扫描和枚举是一个广阔的主题，我们将随着我们的学习而更多地了解它。我们在这里介绍的方面适用于许多网络，包括 HTB 机器。</p>
+<h1 id="基本工具-1"><a href="#基本工具-1" class="headerlink" title="基本工具"></a>基本工具</h1><hr>
+<p>  工具是必不可少的，大多数信息安全专业人员每天都在使用。虽然这些工具不是为了成为渗透测试工具，但它们对渗透测试过程至关重要，因此我们必须掌握它们。<br><code>SSH``Netcat``Tmux``Vim</code></p>
+<hr>
+<h2 id="使用-SSH-1"><a href="#使用-SSH-1" class="headerlink" title="使用 SSH"></a>使用 SSH</h2><p>  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/SSH_(Secure_Shell)">Secure Shell （SSH）</a> 是一种默认在端口上运行的网络协议，为系统管理员等用户提供了一种远程访问计算机的安全方式。SSH 可以配置密码身份验证，也可以使用 SSH 公钥&#x2F;私钥对的<a target="_blank" rel="noopener" href="https://serverpilot.io/docs/how-to-use-ssh-public-key-authentication/">公钥身份验证</a>进行无密码配置。SSH 可用于通过 Internet 远程访问同一网络上的系统，使用端口转发&#x2F;代理促进与其他网络中的资源的连接，以及向远程系统上传&#x2F;下载文件。<code>22</code>  </p>
+<p>  SSH 使用客户端-服务器模型，将运行 SSH 客户端应用程序（例如）的用户连接到 SSH 服务器。在攻击机器或进行实际评估时，我们通常会获得明文凭证或 SSH 私钥，这些凭证或 SSH 私钥可用于通过 SSH 直接连接到系统。SSH 连接通常比反向 shell 连接稳定得多，并且通常可以用作“跳转主机”来枚举和攻击网络中的其他主机、传输工具、设置持久性等。如果我们获取了一组凭证，我们可以使用 SSH 通过用户名远程服务器 IP 远程登录服务器，如下所示：<code>OpenSSH``@</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** ssh Bob@10.10.10.10</span><br><span class="line"></span><br><span class="line">Bob@remotehost&#x27;s password: *********</span><br><span class="line"></span><br><span class="line">Bob@remotehost#</span><br></pre></td></tr></table></figure>
+
+<p>  也可以在受感染的系统上读取本地私钥或添加我们的公钥以获得对特定用户的 SSH 访问权限，我们将在后面的部分中讨论。正如我们所看到的，SSH 是安全连接到远程机器的绝佳工具。它还提供了一种将远程计算机上的本地端口映射到我们的 localhost 的方法，这有时会变得很方便。  </p>
+<hr>
+<h2 id="使用-Netcat-1"><a href="#使用-Netcat-1" class="headerlink" title="使用 Netcat"></a>使用 Netcat</h2><p>  <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/nc">Netcat</a> 或 是用于与 TCP&#x2F;UDP 端互的出色网络实用程序。在渗透测试期间，它可以用于很多事情。它的主要用途是连接到 shell，我们将在本模块后面讨论。除此之外，还可用于连接到任何侦听端口并与该端口上运行的服务进行交互。例如，被编程为处理通过端口 22 的连接以发送所有数据和密钥。我们可以通过以下方式连接到 TCP 端口 22：<code>ncat``nc``netcat``SSH``netcat</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** netcat 10.10.10.10 22</span><br><span class="line"></span><br><span class="line">SSH-2.0-OpenSSH_8.4p1 Debian-3</span><br></pre></td></tr></table></figure>
+
+<p>  正如我们所看到的，端口 22 向我们发送了它的横幅，说明它正在运行。此技术称为 ，可帮助识别特定端口上运行的服务。 预装在大多数 Linux 发行版中。我们还<a target="_blank" rel="noopener" href="https://nmap.org/download.html">可以从此链接</a>下载 Windows 计算机的副本。还有另一种 Windows 替代方案，称为 <a target="_blank" rel="noopener" href="https://github.com/besimorhino/powercat">PowerCat</a>。 也可用于在机器之间传输文件，我们将在后面讨论。<code>SSH``Banner Grabbing``Netcat``netcat``Netcat</code>  </p>
+<p>  另一个类似的网络实用程序是 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/socat">socat</a>，它有一些不支持的功能，例如转发端口和连接到串行设备。 还可用于<a target="_blank" rel="noopener" href="https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/#method-2-using-socat">将 shell 升级为完全交互式 TTY</a>。我们将在后面的部分中看到一些示例。 是一个非常方便的实用程序，应该是每个渗透测试人员工具包的一部分。在获取远程代码执行后，可以将 的<a target="_blank" rel="noopener" href="https://github.com/andrew-d/static-binaries">独立二进制文件</a>传输到系统中，以获得更稳定的反向 shell 连接。<code>netcat``Socat``Socat``Socat</code>  </p>
+<hr>
+<h2 id="使用-Tmux-1"><a href="#使用-Tmux-1" class="headerlink" title="使用 Tmux"></a>使用 Tmux</h2><p>  终端多路复用器（如 or）是扩展标准 Linux 终端功能的绝佳实用程序，例如在一个终端中拥有多个窗口并在它们之间跳转。让我们看看一些使用 的例子，这是两者中更常见的。如果我们的 Linux 系统上不存在，我们可以使用以下命令安装它：<code>tmux``Screen``tmux``tmux</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** sudo apt install tmux -y</span><br></pre></td></tr></table></figure>
+
+<p>  一旦我们有了 ，我们就可以通过输入命令来启动它：<code>tmux``tmux</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_1.jpg" alt="tmux_1">  </p>
+<p>  输入命令 prefix 的默认键是 。为了在 中打开一个新窗口，我们可以点击前缀 ‘i.e. ‘，然后点击 ：<code>tmux``[CTRL + B]``tmux``[CTRL + B]``C</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_2.jpg" alt="tmux_2">  </p>
+<p>  我们在底部看到编号的窗口。我们可以通过点击前缀然后输入窗口编号来切换到每个窗口，例如 或 .我们还可以通过点击前缀将窗口垂直拆分为多个窗格，然后按 ：<code>0``1``[SHIFT + %]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_3.jpg" alt="tmux_3">  </p>
+<p>  我们还可以通过点击前缀，然后按 ：<code>[SHIFT + &quot;]</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_tmux_4.jpg" alt="tmux_4">  </p>
+<p>  我们可以通过点击前缀，然后点击 or 箭头进行水平切换或 or 箭头进行垂直切换，从而在窗格之间切换。上面的命令涵盖了一些基本用法。它是一个强大的工具，可以用于许多事情，包括日志记录，这在任何技术参与中都非常重要。这个<a target="_blank" rel="noopener" href="https://tmuxcheatsheet.com/">作弊表</a>是一个非常方便的参考。此外，这个 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Lqehvpe_djs">tmux 简介</a>视频值得您花时间。<code>left``right``up``down``tmux``ippsec</code>  </p>
+<hr>
+<h2 id="使用-Vim-1"><a href="#使用-Vim-1" class="headerlink" title="使用 Vim"></a>使用 Vim</h2><p>  <a target="_blank" rel="noopener" href="https://linuxcommand.org/lc3_man_pages/vim1.html">Vim</a> 是一个很棒的文本编辑器，可用于在 Linux 系统上编写代码或编辑文本文件。使用鼠标的一大好处是它完全依赖于键盘，因此您不必使用鼠标，这（一旦我们掌握了它）将显着提高您编写&#x2F;编辑代码的生产力和效率。我们通常会找到或安装在受感染的 Linux 系统上，因此学习如何使用它使我们能够即使在远程系统上编辑文件。 还有许多其他功能，例如扩展和插件，可以显着扩展其使用并使其成为出色的代码编辑器。让我们看看 的一些基础知识。要使用 打开文件，我们可以在文件后添加文件名：<code>Vim``Vim``Vi``Vim``Vim``Vim</code>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[!bash!]**$** vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>  <img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_1.jpg" alt="vim_1">  </p>
+<p>  如果我们要创建一个新文件，请输入新文件名，然后打开一个包含该文件的新窗口。打开文件后，我们处于 只读 ，这允许我们导航和读取文件。要编辑文件，我们按 输入 ，如 底部的 “” 所示。之后，我们可以移动文本光标并编辑文件：<code>Vim``normal mode``i``insert mode``-- INSERT --``Vim</code>  </p>
+<p>  <img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_2.jpg" alt="vim_2">  </p>
+<p>  完成文件编辑后，我们可以按 Esc 键退出 ，返回 。当我们在 ，我们可以使用以下键来执行一些有用的快捷方式：<code>esc``insert mode``normal mode``normal mode</code>  </p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x</code></td>
+<td>剪切字符</td>
+</tr>
+<tr>
+<td><code>dw</code></td>
+<td>剪切字</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>Cut full line （切割全线）</td>
+</tr>
+<tr>
+<td><code>yw</code></td>
+<td>复制单词</td>
+</tr>
+<tr>
+<td><code>yy</code></td>
+<td>复制整行</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>糊</td>
+</tr>
+</tbody></table>
+<p>  提示： 我们可以通过在命令前添加一个数字来将任何命令乘以多次运行。例如，’4yw’ 将复制 4 个单词而不是 1 个单词，依此类推。  </p>
+<p>  如果我们要 保存文件 或 退出 ，我们必须按 进入 .完成后，我们将在 vim 窗口底部看到我们键入的任何命令：<code>Vim``:``command mode</code><img src="https://academy.hackthebox.com/storage/modules/77/getting_started_vim_3.jpg" alt="vim_3">  </p>
+<p>  我们可以使用许多命令。以下是其中的一些：  </p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:1</code></td>
+<td>转到第 1 行。</td>
+</tr>
+<tr>
+<td><code>:w</code></td>
+<td>写入文件，保存</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>退出</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>退出而不保存</td>
+</tr>
+<tr>
+<td><code>:wq</code></td>
+<td>写入并退出</td>
+</tr>
+</tbody></table>
+<p>  <code>Vim</code>是一个非常强大的工具，并且具有许多其他命令和功能。此<a target="_blank" rel="noopener" href="https://vimsheet.com/">备忘单</a>是进一步释放 .<code>Vim</code></p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">信息安全概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">风险管理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E9%98%9F-vs-%E8%93%9D%E9%98%9F"><span class="toc-number">1.2.</span> <span class="toc-text">红队 vs. 蓝队</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%BA%BA%E5%91%98%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">渗透测试人员的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">文件夹结构</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-VPN-%E8%BF%9E%E6%8E%A5"><span class="toc-number">2.</span> <span class="toc-text">使用 VPN 连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-number">3.</span> <span class="toc-text">基本工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SSH"><span class="toc-number">3.1.</span> <span class="toc-text">使用 SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Netcat"><span class="toc-number">3.2.</span> <span class="toc-text">使用 Netcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Tmux"><span class="toc-number">3.3.</span> <span class="toc-text">使用 Tmux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Vim"><span class="toc-number">3.4.</span> <span class="toc-text">使用 Vim</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%89%AB%E6%8F%8F"><span class="toc-number">4.</span> <span class="toc-text">服务扫描</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nmap"><span class="toc-number">4.1.</span> <span class="toc-text">Nmap</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Nmap-%E8%84%9A%E6%9C%AC"><span class="toc-number">4.1.0.1.</span> <span class="toc-text">Nmap 脚本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.2.</span> <span class="toc-text">攻击网络服务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%AA%E5%B9%85%E6%8A%93%E5%8F%96"><span class="toc-number">4.2.0.1.</span> <span class="toc-text">横幅抓取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FTP-%EF%BC%88%E8%87%AA%E7%94%B1%E8%B4%B8%E6%98%93%E5%8D%8F%E5%AE%9A"><span class="toc-number">4.2.0.2.</span> <span class="toc-text">FTP （自由贸易协定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SMB-%EF%BC%88%E4%B8%AD%E5%B0%8F%E5%9E%8B%E4%BC%81%E4%B8%9A%EF%BC%89"><span class="toc-number">4.2.0.3.</span> <span class="toc-text">SMB （中小型企业）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%82%A1%E7%A5%A8"><span class="toc-number">4.2.0.4.</span> <span class="toc-text">股票</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SNMP-%EF%BC%88SNMP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">4.2.0.5.</span> <span class="toc-text">SNMP （SNMP 协议）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">4.3.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7-1"><span class="toc-number">5.</span> <span class="toc-text">基本工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-SSH-1"><span class="toc-number">5.1.</span> <span class="toc-text">使用 SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Netcat-1"><span class="toc-number">5.2.</span> <span class="toc-text">使用 Netcat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Tmux-1"><span class="toc-number">5.3.</span> <span class="toc-text">使用 Tmux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-Vim-1"><span class="toc-number">5.4.</span> <span class="toc-text">使用 Vim</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&text=渗透测试"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&is_video=false&description=渗透测试"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=渗透测试&body=Check out this article: https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&title=渗透测试"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&name=渗透测试&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/&t=渗透测试"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

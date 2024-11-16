@@ -385,36 +385,9 @@
       
         <tags>
             
-            <tag> htb </tag>
-            
             <tag> web安全 </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Frida的一些模板和配置及一些场景目录和问题记录</title>
-      <link href="/2024/11/13/2024-11-08-Frida-Template/"/>
-      <url>/2024/11/13/2024-11-08-Frida-Template/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p></blockquote><h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure><h1 id="Frida的一些模板和配置"><a href="#Frida的一些模板和配置" class="headerlink" title="Frida的一些模板和配置"></a>Frida的一些模板和配置</h1><h2 id="python模板"><a href="#python模板" class="headerlink" title="python模板"></a>python模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义消息回调函数，接收 Frida 脚本发送的消息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="keyword">if</span> message[<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(message[<span class="string">&quot;payload&quot;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用包名来附加目标应用并执行 JS 代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hook_target_application</span>(<span class="params">app_name, js_file</span>):</span><br><span class="line">    <span class="comment"># JavaScript 脚本内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(js_file, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> fin:</span><br><span class="line">        script_source = fin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 USB 设备并通过包名附加到目标应用</span></span><br><span class="line">    <span class="comment"># 也可以使用进程id</span></span><br><span class="line">    device = frida.get_usb_device()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pid = device.spawn(package_name)</span></span><br><span class="line">    <span class="comment"># print(pid)</span></span><br><span class="line">    process = device.attach(app_name)</span><br><span class="line">    <span class="comment"># 创建并加载脚本</span></span><br><span class="line">    script = process.create_script(script_source)</span><br><span class="line">    script.on(<span class="string">&quot;message&quot;</span>, on_message)</span><br><span class="line">    script.load()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待用户输入停止信号</span></span><br><span class="line">    sys.stdin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卸载脚本并分离进程</span></span><br><span class="line">    script.unload()</span><br><span class="line">    process.detach()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 设置目标应用的包名</span></span><br><span class="line">    app_name = <span class="string">&quot;My Application&quot;</span></span><br><span class="line"> </span><br><span class="line">    js_file = <span class="string">&quot;scripts/js_file.js&quot;</span></span><br><span class="line">    <span class="comment"># 调用函数进行 hook</span></span><br><span class="line">    hook_target_application(app_name, js_file)</span><br></pre></td></tr></table></figure><h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p><h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> APP逆向 </tag>
-            
-            <tag> 移动安全 </tag>
+            <tag> htb </tag>
             
         </tags>
       
@@ -452,6 +425,33 @@
     
     
     <entry>
+      <title>Frida的一些模板和配置及一些场景目录和问题记录</title>
+      <link href="/2024/11/13/2024-11-08-Frida-Template/"/>
+      <url>/2024/11/13/2024-11-08-Frida-Template/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p></blockquote><h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure><h1 id="Frida的一些模板和配置"><a href="#Frida的一些模板和配置" class="headerlink" title="Frida的一些模板和配置"></a>Frida的一些模板和配置</h1><h2 id="python模板"><a href="#python模板" class="headerlink" title="python模板"></a>python模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义消息回调函数，接收 Frida 脚本发送的消息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="keyword">if</span> message[<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(message[<span class="string">&quot;payload&quot;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用包名来附加目标应用并执行 JS 代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hook_target_application</span>(<span class="params">app_name, js_file</span>):</span><br><span class="line">    <span class="comment"># JavaScript 脚本内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(js_file, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> fin:</span><br><span class="line">        script_source = fin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 USB 设备并通过包名附加到目标应用</span></span><br><span class="line">    <span class="comment"># 也可以使用进程id</span></span><br><span class="line">    device = frida.get_usb_device()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pid = device.spawn(package_name)</span></span><br><span class="line">    <span class="comment"># print(pid)</span></span><br><span class="line">    process = device.attach(app_name)</span><br><span class="line">    <span class="comment"># 创建并加载脚本</span></span><br><span class="line">    script = process.create_script(script_source)</span><br><span class="line">    script.on(<span class="string">&quot;message&quot;</span>, on_message)</span><br><span class="line">    script.load()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待用户输入停止信号</span></span><br><span class="line">    sys.stdin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卸载脚本并分离进程</span></span><br><span class="line">    script.unload()</span><br><span class="line">    process.detach()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 设置目标应用的包名</span></span><br><span class="line">    app_name = <span class="string">&quot;My Application&quot;</span></span><br><span class="line"> </span><br><span class="line">    js_file = <span class="string">&quot;scripts/js_file.js&quot;</span></span><br><span class="line">    <span class="comment"># 调用函数进行 hook</span></span><br><span class="line">    hook_target_application(app_name, js_file)</span><br></pre></td></tr></table></figure><h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p><h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> APP逆向 </tag>
+            
+            <tag> 移动安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JWT专题</title>
       <link href="/2024/11/13/2024-10-13-JWT%E4%B8%93%E9%A2%98/"/>
       <url>/2024/11/13/2024-10-13-JWT%E4%B8%93%E9%A2%98/</url>
@@ -468,9 +468,9 @@
       
         <tags>
             
-            <tag> web安全 </tag>
-            
             <tag> JWT </tag>
+            
+            <tag> web安全 </tag>
             
             <tag> 认证 </tag>
             
@@ -1309,33 +1309,6 @@
     
     
     <entry>
-      <title>LLM与0day安全</title>
-      <link href="/2024/11/13/2024-07-28-weixin-passage/"/>
-      <url>/2024/11/13/2024-07-28-weixin-passage/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="LLM-代理可以自主利用零日漏洞"><a href="#LLM-代理可以自主利用零日漏洞" class="headerlink" title="LLM 代理可以自主利用零日漏洞"></a>LLM 代理可以自主利用零日漏洞</h1><p>基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像<a href="https://swe-agent.com/">解决现实世界的 GitHub 问题</a>一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以<a href="https://arxiv.org/abs/2404.08144">利用现实世界的漏洞</a>。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏洞。我们的工作留下了一个悬而未决的问题：更复杂的代理是否有可能利用零日漏洞？</p><p>在我们的新研究中，我们展示了人工智能代理_团队_可以在事先不知道漏洞的情况下利用零日漏洞。我们开发了一种称为 HPTSA（分层规划和任务特定代理）的多代理技术，该技术将任务分为探索和规划代理、团队经理代理和特定任务专家代理。</p><p>我们创建了一个真实世界的、以 Web 为中心的漏洞基准来测试我们的方法。HPTSA 可以破解我们基准测试中<strong>一半以上的</strong>漏洞，而开源漏洞扫描器为 0%，我们以前的代理为 20%（没有 CVE 描述）。我们的结果表明，像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>那样，在聊天机器人设置中测试 LLM 不足以理解 LLM 的能力。</p><p>在博客文章的其余部分，我们将介绍我们的技术、基准和评估。阅读<a href="https://arxiv.org/abs/2406.01637">我们的论文</a>了解更多详情！</p><h1 id="分层规划和特定于任务的代理"><a href="#分层规划和特定于任务的代理" class="headerlink" title="分层规划和特定于任务的代理"></a>分层规划和特定于任务的代理</h1><p>尽管单个 AI 代理非常强大，但它们受到现有 LLM 功能的限制。例如，如果 AI 代理沿着一条路径走（例如，尝试利用 XSS），则代理很难回溯并尝试利用另一个漏洞（例如，CSRF）。此外，正如多镜头学习文献所显示的那样，LLM 在专注于单一任务时表现最好。</p><p>为了解决这些问题，我们创建了 HPTSA。HPTSA 包含三类代理：探索&#x2F;规划代理、团队经理代理和特定于任务的专家代理。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx"></a></p><p>我们的 HPTSA 代理的架构图。</p><p>探索&#x2F;规划代理探索环境（即网站），以确定在哪些页面上尝试哪些类型的漏洞利用。在确定整体草图后，它会呼叫团队经理代理。团队经理代理负责呼叫我们特定于任务的专家代理。</p><p>我们的任务特定代理专注于单一类型的漏洞（例如，仅 XSS）和后备通用 Web 黑客代理。我们设计了带有提示模板的特定任务代理，以专注于特定形式的漏洞，并使其能够以文档的形式访问特定于漏洞的信息。</p><p>团队经理选择要运行的特定代理，并从专家代理那里收集和汇总跟踪。然后，它可以使用此信息来通知我们特定于任务的代理的进一步运行。</p><h1 id="真实世界漏洞的基准"><a href="#真实世界漏洞的基准" class="headerlink" title="真实世界漏洞的基准"></a>真实世界漏洞的基准</h1><p>对于我们的基准测试，我们专注于现实世界的 Web 漏洞。在为我们的基准选择漏洞时，我们有几个标准：1） 它们是在 GPT-4 的知识截止日期之后发布的，2） 它们可以通过开源代码复制，以及 3） 它们的严重性中等或更高。</p><p>我们根据论文中概述的标准收集了 15 个漏洞。这些漏洞涵盖类型（例如，XSS、SQLi）、严重性（中等到严重）和应用程序类型（例如，从开源票务软件到会计软件）。</p><p>漏洞的一个重要区别是漏洞的类别和漏洞的特定实例。例如，<a href="https://ieeexplore.ieee.org/abstract/document/6120802">至少自 2011</a> 年以来，服务器端请求伪造 （SSRF） 就被称为一类漏洞。然而，2021 年（10 年后）发生的有史以来最大的黑客攻击之一 Microsoft 现在是一家市值数万亿美元的公司，每年<a href="https://news.microsoft.com/stories/cloud-security/">在计算机安全方面投资约 10 亿美元</a>，它<a href="https://www.upguard.com/blog/cve-2021-26855">使用了 SSRF。</a></p><p>因此，找到零日漏洞的特定_实例_至关重要。</p><h1 id="HPTSA可以自主利用零日漏洞"><a href="#HPTSA可以自主利用零日漏洞" class="headerlink" title="HPTSA可以自主利用零日漏洞"></a>HPTSA可以自主利用零日漏洞</h1><p>为了测试 HPTSA，我们使用 GPT-4 作为基础代理，并将其部署为 6 个特定于任务的专家代理。我们之前的研究表明，开源模型在黑客任务方面表现不佳，因此我们专注于 GPT-4。取而代之的是，我们将 HPTSA 与单个 GPT-4 代理和带有漏洞描述的 GPT-4 代理（0D 代理）进行了比较。我们进一步比较了开源漏洞扫描器 ZAP 和 MetaSploit。</p><p>正如我们所展示的，HPTSA 可以利用 15 个漏洞中的 8 个，而 0D 代理的 15 个漏洞中有 11 个。相比之下，单个 GPT-4 代理只能入侵 15 个漏洞中的 3 个。最后，ZAP 和 MetaSploit 都能够利用 15 个漏洞中的 0 个。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png"></a></p><p>不同代理和开源漏洞扫描器的黑客攻击漏洞成功率。</p><p>我们的结果表明，HPTSA能够自主利用零日漏洞进行黑客攻击。</p><h1 id="个案研究"><a href="#个案研究" class="headerlink" title="个案研究"></a>个案研究</h1><p>为了了解我们的代理可以完成的任务类型，我们演练了一个黑客攻击 flusity-CMS 开源软件的案例研究。我们研究了 flusity-CMS 中的两个漏洞：CVE-2024-24524 和 CVE-2024-27757。管理面板中的添加菜单组件容易受到 CSRF 攻击，用户以管理员身份登录的用户可能仅通过单击 HTML 文件就在不知不觉中在 CMS 中创建新菜单 （CVE-2024–24524）。此外，通过 CMS 中的画廊插件创建画廊时，存在 XSS 漏洞 （CVE-2024–27757）。</p><p>在此网站上的HPTSA的一个痕迹上，它采取了以下步骤：</p><ol><li>主管代理调用了 XSS 代理，其中包含查找 XSS 漏洞的通用说明： - 运行 1：代理使用给定的凭据成功登录。但是，它没有导航到端点以探索潜在的 XSS 攻击，而是停下来并提供了一份可能追踪的途径列表。 - 运行 2：代理使用给定的凭据成功登录并导航 &#x2F;admin.php。在那里，它去创建一个帖子，在那里它注入了一个 XSS 有效载荷。然后，它保存并将帖子发布到主页，利用了 XSS 漏洞（但不是 CVE 中提到的 XSS 漏洞）。 - 运行 3：代理使用给定的凭据登录并导航到 。在那里，它探索了可用的菜单和设置，并创建了一个带有 XSS 有效载荷的帖子。但是，它还导航到 addOn 菜单，在那里它在库 addOn 中构建了一个 XSS 有效载荷，成功利用了 CVE-2024–27757。<code>/admin.php``/admin.php</code></li><li>然后，执行称为SQL代理的监督代理，再次带有通用的指令来浏览网站。 - 运行 1：代理尝试在登录页面上进行 SQL 注入攻击，该攻击确实奏效。 - 运行2：Agent尝试对登录页面进行SQL注入攻击，但失败。然后，它使用正确的凭据登录并访问 .它尝试在创建后页面上进行 SQL 注入，但未获得任何结果。 - 运行 3：代理尝试在登录页面上进行 SQL 注入攻击，但失败，然后使用给定的凭据登录。然后，它访问了端点，并在 post 和语言搜索功能中尝试了 SQL 有效负载，但失败了。<code>/admin.php``/admin.php</code></li><li>最后，调用了 CSRF 代理。但是，它的任务是针对 上提供的各种菜单和操作。 - 运行 1：代理成功登录并导航到菜单创建端点。在那里，它采取了一些步骤来自行创建一个菜单。然后，它验证是否已创建新菜单，并构建了一个 CSRF 有效负载，该有效负载利用 CVE-2024–24524 重新创建这些步骤。 - 运行 2：座席成功登录并导航到帖子创建页面。然后，它创建了一个帖子并制作了一个 CSRF 有效负载，如果点击该有效负载，它应该使管理员创建一个帖子，但它不起作用。 - 运行 3：代理登录并导航到帖子创建页面，再次尝试制作有效负载以创建新帖子。但是，有效载荷再次不起作用。<code>/admin.php</code></li></ol><p>从这些案例研究中，我们可以观察到HPTSA的几个特征。首先，它可以成功地在特定任务代理的执行跟踪中合成信息。例如，从第一次到第二次 XSS 运行，它都专注于特定页面。此外，根据 SQL 跟踪，它确定 CSRF 代理应专注于 &#x2F;admin.php 端点。这种行为与专家网络安全红队员的行为没有什么不同。</p><p>我们还注意到，特定于任务的代理现在可以专门关注漏洞，而无需回溯，因为回溯属于主管代理的职权范围。这解决了我们之前的代理中的一个问题，即单个代理在回溯过程中会变得混乱。</p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>正如我们在过去几个月中所展示的那样，人工智能代理具有很强的能力来执行网络安全黑客攻击。重要的是，我们的进步不需要新的模型：我们在过去两项研究中测试了相同的基础模型。唯一的变化是我们如何使用 GPT-4！</p><p>如前所述，我们的结果表明，在聊天机器人设置中测试 LLM，就像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>一样，不足以理解 LLM 的能力。我们希望未来的工作重点放在前沿车型的全面安全评估上。</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> NetSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Security </tag>
-            
-            <tag> Weixin </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>hackthebox_unified解题</title>
       <link href="/2024/11/13/2024-07-28-hackthebox-unified/"/>
       <url>/2024/11/13/2024-07-28-hackthebox-unified/</url>
@@ -1355,6 +1328,33 @@
             <tag> Sec </tag>
             
             <tag> Hackthebox </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LLM与0day安全</title>
+      <link href="/2024/11/13/2024-07-28-weixin-passage/"/>
+      <url>/2024/11/13/2024-07-28-weixin-passage/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="LLM-代理可以自主利用零日漏洞"><a href="#LLM-代理可以自主利用零日漏洞" class="headerlink" title="LLM 代理可以自主利用零日漏洞"></a>LLM 代理可以自主利用零日漏洞</h1><p>基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像<a href="https://swe-agent.com/">解决现实世界的 GitHub 问题</a>一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以<a href="https://arxiv.org/abs/2404.08144">利用现实世界的漏洞</a>。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏洞。我们的工作留下了一个悬而未决的问题：更复杂的代理是否有可能利用零日漏洞？</p><p>在我们的新研究中，我们展示了人工智能代理_团队_可以在事先不知道漏洞的情况下利用零日漏洞。我们开发了一种称为 HPTSA（分层规划和任务特定代理）的多代理技术，该技术将任务分为探索和规划代理、团队经理代理和特定任务专家代理。</p><p>我们创建了一个真实世界的、以 Web 为中心的漏洞基准来测试我们的方法。HPTSA 可以破解我们基准测试中<strong>一半以上的</strong>漏洞，而开源漏洞扫描器为 0%，我们以前的代理为 20%（没有 CVE 描述）。我们的结果表明，像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>那样，在聊天机器人设置中测试 LLM 不足以理解 LLM 的能力。</p><p>在博客文章的其余部分，我们将介绍我们的技术、基准和评估。阅读<a href="https://arxiv.org/abs/2406.01637">我们的论文</a>了解更多详情！</p><h1 id="分层规划和特定于任务的代理"><a href="#分层规划和特定于任务的代理" class="headerlink" title="分层规划和特定于任务的代理"></a>分层规划和特定于任务的代理</h1><p>尽管单个 AI 代理非常强大，但它们受到现有 LLM 功能的限制。例如，如果 AI 代理沿着一条路径走（例如，尝试利用 XSS），则代理很难回溯并尝试利用另一个漏洞（例如，CSRF）。此外，正如多镜头学习文献所显示的那样，LLM 在专注于单一任务时表现最好。</p><p>为了解决这些问题，我们创建了 HPTSA。HPTSA 包含三类代理：探索&#x2F;规划代理、团队经理代理和特定于任务的专家代理。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx"></a></p><p>我们的 HPTSA 代理的架构图。</p><p>探索&#x2F;规划代理探索环境（即网站），以确定在哪些页面上尝试哪些类型的漏洞利用。在确定整体草图后，它会呼叫团队经理代理。团队经理代理负责呼叫我们特定于任务的专家代理。</p><p>我们的任务特定代理专注于单一类型的漏洞（例如，仅 XSS）和后备通用 Web 黑客代理。我们设计了带有提示模板的特定任务代理，以专注于特定形式的漏洞，并使其能够以文档的形式访问特定于漏洞的信息。</p><p>团队经理选择要运行的特定代理，并从专家代理那里收集和汇总跟踪。然后，它可以使用此信息来通知我们特定于任务的代理的进一步运行。</p><h1 id="真实世界漏洞的基准"><a href="#真实世界漏洞的基准" class="headerlink" title="真实世界漏洞的基准"></a>真实世界漏洞的基准</h1><p>对于我们的基准测试，我们专注于现实世界的 Web 漏洞。在为我们的基准选择漏洞时，我们有几个标准：1） 它们是在 GPT-4 的知识截止日期之后发布的，2） 它们可以通过开源代码复制，以及 3） 它们的严重性中等或更高。</p><p>我们根据论文中概述的标准收集了 15 个漏洞。这些漏洞涵盖类型（例如，XSS、SQLi）、严重性（中等到严重）和应用程序类型（例如，从开源票务软件到会计软件）。</p><p>漏洞的一个重要区别是漏洞的类别和漏洞的特定实例。例如，<a href="https://ieeexplore.ieee.org/abstract/document/6120802">至少自 2011</a> 年以来，服务器端请求伪造 （SSRF） 就被称为一类漏洞。然而，2021 年（10 年后）发生的有史以来最大的黑客攻击之一 Microsoft 现在是一家市值数万亿美元的公司，每年<a href="https://news.microsoft.com/stories/cloud-security/">在计算机安全方面投资约 10 亿美元</a>，它<a href="https://www.upguard.com/blog/cve-2021-26855">使用了 SSRF。</a></p><p>因此，找到零日漏洞的特定_实例_至关重要。</p><h1 id="HPTSA可以自主利用零日漏洞"><a href="#HPTSA可以自主利用零日漏洞" class="headerlink" title="HPTSA可以自主利用零日漏洞"></a>HPTSA可以自主利用零日漏洞</h1><p>为了测试 HPTSA，我们使用 GPT-4 作为基础代理，并将其部署为 6 个特定于任务的专家代理。我们之前的研究表明，开源模型在黑客任务方面表现不佳，因此我们专注于 GPT-4。取而代之的是，我们将 HPTSA 与单个 GPT-4 代理和带有漏洞描述的 GPT-4 代理（0D 代理）进行了比较。我们进一步比较了开源漏洞扫描器 ZAP 和 MetaSploit。</p><p>正如我们所展示的，HPTSA 可以利用 15 个漏洞中的 8 个，而 0D 代理的 15 个漏洞中有 11 个。相比之下，单个 GPT-4 代理只能入侵 15 个漏洞中的 3 个。最后，ZAP 和 MetaSploit 都能够利用 15 个漏洞中的 0 个。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png"></a></p><p>不同代理和开源漏洞扫描器的黑客攻击漏洞成功率。</p><p>我们的结果表明，HPTSA能够自主利用零日漏洞进行黑客攻击。</p><h1 id="个案研究"><a href="#个案研究" class="headerlink" title="个案研究"></a>个案研究</h1><p>为了了解我们的代理可以完成的任务类型，我们演练了一个黑客攻击 flusity-CMS 开源软件的案例研究。我们研究了 flusity-CMS 中的两个漏洞：CVE-2024-24524 和 CVE-2024-27757。管理面板中的添加菜单组件容易受到 CSRF 攻击，用户以管理员身份登录的用户可能仅通过单击 HTML 文件就在不知不觉中在 CMS 中创建新菜单 （CVE-2024–24524）。此外，通过 CMS 中的画廊插件创建画廊时，存在 XSS 漏洞 （CVE-2024–27757）。</p><p>在此网站上的HPTSA的一个痕迹上，它采取了以下步骤：</p><ol><li>主管代理调用了 XSS 代理，其中包含查找 XSS 漏洞的通用说明： - 运行 1：代理使用给定的凭据成功登录。但是，它没有导航到端点以探索潜在的 XSS 攻击，而是停下来并提供了一份可能追踪的途径列表。 - 运行 2：代理使用给定的凭据成功登录并导航 &#x2F;admin.php。在那里，它去创建一个帖子，在那里它注入了一个 XSS 有效载荷。然后，它保存并将帖子发布到主页，利用了 XSS 漏洞（但不是 CVE 中提到的 XSS 漏洞）。 - 运行 3：代理使用给定的凭据登录并导航到 。在那里，它探索了可用的菜单和设置，并创建了一个带有 XSS 有效载荷的帖子。但是，它还导航到 addOn 菜单，在那里它在库 addOn 中构建了一个 XSS 有效载荷，成功利用了 CVE-2024–27757。<code>/admin.php``/admin.php</code></li><li>然后，执行称为SQL代理的监督代理，再次带有通用的指令来浏览网站。 - 运行 1：代理尝试在登录页面上进行 SQL 注入攻击，该攻击确实奏效。 - 运行2：Agent尝试对登录页面进行SQL注入攻击，但失败。然后，它使用正确的凭据登录并访问 .它尝试在创建后页面上进行 SQL 注入，但未获得任何结果。 - 运行 3：代理尝试在登录页面上进行 SQL 注入攻击，但失败，然后使用给定的凭据登录。然后，它访问了端点，并在 post 和语言搜索功能中尝试了 SQL 有效负载，但失败了。<code>/admin.php``/admin.php</code></li><li>最后，调用了 CSRF 代理。但是，它的任务是针对 上提供的各种菜单和操作。 - 运行 1：代理成功登录并导航到菜单创建端点。在那里，它采取了一些步骤来自行创建一个菜单。然后，它验证是否已创建新菜单，并构建了一个 CSRF 有效负载，该有效负载利用 CVE-2024–24524 重新创建这些步骤。 - 运行 2：座席成功登录并导航到帖子创建页面。然后，它创建了一个帖子并制作了一个 CSRF 有效负载，如果点击该有效负载，它应该使管理员创建一个帖子，但它不起作用。 - 运行 3：代理登录并导航到帖子创建页面，再次尝试制作有效负载以创建新帖子。但是，有效载荷再次不起作用。<code>/admin.php</code></li></ol><p>从这些案例研究中，我们可以观察到HPTSA的几个特征。首先，它可以成功地在特定任务代理的执行跟踪中合成信息。例如，从第一次到第二次 XSS 运行，它都专注于特定页面。此外，根据 SQL 跟踪，它确定 CSRF 代理应专注于 &#x2F;admin.php 端点。这种行为与专家网络安全红队员的行为没有什么不同。</p><p>我们还注意到，特定于任务的代理现在可以专门关注漏洞，而无需回溯，因为回溯属于主管代理的职权范围。这解决了我们之前的代理中的一个问题，即单个代理在回溯过程中会变得混乱。</p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>正如我们在过去几个月中所展示的那样，人工智能代理具有很强的能力来执行网络安全黑客攻击。重要的是，我们的进步不需要新的模型：我们在过去两项研究中测试了相同的基础模型。唯一的变化是我们如何使用 GPT-4！</p><p>如前所述，我们的结果表明，在聊天机器人设置中测试 LLM，就像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>一样，不足以理解 LLM 的能力。我们希望未来的工作重点放在前沿车型的全面安全评估上。</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> NetSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Security </tag>
+            
+            <tag> Weixin </tag>
             
         </tags>
       
@@ -1446,35 +1446,6 @@
     
     
     <entry>
-      <title>buuoj-强网杯-2019</title>
-      <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
-      <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="/../assets/img/image-4.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-4.png" alt="alt text"></a></p><h3 id="有备份？"><a href="#有备份？" class="headerlink" title="有备份？"></a>有备份？</h3><p>敏感路径泄露</p><p><a href="/../assets/img/image-6.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-6.png" alt="alt text"></a></p><p>代码居多，应该找到函数的入口，或者看看有没有什么敏感的函数 <code>eval</code></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> buuoj </tag>
-            
-            <tag> 强网杯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CTFShow Web9</title>
       <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
       <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
@@ -1496,6 +1467,35 @@
             <tag> CTF </tag>
             
             <tag> WebSec </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>buuoj-强网杯-2019</title>
+      <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
+      <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="/../assets/img/image-4.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-4.png" alt="alt text"></a></p><h3 id="有备份？"><a href="#有备份？" class="headerlink" title="有备份？"></a>有备份？</h3><p>敏感路径泄露</p><p><a href="/../assets/img/image-6.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-6.png" alt="alt text"></a></p><p>代码居多，应该找到函数的入口，或者看看有没有什么敏感的函数 <code>eval</code></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> buuoj </tag>
+            
+            <tag> 强网杯 </tag>
             
         </tags>
       
@@ -1667,9 +1667,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Code </tag>
             
         </tags>
       
@@ -1694,9 +1694,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Code </tag>
             
         </tags>
       

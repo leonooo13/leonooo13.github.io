@@ -614,33 +614,6 @@
     
     
     <entry>
-      <title>Web中间件-Tomcat8</title>
-      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
-      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web中间件 </tag>
-            
-            <tag> Tomcat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MonitorsThree</title>
       <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
       <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
@@ -660,6 +633,33 @@
             <tag> Linux </tag>
             
             <tag> THB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web中间件-Tomcat8</title>
+      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
+      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web中间件 </tag>
+            
+            <tag> Tomcat </tag>
             
         </tags>
       
@@ -814,9 +814,9 @@
       
         <tags>
             
-            <tag> 渗透测试 </tag>
-            
             <tag> 端口转发 </tag>
+            
+            <tag> 渗透测试 </tag>
             
         </tags>
       
@@ -1577,35 +1577,6 @@
     
     
     <entry>
-      <title>CTFShow Web9</title>
-      <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
-      <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>没事打打CTF 也是一种乐趣，这里记录一下一些Web方向的题目，以及解题思路。</p><p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">        <span class="variable">$flag</span>=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$password</span>)&gt;<span class="number">10</span>)&#123;</span><br><span class="line"><span class="keyword">die</span>(<span class="string">&quot;password error&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;select * from user where username =&#x27;admin&#x27; and password =&#x27;&quot;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$password</span>,<span class="literal">true</span>).<span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>,<span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span>=<span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>))&#123;</span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;登陆成功&lt;br&gt;&quot;</span>;</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>对于函数md5(string,raw) 第二个参数有以下可选项： TRUE - 原始 16 字符二进制格式 FALSE - 默认。32 字符十六进制数 所以只要md5加密后的16进制转化为二进制时有 ‘or’xxxx，即可构成闭合语句： username &#x3D;’admin’ and password &#x3D;‘ ’or ‘xxxxx’ 成功登陆 这里给出两个符合的字符串 ffifdyop 129581926211651571912466741651878684928 但题目有长度限制，所以输入ffifdyop即可获取flag</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-          <category> CTF </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> WebSec </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>buuoj-强网杯-2019</title>
       <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
       <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
@@ -1627,6 +1598,35 @@
             <tag> buuoj </tag>
             
             <tag> 强网杯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CTFShow Web9</title>
+      <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
+      <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>没事打打CTF 也是一种乐趣，这里记录一下一些Web方向的题目，以及解题思路。</p><p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">        <span class="variable">$flag</span>=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$password</span>)&gt;<span class="number">10</span>)&#123;</span><br><span class="line"><span class="keyword">die</span>(<span class="string">&quot;password error&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;select * from user where username =&#x27;admin&#x27; and password =&#x27;&quot;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$password</span>,<span class="literal">true</span>).<span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>,<span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span>=<span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>))&#123;</span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;登陆成功&lt;br&gt;&quot;</span>;</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>对于函数md5(string,raw) 第二个参数有以下可选项： TRUE - 原始 16 字符二进制格式 FALSE - 默认。32 字符十六进制数 所以只要md5加密后的16进制转化为二进制时有 ‘or’xxxx，即可构成闭合语句： username &#x3D;’admin’ and password &#x3D;‘ ’or ‘xxxxx’ 成功登陆 这里给出两个符合的字符串 ffifdyop 129581926211651571912466741651878684928 但题目有长度限制，所以输入ffifdyop即可获取flag</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> WebSec </tag>
             
         </tags>
       
@@ -1836,6 +1836,31 @@
     
     
     <entry>
+      <title>社会中的软技能</title>
+      <link href="/2024/11/13/2024-03-17-softskils/"/>
+      <url>/2024/11/13/2024-03-17-softskils/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol><li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p></li><li><p>解决问题的能力</p></li><li><p>认识别人的能力。</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> career </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> skills </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Django</title>
       <link href="/2024/11/13/2024-03-19-Django/"/>
       <url>/2024/11/13/2024-03-19-Django/</url>
@@ -1855,31 +1880,6 @@
             <tag> Python </tag>
             
             <tag> Django </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>社会中的软技能</title>
-      <link href="/2024/11/13/2024-03-17-softskils/"/>
-      <url>/2024/11/13/2024-03-17-softskils/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol><li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p></li><li><p>解决问题的能力</p></li><li><p>认识别人的能力。</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> career </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> skills </tag>
             
         </tags>
       
@@ -2210,6 +2210,31 @@
     
     
     <entry>
+      <title>如何在工作中成长</title>
+      <link href="/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/"/>
+      <url>/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>或多或少有些在工作中遇到瓶颈期</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> career </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> wlb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java 代码审计- SQLinjection</title>
       <link href="/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
       <url>/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
@@ -2229,31 +2254,6 @@
         <tags>
             
             <tag> Java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>如何在工作中成长</title>
-      <link href="/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/"/>
-      <url>/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>或多或少有些在工作中遇到瓶颈期</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> career </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> wlb </tag>
             
         </tags>
       

@@ -614,33 +614,6 @@
     
     
     <entry>
-      <title>MonitorsThree</title>
-      <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
-      <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-            <tag> THB </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Web中间件-Tomcat8</title>
       <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
       <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
@@ -660,6 +633,33 @@
             <tag> Web中间件 </tag>
             
             <tag> Tomcat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MonitorsThree</title>
+      <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
+      <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> THB </tag>
             
         </tags>
       
@@ -814,36 +814,9 @@
       
         <tags>
             
-            <tag> 渗透测试 </tag>
-            
             <tag> 端口转发 </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>网络安全面试题</title>
-      <link href="/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-      <url>/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li><strong>漏洞相关</strong>：<ul><li><strong>挖洞经历和CTF经历</strong>：要求介绍自认为有趣的相关经历。</li><li><strong>常用漏洞</strong>：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。</li><li><strong>开源组件高危漏洞</strong>：要求列举所知道的所有相关漏洞。</li><li><strong>CVE或POC</strong>：需要描述深入研究过的CVE或POC。</li><li><strong>反序列化漏洞</strong>：包括php&#x2F;java反序列化漏洞的原理和解决方案。</li></ul></li><li><strong>工具相关</strong>：<ul><li><strong>常用工具</strong>：询问平时使用的工具及其特点。</li></ul></li><li><strong>绕过WAF</strong>：<ul><li><strong>SQL注入和上传Webshell</strong>：遇到WAF时的应对方法。</li></ul></li><li><strong>系统提权</strong>：<ul><li><strong>Windows和Linux系统</strong>：阐述提权的思路。</li></ul></li><li><strong>渗透测试</strong>：<ul><li><strong>获取目标网站真实IP</strong>：介绍绕过CDN获取真实IP的思路。</li><li><strong>渗透测试思路</strong>：针对给定网站，阐述渗透测试的思路。</li><li><strong>实际渗透测试经历</strong>：可能会询问相关经历。</li><li><strong>反弹shell</strong>：常用命令、常反弹的shell类型及原因。</li><li><strong>SSRF漏洞</strong>：包括成因、防御、绕过等方面。</li><li><strong>SQL注入</strong>：漏洞成因、防范方法、注入方式、利用方式、中间件解析漏洞利用方式、bypass技巧、宽字符注入原理及修复等。</li><li><strong>获取webshell的思路</strong>：针对特定注入点，如test.jsp?cid&#x3D;150，获取webshell的思路。</li><li><strong>变形注入的思路</strong>：对于存在SQL注入漏洞的变形注入，提出解决思路。</li><li><strong>mysql注入的区别</strong>：mysql 5.0以上和5.0以下网站注入的区别。</li><li><strong>sqlmap的使用</strong>：sqlmap对注入点注入以及注入post包的方法。</li></ul></li><li><strong>浏览器知识</strong>：<ul><li><strong>跨域请求数据</strong>：如何设置跨域请求数据，jsonp的作用。</li><li><strong>同源策略</strong>：子域名和顶级域名不同源时的设置方法，同源策略的解释及同源可获取的东西。</li><li><strong>JSON和JSONP的区别</strong>：包括JSONP劫持利用方式及修复方案、JSON注入利用方式、Ajax是否遵循同源策略等。</li><li><strong>CSP</strong>：CSP是什么以及如何设置。</li><li><strong>浏览器安全策略</strong>：不同浏览器（如chrome、firefox、IE）之间安全策略的不同。</li><li><strong>HTML5安全特性</strong>：HTML5新的安全特性。</li></ul></li><li><strong>XSS</strong>：<ul><li><strong>防范XSS漏洞</strong>：在前端和后端的防范方法，以及何处更好及原因。</li><li><strong>检测XSS漏洞</strong>：黑盒检测XSS漏洞的方法。</li><li><strong>利用XSS盲打漏洞</strong>：在内网且只能内网访问的情况下，利用XSS盲打漏洞的方法。</li><li><strong>防御蠕虫</strong>：防御蠕虫的方法，以及在社交类网站中蠕虫可能出现的地方。</li><li><strong>XSS持久化</strong>：相关内容。</li><li><strong>构造蠕虫的条件</strong>：拥有XSS漏洞时，构造蠕虫所需的其他条件。</li><li><strong>XSS的发生场景、定义及修复方式</strong>：相关内容。</li></ul></li><li><strong>CSRF&#x2F;SSRF</strong>：<ul><li><strong>区别</strong>：CSRF、SSRF和重放攻击的区别。</li><li><strong>防御CSRF的方法</strong>：包括JAVA的防御方式以及token是否一定有用。</li><li><strong>CSRF漏洞的本质、定义及修复方式</strong>：相关内容。</li><li><strong>SSRF漏洞原理、利用方式及修复方案</strong>：以及Java和PHP的SSRF区别。</li></ul></li><li><strong>XML注入</strong>：<ul><li><strong>XXE</strong>：XXE是什么以及修复方案。</li></ul></li><li><strong>业务逻辑漏洞</strong>：<ul><li><strong>类型及修复方式</strong>：至少说出三种业务逻辑漏洞及其修复方式，如找回密码、身份认证、验证码漏洞等。</li><li><strong>越权访问</strong>：水平、垂直、未授权越权访问的区别，以及越权问题的自动化检测方法。</li></ul></li><li><strong>Java考察</strong>：<ul><li><strong>MVC结构和数据流向</strong>：java的MVC结构的作用，数据流向数据库的顺序。</li><li><strong>java沙箱</strong>：对java沙箱的了解。</li><li><strong>ibats和sql注入</strong>：ibats的参数化查询对sql注入的控制，以及可能造成sql注入的危险方法。</li><li><strong>struts2漏洞原理</strong>：两次struts2漏洞的原理。</li><li><strong>ongl在payload中的作用</strong>：相关内容。</li><li><strong>\u0023字符编码</strong>：\u0023是什么字符的16进制编码以及在payload中使用的原因。</li><li><strong>执行系统命令的漏洞</strong>：java是否会发生此类漏洞，以及相关的语句和方法。</li><li><strong>修复xss漏洞的层级</strong>：在java程序中修复xss漏洞的层级。</li><li><strong>xss filter的设置位置</strong>：xss filter在java程序中的设置位置。</li><li><strong>java类反射的安全问题</strong>：相关内容。</li><li><strong>Java反序列化漏洞</strong>：原理和解决方案。</li><li><strong>java框架</strong>：了解的java框架。</li></ul></li><li><strong>PHP考察</strong>：<ul><li><strong>LFI本地包含漏洞</strong>：原理、代码示例、手工发掘方法、无报错回显时的文件遍历方法。</li><li><strong>php反序列化漏洞</strong>：原理和解决方案。</li><li><strong>php webshell检测方法</strong>：相关内容。</li><li><strong>%00截断的原理</strong>：相关内容。</li><li><strong>php.ini的安全特性设置</strong>：相关内容。</li><li><strong>php避免错误回显的方法</strong>：相关内容。</li></ul></li><li><strong>常见中间件</strong>：<ul><li><strong>Redis未授权访问漏洞</strong>：入侵利用方式。</li><li><strong>中间件解析漏洞利用方式</strong>：常见的中间件解析漏洞利用方式。</li><li><strong>JAVA中间件容器</strong>：常见的中间件容器。</li><li><strong>tomcat安全加固</strong>：相关内容。</li><li><strong>tomcat重启后的情况</strong>：相关内容。</li><li><strong>常见网站服务器中间件容器</strong>：相关内容。</li></ul></li><li><strong>数据库安全</strong>：<ul><li><strong>mysql表权限</strong>：除增删改查、文件读写外的其他权限。</li><li><strong>mysql安全</strong>：mysql安全的做法。</li><li><strong>sqlserver public权限提权</strong>：相关内容。</li><li><strong>加固降权思路</strong>：Windows、Linux、数据库任选其一的加固降权思路。</li><li><strong>mysql用户信息存储</strong>：mysql的用户名密码存放的表以及密码的加密方式。</li><li><strong>mysql默认库</strong>：mysql数据库默认的库名。</li><li><strong>mysql UDF提权</strong>：5.1以上版本和5.1以下版本的区别及所需条件。</li></ul></li><li><strong>Linux操作系统</strong>：<ul><li><strong>系统安全加固</strong>：简述Linux系统安全加固需要做的方面。</li><li><strong>后门检测工具</strong>：使用的工具来判断系统是否存在后门。</li><li><strong>Selinux</strong>：Linux的Selinux是什么以及如何设置。</li><li><strong>iptables工作层</strong>：iptables工作在TCP&#x2F;IP模型中的哪层。</li><li><strong>系统防护</strong>：无法升级内核时，保证系统不被已知exp提权的方法。</li><li><strong>日志相关</strong>：syslog中的日志类型、安装软件的日志位置、ssh登录日志的查询、syslog日志格式的配置、syslog的查看方式及是否为二进制文件。</li><li><strong>应急响应</strong>：Linux服务器被入侵后的应急响应方法。</li></ul></li><li><strong>应急响应</strong>：<ul><li><strong>后门实现方式</strong>：有哪几种后门实现方式。</li><li><strong>webshell检测</strong>：webshell检测的方法思路。</li><li><strong>Linux服务器中木马后的应急思路</strong>：相关内容。</li><li><strong>新0day应急响应</strong>：遇到新0day（如Struts2）后的应急响应方法。</li><li><strong>安全评估和审计</strong>：新业务上线前的安全评估方向，现有系统审计发现安全风险的方向。</li></ul></li><li><strong>其他</strong>：<ul><li><strong>判断网站CMS的意义</strong>：判断出网站的CMS对渗透的意义。</li><li><strong>清理入侵日志</strong>：相关内容。</li><li><strong>总结渗透报告及修复方案</strong>：相关内容。</li><li><strong>收集目标站注册人邮箱的价值</strong>：在渗透过程中，收集目标站注册人邮箱的价值。</li><li><strong>DNS在渗透中的作用</strong>：相关内容。</li></ul></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 网络安全 </tag>
-            
-            <tag> 面试 </tag>
+            <tag> 渗透测试 </tag>
             
         </tags>
       
@@ -871,6 +844,33 @@
             <tag> 网络安全 </tag>
             
             <tag> 渗透测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>网络安全面试题</title>
+      <link href="/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <url>/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li><strong>漏洞相关</strong>：<ul><li><strong>挖洞经历和CTF经历</strong>：要求介绍自认为有趣的相关经历。</li><li><strong>常用漏洞</strong>：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。</li><li><strong>开源组件高危漏洞</strong>：要求列举所知道的所有相关漏洞。</li><li><strong>CVE或POC</strong>：需要描述深入研究过的CVE或POC。</li><li><strong>反序列化漏洞</strong>：包括php&#x2F;java反序列化漏洞的原理和解决方案。</li></ul></li><li><strong>工具相关</strong>：<ul><li><strong>常用工具</strong>：询问平时使用的工具及其特点。</li></ul></li><li><strong>绕过WAF</strong>：<ul><li><strong>SQL注入和上传Webshell</strong>：遇到WAF时的应对方法。</li></ul></li><li><strong>系统提权</strong>：<ul><li><strong>Windows和Linux系统</strong>：阐述提权的思路。</li></ul></li><li><strong>渗透测试</strong>：<ul><li><strong>获取目标网站真实IP</strong>：介绍绕过CDN获取真实IP的思路。</li><li><strong>渗透测试思路</strong>：针对给定网站，阐述渗透测试的思路。</li><li><strong>实际渗透测试经历</strong>：可能会询问相关经历。</li><li><strong>反弹shell</strong>：常用命令、常反弹的shell类型及原因。</li><li><strong>SSRF漏洞</strong>：包括成因、防御、绕过等方面。</li><li><strong>SQL注入</strong>：漏洞成因、防范方法、注入方式、利用方式、中间件解析漏洞利用方式、bypass技巧、宽字符注入原理及修复等。</li><li><strong>获取webshell的思路</strong>：针对特定注入点，如test.jsp?cid&#x3D;150，获取webshell的思路。</li><li><strong>变形注入的思路</strong>：对于存在SQL注入漏洞的变形注入，提出解决思路。</li><li><strong>mysql注入的区别</strong>：mysql 5.0以上和5.0以下网站注入的区别。</li><li><strong>sqlmap的使用</strong>：sqlmap对注入点注入以及注入post包的方法。</li></ul></li><li><strong>浏览器知识</strong>：<ul><li><strong>跨域请求数据</strong>：如何设置跨域请求数据，jsonp的作用。</li><li><strong>同源策略</strong>：子域名和顶级域名不同源时的设置方法，同源策略的解释及同源可获取的东西。</li><li><strong>JSON和JSONP的区别</strong>：包括JSONP劫持利用方式及修复方案、JSON注入利用方式、Ajax是否遵循同源策略等。</li><li><strong>CSP</strong>：CSP是什么以及如何设置。</li><li><strong>浏览器安全策略</strong>：不同浏览器（如chrome、firefox、IE）之间安全策略的不同。</li><li><strong>HTML5安全特性</strong>：HTML5新的安全特性。</li></ul></li><li><strong>XSS</strong>：<ul><li><strong>防范XSS漏洞</strong>：在前端和后端的防范方法，以及何处更好及原因。</li><li><strong>检测XSS漏洞</strong>：黑盒检测XSS漏洞的方法。</li><li><strong>利用XSS盲打漏洞</strong>：在内网且只能内网访问的情况下，利用XSS盲打漏洞的方法。</li><li><strong>防御蠕虫</strong>：防御蠕虫的方法，以及在社交类网站中蠕虫可能出现的地方。</li><li><strong>XSS持久化</strong>：相关内容。</li><li><strong>构造蠕虫的条件</strong>：拥有XSS漏洞时，构造蠕虫所需的其他条件。</li><li><strong>XSS的发生场景、定义及修复方式</strong>：相关内容。</li></ul></li><li><strong>CSRF&#x2F;SSRF</strong>：<ul><li><strong>区别</strong>：CSRF、SSRF和重放攻击的区别。</li><li><strong>防御CSRF的方法</strong>：包括JAVA的防御方式以及token是否一定有用。</li><li><strong>CSRF漏洞的本质、定义及修复方式</strong>：相关内容。</li><li><strong>SSRF漏洞原理、利用方式及修复方案</strong>：以及Java和PHP的SSRF区别。</li></ul></li><li><strong>XML注入</strong>：<ul><li><strong>XXE</strong>：XXE是什么以及修复方案。</li></ul></li><li><strong>业务逻辑漏洞</strong>：<ul><li><strong>类型及修复方式</strong>：至少说出三种业务逻辑漏洞及其修复方式，如找回密码、身份认证、验证码漏洞等。</li><li><strong>越权访问</strong>：水平、垂直、未授权越权访问的区别，以及越权问题的自动化检测方法。</li></ul></li><li><strong>Java考察</strong>：<ul><li><strong>MVC结构和数据流向</strong>：java的MVC结构的作用，数据流向数据库的顺序。</li><li><strong>java沙箱</strong>：对java沙箱的了解。</li><li><strong>ibats和sql注入</strong>：ibats的参数化查询对sql注入的控制，以及可能造成sql注入的危险方法。</li><li><strong>struts2漏洞原理</strong>：两次struts2漏洞的原理。</li><li><strong>ongl在payload中的作用</strong>：相关内容。</li><li><strong>\u0023字符编码</strong>：\u0023是什么字符的16进制编码以及在payload中使用的原因。</li><li><strong>执行系统命令的漏洞</strong>：java是否会发生此类漏洞，以及相关的语句和方法。</li><li><strong>修复xss漏洞的层级</strong>：在java程序中修复xss漏洞的层级。</li><li><strong>xss filter的设置位置</strong>：xss filter在java程序中的设置位置。</li><li><strong>java类反射的安全问题</strong>：相关内容。</li><li><strong>Java反序列化漏洞</strong>：原理和解决方案。</li><li><strong>java框架</strong>：了解的java框架。</li></ul></li><li><strong>PHP考察</strong>：<ul><li><strong>LFI本地包含漏洞</strong>：原理、代码示例、手工发掘方法、无报错回显时的文件遍历方法。</li><li><strong>php反序列化漏洞</strong>：原理和解决方案。</li><li><strong>php webshell检测方法</strong>：相关内容。</li><li><strong>%00截断的原理</strong>：相关内容。</li><li><strong>php.ini的安全特性设置</strong>：相关内容。</li><li><strong>php避免错误回显的方法</strong>：相关内容。</li></ul></li><li><strong>常见中间件</strong>：<ul><li><strong>Redis未授权访问漏洞</strong>：入侵利用方式。</li><li><strong>中间件解析漏洞利用方式</strong>：常见的中间件解析漏洞利用方式。</li><li><strong>JAVA中间件容器</strong>：常见的中间件容器。</li><li><strong>tomcat安全加固</strong>：相关内容。</li><li><strong>tomcat重启后的情况</strong>：相关内容。</li><li><strong>常见网站服务器中间件容器</strong>：相关内容。</li></ul></li><li><strong>数据库安全</strong>：<ul><li><strong>mysql表权限</strong>：除增删改查、文件读写外的其他权限。</li><li><strong>mysql安全</strong>：mysql安全的做法。</li><li><strong>sqlserver public权限提权</strong>：相关内容。</li><li><strong>加固降权思路</strong>：Windows、Linux、数据库任选其一的加固降权思路。</li><li><strong>mysql用户信息存储</strong>：mysql的用户名密码存放的表以及密码的加密方式。</li><li><strong>mysql默认库</strong>：mysql数据库默认的库名。</li><li><strong>mysql UDF提权</strong>：5.1以上版本和5.1以下版本的区别及所需条件。</li></ul></li><li><strong>Linux操作系统</strong>：<ul><li><strong>系统安全加固</strong>：简述Linux系统安全加固需要做的方面。</li><li><strong>后门检测工具</strong>：使用的工具来判断系统是否存在后门。</li><li><strong>Selinux</strong>：Linux的Selinux是什么以及如何设置。</li><li><strong>iptables工作层</strong>：iptables工作在TCP&#x2F;IP模型中的哪层。</li><li><strong>系统防护</strong>：无法升级内核时，保证系统不被已知exp提权的方法。</li><li><strong>日志相关</strong>：syslog中的日志类型、安装软件的日志位置、ssh登录日志的查询、syslog日志格式的配置、syslog的查看方式及是否为二进制文件。</li><li><strong>应急响应</strong>：Linux服务器被入侵后的应急响应方法。</li></ul></li><li><strong>应急响应</strong>：<ul><li><strong>后门实现方式</strong>：有哪几种后门实现方式。</li><li><strong>webshell检测</strong>：webshell检测的方法思路。</li><li><strong>Linux服务器中木马后的应急思路</strong>：相关内容。</li><li><strong>新0day应急响应</strong>：遇到新0day（如Struts2）后的应急响应方法。</li><li><strong>安全评估和审计</strong>：新业务上线前的安全评估方向，现有系统审计发现安全风险的方向。</li></ul></li><li><strong>其他</strong>：<ul><li><strong>判断网站CMS的意义</strong>：判断出网站的CMS对渗透的意义。</li><li><strong>清理入侵日志</strong>：相关内容。</li><li><strong>总结渗透报告及修复方案</strong>：相关内容。</li><li><strong>收集目标站注册人邮箱的价值</strong>：在渗透过程中，收集目标站注册人邮箱的价值。</li><li><strong>DNS在渗透中的作用</strong>：相关内容。</li></ul></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络安全 </tag>
+            
+            <tag> 面试 </tag>
             
         </tags>
       
@@ -2210,6 +2210,31 @@
     
     
     <entry>
+      <title>如何在工作中成长</title>
+      <link href="/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/"/>
+      <url>/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>或多或少有些在工作中遇到瓶颈期</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> career </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> wlb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java 代码审计- SQLinjection</title>
       <link href="/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
       <url>/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
@@ -2229,31 +2254,6 @@
         <tags>
             
             <tag> Java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>如何在工作中成长</title>
-      <link href="/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/"/>
-      <url>/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>或多或少有些在工作中遇到瓶颈期</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> career </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> wlb </tag>
             
         </tags>
       

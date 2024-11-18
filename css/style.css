@@ -1322,6 +1322,12 @@ article .content .caption {
   #footer .footer-right {
     align-self: flex-end;
   }
+  #footer .footer-center {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
 }
 .pagination {
   display: inline-block;

@@ -614,33 +614,6 @@
     
     
     <entry>
-      <title>Web中间件-Tomcat8</title>
-      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
-      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web中间件 </tag>
-            
-            <tag> Tomcat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MonitorsThree</title>
       <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
       <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
@@ -660,6 +633,33 @@
             <tag> Linux </tag>
             
             <tag> THB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web中间件-Tomcat8</title>
+      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
+      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web中间件 </tag>
+            
+            <tag> Tomcat </tag>
             
         </tags>
       
@@ -962,6 +962,33 @@
     
     
     <entry>
+      <title>CISCN2021总决赛babypython</title>
+      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
+      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CVE-2021-44228</title>
       <link href="/2024/11/13/2024-09-04-CVE-2021-44228/"/>
       <url>/2024/11/13/2024-09-04-CVE-2021-44228/</url>
@@ -983,33 +1010,6 @@
             <tag> CVE </tag>
             
             <tag> Sec </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CISCN2021总决赛babypython</title>
-      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
-      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> Web </tag>
             
         </tags>
       
@@ -1577,35 +1577,6 @@
     
     
     <entry>
-      <title>buuoj-强网杯-2019</title>
-      <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
-      <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="/../assets/img/image-4.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-4.png" alt="alt text"></a></p><h3 id="有备份？"><a href="#有备份？" class="headerlink" title="有备份？"></a>有备份？</h3><p>敏感路径泄露</p><p><a href="/../assets/img/image-6.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-6.png" alt="alt text"></a></p><p>代码居多，应该找到函数的入口，或者看看有没有什么敏感的函数 <code>eval</code></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> buuoj </tag>
-            
-            <tag> 强网杯 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CTFShow Web9</title>
       <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
       <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
@@ -1627,6 +1598,35 @@
             <tag> CTF </tag>
             
             <tag> WebSec </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>buuoj-强网杯-2019</title>
+      <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
+      <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="强网杯-2019-高明的黑客"><a href="#强网杯-2019-高明的黑客" class="headerlink" title="[强网杯 2019]高明的黑客"></a>[强网杯 2019]高明的黑客</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><a href="/../assets/img/image-4.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-4.png" alt="alt text"></a></p><h3 id="有备份？"><a href="#有备份？" class="headerlink" title="有备份？"></a>有备份？</h3><p>敏感路径泄露</p><p><a href="/../assets/img/image-6.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-6.png" alt="alt text"></a></p><p>代码居多，应该找到函数的入口，或者看看有没有什么敏感的函数 <code>eval</code></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> buuoj </tag>
+            
+            <tag> 强网杯 </tag>
             
         </tags>
       
@@ -1798,9 +1798,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Code </tag>
             
         </tags>
       
@@ -1825,9 +1825,9 @@
       
         <tags>
             
-            <tag> Code </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Code </tag>
             
         </tags>
       

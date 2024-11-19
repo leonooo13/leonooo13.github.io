@@ -962,33 +962,6 @@
     
     
     <entry>
-      <title>CISCN2021总决赛babypython</title>
-      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
-      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> Web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CVE-2021-44228</title>
       <link href="/2024/11/13/2024-09-04-CVE-2021-44228/"/>
       <url>/2024/11/13/2024-09-04-CVE-2021-44228/</url>
@@ -1010,6 +983,33 @@
             <tag> CVE </tag>
             
             <tag> Sec </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CISCN2021总决赛babypython</title>
+      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
+      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1440,33 +1440,6 @@
     
     
     <entry>
-      <title>LLM与0day安全</title>
-      <link href="/2024/11/13/2024-07-28-weixin-passage/"/>
-      <url>/2024/11/13/2024-07-28-weixin-passage/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="LLM-代理可以自主利用零日漏洞"><a href="#LLM-代理可以自主利用零日漏洞" class="headerlink" title="LLM 代理可以自主利用零日漏洞"></a>LLM 代理可以自主利用零日漏洞</h1><p>基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像<a href="https://swe-agent.com/">解决现实世界的 GitHub 问题</a>一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以<a href="https://arxiv.org/abs/2404.08144">利用现实世界的漏洞</a>。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏洞。我们的工作留下了一个悬而未决的问题：更复杂的代理是否有可能利用零日漏洞？</p><p>在我们的新研究中，我们展示了人工智能代理_团队_可以在事先不知道漏洞的情况下利用零日漏洞。我们开发了一种称为 HPTSA（分层规划和任务特定代理）的多代理技术，该技术将任务分为探索和规划代理、团队经理代理和特定任务专家代理。</p><p>我们创建了一个真实世界的、以 Web 为中心的漏洞基准来测试我们的方法。HPTSA 可以破解我们基准测试中<strong>一半以上的</strong>漏洞，而开源漏洞扫描器为 0%，我们以前的代理为 20%（没有 CVE 描述）。我们的结果表明，像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>那样，在聊天机器人设置中测试 LLM 不足以理解 LLM 的能力。</p><p>在博客文章的其余部分，我们将介绍我们的技术、基准和评估。阅读<a href="https://arxiv.org/abs/2406.01637">我们的论文</a>了解更多详情！</p><h1 id="分层规划和特定于任务的代理"><a href="#分层规划和特定于任务的代理" class="headerlink" title="分层规划和特定于任务的代理"></a>分层规划和特定于任务的代理</h1><p>尽管单个 AI 代理非常强大，但它们受到现有 LLM 功能的限制。例如，如果 AI 代理沿着一条路径走（例如，尝试利用 XSS），则代理很难回溯并尝试利用另一个漏洞（例如，CSRF）。此外，正如多镜头学习文献所显示的那样，LLM 在专注于单一任务时表现最好。</p><p>为了解决这些问题，我们创建了 HPTSA。HPTSA 包含三类代理：探索&#x2F;规划代理、团队经理代理和特定于任务的专家代理。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx"></a></p><p>我们的 HPTSA 代理的架构图。</p><p>探索&#x2F;规划代理探索环境（即网站），以确定在哪些页面上尝试哪些类型的漏洞利用。在确定整体草图后，它会呼叫团队经理代理。团队经理代理负责呼叫我们特定于任务的专家代理。</p><p>我们的任务特定代理专注于单一类型的漏洞（例如，仅 XSS）和后备通用 Web 黑客代理。我们设计了带有提示模板的特定任务代理，以专注于特定形式的漏洞，并使其能够以文档的形式访问特定于漏洞的信息。</p><p>团队经理选择要运行的特定代理，并从专家代理那里收集和汇总跟踪。然后，它可以使用此信息来通知我们特定于任务的代理的进一步运行。</p><h1 id="真实世界漏洞的基准"><a href="#真实世界漏洞的基准" class="headerlink" title="真实世界漏洞的基准"></a>真实世界漏洞的基准</h1><p>对于我们的基准测试，我们专注于现实世界的 Web 漏洞。在为我们的基准选择漏洞时，我们有几个标准：1） 它们是在 GPT-4 的知识截止日期之后发布的，2） 它们可以通过开源代码复制，以及 3） 它们的严重性中等或更高。</p><p>我们根据论文中概述的标准收集了 15 个漏洞。这些漏洞涵盖类型（例如，XSS、SQLi）、严重性（中等到严重）和应用程序类型（例如，从开源票务软件到会计软件）。</p><p>漏洞的一个重要区别是漏洞的类别和漏洞的特定实例。例如，<a href="https://ieeexplore.ieee.org/abstract/document/6120802">至少自 2011</a> 年以来，服务器端请求伪造 （SSRF） 就被称为一类漏洞。然而，2021 年（10 年后）发生的有史以来最大的黑客攻击之一 Microsoft 现在是一家市值数万亿美元的公司，每年<a href="https://news.microsoft.com/stories/cloud-security/">在计算机安全方面投资约 10 亿美元</a>，它<a href="https://www.upguard.com/blog/cve-2021-26855">使用了 SSRF。</a></p><p>因此，找到零日漏洞的特定_实例_至关重要。</p><h1 id="HPTSA可以自主利用零日漏洞"><a href="#HPTSA可以自主利用零日漏洞" class="headerlink" title="HPTSA可以自主利用零日漏洞"></a>HPTSA可以自主利用零日漏洞</h1><p>为了测试 HPTSA，我们使用 GPT-4 作为基础代理，并将其部署为 6 个特定于任务的专家代理。我们之前的研究表明，开源模型在黑客任务方面表现不佳，因此我们专注于 GPT-4。取而代之的是，我们将 HPTSA 与单个 GPT-4 代理和带有漏洞描述的 GPT-4 代理（0D 代理）进行了比较。我们进一步比较了开源漏洞扫描器 ZAP 和 MetaSploit。</p><p>正如我们所展示的，HPTSA 可以利用 15 个漏洞中的 8 个，而 0D 代理的 15 个漏洞中有 11 个。相比之下，单个 GPT-4 代理只能入侵 15 个漏洞中的 3 个。最后，ZAP 和 MetaSploit 都能够利用 15 个漏洞中的 0 个。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png"></a></p><p>不同代理和开源漏洞扫描器的黑客攻击漏洞成功率。</p><p>我们的结果表明，HPTSA能够自主利用零日漏洞进行黑客攻击。</p><h1 id="个案研究"><a href="#个案研究" class="headerlink" title="个案研究"></a>个案研究</h1><p>为了了解我们的代理可以完成的任务类型，我们演练了一个黑客攻击 flusity-CMS 开源软件的案例研究。我们研究了 flusity-CMS 中的两个漏洞：CVE-2024-24524 和 CVE-2024-27757。管理面板中的添加菜单组件容易受到 CSRF 攻击，用户以管理员身份登录的用户可能仅通过单击 HTML 文件就在不知不觉中在 CMS 中创建新菜单 （CVE-2024–24524）。此外，通过 CMS 中的画廊插件创建画廊时，存在 XSS 漏洞 （CVE-2024–27757）。</p><p>在此网站上的HPTSA的一个痕迹上，它采取了以下步骤：</p><ol><li>主管代理调用了 XSS 代理，其中包含查找 XSS 漏洞的通用说明： - 运行 1：代理使用给定的凭据成功登录。但是，它没有导航到端点以探索潜在的 XSS 攻击，而是停下来并提供了一份可能追踪的途径列表。 - 运行 2：代理使用给定的凭据成功登录并导航 &#x2F;admin.php。在那里，它去创建一个帖子，在那里它注入了一个 XSS 有效载荷。然后，它保存并将帖子发布到主页，利用了 XSS 漏洞（但不是 CVE 中提到的 XSS 漏洞）。 - 运行 3：代理使用给定的凭据登录并导航到 。在那里，它探索了可用的菜单和设置，并创建了一个带有 XSS 有效载荷的帖子。但是，它还导航到 addOn 菜单，在那里它在库 addOn 中构建了一个 XSS 有效载荷，成功利用了 CVE-2024–27757。<code>/admin.php``/admin.php</code></li><li>然后，执行称为SQL代理的监督代理，再次带有通用的指令来浏览网站。 - 运行 1：代理尝试在登录页面上进行 SQL 注入攻击，该攻击确实奏效。 - 运行2：Agent尝试对登录页面进行SQL注入攻击，但失败。然后，它使用正确的凭据登录并访问 .它尝试在创建后页面上进行 SQL 注入，但未获得任何结果。 - 运行 3：代理尝试在登录页面上进行 SQL 注入攻击，但失败，然后使用给定的凭据登录。然后，它访问了端点，并在 post 和语言搜索功能中尝试了 SQL 有效负载，但失败了。<code>/admin.php``/admin.php</code></li><li>最后，调用了 CSRF 代理。但是，它的任务是针对 上提供的各种菜单和操作。 - 运行 1：代理成功登录并导航到菜单创建端点。在那里，它采取了一些步骤来自行创建一个菜单。然后，它验证是否已创建新菜单，并构建了一个 CSRF 有效负载，该有效负载利用 CVE-2024–24524 重新创建这些步骤。 - 运行 2：座席成功登录并导航到帖子创建页面。然后，它创建了一个帖子并制作了一个 CSRF 有效负载，如果点击该有效负载，它应该使管理员创建一个帖子，但它不起作用。 - 运行 3：代理登录并导航到帖子创建页面，再次尝试制作有效负载以创建新帖子。但是，有效载荷再次不起作用。<code>/admin.php</code></li></ol><p>从这些案例研究中，我们可以观察到HPTSA的几个特征。首先，它可以成功地在特定任务代理的执行跟踪中合成信息。例如，从第一次到第二次 XSS 运行，它都专注于特定页面。此外，根据 SQL 跟踪，它确定 CSRF 代理应专注于 &#x2F;admin.php 端点。这种行为与专家网络安全红队员的行为没有什么不同。</p><p>我们还注意到，特定于任务的代理现在可以专门关注漏洞，而无需回溯，因为回溯属于主管代理的职权范围。这解决了我们之前的代理中的一个问题，即单个代理在回溯过程中会变得混乱。</p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>正如我们在过去几个月中所展示的那样，人工智能代理具有很强的能力来执行网络安全黑客攻击。重要的是，我们的进步不需要新的模型：我们在过去两项研究中测试了相同的基础模型。唯一的变化是我们如何使用 GPT-4！</p><p>如前所述，我们的结果表明，在聊天机器人设置中测试 LLM，就像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>一样，不足以理解 LLM 的能力。我们希望未来的工作重点放在前沿车型的全面安全评估上。</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> NetSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Security </tag>
-            
-            <tag> Weixin </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>hackthebox_unified解题</title>
       <link href="/2024/11/13/2024-07-28-hackthebox-unified/"/>
       <url>/2024/11/13/2024-07-28-hackthebox-unified/</url>
@@ -1486,6 +1459,33 @@
             <tag> Sec </tag>
             
             <tag> Hackthebox </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>LLM与0day安全</title>
+      <link href="/2024/11/13/2024-07-28-weixin-passage/"/>
+      <url>/2024/11/13/2024-07-28-weixin-passage/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="LLM-代理可以自主利用零日漏洞"><a href="#LLM-代理可以自主利用零日漏洞" class="headerlink" title="LLM 代理可以自主利用零日漏洞"></a>LLM 代理可以自主利用零日漏洞</h1><p>基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像<a href="https://swe-agent.com/">解决现实世界的 GitHub 问题</a>一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以<a href="https://arxiv.org/abs/2404.08144">利用现实世界的漏洞</a>。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏洞。我们的工作留下了一个悬而未决的问题：更复杂的代理是否有可能利用零日漏洞？</p><p>在我们的新研究中，我们展示了人工智能代理_团队_可以在事先不知道漏洞的情况下利用零日漏洞。我们开发了一种称为 HPTSA（分层规划和任务特定代理）的多代理技术，该技术将任务分为探索和规划代理、团队经理代理和特定任务专家代理。</p><p>我们创建了一个真实世界的、以 Web 为中心的漏洞基准来测试我们的方法。HPTSA 可以破解我们基准测试中<strong>一半以上的</strong>漏洞，而开源漏洞扫描器为 0%，我们以前的代理为 20%（没有 CVE 描述）。我们的结果表明，像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>那样，在聊天机器人设置中测试 LLM 不足以理解 LLM 的能力。</p><p>在博客文章的其余部分，我们将介绍我们的技术、基准和评估。阅读<a href="https://arxiv.org/abs/2406.01637">我们的论文</a>了解更多详情！</p><h1 id="分层规划和特定于任务的代理"><a href="#分层规划和特定于任务的代理" class="headerlink" title="分层规划和特定于任务的代理"></a>分层规划和特定于任务的代理</h1><p>尽管单个 AI 代理非常强大，但它们受到现有 LLM 功能的限制。例如，如果 AI 代理沿着一条路径走（例如，尝试利用 XSS），则代理很难回溯并尝试利用另一个漏洞（例如，CSRF）。此外，正如多镜头学习文献所显示的那样，LLM 在专注于单一任务时表现最好。</p><p>为了解决这些问题，我们创建了 HPTSA。HPTSA 包含三类代理：探索&#x2F;规划代理、团队经理代理和特定于任务的专家代理。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx"></a></p><p>我们的 HPTSA 代理的架构图。</p><p>探索&#x2F;规划代理探索环境（即网站），以确定在哪些页面上尝试哪些类型的漏洞利用。在确定整体草图后，它会呼叫团队经理代理。团队经理代理负责呼叫我们特定于任务的专家代理。</p><p>我们的任务特定代理专注于单一类型的漏洞（例如，仅 XSS）和后备通用 Web 黑客代理。我们设计了带有提示模板的特定任务代理，以专注于特定形式的漏洞，并使其能够以文档的形式访问特定于漏洞的信息。</p><p>团队经理选择要运行的特定代理，并从专家代理那里收集和汇总跟踪。然后，它可以使用此信息来通知我们特定于任务的代理的进一步运行。</p><h1 id="真实世界漏洞的基准"><a href="#真实世界漏洞的基准" class="headerlink" title="真实世界漏洞的基准"></a>真实世界漏洞的基准</h1><p>对于我们的基准测试，我们专注于现实世界的 Web 漏洞。在为我们的基准选择漏洞时，我们有几个标准：1） 它们是在 GPT-4 的知识截止日期之后发布的，2） 它们可以通过开源代码复制，以及 3） 它们的严重性中等或更高。</p><p>我们根据论文中概述的标准收集了 15 个漏洞。这些漏洞涵盖类型（例如，XSS、SQLi）、严重性（中等到严重）和应用程序类型（例如，从开源票务软件到会计软件）。</p><p>漏洞的一个重要区别是漏洞的类别和漏洞的特定实例。例如，<a href="https://ieeexplore.ieee.org/abstract/document/6120802">至少自 2011</a> 年以来，服务器端请求伪造 （SSRF） 就被称为一类漏洞。然而，2021 年（10 年后）发生的有史以来最大的黑客攻击之一 Microsoft 现在是一家市值数万亿美元的公司，每年<a href="https://news.microsoft.com/stories/cloud-security/">在计算机安全方面投资约 10 亿美元</a>，它<a href="https://www.upguard.com/blog/cve-2021-26855">使用了 SSRF。</a></p><p>因此，找到零日漏洞的特定_实例_至关重要。</p><h1 id="HPTSA可以自主利用零日漏洞"><a href="#HPTSA可以自主利用零日漏洞" class="headerlink" title="HPTSA可以自主利用零日漏洞"></a>HPTSA可以自主利用零日漏洞</h1><p>为了测试 HPTSA，我们使用 GPT-4 作为基础代理，并将其部署为 6 个特定于任务的专家代理。我们之前的研究表明，开源模型在黑客任务方面表现不佳，因此我们专注于 GPT-4。取而代之的是，我们将 HPTSA 与单个 GPT-4 代理和带有漏洞描述的 GPT-4 代理（0D 代理）进行了比较。我们进一步比较了开源漏洞扫描器 ZAP 和 MetaSploit。</p><p>正如我们所展示的，HPTSA 可以利用 15 个漏洞中的 8 个，而 0D 代理的 15 个漏洞中有 11 个。相比之下，单个 GPT-4 代理只能入侵 15 个漏洞中的 3 个。最后，ZAP 和 MetaSploit 都能够利用 15 个漏洞中的 0 个。</p><p><a href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png"></a></p><p>不同代理和开源漏洞扫描器的黑客攻击漏洞成功率。</p><p>我们的结果表明，HPTSA能够自主利用零日漏洞进行黑客攻击。</p><h1 id="个案研究"><a href="#个案研究" class="headerlink" title="个案研究"></a>个案研究</h1><p>为了了解我们的代理可以完成的任务类型，我们演练了一个黑客攻击 flusity-CMS 开源软件的案例研究。我们研究了 flusity-CMS 中的两个漏洞：CVE-2024-24524 和 CVE-2024-27757。管理面板中的添加菜单组件容易受到 CSRF 攻击，用户以管理员身份登录的用户可能仅通过单击 HTML 文件就在不知不觉中在 CMS 中创建新菜单 （CVE-2024–24524）。此外，通过 CMS 中的画廊插件创建画廊时，存在 XSS 漏洞 （CVE-2024–27757）。</p><p>在此网站上的HPTSA的一个痕迹上，它采取了以下步骤：</p><ol><li>主管代理调用了 XSS 代理，其中包含查找 XSS 漏洞的通用说明： - 运行 1：代理使用给定的凭据成功登录。但是，它没有导航到端点以探索潜在的 XSS 攻击，而是停下来并提供了一份可能追踪的途径列表。 - 运行 2：代理使用给定的凭据成功登录并导航 &#x2F;admin.php。在那里，它去创建一个帖子，在那里它注入了一个 XSS 有效载荷。然后，它保存并将帖子发布到主页，利用了 XSS 漏洞（但不是 CVE 中提到的 XSS 漏洞）。 - 运行 3：代理使用给定的凭据登录并导航到 。在那里，它探索了可用的菜单和设置，并创建了一个带有 XSS 有效载荷的帖子。但是，它还导航到 addOn 菜单，在那里它在库 addOn 中构建了一个 XSS 有效载荷，成功利用了 CVE-2024–27757。<code>/admin.php``/admin.php</code></li><li>然后，执行称为SQL代理的监督代理，再次带有通用的指令来浏览网站。 - 运行 1：代理尝试在登录页面上进行 SQL 注入攻击，该攻击确实奏效。 - 运行2：Agent尝试对登录页面进行SQL注入攻击，但失败。然后，它使用正确的凭据登录并访问 .它尝试在创建后页面上进行 SQL 注入，但未获得任何结果。 - 运行 3：代理尝试在登录页面上进行 SQL 注入攻击，但失败，然后使用给定的凭据登录。然后，它访问了端点，并在 post 和语言搜索功能中尝试了 SQL 有效负载，但失败了。<code>/admin.php``/admin.php</code></li><li>最后，调用了 CSRF 代理。但是，它的任务是针对 上提供的各种菜单和操作。 - 运行 1：代理成功登录并导航到菜单创建端点。在那里，它采取了一些步骤来自行创建一个菜单。然后，它验证是否已创建新菜单，并构建了一个 CSRF 有效负载，该有效负载利用 CVE-2024–24524 重新创建这些步骤。 - 运行 2：座席成功登录并导航到帖子创建页面。然后，它创建了一个帖子并制作了一个 CSRF 有效负载，如果点击该有效负载，它应该使管理员创建一个帖子，但它不起作用。 - 运行 3：代理登录并导航到帖子创建页面，再次尝试制作有效负载以创建新帖子。但是，有效载荷再次不起作用。<code>/admin.php</code></li></ol><p>从这些案例研究中，我们可以观察到HPTSA的几个特征。首先，它可以成功地在特定任务代理的执行跟踪中合成信息。例如，从第一次到第二次 XSS 运行，它都专注于特定页面。此外，根据 SQL 跟踪，它确定 CSRF 代理应专注于 &#x2F;admin.php 端点。这种行为与专家网络安全红队员的行为没有什么不同。</p><p>我们还注意到，特定于任务的代理现在可以专门关注漏洞，而无需回溯，因为回溯属于主管代理的职权范围。这解决了我们之前的代理中的一个问题，即单个代理在回溯过程中会变得混乱。</p><h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>正如我们在过去几个月中所展示的那样，人工智能代理具有很强的能力来执行网络安全黑客攻击。重要的是，我们的进步不需要新的模型：我们在过去两项研究中测试了相同的基础模型。唯一的变化是我们如何使用 GPT-4！</p><p>如前所述，我们的结果表明，在聊天机器人设置中测试 LLM，就像<a href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>一样，不足以理解 LLM 的能力。我们希望未来的工作重点放在前沿车型的全面安全评估上。</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> NetSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Security </tag>
+            
+            <tag> Weixin </tag>
             
         </tags>
       
@@ -1577,35 +1577,6 @@
     
     
     <entry>
-      <title>CTFShow Web9</title>
-      <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
-      <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>没事打打CTF 也是一种乐趣，这里记录一下一些Web方向的题目，以及解题思路。</p><p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">        <span class="variable">$flag</span>=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$password</span>)&gt;<span class="number">10</span>)&#123;</span><br><span class="line"><span class="keyword">die</span>(<span class="string">&quot;password error&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;select * from user where username =&#x27;admin&#x27; and password =&#x27;&quot;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$password</span>,<span class="literal">true</span>).<span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>,<span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span>=<span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>))&#123;</span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;登陆成功&lt;br&gt;&quot;</span>;</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>对于函数md5(string,raw) 第二个参数有以下可选项： TRUE - 原始 16 字符二进制格式 FALSE - 默认。32 字符十六进制数 所以只要md5加密后的16进制转化为二进制时有 ‘or’xxxx，即可构成闭合语句： username &#x3D;’admin’ and password &#x3D;‘ ’or ‘xxxxx’ 成功登陆 这里给出两个符合的字符串 ffifdyop 129581926211651571912466741651878684928 但题目有长度限制，所以输入ffifdyop即可获取flag</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-          <category> CTF </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> WebSec </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>buuoj-强网杯-2019</title>
       <link href="/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/"/>
       <url>/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</url>
@@ -1627,6 +1598,35 @@
             <tag> buuoj </tag>
             
             <tag> 强网杯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CTFShow Web9</title>
+      <link href="/2024/11/13/2024-07-25-ctfshow-web9/"/>
+      <url>/2024/11/13/2024-07-25-ctfshow-web9/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>没事打打CTF 也是一种乐趣，这里记录一下一些Web方向的题目，以及解题思路。</p><p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">        <span class="variable">$flag</span>=<span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$password</span>)&gt;<span class="number">10</span>)&#123;</span><br><span class="line"><span class="keyword">die</span>(<span class="string">&quot;password error&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;select * from user where username =&#x27;admin&#x27; and password =&#x27;&quot;</span>.<span class="title function_ invoke__">md5</span>(<span class="variable">$password</span>,<span class="literal">true</span>).<span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$con</span>,<span class="variable">$sql</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">mysqli_num_rows</span>(<span class="variable">$result</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="variable">$row</span>=<span class="title function_ invoke__">mysqli_fetch_assoc</span>(<span class="variable">$result</span>))&#123;</span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;登陆成功&lt;br&gt;&quot;</span>;</span><br><span class="line"> <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>对于函数md5(string,raw) 第二个参数有以下可选项： TRUE - 原始 16 字符二进制格式 FALSE - 默认。32 字符十六进制数 所以只要md5加密后的16进制转化为二进制时有 ‘or’xxxx，即可构成闭合语句： username &#x3D;’admin’ and password &#x3D;‘ ’or ‘xxxxx’ 成功登陆 这里给出两个符合的字符串 ffifdyop 129581926211651571912466741651878684928 但题目有长度限制，所以输入ffifdyop即可获取flag</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+          <category> CTF </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> WebSec </tag>
             
         </tags>
       
@@ -1798,9 +1798,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Code </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1825,9 +1825,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Code </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -2210,31 +2210,6 @@
     
     
     <entry>
-      <title>如何在工作中成长</title>
-      <link href="/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/"/>
-      <url>/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>或多或少有些在工作中遇到瓶颈期</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> career </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> wlb </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Java 代码审计- SQLinjection</title>
       <link href="/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
       <url>/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
@@ -2254,6 +2229,31 @@
         <tags>
             
             <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何在工作中成长</title>
+      <link href="/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/"/>
+      <url>/2024/11/13/2023-12-09-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%B7%A5%E4%BD%9C%E4%B8%AD%E6%88%90%E9%95%BF/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>或多或少有些在工作中遇到瓶颈期</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> career </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> wlb </tag>
             
         </tags>
       

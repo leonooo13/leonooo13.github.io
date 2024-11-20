@@ -105,6 +105,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/20/dogcat/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="下一篇" href="/2024/11/20/text2shell/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -298,7 +300,10 @@
 
 <p>思路：<br>上传恶意的clean.sh 替换这个 导致反弹shell</p>
 <h3 id="路径枚举"><a href="#路径枚举" class="headerlink" title="路径枚举"></a>路径枚举</h3><h2 id="漏洞发现"><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h2><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h2 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h2><h2 id="usershell"><a href="#usershell" class="headerlink" title="usershell"></a>usershell</h2><p><a href="/../assets/img/Pasted%20image%2020241120230510.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241120230510.png"></a></p>
-<h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h3 id="使用-find-查找所有系统-SUID-程序"><a href="#使用-find-查找所有系统-SUID-程序" class="headerlink" title="使用 find 查找所有系统 SUID 程序"></a>使用 <code>find</code> 查找所有系统 SUID 程序</h3><p>可以更精确地查看系统中常见的目录中具有 SUID 权限的程序，例如：</p>
+<h2 id="rootshell"><a href="#rootshell" class="headerlink" title="rootshell"></a>rootshell</h2><p>env具有suid 权限可以进行提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/env /bin/sh -p</span><br></pre></td></tr></table></figure>
+
+<h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h3 id="使用-find-查找所有系统-SUID-程序"><a href="#使用-find-查找所有系统-SUID-程序" class="headerlink" title="使用 find 查找所有系统 SUID 程序"></a>使用 <code>find</code> 查找所有系统 SUID 程序</h3><p>可以更精确地查看系统中常见的目录中具有 SUID 权限的程序，例如：</p>
 <p><code>find /bin /sbin /usr/bin /usr/sbin -type f -perm -4000 2&gt;/dev/null</code></p>
 <p>这些目录通常包含系统的可执行文件，通过此命令你可以检查这些目录中是否存在具有 SUID 权限的文件。</p>
 <h3 id="使用-which-或-whereis-确定程序的位置"><a href="#使用-which-或-whereis-确定程序的位置" class="headerlink" title="使用 which 或 whereis 确定程序的位置"></a>使用 <code>which</code> 或 <code>whereis</code> 确定程序的位置</h3><p>如果你怀疑某个程序具有 SUID 权限，可以使用 <code>which</code> 或 <code>whereis</code> 命令来查找该程序的路径，然后使用 <code>ls -l</code> 查看其权限：</p>

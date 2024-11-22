@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://imli.ink/2024/11/22/%E6%9C%AA%E5%91%BD%E5%90%8D/</loc>
+    <loc>https://imli.ink/2024/11/22/WindowsActivate/</loc>
     
     <lastmod>2024-11-22</lastmod>
     
@@ -443,7 +443,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-11-08-Frida-Template/</loc>
     
     <lastmod>2024-11-13</lastmod>
     
@@ -452,7 +452,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-11-08-Frida-Template/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2024-11-13</lastmod>
     
@@ -470,7 +470,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</loc>
     
     <lastmod>2024-11-13</lastmod>
     
@@ -479,7 +479,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/</loc>
     
     <lastmod>2024-11-13</lastmod>
     
@@ -758,7 +758,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-07-28-weixin-passage/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/</loc>
     
     <lastmod>2024-11-13</lastmod>
     
@@ -767,7 +767,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-07-28-hackthebox-unified/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-07-28-weixin-passage/</loc>
     
     <lastmod>2024-11-13</lastmod>
     
@@ -1137,13 +1137,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/ICV/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/tags/test/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1151,7 +1144,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/cve/</loc>
+    <loc>https://imli.ink/tags/ICV/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1172,6 +1165,13 @@
   </url>
   
   <url>
+    <loc>https://imli.ink/tags/cve/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://imli.ink/tags/health/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1186,21 +1186,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/Health/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/life/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/Code/</loc>
+    <loc>https://imli.ink/tags/skills/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1214,21 +1200,28 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/skills/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/PyCharm/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/tags/Django/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/Code/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/Health/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/life/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1270,6 +1263,13 @@
   </url>
   
   <url>
+    <loc>https://imli.ink/tags/PyCharm/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://imli.ink/tags/buuoj/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1284,7 +1284,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/Web/</loc>
+    <loc>https://imli.ink/tags/Hackthebox/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1305,21 +1305,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/Weixin/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/Hackthebox/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/SSL/</loc>
+    <loc>https://imli.ink/tags/Web/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1327,6 +1313,27 @@
   
   <url>
     <loc>https://imli.ink/tags/BugBounty/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/NetSec/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/Weixin/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/SSL/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1341,34 +1348,6 @@
   
   <url>
     <loc>https://imli.ink/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/NetSec/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1410,20 +1389,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/XCTF/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1438,6 +1403,41 @@
   </url>
   
   <url>
+    <loc>https://imli.ink/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/XCTF/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://imli.ink/tags/Firewall/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1445,14 +1445,14 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/</loc>
+    <loc>https://imli.ink/tags/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/</loc>
+    <loc>https://imli.ink/tags/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1501,6 +1501,20 @@
   </url>
   
   <url>
+    <loc>https://imli.ink/tags/Web%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/Tomcat/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://imli.ink/tags/THB/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1536,27 +1550,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/Web%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/Tomcat/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/OFFSEC/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/tags/htb/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1578,7 +1571,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/Wmware/</loc>
+    <loc>https://imli.ink/tags/OFFSEC/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1613,14 +1606,14 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
+    <loc>https://imli.ink/tags/Wmware/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/THM/</loc>
+    <loc>https://imli.ink/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1641,7 +1634,35 @@
   </url>
   
   <url>
+    <loc>https://imli.ink/tags/THM/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://imli.ink/tags/Vue/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/tryhackme/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/ssh/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/tags/LD-PRELOAD/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1656,13 +1677,6 @@
   
   <url>
     <loc>https://imli.ink/tags/IDA/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/tryhackme/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1690,20 +1704,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/ssh/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/tags/LD-PRELOAD/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1711,14 +1711,14 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</loc>
+    <loc>https://imli.ink/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://imli.ink/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
+    <loc>https://imli.ink/tags/%E8%83%A1%E6%80%9D%E4%B9%B1%E6%83%B3/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1762,13 +1762,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/Blogging/Demo/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/categories/Blogging/CVE/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1797,13 +1790,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/Health/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/categories/Python/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1811,14 +1797,21 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/JetBrains/</loc>
+    <loc>https://imli.ink/categories/Code/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/Code/</loc>
+    <loc>https://imli.ink/categories/Health/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/Blogging/Demo/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1839,42 +1832,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/CTF/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/hackthebox/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/NetSec/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/Hackthebox/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/BugBounty/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://imli.ink/categories/JetBrains/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1888,13 +1846,6 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://imli.ink/categories/Body/Health/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -1902,21 +1853,7 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/WeSec/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/Sec/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/Device/</loc>
+    <loc>https://imli.ink/categories/Code/Python/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1924,20 +1861,6 @@
   
   <url>
     <loc>https://imli.ink/categories/Health/life/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/JetBrains/PyCharm/</loc>
-    <lastmod>2024-11-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://imli.ink/categories/Code/Python/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1965,14 +1888,77 @@
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/Device/Firewall/</loc>
+    <loc>https://imli.ink/categories/JetBrains/PyCharm/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://imli.ink/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/</loc>
+    <loc>https://imli.ink/categories/CTF/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/Hackthebox/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/hackthebox/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/BugBounty/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/NetSec/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/WeSec/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/Sec/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/Device/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1980,6 +1966,13 @@
   
   <url>
     <loc>https://imli.ink/categories/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1994,6 +1987,13 @@
   
   <url>
     <loc>https://imli.ink/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2024-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://imli.ink/categories/Device/Firewall/</loc>
     <lastmod>2024-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

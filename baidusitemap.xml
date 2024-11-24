@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://imli.ink/2024/11/24/dailybugle/</loc>
+    <lastmod>2024-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://imli.ink/2024/11/24/Alert/</loc>
+    <lastmod>2024-11-24</lastmod>
+  </url>
+  <url>
     <loc>https://imli.ink/2024/11/23/internal/</loc>
     <lastmod>2024-11-23</lastmod>
   </url>
@@ -149,11 +157,11 @@
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-11-08-Frida-Template/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-11-08-Frida-Template/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-10-17-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%89%93%E9%9D%B6%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
@@ -197,11 +205,11 @@
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
@@ -217,11 +225,11 @@
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-09-04-CVE-2021-44228/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-09-04-CVE-2021-44228/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-09-04-CISCN2021-%E6%80%BB%E5%86%B3%E8%B5%9Bbabypython/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
@@ -309,11 +317,11 @@
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-07-25-ctfshow-web9/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-07-25-ctfshow-web9/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-07-26-buuoj-%E5%BC%BA%E7%BD%91%E6%9D%AF-2019/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
@@ -393,11 +401,11 @@
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-02-20-CVE-2022-32991/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-02-19-CVE-2022-23134/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>
-    <loc>https://imli.ink/2024/11/13/2024-02-19-CVE-2022-23134/</loc>
+    <loc>https://imli.ink/2024/11/13/2024-02-20-CVE-2022-32991/</loc>
     <lastmod>2024-11-13</lastmod>
   </url>
   <url>

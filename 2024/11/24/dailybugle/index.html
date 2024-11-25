@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="通过 SQLi 入侵 Joomla CMS 帐户，练习破解哈希并利用 yum 提升您的权限。  靶场概述难度： hard描述：  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121 10.10.220.38   OS kali     信息搜集端口扫描 攻击向量 使用joomscan针对目标站点进行扫描，joomscan是一个专门用于扫描Joomla CMS的工具">
+    <meta name="description" content="通过 SQLi 入侵 Joomla CMS 帐户，练习破解哈希并利用 yum 提升您的权限。  靶场概述难度： hard描述： sql注入到webshell 到提权的经典案例  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121 10.10.220.38   OS kali     信息搜集端口扫描 攻击向量 使用joomscan针对目标站点进行扫描，joomsc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="thm-dailybugle">
 <meta property="og:url" content="https://imli.ink/2024/11/24/dailybugle/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
-<meta property="og:description" content="通过 SQLi 入侵 Joomla CMS 帐户，练习破解哈希并利用 yum 提升您的权限。  靶场概述难度： hard描述：  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121 10.10.220.38   OS kali     信息搜集端口扫描 攻击向量 使用joomscan针对目标站点进行扫描，joomscan是一个专门用于扫描Joomla CMS的工具">
+<meta property="og:description" content="通过 SQLi 入侵 Joomla CMS 帐户，练习破解哈希并利用 yum 提升您的权限。  靶场概述难度： hard描述： sql注入到webshell 到提权的经典案例  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121 10.10.220.38   OS kali     信息搜集端口扫描 攻击向量 使用joomscan针对目标站点进行扫描，joomsc">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241124214443.png">
 <meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241124215418.png">
@@ -122,6 +122,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/25/yotf/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="下一篇" href="/2024/11/24/Alert/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -203,7 +205,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
 <p>通过 SQLi 入侵 Joomla CMS 帐户，练习破解哈希并利用 yum 提升您的权限。</p>
 </blockquote>
-<h2 id="靶场概述"><a href="#靶场概述" class="headerlink" title="靶场概述"></a>靶场概述</h2><p>难度： hard<br>描述：</p>
+<h2 id="靶场概述"><a href="#靶场概述" class="headerlink" title="靶场概述"></a>靶场概述</h2><p>难度： hard<br>描述： sql注入到webshell 到提权的经典案例</p>
 <hr>
 <h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table>
 <thead>

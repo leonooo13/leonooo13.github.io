@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在信任、性能和安全性方面，混合公钥加密是赢家我们喜欢公钥加密。它使我们能够安全地交换机密并对数据进行数字签名。但是，在实际加密大量数据时，它并不那么有效。 为此，Bob 将他的公钥发送给 Alice，她用它加密数据并发回密文。然后，Bob 使用关联的私钥对其进行解密。这对于少量数据（例如加密 128 位或 256 位加密密钥）相当有效，但在加密大量数据时，计算成本会变得很高。当我们使用移动设备时，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="混合加密">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="在信任、性能和安全性方面，混合公钥加密是赢家我们喜欢公钥加密。它使我们能够安全地交换机密并对数据进行数字签名。但是，在实际加密大量数据时，它并不那么有效。 为此，Bob 将他的公钥发送给 Alice，她用它加密数据并发回密文。然后，Bob 使用关联的私钥对其进行解密。这对于少量数据（例如加密 128 位或 256 位加密密钥）相当有效，但在加密大量数据时，计算成本会变得很高。当我们使用移动设备时，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*IzDACVGmBqiHcFCC.png">
+<meta property="og:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ePpotlntVS7-dfzh.png">
+<meta property="og:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*so8g9sAGdwSJStUV.png">
+<meta property="article:published_time" content="2024-11-13T11:03:44.874Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:44.874Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="密码学">
+<meta property="article:tag" content="对称加密">
+<meta property="article:tag" content="非对称加密">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*IzDACVGmBqiHcFCC.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>混合加密</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-08-05-code-dev/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-08-03-CTF-2020%E5%85%AC%E5%BC%80%E8%B5%9BCHECKIN/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&text=混合加密"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&is_video=false&description=混合加密"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=混合加密&body=Check out this article: https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&name=混合加密&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&t=混合加密"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8%E4%BF%A1%E4%BB%BB%E3%80%81%E6%80%A7%E8%83%BD%E5%92%8C%E5%AE%89%E5%85%A8%E6%80%A7%E6%96%B9%E9%9D%A2%EF%BC%8C%E6%B7%B7%E5%90%88%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86%E6%98%AF%E8%B5%A2%E5%AE%B6"><span class="toc-number">1.</span> <span class="toc-text">在信任、性能和安全性方面，混合公钥加密是赢家</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86%E4%B8%8E%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86%E7%9B%B8%E7%BB%93%E5%90%88"><span class="toc-number">1.1.</span> <span class="toc-text">对称密钥加密与公钥加密相结合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">混合加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">结论</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        混合加密
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:44.874Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:44.874Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">加密算法</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a>, <a class="p-category" href="/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" rel="tag">对称加密</a>, <a class="p-category" href="/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/" rel="tag">非对称加密</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="在信任、性能和安全性方面，混合公钥加密是赢家"><a href="#在信任、性能和安全性方面，混合公钥加密是赢家" class="headerlink" title="在信任、性能和安全性方面，混合公钥加密是赢家"></a>在信任、性能和安全性方面，混合公钥加密是赢家</h1><p>我们喜欢公钥加密。它使我们能够安全地交换机密并对数据进行数字签名。但是，在实际加密大量数据时，它并不那么有效。</p>
+<p>为此，Bob 将他的公钥发送给 Alice，她用它加密数据并发回密文。然后，Bob 使用关联的私钥对其进行解密。这对于少量数据（例如加密 128 位或 256 位加密密钥）相当有效，但在加密大量数据时，计算成本会变得很高。当我们使用移动设备时，这一点尤其重要，因为计算量的增加通常会耗尽电池电量。我们手头加密数据的核心方法是使用 RSA，但 RSA 通常是在移动设备上实施的重度方法。</p>
+<p>那么，解决方案是什么？我们能否将对称密钥加密与公钥加密相结合？</p>
+<h2 id="对称密钥加密与公钥加密相结合"><a href="#对称密钥加密与公钥加密相结合" class="headerlink" title="对称密钥加密与公钥加密相结合"></a>对称密钥加密与公钥加密相结合</h2><p>RFC 9180 提供了一种 HPKE（混合公钥加密）[<a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9180.html">此处</a>]的解决方案：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*IzDACVGmBqiHcFCC.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*IzDACVGmBqiHcFCC.png"></a></p>
+<p>这样，我们使用对称密钥来加密数据，然后使用公钥加密来加密对称密钥。我们还可以使用私钥对数据进行签名，并且可以使用关联的公钥进行检查。通过这种方式，我们还可以将身份验证集成到传输的数据中，并且可以正确验证数据的发送者（使用发送者的公钥）。</p>
+<p>苹果也刚刚宣布，他们的CryptoKit现在将以Beta形式支持HPKE：</p>
+<p><a target="_blank" rel="noopener" href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ePpotlntVS7-dfzh.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ePpotlntVS7-dfzh.png"></a></p>
+<p>除了提供具有附加数据的经过身份验证的加密 （AEAD） 算法外，该库还支持<strong>密钥派生函数</strong> （KDF） 来创建共享密钥：</p>
+<ul>
+<li>HKDF_SHA256.<ul>
+<li>它使用带有 SHA-256 的基于 HMAC 的密钥派生函数。</li>
+</ul>
+</li>
+<li>HKDF_SHA384.<ul>
+<li>这使用基于 HMAC 的密钥派生函数和 SHA-384。</li>
+</ul>
+</li>
+<li>HKDF_SHA512.<ul>
+<li>这使用带有 SHA-512 的基于 HMAC 的密钥派生函数。</li>
+</ul>
+</li>
+</ul>
+<p><strong>密钥封装机制</strong> （KEM） 用于传递共享密钥。为了提高效率，它使用 ECC（椭圆曲线加密）和曲线 25519 或 P256：</p>
+<ul>
+<li>Curve25519_HKDF_SHA256.<ul>
+<li>这将使用带有 SHA-256 哈希的 X25519。</li>
+</ul>
+</li>
+<li>P256_HKDF_SHA256.<ul>
+<li>这使用带有 SHA-256 哈希的 P256 （secp256r1） 曲线。</li>
+</ul>
+</li>
+<li>P384_HKDF_SHA384 .<ul>
+<li>这使用带有 SHA-384 哈希的 NIST P384 曲线。</li>
+</ul>
+</li>
+<li>P521_HKDF_SHA512.<ul>
+<li>它使用带有 SHA-512 哈希的 NIST P521 曲线，并且具有最强的安全性。</li>
+</ul>
+</li>
+</ul>
+<p>对于对称密钥加密，有两种主要方法：具有 GCM 模式的 AES 和 ChaCha20&#x2F;Poly1305：</p>
+<ul>
+<li>AES_GCM_128.<ul>
+<li>它使用具有计数器模式 （GCM） 的 128 位 AES。这是一种经过验证的 AES 快速加密模式，可将分组密码转换为流密码。</li>
+</ul>
+</li>
+<li>AES_GCM_256.<ul>
+<li>它使用具有伽罗瓦&#x2F;计数器模式 （GCM） 的 256 位 AES。</li>
+</ul>
+</li>
+<li>chaChaPoly.<ul>
+<li>它使用带有 Poly1305 MAC（消息验证码）的 ChaCha20 流密码。</li>
+</ul>
+</li>
+</ul>
+<h2 id="混合加密"><a href="#混合加密" class="headerlink" title="混合加密"></a>混合加密</h2><p>许多其他图书馆已开始采用 HPKE，包括 CIRCL 图书馆：</p>
+<p><a target="_blank" rel="noopener" href="https://asecuritysite.com/golang/go_hybrid">https://asecuritysite.com/golang/go_hybrid</a></p>
+<p>通过ECC（椭圆曲线加密），我们有机会同时使用公钥加密的强大功能，以及对称密钥加密的速度和安全性。因此，我们慢慢转向加密的最佳实践，其中围绕以下方面有越来越多的共识：</p>
+<ul>
+<li>公钥加密曲线：P256、P384、P521、X25519和X448。</li>
+<li>密钥派生 （HKDF） 的哈希方法：SHA256、SHA384 和 SHA512。</li>
+<li>对称密钥：128 位 AES GCM 和 256 位 AES GCM。</li>
+</ul>
+<p>上述所有方法都与大多数系统兼容。<br>为此，Bob 和 Alice 将选择一条曲线来定义他们的密钥对，然后使用给定的哈希方法来派生加密密钥。这通常是通过HKDF（HMAC密钥派生函数）实现的。对于实际加密，我们可以使用对称密钥加密，因为这是最有效的，并且比公钥加密快得多。总体而言，有了这个，总体上倾向于使用AEAD（具有附加数据的身份验证加密）。典型的模式是 GCM。因此，让我们使用 Golang 构建一种混合加密方法。</p>
+<p>现在，假设 Bob 将向 Alice 发送加密消息。然后，Alice 将生成一个密钥对（公钥和私钥）。然后，她将公钥发送给 Bob，然后他使用它来派生加密（$S$）的对称密钥。然后，他使用 $K$ 和 AES GCM 对消息进行加密。Bob 接收到密码（$C$）和值 $R$。然后，她可以从 $R$ 中派生出私钥 $S$。使用此密钥，她可以解密密文以派生明文消息。</p>
+<p>在这种方法中，Alice 生成一个随机私钥（$d_A$），然后在椭圆曲线（$G$）上取一个点，然后确定她的公钥（$Q_A$）：</p>
+<p>$QA&#x3D;dA×GQ_A &#x3D; d_A \times GQA​&#x3D;dA​×G$</p>
+<p>因此，$G$ 和 $Q_A$ 是椭圆曲线上的点。然后，Alice 将 $Q_A$ 发送给 Bob。接下来，Bob 将生成：</p>
+<p>$R&#x3D;r×GR &#x3D; r \times GR&#x3D;r×G S&#x3D;r×QAS &#x3D; r \times Q_AS&#x3D;r×QA​$</p>
+<p>其中 $r$ 是 Bob 生成的随机数。然后，对称密钥（$S$）用于加密消息。</p>
+<p>然后，Alice 将与 $R$ 一起接收加密消息。然后，她能够通过以下命令确定相同的加密密钥：</p>
+<p>$S&#x3D;dA×RS &#x3D; d_A \times RS&#x3D;dA​×R$</p>
+<p>即：<br>$S&#x3D;dA×(r×G)S$<br>$&#x3D; d_A \times (r \times G)S$<br>$&#x3D;dA​×(r×G) S$<br>$&#x3D;r×(dA×G)S$<br>$&#x3D; r \times (d_A \times G)S$<br>$&#x3D;r×(dA​×G) S$<br>$&#x3D;r×QAS$<br>$&#x3D; r \times Q_AS$<br>$&#x3D;r×QA​$<br><a target="_blank" rel="noopener" href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*so8g9sAGdwSJStUV.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*so8g9sAGdwSJStUV.png"></a></p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>示例运行是 [<a target="_blank" rel="noopener" href="https://asecuritysite.com/golang/go_hybrid">here</a>[：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Public key type: HPKE_KEM_P256_HKDF_SHA256</span><br><span class="line"> Params kem_id: 16 kdf_id: 1 aead_id: 1</span><br><span class="line">Key exchange parameters:</span><br><span class="line"> Ciphersize:  65</span><br><span class="line"> EncapsulationSeedSize: 32</span><br><span class="line"> PrivateKeySize: 32</span><br><span class="line"> PublicKeySize:  65</span><br><span class="line"> SeedSize:  32</span><br><span class="line"> SharedKeySize:  32</span><br><span class="line">Cipher parameters:</span><br><span class="line"> Key Length: 16</span><br><span class="line">Key derivation function:</span><br><span class="line"> Extract size: 32</span><br><span class="line">Message: Testing 123</span><br><span class="line">Cipher: 74268e3f6f7bc6b21c5071c1a78c8154c6cf1be7f2b93370445026</span><br><span class="line">Decipher: Testing 123</span><br></pre></td></tr></table></figure>
+
+<p>代码基于 [<a target="_blank" rel="noopener" href="https://github.com/cloudflare/circl">here</a>]：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"> <span class="string">&quot;crypto/rand&quot;</span></span><br><span class="line"><span class="comment">// &quot;encoding/hex&quot;</span></span><br><span class="line"> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"> <span class="string">&quot;os&quot;</span></span><br><span class="line"> <span class="string">&quot;strconv&quot;</span></span><br><span class="line"> <span class="string">&quot;github.com/cloudflare/circl/hpke&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"> kemID := <span class="type">int</span>(hpke.KEM_P256_HKDF_SHA256)</span><br><span class="line"> kdfID := <span class="type">int</span>(hpke.KDF_HKDF_SHA256)</span><br><span class="line"> aeadID := <span class="type">int</span>(hpke.AEAD_AES128GCM)</span><br><span class="line"> msg := <span class="string">&quot;Hello&quot;</span></span><br><span class="line"> argCount := <span class="built_in">len</span>(os.Args[<span class="number">1</span>:])</span><br><span class="line"> <span class="keyword">if</span> argCount &gt; <span class="number">0</span> &#123;</span><br><span class="line">  msg = os.Args[<span class="number">1</span>]</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> argCount &gt; <span class="number">1</span> &#123;</span><br><span class="line">  kemID, _ = strconv.Atoi(os.Args[<span class="number">2</span>])</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> argCount &gt; <span class="number">2</span> &#123;</span><br><span class="line">  kdfID, _ = strconv.Atoi(os.Args[<span class="number">3</span>])</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> argCount &gt; <span class="number">3</span> &#123;</span><br><span class="line">  aeadID, _ = strconv.Atoi(os.Args[<span class="number">4</span>])</span><br><span class="line"> &#125;</span><br><span class="line"> suite := hpke.NewSuite(hpke.KEM(kemID), hpke.KDF(kdfID), hpke.AEAD(aeadID))</span><br><span class="line"> info := []<span class="type">byte</span>(<span class="string">&quot;Test&quot;</span>)</span><br><span class="line"> Bob_pub, Bob_private, _ := hpke.KEM(kemID).Scheme().GenerateKeyPair()</span><br><span class="line"> Bob, _ := suite.NewReceiver(Bob_private, info)</span><br><span class="line"> Alice, _ := suite.NewSender(Bob_pub, info)</span><br><span class="line"> enc, sealer, _ := Alice.Setup(rand.Reader)</span><br><span class="line"> Alice_msg := []<span class="type">byte</span>(msg)</span><br><span class="line"> aad := []<span class="type">byte</span>(<span class="string">&quot;Additional data&quot;</span>)</span><br><span class="line"> ct, _ := sealer.Seal(Alice_msg, aad)</span><br><span class="line"> opener, _ := Bob.Setup(enc)</span><br><span class="line"> Bob_msg, _ := opener.Open(ct, aad)</span><br><span class="line"> <span class="keyword">if</span> (kemID!=<span class="number">48</span>) &#123;fmt.Printf(<span class="string">&quot;Public key type:\t%s\n&quot;</span>, Bob_pub.Scheme().Name()) &#125;</span><br><span class="line"> fmt.Printf(<span class="string">&quot; Params\t%s\n&quot;</span>, suite.String())</span><br><span class="line"> fmt.Printf(<span class="string">&quot;\nKey exchange parameters:\n&quot;</span>)</span><br><span class="line"> fmt.Printf(<span class="string">&quot; Ciphersize:\t\t%d\n&quot;</span>, hpke.KEM(kemID).Scheme().CiphertextSize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot; EncapsulationSeedSize:\t%d\n&quot;</span>, hpke.KEM(kemID).Scheme().EncapsulationSeedSize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot; PrivateKeySize:\t%d\n&quot;</span>, hpke.KEM(kemID).Scheme().PrivateKeySize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot; PublicKeySize:\t\t%d\n&quot;</span>, hpke.KEM(kemID).Scheme().PublicKeySize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot; SeedSize:\t\t%d\n&quot;</span>, hpke.KEM(kemID).Scheme().SeedSize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot; SharedKeySize:\t\t%d\n&quot;</span>, hpke.KEM(kemID).Scheme().SharedKeySize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot;\nCipher parameters:\n&quot;</span>)</span><br><span class="line"> fmt.Printf(<span class="string">&quot; Key Length:\t%d\n&quot;</span>, hpke.AEAD(aeadID).KeySize())</span><br><span class="line"> fmt.Printf(<span class="string">&quot;\nKey derivation function:\n&quot;</span>)</span><br><span class="line"> fmt.Printf(<span class="string">&quot; Extract size:\t%d\n&quot;</span>, hpke.KDF(kdfID).ExtractSize())</span><br><span class="line"></span><br><span class="line"> fmt.Printf(<span class="string">&quot;\nMessage:\t%s\n&quot;</span>, Alice_msg)</span><br><span class="line"> <span class="comment">// fmt.Printf(&quot;Cipher:\t%x\n&quot;, hex.EncodeToString(ct))</span></span><br><span class="line"> fmt.Printf(<span class="string">&quot;Cipher:\t%x\n&quot;</span>, ct)</span><br><span class="line"> fmt.Printf(<span class="string">&quot;Decipher:\t%s\n&quot;</span>, Bob_msg)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>虽然 OpenSSL 提供了如此多的加密方法，但它可能会使应用程序容易受到使用传统方法的攻击。除此之外，RSA加密等方法对电池的影响很大。MD5 和 SHA-1 等传统哈希方法也会使应用程序受到攻击。因此，RFC 9180 提供了一种使用最佳安全性的方法，以及有效的方法。所以，去混合动力吧！</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%A8%E4%BF%A1%E4%BB%BB%E3%80%81%E6%80%A7%E8%83%BD%E5%92%8C%E5%AE%89%E5%85%A8%E6%80%A7%E6%96%B9%E9%9D%A2%EF%BC%8C%E6%B7%B7%E5%90%88%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86%E6%98%AF%E8%B5%A2%E5%AE%B6"><span class="toc-number">1.</span> <span class="toc-text">在信任、性能和安全性方面，混合公钥加密是赢家</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86%E4%B8%8E%E5%85%AC%E9%92%A5%E5%8A%A0%E5%AF%86%E7%9B%B8%E7%BB%93%E5%90%88"><span class="toc-number">1.1.</span> <span class="toc-text">对称密钥加密与公钥加密相结合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E5%8A%A0%E5%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">混合加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="toc-number">1.3.</span> <span class="toc-text">示例代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">结论</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&text=混合加密"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&is_video=false&description=混合加密"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=混合加密&body=Check out this article: https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&title=混合加密"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&name=混合加密&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-08-04-for-trust-performance/&t=混合加密"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

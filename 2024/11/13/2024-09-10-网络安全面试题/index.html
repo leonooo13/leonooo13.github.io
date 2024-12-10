@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="漏洞相关： 挖洞经历和CTF经历：要求介绍自认为有趣的相关经历。 常用漏洞：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。 开源组件高危漏洞：要求列举所知道的所有相关漏洞。 CVE或POC：需要描述深入研究过的CVE或POC。 反序列化漏洞：包括php&#x2F;java反序列化漏洞的原理和解决方案。   工具相关： 常用工具：询问平时使用的工具及其特点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全面试题">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="漏洞相关： 挖洞经历和CTF经历：要求介绍自认为有趣的相关经历。 常用漏洞：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。 开源组件高危漏洞：要求列举所知道的所有相关漏洞。 CVE或POC：需要描述深入研究过的CVE或POC。 反序列化漏洞：包括php&#x2F;java反序列化漏洞的原理和解决方案。   工具相关： 常用工具：询问平时使用的工具及其特点。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:45.049Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:45.049Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>网络安全面试题</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-13-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&text=网络安全面试题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&is_video=false&description=网络安全面试题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络安全面试题&body=Check out this article: https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&name=网络安全面试题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&t=网络安全面试题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        网络安全面试题
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.049Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:45.049Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>, <a class="p-category" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><ol>
+<li><strong>漏洞相关</strong>：<ul>
+<li><strong>挖洞经历和CTF经历</strong>：要求介绍自认为有趣的相关经历。</li>
+<li><strong>常用漏洞</strong>：包括平时用得较多的漏洞及其原理、修复方案，如SQL注入、上传Webshell等。</li>
+<li><strong>开源组件高危漏洞</strong>：要求列举所知道的所有相关漏洞。</li>
+<li><strong>CVE或POC</strong>：需要描述深入研究过的CVE或POC。</li>
+<li><strong>反序列化漏洞</strong>：包括php&#x2F;java反序列化漏洞的原理和解决方案。</li>
+</ul>
+</li>
+<li><strong>工具相关</strong>：<ul>
+<li><strong>常用工具</strong>：询问平时使用的工具及其特点。</li>
+</ul>
+</li>
+<li><strong>绕过WAF</strong>：<ul>
+<li><strong>SQL注入和上传Webshell</strong>：遇到WAF时的应对方法。</li>
+</ul>
+</li>
+<li><strong>系统提权</strong>：<ul>
+<li><strong>Windows和Linux系统</strong>：阐述提权的思路。</li>
+</ul>
+</li>
+<li><strong>渗透测试</strong>：<ul>
+<li><strong>获取目标网站真实IP</strong>：介绍绕过CDN获取真实IP的思路。</li>
+<li><strong>渗透测试思路</strong>：针对给定网站，阐述渗透测试的思路。</li>
+<li><strong>实际渗透测试经历</strong>：可能会询问相关经历。</li>
+<li><strong>反弹shell</strong>：常用命令、常反弹的shell类型及原因。</li>
+<li><strong>SSRF漏洞</strong>：包括成因、防御、绕过等方面。</li>
+<li><strong>SQL注入</strong>：漏洞成因、防范方法、注入方式、利用方式、中间件解析漏洞利用方式、bypass技巧、宽字符注入原理及修复等。</li>
+<li><strong>获取webshell的思路</strong>：针对特定注入点，如test.jsp?cid&#x3D;150，获取webshell的思路。</li>
+<li><strong>变形注入的思路</strong>：对于存在SQL注入漏洞的变形注入，提出解决思路。</li>
+<li><strong>mysql注入的区别</strong>：mysql 5.0以上和5.0以下网站注入的区别。</li>
+<li><strong>sqlmap的使用</strong>：sqlmap对注入点注入以及注入post包的方法。</li>
+</ul>
+</li>
+<li><strong>浏览器知识</strong>：<ul>
+<li><strong>跨域请求数据</strong>：如何设置跨域请求数据，jsonp的作用。</li>
+<li><strong>同源策略</strong>：子域名和顶级域名不同源时的设置方法，同源策略的解释及同源可获取的东西。</li>
+<li><strong>JSON和JSONP的区别</strong>：包括JSONP劫持利用方式及修复方案、JSON注入利用方式、Ajax是否遵循同源策略等。</li>
+<li><strong>CSP</strong>：CSP是什么以及如何设置。</li>
+<li><strong>浏览器安全策略</strong>：不同浏览器（如chrome、firefox、IE）之间安全策略的不同。</li>
+<li><strong>HTML5安全特性</strong>：HTML5新的安全特性。</li>
+</ul>
+</li>
+<li><strong>XSS</strong>：<ul>
+<li><strong>防范XSS漏洞</strong>：在前端和后端的防范方法，以及何处更好及原因。</li>
+<li><strong>检测XSS漏洞</strong>：黑盒检测XSS漏洞的方法。</li>
+<li><strong>利用XSS盲打漏洞</strong>：在内网且只能内网访问的情况下，利用XSS盲打漏洞的方法。</li>
+<li><strong>防御蠕虫</strong>：防御蠕虫的方法，以及在社交类网站中蠕虫可能出现的地方。</li>
+<li><strong>XSS持久化</strong>：相关内容。</li>
+<li><strong>构造蠕虫的条件</strong>：拥有XSS漏洞时，构造蠕虫所需的其他条件。</li>
+<li><strong>XSS的发生场景、定义及修复方式</strong>：相关内容。</li>
+</ul>
+</li>
+<li><strong>CSRF&#x2F;SSRF</strong>：<ul>
+<li><strong>区别</strong>：CSRF、SSRF和重放攻击的区别。</li>
+<li><strong>防御CSRF的方法</strong>：包括JAVA的防御方式以及token是否一定有用。</li>
+<li><strong>CSRF漏洞的本质、定义及修复方式</strong>：相关内容。</li>
+<li><strong>SSRF漏洞原理、利用方式及修复方案</strong>：以及Java和PHP的SSRF区别。</li>
+</ul>
+</li>
+<li><strong>XML注入</strong>：<ul>
+<li><strong>XXE</strong>：XXE是什么以及修复方案。</li>
+</ul>
+</li>
+<li><strong>业务逻辑漏洞</strong>：<ul>
+<li><strong>类型及修复方式</strong>：至少说出三种业务逻辑漏洞及其修复方式，如找回密码、身份认证、验证码漏洞等。</li>
+<li><strong>越权访问</strong>：水平、垂直、未授权越权访问的区别，以及越权问题的自动化检测方法。</li>
+</ul>
+</li>
+<li><strong>Java考察</strong>：<ul>
+<li><strong>MVC结构和数据流向</strong>：java的MVC结构的作用，数据流向数据库的顺序。</li>
+<li><strong>java沙箱</strong>：对java沙箱的了解。</li>
+<li><strong>ibats和sql注入</strong>：ibats的参数化查询对sql注入的控制，以及可能造成sql注入的危险方法。</li>
+<li><strong>struts2漏洞原理</strong>：两次struts2漏洞的原理。</li>
+<li><strong>ongl在payload中的作用</strong>：相关内容。</li>
+<li><strong>\u0023字符编码</strong>：\u0023是什么字符的16进制编码以及在payload中使用的原因。</li>
+<li><strong>执行系统命令的漏洞</strong>：java是否会发生此类漏洞，以及相关的语句和方法。</li>
+<li><strong>修复xss漏洞的层级</strong>：在java程序中修复xss漏洞的层级。</li>
+<li><strong>xss filter的设置位置</strong>：xss filter在java程序中的设置位置。</li>
+<li><strong>java类反射的安全问题</strong>：相关内容。</li>
+<li><strong>Java反序列化漏洞</strong>：原理和解决方案。</li>
+<li><strong>java框架</strong>：了解的java框架。</li>
+</ul>
+</li>
+<li><strong>PHP考察</strong>：<ul>
+<li><strong>LFI本地包含漏洞</strong>：原理、代码示例、手工发掘方法、无报错回显时的文件遍历方法。</li>
+<li><strong>php反序列化漏洞</strong>：原理和解决方案。</li>
+<li><strong>php webshell检测方法</strong>：相关内容。</li>
+<li><strong>%00截断的原理</strong>：相关内容。</li>
+<li><strong>php.ini的安全特性设置</strong>：相关内容。</li>
+<li><strong>php避免错误回显的方法</strong>：相关内容。</li>
+</ul>
+</li>
+<li><strong>常见中间件</strong>：<ul>
+<li><strong>Redis未授权访问漏洞</strong>：入侵利用方式。</li>
+<li><strong>中间件解析漏洞利用方式</strong>：常见的中间件解析漏洞利用方式。</li>
+<li><strong>JAVA中间件容器</strong>：常见的中间件容器。</li>
+<li><strong>tomcat安全加固</strong>：相关内容。</li>
+<li><strong>tomcat重启后的情况</strong>：相关内容。</li>
+<li><strong>常见网站服务器中间件容器</strong>：相关内容。</li>
+</ul>
+</li>
+<li><strong>数据库安全</strong>：<ul>
+<li><strong>mysql表权限</strong>：除增删改查、文件读写外的其他权限。</li>
+<li><strong>mysql安全</strong>：mysql安全的做法。</li>
+<li><strong>sqlserver public权限提权</strong>：相关内容。</li>
+<li><strong>加固降权思路</strong>：Windows、Linux、数据库任选其一的加固降权思路。</li>
+<li><strong>mysql用户信息存储</strong>：mysql的用户名密码存放的表以及密码的加密方式。</li>
+<li><strong>mysql默认库</strong>：mysql数据库默认的库名。</li>
+<li><strong>mysql UDF提权</strong>：5.1以上版本和5.1以下版本的区别及所需条件。</li>
+</ul>
+</li>
+<li><strong>Linux操作系统</strong>：<ul>
+<li><strong>系统安全加固</strong>：简述Linux系统安全加固需要做的方面。</li>
+<li><strong>后门检测工具</strong>：使用的工具来判断系统是否存在后门。</li>
+<li><strong>Selinux</strong>：Linux的Selinux是什么以及如何设置。</li>
+<li><strong>iptables工作层</strong>：iptables工作在TCP&#x2F;IP模型中的哪层。</li>
+<li><strong>系统防护</strong>：无法升级内核时，保证系统不被已知exp提权的方法。</li>
+<li><strong>日志相关</strong>：syslog中的日志类型、安装软件的日志位置、ssh登录日志的查询、syslog日志格式的配置、syslog的查看方式及是否为二进制文件。</li>
+<li><strong>应急响应</strong>：Linux服务器被入侵后的应急响应方法。</li>
+</ul>
+</li>
+<li><strong>应急响应</strong>：<ul>
+<li><strong>后门实现方式</strong>：有哪几种后门实现方式。</li>
+<li><strong>webshell检测</strong>：webshell检测的方法思路。</li>
+<li><strong>Linux服务器中木马后的应急思路</strong>：相关内容。</li>
+<li><strong>新0day应急响应</strong>：遇到新0day（如Struts2）后的应急响应方法。</li>
+<li><strong>安全评估和审计</strong>：新业务上线前的安全评估方向，现有系统审计发现安全风险的方向。</li>
+</ul>
+</li>
+<li><strong>其他</strong>：<ul>
+<li><strong>判断网站CMS的意义</strong>：判断出网站的CMS对渗透的意义。</li>
+<li><strong>清理入侵日志</strong>：相关内容。</li>
+<li><strong>总结渗透报告及修复方案</strong>：相关内容。</li>
+<li><strong>收集目标站注册人邮箱的价值</strong>：在渗透过程中，收集目标站注册人邮箱的价值。</li>
+<li><strong>DNS在渗透中的作用</strong>：相关内容。</li>
+</ul>
+</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&text=网络安全面试题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&is_video=false&description=网络安全面试题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络安全面试题&body=Check out this article: https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&title=网络安全面试题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&name=网络安全面试题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-10-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E9%9D%A2%E8%AF%95%E9%A2%98/&t=网络安全面试题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

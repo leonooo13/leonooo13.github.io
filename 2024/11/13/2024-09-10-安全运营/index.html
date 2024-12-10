@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="安全运营思维导图 以下是对文档《安全运营之路》的总结：  对安全运营的理解： 是什么：未明确提及。 做什么：包括满足价值需求和提升成熟度，涉及理论体系与工程框架，以及ATT&amp;CK攻击防御框架。 怎么做：通过数据驱动，涵盖核心内容如SOC、安全威胁情报简述、安全数据分析平台等。   安全建设篇： 情报搜集：包括入侵检测系统等。 安全平台的建设方案：未明确提及。 情报分析实际研判案例：未明确提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全运营思维导图">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="安全运营思维导图 以下是对文档《安全运营之路》的总结：  对安全运营的理解： 是什么：未明确提及。 做什么：包括满足价值需求和提升成熟度，涉及理论体系与工程框架，以及ATT&amp;CK攻击防御框架。 怎么做：通过数据驱动，涵盖核心内容如SOC、安全威胁情报简述、安全数据分析平台等。   安全建设篇： 情报搜集：包括入侵检测系统等。 安全平台的建设方案：未明确提及。 情报分析实际研判案例：未明确提">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/image-98.png">
+<meta property="article:published_time" content="2024-11-13T11:03:45.035Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:45.035Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="安全运营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/image-98.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>安全运营思维导图</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-12-%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&text=安全运营思维导图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&is_video=false&description=安全运营思维导图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=安全运营思维导图&body=Check out this article: https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&name=安全运营思维导图&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&t=安全运营思维导图"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">安全运营思维导图</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        安全运营思维导图
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.035Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:45.035Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/">安全运营</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/" rel="tag">安全运营</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="安全运营思维导图"><a href="#安全运营思维导图" class="headerlink" title="安全运营思维导图"></a>安全运营思维导图</h1><p><a href="/../assets/img/image-98.png" title="alt text" class="gallery-item"><img src="/../assets/img/image-98.png" alt="alt text"></a></p>
+<p>以下是对文档《安全运营之路》的总结：</p>
+<ol>
+<li><strong>对安全运营的理解</strong>：<ul>
+<li><strong>是什么</strong>：未明确提及。</li>
+<li><strong>做什么</strong>：包括满足价值需求和提升成熟度，涉及理论体系与工程框架，以及ATT&amp;CK攻击防御框架。</li>
+<li><strong>怎么做</strong>：通过数据驱动，涵盖核心内容如SOC、安全威胁情报简述、安全数据分析平台等。</li>
+</ul>
+</li>
+<li><strong>安全建设篇</strong>：<ul>
+<li><strong>情报搜集</strong>：包括入侵检测系统等。</li>
+<li><strong>安全平台的建设方案</strong>：未明确提及。</li>
+<li><strong>情报分析实际研判案例</strong>：未明确提及。</li>
+<li><strong>企业风控平台</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>威胁情报篇</strong>：<ul>
+<li><strong>情报生产</strong>：未明确提及。</li>
+<li><strong>情报监控平台</strong>：未明确提及。</li>
+<li><strong>情报落地</strong>：包括威胁信息流通与交换、情报驱动的自动化等。</li>
+<li><strong>威胁检测与攻击溯源之间的桥梁</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>威胁狩猎篇</strong>：<ul>
+<li><strong>日志、告警与事件</strong>：未明确提及。</li>
+<li><strong>主机应急响应</strong>：包括应急响应防守方视角（蓝队）。</li>
+<li><strong>C2通讯的检测与分析</strong>：未明确提及。</li>
+<li><strong>黑灰产基础设施</strong>：未明确提及。</li>
+<li><strong>网络流量的检测与分析</strong>：未明确提及。</li>
+<li><strong>隐蔽通讯的检测与分析</strong>：未明确提及。</li>
+<li><strong>具体业务场景下的对抗</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>攻防对抗篇</strong>：<ul>
+<li><strong>物料与供应链层面的对抗</strong>：未明确提及。</li>
+<li><strong>黑灰产对抗</strong>：包括攻击方视角（红队）、数据与算法层面的对抗、紫队视角等。</li>
+<li><strong>黑灰产研究相关</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>上游</strong>：<ul>
+<li><strong>安全运营之路</strong>：未明确提及。</li>
+<li><strong>云安全概论</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>中游</strong>：<ul>
+<li><strong>黑灰产形式</strong>：未明确提及。</li>
+<li><strong>云原生与云技术</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>下游</strong>：<ul>
+<li><strong>云原生漏洞</strong>：未明确提及。</li>
+<li><strong>产业链分析</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>业务安全篇</strong>：<ul>
+<li><strong>云安全篇</strong>：未明确提及。</li>
+<li><strong>黑灰产分析</strong>：包括黑词与黑话。</li>
+<li><strong>云中的信息搜集</strong>：包括代理与信息隐蔽技术。</li>
+<li><strong>容器逃逸</strong>：未明确提及。</li>
+<li><strong>站群与僵尸网络技术</strong>：未明确提及。</li>
+<li><strong>容器镜像安全</strong>：未明确提及。</li>
+<li><strong>应用安全相关</strong>：未明确提及。</li>
+</ul>
+</li>
+<li><strong>扩展内容</strong>：<ul>
+<li><strong>安全数据分析相关</strong>：未明确提及。</li>
+<li><strong>安全学术研究篇</strong>：包括数据驱动安全概论、云环境下的自动化入侵溯源实战。</li>
+<li><strong>安全开发篇</strong>：包括同源分析、事件归并、工程化实战思路。</li>
+<li><strong>产品设计篇</strong>：包括攻击评估、攻击者画像、基于事件调查的分析能力提升。</li>
+<li><strong>攻击者能力</strong>：未明确提及。</li>
+<li><strong>攻击者行为</strong>：未明确提及。</li>
+<li><strong>安全数据科学篇</strong>：包括TTPs（技战术组合）知识化表达、威胁趋势、预测、威胁狩猎、告警筛选与分析、威胁检测模型、基于数据的威胁检测、基于数据的隐蔽通讯检测、基于数据的代理通信检测（僵尸网络相关）、安全知识图谱、攻击者评估。</li>
+<li><strong>研究方向与工程化项目</strong>：未明确提及。</li>
+</ul>
+</li>
+</ol>
+<p>安全运营的理论体系可能涉及以下方面：</p>
+<ol>
+<li><strong>价值需求与成熟度</strong>：满足企业或组织的安全需求，提升安全运营的成熟度，以应对各种安全威胁。</li>
+<li><strong>ATT&amp;CK攻击防御框架</strong>：可能作为安全运营中的一种参考框架，用于指导攻击防御策略的制定和实施。</li>
+<li><strong>数据驱动</strong>：以数据为核心，通过对安全数据的分析和处理，实现对安全威胁的检测、预警和响应。</li>
+<li><strong>SOC（安全运营中心）</strong>：作为安全运营的核心组件，负责整合和管理安全信息，协调安全响应工作。</li>
+<li><strong>安全威胁情报</strong>：包括情报的搜集、生产、监控、落地等环节，为安全运营提供情报支持。</li>
+</ol>
+<p>需要注意的是，以上仅为根据文档内容进行的推测，具体的安全运营理论体系还需要参考更多相关资料和实践经验。</p>
+<p>总体而言，文档对安全运营的各个方面进行了概述，但具体内容在总结中大多未明确提及，需要进一步查看文档详细了解。</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">安全运营思维导图</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&text=安全运营思维导图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&is_video=false&description=安全运营思维导图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=安全运营思维导图&body=Check out this article: https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&title=安全运营思维导图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&name=安全运营思维导图&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/&t=安全运营思维导图"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

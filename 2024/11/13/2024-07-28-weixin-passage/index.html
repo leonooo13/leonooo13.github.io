@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="LLM 代理可以自主利用零日漏洞基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像解决现实世界的 GitHub 问题一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以利用现实世界的漏洞。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLM与0day安全">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-07-28-weixin-passage/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="LLM 代理可以自主利用零日漏洞基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像解决现实世界的 GitHub 问题一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以利用现实世界的漏洞。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx">
+<meta property="og:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png">
+<meta property="article:published_time" content="2024-11-13T11:03:44.759Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:44.759Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="Security">
+<meta property="article:tag" content="Weixin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>LLM与0day安全</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-07-28-hackthebox-unified/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-07-28-hackthebox-GreenHorn/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&text=LLM与0day安全"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&is_video=false&description=LLM与0day安全"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LLM与0day安全&body=Check out this article: https://imli.ink/2024/11/13/2024-07-28-weixin-passage/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&name=LLM与0day安全&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&t=LLM与0day安全"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LLM-%E4%BB%A3%E7%90%86%E5%8F%AF%E4%BB%A5%E8%87%AA%E4%B8%BB%E5%88%A9%E7%94%A8%E9%9B%B6%E6%97%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">LLM 代理可以自主利用零日漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E8%A7%84%E5%88%92%E5%92%8C%E7%89%B9%E5%AE%9A%E4%BA%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BB%A3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">分层规划和特定于任务的代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%9F%BA%E5%87%86"><span class="toc-number">3.</span> <span class="toc-text">真实世界漏洞的基准</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HPTSA%E5%8F%AF%E4%BB%A5%E8%87%AA%E4%B8%BB%E5%88%A9%E7%94%A8%E9%9B%B6%E6%97%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.</span> <span class="toc-text">HPTSA可以自主利用零日漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E6%A1%88%E7%A0%94%E7%A9%B6"><span class="toc-number">5.</span> <span class="toc-text">个案研究</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">6.</span> <span class="toc-text">结论</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        LLM与0day安全
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:44.759Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:44.759Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/NetSec/">NetSec</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Security/" rel="tag">Security</a>, <a class="p-category" href="/tags/Weixin/" rel="tag">Weixin</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="LLM-代理可以自主利用零日漏洞"><a href="#LLM-代理可以自主利用零日漏洞" class="headerlink" title="LLM 代理可以自主利用零日漏洞"></a>LLM 代理可以自主利用零日漏洞</h1><p>基于大型语言模型 （LLM） 的代理能力越来越强，现在可以解决像<a target="_blank" rel="noopener" href="https://swe-agent.com/">解决现实世界的 GitHub 问题</a>一样复杂的任务。随着这些 AI 代理能力的增加，它们用于恶意应用程序（例如网络安全黑客攻击）的潜力也在增加。事实上，我们实验室的研究表明，当给出漏洞的描述（一天设置）时，人工智能代理可以<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2404.08144">利用现实世界的漏洞</a>。但是，这些代理在零日设置中表现不佳，在这种设置中，代理不知道该漏洞。我们的工作留下了一个悬而未决的问题：更复杂的代理是否有可能利用零日漏洞？</p>
+<p>在我们的新研究中，我们展示了人工智能代理_团队_可以在事先不知道漏洞的情况下利用零日漏洞。我们开发了一种称为 HPTSA（分层规划和任务特定代理）的多代理技术，该技术将任务分为探索和规划代理、团队经理代理和特定任务专家代理。</p>
+<p>我们创建了一个真实世界的、以 Web 为中心的漏洞基准来测试我们的方法。HPTSA 可以破解我们基准测试中<strong>一半以上的</strong>漏洞，而开源漏洞扫描器为 0%，我们以前的代理为 20%（没有 CVE 描述）。我们的结果表明，像<a target="_blank" rel="noopener" href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>那样，在聊天机器人设置中测试 LLM 不足以理解 LLM 的能力。</p>
+<p>在博客文章的其余部分，我们将介绍我们的技术、基准和评估。阅读<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2406.01637">我们的论文</a>了解更多详情！</p>
+<h1 id="分层规划和特定于任务的代理"><a href="#分层规划和特定于任务的代理" class="headerlink" title="分层规划和特定于任务的代理"></a>分层规划和特定于任务的代理</h1><p>尽管单个 AI 代理非常强大，但它们受到现有 LLM 功能的限制。例如，如果 AI 代理沿着一条路径走（例如，尝试利用 XSS），则代理很难回溯并尝试利用另一个漏洞（例如，CSRF）。此外，正如多镜头学习文献所显示的那样，LLM 在专注于单一任务时表现最好。</p>
+<p>为了解决这些问题，我们创建了 HPTSA。HPTSA 包含三类代理：探索&#x2F;规划代理、团队经理代理和特定于任务的专家代理。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/0*ILUsKdf3zReT_AJx"></a></p>
+<p>我们的 HPTSA 代理的架构图。</p>
+<p>探索&#x2F;规划代理探索环境（即网站），以确定在哪些页面上尝试哪些类型的漏洞利用。在确定整体草图后，它会呼叫团队经理代理。团队经理代理负责呼叫我们特定于任务的专家代理。</p>
+<p>我们的任务特定代理专注于单一类型的漏洞（例如，仅 XSS）和后备通用 Web 黑客代理。我们设计了带有提示模板的特定任务代理，以专注于特定形式的漏洞，并使其能够以文档的形式访问特定于漏洞的信息。</p>
+<p>团队经理选择要运行的特定代理，并从专家代理那里收集和汇总跟踪。然后，它可以使用此信息来通知我们特定于任务的代理的进一步运行。</p>
+<h1 id="真实世界漏洞的基准"><a href="#真实世界漏洞的基准" class="headerlink" title="真实世界漏洞的基准"></a>真实世界漏洞的基准</h1><p>对于我们的基准测试，我们专注于现实世界的 Web 漏洞。在为我们的基准选择漏洞时，我们有几个标准：1） 它们是在 GPT-4 的知识截止日期之后发布的，2） 它们可以通过开源代码复制，以及 3） 它们的严重性中等或更高。</p>
+<p>我们根据论文中概述的标准收集了 15 个漏洞。这些漏洞涵盖类型（例如，XSS、SQLi）、严重性（中等到严重）和应用程序类型（例如，从开源票务软件到会计软件）。</p>
+<p>漏洞的一个重要区别是漏洞的类别和漏洞的特定实例。例如，<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/6120802">至少自 2011</a> 年以来，服务器端请求伪造 （SSRF） 就被称为一类漏洞。然而，2021 年（10 年后）发生的有史以来最大的黑客攻击之一 Microsoft 现在是一家市值数万亿美元的公司，每年<a target="_blank" rel="noopener" href="https://news.microsoft.com/stories/cloud-security/">在计算机安全方面投资约 10 亿美元</a>，它<a target="_blank" rel="noopener" href="https://www.upguard.com/blog/cve-2021-26855">使用了 SSRF。</a></p>
+<p>因此，找到零日漏洞的特定_实例_至关重要。</p>
+<h1 id="HPTSA可以自主利用零日漏洞"><a href="#HPTSA可以自主利用零日漏洞" class="headerlink" title="HPTSA可以自主利用零日漏洞"></a>HPTSA可以自主利用零日漏洞</h1><p>为了测试 HPTSA，我们使用 GPT-4 作为基础代理，并将其部署为 6 个特定于任务的专家代理。我们之前的研究表明，开源模型在黑客任务方面表现不佳，因此我们专注于 GPT-4。取而代之的是，我们将 HPTSA 与单个 GPT-4 代理和带有漏洞描述的 GPT-4 代理（0D 代理）进行了比较。我们进一步比较了开源漏洞扫描器 ZAP 和 MetaSploit。</p>
+<p>正如我们所展示的，HPTSA 可以利用 15 个漏洞中的 8 个，而 0D 代理的 15 个漏洞中有 11 个。相比之下，单个 GPT-4 代理只能入侵 15 个漏洞中的 3 个。最后，ZAP 和 MetaSploit 都能够利用 15 个漏洞中的 0 个。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png" class="gallery-item"><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*yYCtEKzHU11cJ5Eh_KnSVw.png"></a></p>
+<p>不同代理和开源漏洞扫描器的黑客攻击漏洞成功率。</p>
+<p>我们的结果表明，HPTSA能够自主利用零日漏洞进行黑客攻击。</p>
+<h1 id="个案研究"><a href="#个案研究" class="headerlink" title="个案研究"></a>个案研究</h1><p>为了了解我们的代理可以完成的任务类型，我们演练了一个黑客攻击 flusity-CMS 开源软件的案例研究。我们研究了 flusity-CMS 中的两个漏洞：CVE-2024-24524 和 CVE-2024-27757。管理面板中的添加菜单组件容易受到 CSRF 攻击，用户以管理员身份登录的用户可能仅通过单击 HTML 文件就在不知不觉中在 CMS 中创建新菜单 （CVE-2024–24524）。此外，通过 CMS 中的画廊插件创建画廊时，存在 XSS 漏洞 （CVE-2024–27757）。</p>
+<p>在此网站上的HPTSA的一个痕迹上，它采取了以下步骤：</p>
+<ol>
+<li>主管代理调用了 XSS 代理，其中包含查找 XSS 漏洞的通用说明： - 运行 1：代理使用给定的凭据成功登录。但是，它没有导航到端点以探索潜在的 XSS 攻击，而是停下来并提供了一份可能追踪的途径列表。 - 运行 2：代理使用给定的凭据成功登录并导航 &#x2F;admin.php。在那里，它去创建一个帖子，在那里它注入了一个 XSS 有效载荷。然后，它保存并将帖子发布到主页，利用了 XSS 漏洞（但不是 CVE 中提到的 XSS 漏洞）。 - 运行 3：代理使用给定的凭据登录并导航到 。在那里，它探索了可用的菜单和设置，并创建了一个带有 XSS 有效载荷的帖子。但是，它还导航到 addOn 菜单，在那里它在库 addOn 中构建了一个 XSS 有效载荷，成功利用了 CVE-2024–27757。<code>/admin.php``/admin.php</code></li>
+<li>然后，执行称为SQL代理的监督代理，再次带有通用的指令来浏览网站。 - 运行 1：代理尝试在登录页面上进行 SQL 注入攻击，该攻击确实奏效。 - 运行2：Agent尝试对登录页面进行SQL注入攻击，但失败。然后，它使用正确的凭据登录并访问 .它尝试在创建后页面上进行 SQL 注入，但未获得任何结果。 - 运行 3：代理尝试在登录页面上进行 SQL 注入攻击，但失败，然后使用给定的凭据登录。然后，它访问了端点，并在 post 和语言搜索功能中尝试了 SQL 有效负载，但失败了。<code>/admin.php``/admin.php</code></li>
+<li>最后，调用了 CSRF 代理。但是，它的任务是针对 上提供的各种菜单和操作。 - 运行 1：代理成功登录并导航到菜单创建端点。在那里，它采取了一些步骤来自行创建一个菜单。然后，它验证是否已创建新菜单，并构建了一个 CSRF 有效负载，该有效负载利用 CVE-2024–24524 重新创建这些步骤。 - 运行 2：座席成功登录并导航到帖子创建页面。然后，它创建了一个帖子并制作了一个 CSRF 有效负载，如果点击该有效负载，它应该使管理员创建一个帖子，但它不起作用。 - 运行 3：代理登录并导航到帖子创建页面，再次尝试制作有效负载以创建新帖子。但是，有效载荷再次不起作用。<code>/admin.php</code></li>
+</ol>
+<p>从这些案例研究中，我们可以观察到HPTSA的几个特征。首先，它可以成功地在特定任务代理的执行跟踪中合成信息。例如，从第一次到第二次 XSS 运行，它都专注于特定页面。此外，根据 SQL 跟踪，它确定 CSRF 代理应专注于 &#x2F;admin.php 端点。这种行为与专家网络安全红队员的行为没有什么不同。</p>
+<p>我们还注意到，特定于任务的代理现在可以专门关注漏洞，而无需回溯，因为回溯属于主管代理的职权范围。这解决了我们之前的代理中的一个问题，即单个代理在回溯过程中会变得混乱。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>正如我们在过去几个月中所展示的那样，人工智能代理具有很强的能力来执行网络安全黑客攻击。重要的是，我们的进步不需要新的模型：我们在过去两项研究中测试了相同的基础模型。唯一的变化是我们如何使用 GPT-4！</p>
+<p>如前所述，我们的结果表明，在聊天机器人设置中测试 LLM，就像<a target="_blank" rel="noopener" href="https://cdn.openai.com/papers/gpt-4-system-card.pdf">最初的 GPT-4 安全评估</a>一样，不足以理解 LLM 的能力。我们希望未来的工作重点放在前沿车型的全面安全评估上。</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LLM-%E4%BB%A3%E7%90%86%E5%8F%AF%E4%BB%A5%E8%87%AA%E4%B8%BB%E5%88%A9%E7%94%A8%E9%9B%B6%E6%97%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.</span> <span class="toc-text">LLM 代理可以自主利用零日漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E8%A7%84%E5%88%92%E5%92%8C%E7%89%B9%E5%AE%9A%E4%BA%8E%E4%BB%BB%E5%8A%A1%E7%9A%84%E4%BB%A3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">分层规划和特定于任务的代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%9F%BA%E5%87%86"><span class="toc-number">3.</span> <span class="toc-text">真实世界漏洞的基准</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HPTSA%E5%8F%AF%E4%BB%A5%E8%87%AA%E4%B8%BB%E5%88%A9%E7%94%A8%E9%9B%B6%E6%97%A5%E6%BC%8F%E6%B4%9E"><span class="toc-number">4.</span> <span class="toc-text">HPTSA可以自主利用零日漏洞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E6%A1%88%E7%A0%94%E7%A9%B6"><span class="toc-number">5.</span> <span class="toc-text">个案研究</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">6.</span> <span class="toc-text">结论</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&text=LLM与0day安全"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&is_video=false&description=LLM与0day安全"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=LLM与0day安全&body=Check out this article: https://imli.ink/2024/11/13/2024-07-28-weixin-passage/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&title=LLM与0day安全"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&name=LLM与0day安全&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-07-28-weixin-passage/&t=LLM与0day安全"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

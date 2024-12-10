@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTB-caption">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-21-caption/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:45.127Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:45.127Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="HTB">
+<meta property="article:tag" content="靶场">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>HTB-caption</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-27-jb-crack-tools/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-19-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-21-caption/&text=HTB-caption"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-21-caption/&is_video=false&description=HTB-caption"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTB-caption&body=Check out this article: https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-21-caption/&name=HTB-caption&description=Here&#39;s something encrypted, password is required to continue reading."><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-21-caption/&t=HTB-caption"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        HTB-caption
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.127Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:45.127Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/HTB/">HTB</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/HTB/" rel="tag">HTB</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>, <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">
+  <script id="hbeData" type="hbeData" data-hmacdigest="52a3ae31d418e2412fff3b28e44424ac586706e5fe5a7919bb16443d58424e9f">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f087170e3b132069128f59d9012ce0f60f57b4730dfc4ba4d93b5817ab4026b0b977f528a2e344bc5a1ad5024aef459d92b5a2d2a0e92446c8597731c5793c9a23cd960c6780199696bc394ea8d964d921488c2f352906f24ec23540acdf4dbc1349aa46655ad3c87e84c51845f2d50b09c3fa5eb3e30e924e111611b96853c852af39eb1c625922d51d18e2ea9ce80dd03554a5af208cc9352957f952d846b033317e32ddbce16759aabab8f0b5e7611f567c7976b9f84619a03437f935886a9c831b57b9be48eb5953ea8fdca20146fa511eac41f399a5178c2a6a286a4e40929c68d9c9e2610dc35da19547d2ca124b4dd43547c4afd7ce0d61920bc28b9c138a2ee371b5b5520e768b8731f158d692c9cf6039c61cbf708e823991dfc98dc8d9a53f08619e30c2ace0e7e891f0cf196e4639ca5336dd125761679d76b5f1e25e6c1d3470c095a3e898e8844627e44b03cf72cb5459a4f134f7f02a6cf460bd8bc1156a74dbe88843e40f2938327eda6dde48195d2e866cf6b1fe0cdeaa3599c000c4666cc861ae0bdeeaeddde06d590e765e2eed73110bc9e63ffcad1f4177b80995b608090b38730c0411553552eb5fe5abf356deb5ab8b11b25df48c60c391ff360a86b10c04f4ea5d58a85eaee54d359315ec584aab2a17e5f0cfb10b3371a0d30f61f0d8bf9e58299b3440ec2d791b80d758b413c63fe1c13629a16cc9c3232698a91cd7756660a3d2762b0076368ad186729cc559a606fb1eff01741e534ad39d3c7abdd749e46f839dc72f7d0b290dd3081f2df7ecf7da62e5294d166b4664631ba6c155cc706bac03bba050b10cd0fcea3c784f4e4a0127772cf0714452611bc623aad1f8a9a506e60be0ccde96cc342670868fb43acc3e1e03b811e5adc0bbdb7e4bacdc63aca60624c5d46f012cd98dde0ba40321f77a185644b8533c8d244cb39a86ed80500b666bdb160990d1a85feb2d98d452387c800c3077050000a2a0dc96b1c25532a20ac3496ebd5432de1d2eb0e9fcd6cc6c72c9cf23eb34be562a1411e51e48f7a8ba64da37fc8ed95c36ea196e2d7024ccbf7d86b3f2a970560cac204585f53b99f1ea5da21f225db1083c2c7735cb71e6d2c78726a460dacd36d20efde60b2214671e7655e0c8d01f6f9b753e577fa417dd3c3e90287408771224599202c5d8aca479bb317592b6fc95ef93fec3621a2ff63b769a0c5d444374344c21fcb805d8cfe8b1016b89401356ed5156a91acc340f42c5a94ce3ea11942334c7184a927d0cbe50a6d36509c7016b74147f1ec9e5a93cc7c104e0d551151ad852f9651190a3af62ee7aed016a49055aa7d586a7fc96028c8c9d987c35b52be32c3f0d1489a23337639b7ca62c0a6caa298d1aecaf0092b0cd635a489c4e9524cd385ec1c5074848e445d3b70bd0dfdb4b37fe031e55f9e1e6bb1b986fa0d8311b466af16d61d88dd9a56a5918bd4b81e1de7251ac058e03249d967cbb62068f168e923f538e9bcf73644bbffe0aabe38fa955e8eb046f74de925a4d111d3947861f6b862a8801e1cc2c174df69bb8ca001870e682a3f8894b3eff895bba20fb87559e27552b77f6d19a4caea7d3cb05489c6135343af8e1b17494b74684461f1d16ae8442f6686c8f4acdc2bfc99a374adea733d871a14c75092d3c4733694550abdb6ed09ff776afdb369dd7a597185c1918a55cf08fce52af7072139ba0c8eca0214f1aa8a35e7139cf1719f04d565b52ff7320e7e78d80821b294e543a601a27e1ba34f6bc1eece719a6274442466c24df4524506e037f7d3e5dbf5227a1f8156997811f08c88e480da400002467664b2c838affbd5c1b73a9a85eae16e5d7c68e5ec8fa79ef860b5800e7a00cd3bec09ec314f2c38df1ae948356285e057fda4a0e200e61625705397f6055b47e49e99c2dd7c7438c0b9f8b6a50c7986956deb229b172927122d888ffa73edf65b10a7ae74e4c48c4436aa6d9c3de1df313ef6c4c6fe493bca5b5563f9b0c554223c1b81b429779aff3dadc1eafa0164c0258fb30cc8798e98a50d2d044ea35bb717a1a0cbf978ff57bcb0dd30f9337aaebfd6ed4ba1f87161a796e708f7920a4e85062202e6a4862c3da36d935a5ff7b16515dbd89e070c27325a6ead7c288b850457e16d3599e394e1c2dcf8f16626d7b53925a8e735fcc9d60770b135845b35bdb84771789a5ef17034990063e054a28252294590b6a92951e61cca82dc803054e4a0706043bfaf9140dccc0f68755ac7b02bfd7e10db21ec3e33d2c784050a2eca16ae0b550324760c4f2e97b6469ad7c119ba6f04d8bfe21b61fcea5410cc5f62c05f41c3a0fe4231b860bf47337e9fe63118d6b269eea5358394b7a4f811cb65430e8a231c484a0d3b19c3127402b7dddf3b7ae509d251ba0c90a16cd4fd8bcb2efe4558804f83a4716284cf44b6e5f7f8fd5a36c3dc3c7c20e0d96418cd12ee1934026d54266d8bad7bd1c86d4dd981953817ea8a4492dcfc73db002e9572d7d19502ae99c06d842e0408d67ce5309211dec1578a3087a298a260556ed7b5d9fbdd22c391d4989c8496ed0baab345d036200ec4d69ac6d3e99476d41a0a5c0cec82b83e85843dfe94d49207bae9dd4e9287f809d8aec7315ed144768b201a41305ffb9ea30378042aef796e460bc632b4c28b790581e678dbf0b4841c7877bb05fc7e2dfa6f3b1fde7986d04dc8e5abe4ec6788322ef3dee56c262d015d4934d9fe07c386e642b799280e55b65571e555ca5cc2491b3e790b9f7413483f52a6eaaf74cda88c0759a90a6fc24960d1d6b15b663942bf22eb9d7ac9704a92945dda1f543278febf21a9a7b6eb5f67ed6a0db0a4ff6a0a49b188d62849afee1906b1c74b9786ad16c670a410eeec33fff6872a53224316c615c716684ded1b991a24249dd80a105b156a1142d558ca7dd5e33e56307a2795ce9f8a5098a60b615c54975f5689fa45f7725a2c01f89fb196af6c694d3d2f94d40586db41ca9ff7a5a0b58c18085edd32f1cc735799c9f8101a919e5dc25191af684adbe9ce280f68b14db43e740b06f13a5986f46f8839c1a969267d04160026bd3fc4f7c25c2ec281cef10f33538f98f4b47a632ce867dd7ee1730306473a319f7807253f14ebd2395c8d679dd1c86678768479ee706ee9b515934a088a34525c4909f229c9631cea3ab010cd452a0140621ace5231b6eb3a01713a810801296e243b5f8e80fe20b561b9d15cf9475aa4c54a494a613a128058db961c5897d58ce2447e75b6b97edd806758b2104cb24032a8e712d28d49ee04f582c0b3e06f200c4bb433ddee0aec12ebc7b4e9b9832d81266ce28dcd91c63c6e718a3166daafb449ba51126ad7a43c9c32835a0157a7da2bca5c223543818909b0392e4bde1f021d1811a65ec3fc7c484a67ac2ae505530cb610403018e00b7e7140df26646cd9f0ba270554c2cf21aa433c290b4c99ff3971d95bf19dd93c9623f4de74048c8a679cf8570466fe8d0a7cd077507bd2b52f6287e424f24acd152b1a7a12dbd2398007b0bb651adb5d638b58a5128fea120f9b0f8ab90b30ee26948f5c95bb12ddc1e0fe765830d88faaca60d70940cf7e4348f53820df1ecce0fd9c8f685f1339b74ac7aeeac23c82424c477cd54b8c0c73ca90029ac336aa3f7b9cc88c6a53fc4684d4e120c184347dfa6232dce52927f268c0f4bc26b5743134c348372a63c7796e73f4da80b1e1a32d01220dabd20951cc5e2993c50e42ce5c8c2c129ff8c6fb0d8407e08d1bc2da92a17402067a1f08b36de8a1227c071be6a09138c65be8511ada15ac7c2b739c4fd34d2a0f97174d698f57e7182c52e382f34ff97c71a3f379893d88e3068b1c6c91e44a7fe7efb4b6744f4c427f9ef2d242186e36c23f89902947c61783930b3717503b0cfc68fc127bbdd8af47ecd98aa061b7cba54da6c032cc49fd8cb22847c01723d41084ca802ee6d24735b2c0b59efa7c32f3f24e0e271b29b445c7b8085f92ed6240cb5457ce8844fb1a8c00fd549e7c1c3666fdd36abef325bedd4d986369c33f424ac62219e893089c9717814148dc34066573cfec55700fc5f820e419daddb601e9f36612a9034e1bf4422cc1d6c03593ca13627d9229e4efa4a0a323b503f876e3adbe672a1c6f5fbb8360ba4b013d70022a612408506148ccf491bc2b9aaf9caae4669fea468a16d09440d7c491a753e6e4b32afe93bd4864df38233680d526fc95fcbe6221fd1ab1f5b40e37ed580c1ec3dba77280e9ba19ff1f730d665920af14b376fa60bb89eee3734934597524354e6dfa85d8607ebbd96c9001f9da0799d1ba393727a7bfadcb834a114cddcaf111d03b383ced03fe4e5cf242f954c2b3971394ea8426b078ba49da5daab97a9bc82f1032dc22833c88ad7c703c139d29cd4363108e558a9c818dd4a1da115a4c62e77b615a37408a15e3d531fed4257b7755b2a5a41f88dd74d73c1376b1312a06c0a269b18640a6e5dfa5f8f9628afebcbf5a514d0db900d9e69452082ed2c9db76c2f7d5f439889dce54a7982b173dc2c65af99f1d719c998849a7d093ed6409c1dc6ad60bd6088e5e5a5fddc5fba4def668e9a5c76a17256b9dfe6b8b9fdfaec56858145c4a41ccc2f1a1fef26d71fc5e46f30e83e3c8bc42503b30a25109b4d80a37c5723d59c9a9f10b2513f3057a360a7a4070261c3a3d09ca52951c00dae2bf681e3d5436bdeca18437f2d67346cbaf0301f3dcb0cc69ea94d1360219985dd80a582bdd2e70efb0d22e18f5e3bc3da296de2d4c7a535d04cf8be45cc1fc597296499af92d52e858469c96a18fdfc637487f05905ac3f9cbfe17432bbe997c703f3c61b9001e5ac47a93e6180f8aac7c0dd558ed1802074e3e29eb4d4074085408c281a485388cf00695b30a0042fb823ff13d5eff7c1316356a8aecefc600e21588e93fa539948206a8cb2e5e05ee5df3e32387611c42546dd558b14ef2883c6c7120160813aec24e77</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-21-caption/&text=HTB-caption"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-21-caption/&is_video=false&description=HTB-caption"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTB-caption&body=Check out this article: https://imli.ink/2024/11/13/2024-09-21-caption/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-21-caption/&title=HTB-caption"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-21-caption/&name=HTB-caption&description=Here&#39;s something encrypted, password is required to continue reading."><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-21-caption/&t=HTB-caption"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

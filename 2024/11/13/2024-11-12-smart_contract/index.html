@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="你提到的关于智能合约在投票系统中的可信性问题，确实是一个非常关键的讨论点，特别是智能合约在这种关键场景下的可靠性和公正性。 智能合约本身的透明性和自动化是其最大的优势，但它是否“可信”，以及是否有可能被“夹带私货”（即合约中可能存在不正当或恶意的代码），则取决于几个重要因素：  合约代码的透明性公开可见：智能合约部署到区块链后，其代码对所有人公开。任何人都可以查阅、审计合约的代码，确保它不包含不正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能合约的问和答">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-11-12-smart_contract/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="你提到的关于智能合约在投票系统中的可信性问题，确实是一个非常关键的讨论点，特别是智能合约在这种关键场景下的可靠性和公正性。 智能合约本身的透明性和自动化是其最大的优势，但它是否“可信”，以及是否有可能被“夹带私货”（即合约中可能存在不正当或恶意的代码），则取决于几个重要因素：  合约代码的透明性公开可见：智能合约部署到区块链后，其代码对所有人公开。任何人都可以查阅、审计合约的代码，确保它不包含不正">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:45.233Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:45.233Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="Web3">
+<meta property="article:tag" content="Solidity">
+<meta property="article:tag" content="智能合约">
+<meta property="article:tag" content="区块链">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>智能合约的问和答</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024011-10-VMware-QA/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-10-20-hackthebox-Chemistry/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-11-12-smart_contract/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&text=智能合约的问和答"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&is_video=false&description=智能合约的问和答"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=智能合约的问和答&body=Check out this article: https://imli.ink/2024/11/13/2024-11-12-smart_contract/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&name=智能合约的问和答&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&t=智能合约的问和答"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E5%95%A5solidity%E6%98%AF%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%A6%96%E9%80%89%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">为啥solidity是智能合约的首选语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%85%B6%E4%BB%96%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">与其他语言的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solidity%E4%B8%BB%E8%A6%81%E7%94%A8%E5%9C%A8%E5%B9%B2%E4%BB%80%E4%B9%88-%E6%AF%94%E5%A6%82java-python-%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8Cweb%E5%BC%80%E5%8F%91%EF%BC%8C%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9D%9E%E8%A6%81solidity%E5%91%A2"><span class="toc-number">3.</span> <span class="toc-text">?solidity主要用在干什么  比如java python 可以进行web开发，应用开发，为什么非要solidity呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="toc-number">3.1.</span> <span class="toc-text">1. 智能合约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8%EF%BC%88DApps%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">2. 去中心化应用（DApps）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E9%87%91%E8%9E%8D%EF%BC%88DeFi%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">3. 去中心化金融（DeFi）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BB%A3%E5%B8%81%E5%92%8CNFT%EF%BC%88%E9%9D%9E%E5%90%8C%E8%B4%A8%E5%8C%96%E4%BB%A3%E5%B8%81%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">4. 代币和NFT（非同质化代币）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B2%BB%E7%90%86"><span class="toc-number">3.5.</span> <span class="toc-text">5. 区块链治理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E8%BA%AB%E4%BB%BD%EF%BC%88DID%EF%BC%89"><span class="toc-number">3.6.</span> <span class="toc-text">6. 去中心化身份（DID）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BE%9B%E5%BA%94%E9%93%BE%E7%AE%A1%E7%90%86"><span class="toc-number">3.7.</span> <span class="toc-text">7. 供应链管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-Solidity%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9F"><span class="toc-number">3.8.</span> <span class="toc-text">为什么需要 Solidity，而不是传统的编程语言？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.9.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%9F%E4%BD%A0%E8%AF%B4solidity%E7%94%A8%E4%BD%9C%E5%8E%BB%E4%B8%AD%E5%BF%83%EF%BC%8C%E8%AE%B0%E5%BD%95%E8%B5%84%E4%BA%A7%E6%9D%A5%E5%8E%BB%EF%BC%8C%E7%A7%BB%E5%8A%A8%EF%BC%8C%E6%AF%94%E5%A6%82%E6%88%91%E4%B9%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E9%93%BE%E4%B8%8A%E7%9A%84%E8%B5%84%E4%BA%A7-%E6%89%80%E6%9C%89%E4%BA%BA%E9%83%BD%E7%9F%A5%E9%81%93%E4%BA%86%E6%88%91%E7%9A%84%E8%B5%84%E4%BA%A7-10-%E6%84%8F%E6%80%9D%E6%98%AFsolidity%E7%BC%96%E5%86%99%E7%9A%84%E5%90%88%E7%BA%A6%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%AE%B0%E5%BD%95%E6%88%91%E7%9A%84%E8%B5%84%E4%BA%A7-10%EF%BC%8C%E5%8F%91%E5%B8%83%E5%88%B0%E9%93%BE%E4%B8%8A"><span class="toc-number">4.</span> <span class="toc-text">？你说solidity用作去中心，记录资产来去，移动，比如我买了一个链上的资产 所有人都知道了我的资产-10 意思是solidity编写的合约会自动记录我的资产-10，发布到链上?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B5%84%E4%BA%A7%E8%BD%AC%E7%A7%BB%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">1. 资产转移的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">2. 智能合约的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E8%B5%84%E4%BA%A7%E5%8F%98%E5%8A%A8"><span class="toc-number">4.3.</span> <span class="toc-text">3. 区块链如何记录资产变动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%B4%AD%E4%B9%B0%E8%B5%84%E4%BA%A7%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E5%8C%BA%E5%9D%97%E9%93%BE"><span class="toc-number">4.4.</span> <span class="toc-text">4. 示例：购买资产并记录到区块链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">4.5.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E4%B8%8A%E5%8F%AF%E4%BB%A5%E8%AE%B0%E5%BD%95%E4%BA%A4%E6%98%93-%E5%88%9D%E5%A7%8B%E7%94%A8%E6%88%B7%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%B5%84%E4%BA%A7%E4%BB%8E%E5%93%AA%E6%9D%A5%E7%9A%84%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">链上可以记录交易 初始用户的基本资产从哪来的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BA%A4%E6%98%93%E5%8E%86%E5%8F%B2%EF%BC%88%E9%93%BE%E4%B8%8A%E8%BF%BD%E6%BA%AF%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">1. 区块链交易历史（链上追溯）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%92%8C%E4%BB%A3%E5%B8%81%E7%9A%84%E5%8F%91%E8%A1%8C"><span class="toc-number">5.2.</span> <span class="toc-text">2. 智能合约和代币的发行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Token-Minting-%E4%B8%8E%E6%94%AF%E4%BB%98%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-number">5.3.</span> <span class="toc-text">3. Token Minting 与支付的来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BA%A4%E6%98%93%E5%8E%86%E5%8F%B2"><span class="toc-number">5.4.</span> <span class="toc-text">4. 第三方服务提供的交易历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%90%88%E7%BA%A6%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%97%A5%E5%BF%97"><span class="toc-number">5.5.</span> <span class="toc-text">5. 合约事件与日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BB%A3%E5%B8%81%E8%BD%AC%E7%A7%BB%E4%B8%8E%E5%88%9D%E5%A7%8B%E6%9D%A5%E6%BA%90"><span class="toc-number">5.6.</span> <span class="toc-text">示例：代币转移与初始来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">5.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        智能合约的问和答
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.233Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:45.233Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/Solidity/" rel="tag">Solidity</a>, <a class="p-category" href="/tags/Web3/" rel="tag">Web3</a>, <a class="p-category" href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="tag">区块链</a>, <a class="p-category" href="/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/" rel="tag">智能合约</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>你提到的关于智能合约在投票系统中的可信性问题，确实是一个非常关键的讨论点，特别是智能合约在这种关键场景下的可靠性和公正性。</p>
+<p>智能合约本身的透明性和自动化是其最大的优势，但它是否“可信”，以及是否有可能被“夹带私货”（即合约中可能存在不正当或恶意的代码），则取决于几个重要因素：</p>
+<ol>
+<li><p>合约代码的透明性<br>公开可见：智能合约部署到区块链后，其代码对所有人公开。任何人都可以查阅、审计合约的代码，确保它不包含不正当的行为或漏洞。这种透明性有助于增加对合约的信任。<br>开源和审计：如果智能合约是开源的，并经过了多方审计，尤其是独立第三方的审计，可信度会大大提高。开源的代码可以被任何开发者审查和修复，减少“夹带私货”的风险。</p>
+</li>
+<li><p>合约审计<br>第三方审计：对于关键应用（如投票系统），智能合约应该经过专业的安全审计。第三方审计机构（例如 OpenZeppelin、Trail of Bits 等）会全面评估合约的安全性，寻找潜在的漏洞或恶意代码。这类审计报告可以作为可信度的一部分，向用户证明合约的安全性。<br>社区审计：除了专业审计外，社区的参与也非常重要。开源社区和开发者群体会对智能合约进行不断的审查和反馈，及时发现并报告潜在问题。<br> <strong>审计机构的可靠性问题：</strong><br> 你提到的关于智能合约在投票系统中的可信性问题，确实是一个非常关键的讨论点，特别是智能合约在这种关键场景下的可靠性和公正性。</p>
+<p> 智能合约本身的透明性和自动化是其最大的优势，但它是否“可信”，以及是否有可能被“夹带私货”（即合约中可能存在不正当或恶意的代码），则取决于几个重要因素：</p>
+<ol>
+<li>合约代码的透明性<br> 公开可见：智能合约部署到区块链后，其代码对所有人公开。任何人都可以查阅、审计合约的代码，确保它不包含不正当的行为或漏洞。这种透明性有助于增加对合约的信任。<br> 开源和审计：如果智能合约是开源的，并经过了多方审计，尤其是独立第三方的审计，可信度会大大提高。开源的代码可以被任何开发者审查和修复，减少“夹带私货”的风险。</li>
+<li>合约审计<br> 第三方审计：对于关键应用（如投票系统），智能合约应该经过专业的安全审计。第三方审计机构（例如 OpenZeppelin、Trail of Bits 等）会全面评估合约的安全性，寻找潜在的漏洞或恶意代码。这类审计报告可以作为可信度的一部分，向用户证明合约的安全性。<br> 社区审计：除了专业审计外，社区的参与也非常重要。开源社区和开发者群体会对智能合约进行不断的审查和反馈，及时发现并报告潜在问题。</li>
+<li>可验证的合约代码与逻辑<br> 可验证的代码逻辑：合约的核心逻辑应当是透明的、可验证的，特别是对于涉及投票和选举等高风险领域，合约必须确保投票过程中的每一笔交易都可以被追溯、验证且不可篡改。比如，投票合约应该避免一些容易被操纵的漏洞（如重复投票、隐藏投票结果、篡改计票等）。<br> 智能合约的验证机制：可以通过形式化验证（Formal Verification）技术对合约逻辑进行数学证明，确保合约在任何情况下都按预期执行，特别是在处理投票时，合约能够确保投票的公正性和正确性。</li>
+<li>去中心化与信任<br> 去中心化：智能合约通常是部署在去中心化的区块链平台上，例如以太坊等。这意味着，合约一旦部署，无法由单一实体修改。这种去中心化特性增加了合约的可信性，因为没有一个中心化的控制者可以修改合约逻辑或操控结果。<br> 共识机制：区块链网络的共识机制（如以太坊的 PoW 或 PoS）确保了数据的一致性和安全性。每次合约执行时，都会通过区块链网络中的节点进行验证和记录，因此投票结果一旦提交，不易被篡改。</li>
+<li>防止恶意操作的设计<br> 多重签名和审计：对于投票系统，可以采用多重签名机制，即合约的关键操作需要多个独立的方进行确认，减少单一方恶意篡改的可能性。<br> 不可篡改的投票记录：合约应确保投票一旦提交，即不可更改且不可删除，任何投票行为都会被永久记录在区块链上，任何人都可以查证。<br> 日志和审计追踪：智能合约应记录所有投票操作的日志，所有投票和更改都应该可以追溯和审计。这可以帮助用户检查是否有不正当的行为或“夹带私货”现象。</li>
+<li>常见攻击与防范<br> 重入攻击（Reentrancy）：在智能合约中，重入攻击可能导致合约执行顺序的错误，进而影响投票或资金转移的结果。开发者需要使用防重入机制，例如在调用外部合约之前先更新状态。<br> 溢出&#x2F;下溢攻击（Overflow&#x2F;Underflow）：对于处理投票数等操作的合约，必须防止溢出和下溢错误。Solidity 的版本更新中引入了安全的数学运算，避免了这些问题。<br> 时间戳依赖：智能合约可能会依赖于区块的时间戳来确定投票的有效性。攻击者可能通过调整矿工的时间戳来操控合约行为。开发者应避免过度依赖时间戳。<br> 总结<br> 要确保投票系统中的智能合约不“夹带私货”，首先需要确保合约的代码透明且公开，经过独立审计，并且在设计时避免任何潜在的安全漏洞。通过使用去中心化的网络和共识机制，以及对合约进行形式化验证，可以大大提高合约的可信度和安全性。</li>
+</ol>
+</li>
+</ol>
+<p>如果你在实现智能合约时有任何疑问或者希望了解更多的最佳实践，随时告诉我！<br>3. 可验证的合约代码与逻辑<br>可验证的代码逻辑：合约的核心逻辑应当是透明的、可验证的，特别是对于涉及投票和选举等高风险领域，合约必须确保投票过程中的每一笔交易都可以被追溯、验证且不可篡改。比如，投票合约应该避免一些容易被操纵的漏洞（如重复投票、隐藏投票结果、篡改计票等）。<br>智能合约的验证机制：可以通过形式化验证（Formal Verification）技术对合约逻辑进行数学证明，确保合约在任何情况下都按预期执行，特别是在处理投票时，合约能够确保投票的公正性和正确性。<br>4. 去中心化与信任<br>去中心化：智能合约通常是部署在去中心化的区块链平台上，例如以太坊等。这意味着，合约一旦部署，无法由单一实体修改。这种去中心化特性增加了合约的可信性，因为没有一个中心化的控制者可以修改合约逻辑或操控结果。<br>共识机制：区块链网络的共识机制（如以太坊的 PoW 或 PoS）确保了数据的一致性和安全性。每次合约执行时，都会通过区块链网络中的节点进行验证和记录，因此投票结果一旦提交，不易被篡改。<br>5. 防止恶意操作的设计<br>多重签名和审计：对于投票系统，可以采用多重签名机制，即合约的关键操作需要多个独立的方进行确认，减少单一方恶意篡改的可能性。<br>不可篡改的投票记录：合约应确保投票一旦提交，即不可更改且不可删除，任何投票行为都会被永久记录在区块链上，任何人都可以查证。<br>日志和审计追踪：智能合约应记录所有投票操作的日志，所有投票和更改都应该可以追溯和审计。这可以帮助用户检查是否有不正当的行为或“夹带私货”现象。<br>6. 常见攻击与防范<br>重入攻击（Reentrancy）：在智能合约中，重入攻击可能导致合约执行顺序的错误，进而影响投票或资金转移的结果。开发者需要使用防重入机制，例如在调用外部合约之前先更新状态。<br>溢出&#x2F;下溢攻击（Overflow&#x2F;Underflow）：对于处理投票数等操作的合约，必须防止溢出和下溢错误。Solidity 的版本更新中引入了安全的数学运算，避免了这些问题。<br>时间戳依赖：智能合约可能会依赖于区块的时间戳来确定投票的有效性。攻击者可能通过调整矿工的时间戳来操控合约行为。开发者应避免过度依赖时间戳。<br>总结<br>要确保投票系统中的智能合约不“夹带私货”，首先需要确保合约的代码透明且公开，经过独立审计，并且在设计时避免任何潜在的安全漏洞。通过使用去中心化的网络和共识机制，以及对合约进行形式化验证，可以大大提高合约的可信度和安全性。</p>
+<h2 id="为啥solidity是智能合约的首选语言"><a href="#为啥solidity是智能合约的首选语言" class="headerlink" title="为啥solidity是智能合约的首选语言"></a>为啥solidity是智能合约的首选语言</h2><p>Solidity 能够成为智能合约的首选语言，主要得益于其几个关键特点，使其特别适合在区块链上开发去中心化应用（DApps）和智能合约。以下是一些关键原因：</p>
+<ol>
+<li><p>专为智能合约设计<br>Solidity 是一种专门为以太坊平台（以及其他兼容 EVM 的区块链）设计的编程语言。它的设计目标是使得智能合约的编写更加简单、高效，并能很好地与区块链的去中心化特性兼容。它的语法与 JavaScript 和 C++ 相似，开发者可以快速上手并开始编写智能合约。</p>
+</li>
+<li><p>以太坊兼容性和广泛支持<br>主流区块链平台：Solidity 是以太坊平台的官方智能合约编程语言。以太坊是目前最大的智能合约平台，并且许多其他区块链平台（如 Binance Smart Chain、Polygon、Avalanche 等）也采用了与以太坊虚拟机（EVM）兼容的技术，这使得 Solidity 在区块链开发中成为标准语言。<br>生态系统：以太坊拥有强大的开发者社区和广泛的工具支持。Solidity 的普及使得它在智能合约领域成为了事实上的标准，也促进了大量开发工具、框架和库的出现，如 Truffle、Hardhat 和 OpenZeppelin 等。</p>
+</li>
+<li><p>去中心化和不可篡改性<br>智能合约的执行环境：Solidity 编写的合约部署到区块链上后，代码无法更改，这保证了合约的不可篡改性。区块链的去中心化和共识机制确保了合约按预期执行，无需第三方干预。Solidity 能够确保这种去中心化的特性，使得智能合约能在信任不确定的环境下得到保障。<br>跨平台兼容性：因为 Solidity 编写的合约可以在任何支持 EVM 的区块链平台上运行，它具有良好的跨平台兼容性，可以在多个区块链网络之间迁移。</p>
+</li>
+<li><p>易于开发和调试<br>语法接近其他语言：Solidity 的语法与 JavaScript 和 C++ 等编程语言相似，这使得熟悉这些语言的开发者可以较为轻松地学习和使用 Solidity 编写智能合约。<br>开发工具的支持：有许多开发工具可以帮助开发者更高效地编写、测试和调试 Solidity 合约。例如，Truffle 提供了一个全栈的开发环境，Hardhat 提供了灵活的本地开发和测试框架，OpenZeppelin 提供了可重用的安全合约库。</p>
+</li>
+<li><p>广泛的使用和成熟的社区支持<br>大型项目和应用的支持：Solidity 已经在很多成功的去中心化金融（DeFi）项目、NFT 项目以及其他区块链应用中得到了广泛使用，如 Uniswap、MakerDAO、Compound、Aave 等。这些项目的成功推动了 Solidity 的使用。<br>强大的社区：Solidity 的开发者社区非常活跃，开发者可以通过论坛、GitHub、Discord 等平台获得支持，帮助其快速解决问题并改进代码。社区不断推动语言的更新和演进，及时修复漏洞，增加功能。</p>
+</li>
+<li><p>智能合约的灵活性和扩展性<br>支持多种数据类型和复杂逻辑：Solidity 允许开发者创建复杂的智能合约，支持多种数据类型、结构、映射、事件等，能够应对各种不同的业务逻辑和需求。<br>升级和扩展：Solidity 支持合约的部分升级，虽然智能合约一旦部署就不可修改，但开发者可以通过代理模式、合约继承等方式实现合约的灵活扩展。</p>
+</li>
+<li><p>与区块链技术紧密结合<br>直接与区块链交互：Solidity 提供了与以太坊虚拟机（EVM）直接交互的能力。通过 Solidity 编写的合约可以轻松地与区块链上的其他合约、账户和资产进行交互，这使得它在去中心化应用（DApps）中非常有用。<br>原生支持 Gas 机制：Solidity 代码的执行需要消耗 Gas，这是一种以太坊平台上的资源管理方式。Solidity 中对 Gas 的内建支持，有助于开发者优化合约的效率，避免过度消耗区块链资源。</p>
+</li>
+<li><p>安全性和漏洞防护<br>防止常见安全漏洞：Solidity 语言及其生态系统不断改进，以帮助开发者避免智能合约中的常见漏洞。OpenZeppelin 等库提供了经过审计和验证的智能合约模板，减少了开发者犯错的几率。Solidity 还加入了对溢出、重入攻击等常见安全问题的防范措施。<br>形式化验证：Solidity 合约可以通过形式化验证工具（如 MythX、Slither 等）来检查代码中的安全漏洞，确保智能合约的执行是安全的。</p>
+</li>
+</ol>
+<h2 id="与其他语言的区别"><a href="#与其他语言的区别" class="headerlink" title="与其他语言的区别"></a>与其他语言的区别</h2><ol>
+<li>执行环境：区块链和虚拟机<br>Solidity 是专门为区块链（特别是以太坊和其他 EVM 兼容的区块链）设计的语言。它编写的代码被部署在区块链上，通过以太坊虚拟机（EVM）执行，且合约一旦部署不可更改。这使得 Solidity 与其他传统语言（如 JavaScript、Python）不同，因为它涉及到智能合约的不可篡改性和去中心化的执行环境。</li>
+</ol>
+<p>传统编程语言（如 JavaScript、Python 等）则主要用于开发在中央服务器或客户端上执行的应用程序，不涉及直接与区块链交互。</p>
+<p>| 传统语言在单一服务器上，我运行python在需要在服务器上安装python解释器<br>| solidity是直接操作区块链的？<br>2. 不可变性和持久性<br>Solidity 中编写的智能合约一旦部署到区块链上，它们就变得不可修改和不可删除。这种不可变性是区块链的核心特性，确保了合约在执行时的透明性和安全性。<br>其他编程语言（如 JavaScript、C++ 等）中的代码可以随时修改、删除或更新，通常没有像区块链那样的去中心化和不可变的机制。<br>3. Gas 和资源消耗<br>Solidity 中的每个操作（如计算、存储、读取数据等）都需要消耗“Gas”，这是区块链上的计算资源。Gas 的使用需要付费，这对合约的设计和优化有直接影响。开发者需要考虑如何减少 Gas 消耗，优化智能合约的效率。<br>其他编程语言（如 Python、JavaScript 等）不涉及 Gas 或区块链上的计算费用，它们的代码执行通常由中央服务器提供资源，并且不存在资源消耗的收费机制。<br>4. 数据存储<br>Solidity 中的数据存储是分布式的，存储在区块链上。这意味着数据在所有节点中复制，并且不可篡改。合约的数据存储通过 state variables 管理，存储在区块链的状态中。<br>其他语言（如 Python、JavaScript）中，数据通常存储在本地数据库或内存中，开发者可以自由修改或删除数据。没有像区块链中的去中心化存储机制。</p>
+<p>如果在 Solidity 中编写的智能合约具有重大的缺陷或安全漏洞，可能会带来严重的后果，因为一旦合约被部署到区块链上，它就是不可篡改的。由于区块链的去中心化和不可修改性，合约中的缺陷或者漏洞无法直接修复。如果没有适当的预防和审计措施，漏洞可能会被攻击者利用，导致资金丢失、数据泄露或其他灾难性后果。</p>
+<p>以下是一些可能导致重大发生的安全问题及应对策略：</p>
+<ol>
+<li>重入攻击（Reentrancy Attack）<br>问题：攻击者可以通过外部调用的方式，递归地调用合约的函数，导致状态更新前执行错误，可能导致资金被盗。<br>示例：最著名的重入攻击发生在 2016 年的 DAO 攻击事件中，黑客利用了一个重入漏洞，窃取了大量以太坊。<br>防御方法：<br>使用“检查-效应-交互”模式：即先修改状态，然后再进行外部调用。<br>使用 ReentrancyGuard 库，防止在同一交易中多次调用同一函数。</li>
+<li>整数溢出&#x2F;下溢（Integer Overflow&#x2F;Underflow）<br>问题：如果没有适当的检查，整数变量可能会溢出或下溢，导致错误的计算结果或状态更新，从而可能被恶意利用。<br>防御方法：<br>使用 SafeMath 库来执行安全的加法、减法、乘法等操作。<br>在 Solidity 0.8.x 版本中，溢出和下溢检查已经成为默认行为，但对于旧版本，使用 SafeMath 仍然是一个好习惯。</li>
+<li>访问控制不当（Improper Access Control）<br>问题：智能合约可能没有足够的访问控制，导致未经授权的用户可以执行敏感操作（如更改合约状态、转账资金等）。<br>防御方法：<br>使用 onlyOwner 或其他访问控制模式来确保只有合约的所有者或特定角色可以执行敏感操作。<br>使用 OpenZeppelin 的 Ownable 合约或者 AccessControl 来管理权限。</li>
+<li>竞态条件（Race Conditions）<br>问题：在多个用户同时与合约交互时，可能会导致合约状态的不一致，攻击者可以利用这些漏洞。<br>防御方法：<br>使用锁机制（如 ReentrancyGuard）来确保合约的状态在同一时间只有一个事务在进行。<br>适当使用区块时间戳和不可变的交易顺序来防止竞态条件。</li>
+<li>资金安全问题（Unsafe Ether Transfers）<br>问题：直接使用 transfer 或 send 可能导致安全问题，特别是在合约与外部合约交互时，可能发生意外的行为（例如，接收方合约执行回调时可能引发重入攻击）。<br>防御方法：<br>使用 call 代替 transfer 或 send，并且始终检查返回值。<br>对外部合约调用进行充分的安全检查和审计。</li>
+<li>缺乏审计（Lack of Audits）<br>问题：没有经过第三方的专业审计，可能导致合约中隐藏漏洞，未被开发者发现。<br>防御方法：<br>在部署前进行全面的代码审计，尤其是对涉及资金或敏感操作的合约。<br>使用自动化工具（如 MythX、Slither）来检测潜在的漏洞。<br>使用经过安全审计的库和框架（例如 OpenZeppelin）来减少漏洞的风险。</li>
+<li>升级合约（Upgradable Contracts）<br>问题：一旦合约部署，它是不可修改的。如果发现漏洞或需要添加新功能，原本的合约无法直接升级。<br>防御方法：<br>使用代理模式（Proxy Pattern），通过代理合约进行更新，保持合约的可升级性。可以使用 OpenZeppelin 的代理合约框架来实现这一点。<br>设计合约时要考虑到未来可能需要更新的场景，避免完全依赖一个不可修改的合约。</li>
+<li>Oracle 问题（Oracle Problem）<br>问题：智能合约通常依赖于外部数据源（Oracle）来获取链外信息。如果 Oracle 数据源不可靠或者被攻击，可能会导致合约执行错误或不符合预期的结果。<br>防御方法：<br>使用去中心化的 Oracle 服务（如 Chainlink）来减少单点故障的风险。<br>在合约中实现适当的验证机制，确保来自 Oracle 的数据准确可靠。<br>总结<br>智能合约部署到区块链后不可篡改，因此在开发阶段必须特别注意代码的安全性和漏洞的修复。为避免合约中出现重大的缺陷或安全漏洞，开发者应遵循最佳实践，并通过多种手段进行防范：</li>
+</ol>
+<p>使用标准的安全库（如 OpenZeppelin、SafeMath）来减少漏洞。<br>在发布前进行全面的审计，确保代码符合安全规范。<br>使用自动化工具对代码进行静态分析和漏洞扫描。<br>定期进行代码审查和审计，及时发现潜在的安全风险。<br>即使如此，仍然无法完全消除所有风险，因此在开发合约时，考虑到安全性并做好漏洞防护是至关重要的。如果合约中存在重大的安全漏洞，可能会导致资金丢失或其他严重后果，这也突出了安全审计的重要性。</p>
+<h2 id="solidity主要用在干什么-比如java-python-可以进行web开发，应用开发，为什么非要solidity呢"><a href="#solidity主要用在干什么-比如java-python-可以进行web开发，应用开发，为什么非要solidity呢" class="headerlink" title="?solidity主要用在干什么  比如java python 可以进行web开发，应用开发，为什么非要solidity呢"></a>?solidity主要用在干什么  比如java python 可以进行web开发，应用开发，为什么非要solidity呢</h2><p>Solidity 的应用场景是去中心化的区块链平台，尤其是以太坊（Ethereum）及其他兼容以太坊虚拟机（EVM）的平台。因此，Solidity 的使用并不涉及传统的应用开发或 Web 开发，而是涉及到区块链上的合约逻辑，尤其是涉及到资产转移、去中心化金融（DeFi）、治理、NFTs、代币发行等领域。</p>
+<ol>
+<li>智能合约<br>定义：智能合约是存储在区块链上的自动化程序，它们能够在满足特定条件时自动执行合约条款。智能合约允许没有中介的情况下进行交易和协议执行，降低了信任成本。<br>为什么需要 Solidity：Java 和 Python 等语言通常用于中央化的应用开发，而区块链上的智能合约需要执行在去中心化的环境中，必须具有不可篡改性、透明性和安全性。Solidity 使得编写、部署和执行智能合约成为可能，尤其是与以太坊这样的区块链平台兼容。</li>
+<li>去中心化应用（DApps）<br>定义：去中心化应用（DApps）是建立在区块链上的应用，具有去中心化、开放性、透明性等特征。DApps 不依赖于传统的中央服务器，而是使用智能合约来管理应用逻辑。<br>为什么需要 Solidity：在 DApp 中，前端通常与传统技术栈（如 JavaScript、React）结合使用，但合约逻辑和交易管理是通过 Solidity 编写的。这是因为区块链网络上的数据需要通过智能合约来管理和处理，Solidity 提供了这种功能。</li>
+<li>去中心化金融（DeFi）<br>定义：去中心化金融（DeFi）指的是建立在区块链上的一系列金融服务，如借贷、交易、保险等，没有中介参与，所有操作都由智能合约执行。<br>为什么需要 Solidity：DeFi 应用需要通过智能合约自动执行复杂的金融交易，比如借贷、资产交换和衍生品合约。Solidity 是开发这些智能合约的核心语言，允许开发者设计和管理 DeFi 协议。</li>
+<li>代币和NFT（非同质化代币）<br>定义：代币和 NFTs 是区块链上的数字资产。代币通常用于代表某种资产或权益，而 NFT 是独一无二的数字资产，通常用于表示艺术品、收藏品、游戏物品等。<br>为什么需要 Solidity：Solidity 可以用来创建代币标准（如 ERC-20 和 ERC-721），并在区块链上生成这些代币或 NFT。通过 Solidity，开发者可以在以太坊等平台上实现发行、转移和管理代币的功能。</li>
+<li>区块链治理<br>定义：区块链治理涉及到对去中心化网络和协议进行管理和决策的过程。它通常通过投票或分配权利来做出决策。<br>为什么需要 Solidity：许多去中心化组织（DAO）使用智能合约来管理投票和决策过程。Solidity 可以编写治理合约，通过智能合约自动执行选举、提案等流程，确保治理的透明性和自动化。</li>
+<li>去中心化身份（DID）<br>定义：去中心化身份（DID）是一种基于区块链的身份管理系统，允许个人控制和管理自己的身份信息，不依赖于传统的身份提供者。<br>为什么需要 Solidity：通过 Solidity，可以编写管理去中心化身份的智能合约，确保身份数据的隐私性和安全性，用户可以控制自己的身份信息，并授权特定操作。</li>
+<li>供应链管理<br>定义：供应链管理是指管理商品和服务流通的过程，确保产品从生产到消费的每个环节都能被追踪和验证。<br>为什么需要 Solidity：通过 Solidity 编写的智能合约可以用于追踪供应链中的商品流通，确保每个环节的数据是透明和不可篡改的，增加供应链的可信度。<br>为什么需要 Solidity，而不是传统的编程语言？<br>区块链的去中心化特性：</li>
+</ol>
+<p>在传统的应用开发中（如 Java 或 Python），你通常在中央服务器或客户端上运行程序，而区块链是去中心化的，所有计算和存储都分布在多个节点上。Solidity 允许开发者编写的代码能在这种去中心化环境中执行。<br>不可篡改性和透明性：</p>
+<p>区块链上的数据一旦存储就不可更改，这对于智能合约的执行至关重要。Solidity 是为这种特性量身定制的，它确保部署到区块链上的合约代码是不可修改且可以被所有人透明查看的。<br>与区块链兼容性：</p>
+<p>Solidity 是与区块链（特别是以太坊）的虚拟机（EVM）兼容的编程语言，直接面向区块链的数据结构和操作。而传统语言（如 Java 或 Python）并不直接支持与区块链的集成，通常需要通过中介层（如 Web3.js 或 Web3.py）与区块链进行交互。<br>Gas 和交易费用：</p>
+<p>Solidity 程序的执行依赖于区块链的 Gas 机制。每次执行合约时，用户需要支付一定的费用，称为 Gas，用以补偿网络计算资源的消耗。传统编程语言不涉及这样的资源消耗机制。<br>总结<br>虽然 Java 和 Python 是非常强大的编程语言，适用于 Web 开发、应用开发等多种场景，但它们并不具备直接与区块链交互的能力。Solidity 是专门为区块链环境设计的，能够编写智能合约、管理去中心化资产和执行区块链上的交易逻辑。只有通过 Solidity，我们才能在去中心化网络上创建能够自动执行、不可篡改的合约，从而支持像 DeFi、NFT、DAO 等新兴的区块链应用。因此，Solidity 是智能合约和去中心化应用开发的首选语言。</p>
+<p>Solidity 是一种专门为 <strong>区块链</strong> 和 <strong>智能合约</strong> 设计的编程语言，主要用于在区块链平台上编写和部署智能合约。与 Java、Python 等传统编程语言不同，Solidity 的应用场景是去中心化的区块链平台，尤其是以太坊（Ethereum）及其他兼容以太坊虚拟机（EVM）的平台。因此，Solidity 的使用并不涉及传统的应用开发或 Web 开发，而是涉及到区块链上的合约逻辑，尤其是涉及到资产转移、去中心化金融（DeFi）、治理、NFTs、代币发行等领域。</p>
+<p>以下是 Solidity 的主要应用场景和它为什么在这些领域中至关重要：</p>
+<h3 id="1-智能合约"><a href="#1-智能合约" class="headerlink" title="1. 智能合约"></a>1. <strong>智能合约</strong></h3><ul>
+<li><strong>定义</strong>：智能合约是存储在区块链上的自动化程序，它们能够在满足特定条件时自动执行合约条款。智能合约允许没有中介的情况下进行交易和协议执行，降低了信任成本。</li>
+<li><strong>为什么需要 Solidity</strong>：Java 和 Python 等语言通常用于中央化的应用开发，而区块链上的智能合约需要执行在去中心化的环境中，必须具有不可篡改性、透明性和安全性。Solidity 使得编写、部署和执行智能合约成为可能，尤其是与以太坊这样的区块链平台兼容。</li>
+</ul>
+<h3 id="2-去中心化应用（DApps）"><a href="#2-去中心化应用（DApps）" class="headerlink" title="2. 去中心化应用（DApps）"></a>2. <strong>去中心化应用（DApps）</strong></h3><ul>
+<li><strong>定义</strong>：去中心化应用（DApps）是建立在区块链上的应用，具有去中心化、开放性、透明性等特征。DApps 不依赖于传统的中央服务器，而是使用智能合约来管理应用逻辑。</li>
+<li><strong>为什么需要 Solidity</strong>：在 DApp 中，前端通常与传统技术栈（如 JavaScript、React）结合使用，但合约逻辑和交易管理是通过 Solidity 编写的。这是因为区块链网络上的数据需要通过智能合约来管理和处理，Solidity 提供了这种功能。</li>
+</ul>
+<h3 id="3-去中心化金融（DeFi）"><a href="#3-去中心化金融（DeFi）" class="headerlink" title="3. 去中心化金融（DeFi）"></a>3. <strong>去中心化金融（DeFi）</strong></h3><ul>
+<li><strong>定义</strong>：去中心化金融（DeFi）指的是建立在区块链上的一系列金融服务，如借贷、交易、保险等，没有中介参与，所有操作都由智能合约执行。</li>
+<li><strong>为什么需要 Solidity</strong>：DeFi 应用需要通过智能合约自动执行复杂的金融交易，比如借贷、资产交换和衍生品合约。Solidity 是开发这些智能合约的核心语言，允许开发者设计和管理 DeFi 协议。</li>
+</ul>
+<h3 id="4-代币和NFT（非同质化代币）"><a href="#4-代币和NFT（非同质化代币）" class="headerlink" title="4. 代币和NFT（非同质化代币）"></a>4. <strong>代币和NFT（非同质化代币）</strong></h3><ul>
+<li><strong>定义</strong>：代币和 NFTs 是区块链上的数字资产。代币通常用于代表某种资产或权益，而 NFT 是独一无二的数字资产，通常用于表示艺术品、收藏品、游戏物品等。</li>
+<li><strong>为什么需要 Solidity</strong>：Solidity 可以用来创建代币标准（如 ERC-20 和 ERC-721），并在区块链上生成这些代币或 NFT。通过 Solidity，开发者可以在以太坊等平台上实现发行、转移和管理代币的功能。</li>
+</ul>
+<h3 id="5-区块链治理"><a href="#5-区块链治理" class="headerlink" title="5. 区块链治理"></a>5. <strong>区块链治理</strong></h3><ul>
+<li><strong>定义</strong>：区块链治理涉及到对去中心化网络和协议进行管理和决策的过程。它通常通过投票或分配权利来做出决策。</li>
+<li><strong>为什么需要 Solidity</strong>：许多去中心化组织（DAO）使用智能合约来管理投票和决策过程。Solidity 可以编写治理合约，通过智能合约自动执行选举、提案等流程，确保治理的透明性和自动化。</li>
+</ul>
+<h3 id="6-去中心化身份（DID）"><a href="#6-去中心化身份（DID）" class="headerlink" title="6. 去中心化身份（DID）"></a>6. <strong>去中心化身份（DID）</strong></h3><ul>
+<li><strong>定义</strong>：去中心化身份（DID）是一种基于区块链的身份管理系统，允许个人控制和管理自己的身份信息，不依赖于传统的身份提供者。</li>
+<li><strong>为什么需要 Solidity</strong>：通过 Solidity，可以编写管理去中心化身份的智能合约，确保身份数据的隐私性和安全性，用户可以控制自己的身份信息，并授权特定操作。</li>
+</ul>
+<h3 id="7-供应链管理"><a href="#7-供应链管理" class="headerlink" title="7. 供应链管理"></a>7. <strong>供应链管理</strong></h3><ul>
+<li><strong>定义</strong>：供应链管理是指管理商品和服务流通的过程，确保产品从生产到消费的每个环节都能被追踪和验证。</li>
+<li><strong>为什么需要 Solidity</strong>：通过 Solidity 编写的智能合约可以用于追踪供应链中的商品流通，确保每个环节的数据是透明和不可篡改的，增加供应链的可信度。</li>
+</ul>
+<h3 id="为什么需要-Solidity，而不是传统的编程语言？"><a href="#为什么需要-Solidity，而不是传统的编程语言？" class="headerlink" title="为什么需要 Solidity，而不是传统的编程语言？"></a>为什么需要 Solidity，而不是传统的编程语言？</h3><ol>
+<li><p><strong>区块链的去中心化特性</strong>：</p>
+<ul>
+<li>在传统的应用开发中（如 Java 或 Python），你通常在中央服务器或客户端上运行程序，而区块链是去中心化的，所有计算和存储都分布在多个节点上。Solidity 允许开发者编写的代码能在这种去中心化环境中执行。</li>
+</ul>
+</li>
+<li><p><strong>不可篡改性和透明性</strong>：</p>
+<ul>
+<li>区块链上的数据一旦存储就不可更改，这对于智能合约的执行至关重要。Solidity 是为这种特性量身定制的，它确保部署到区块链上的合约代码是不可修改且可以被所有人透明查看的。</li>
+</ul>
+</li>
+<li><p><strong>与区块链兼容性</strong>：</p>
+<ul>
+<li>Solidity 是与区块链（特别是以太坊）的虚拟机（EVM）兼容的编程语言，直接面向区块链的数据结构和操作。而传统语言（如 Java 或 Python）并不直接支持与区块链的集成，通常需要通过中介层（如 Web3.js 或 Web3.py）与区块链进行交互。</li>
+</ul>
+</li>
+<li><p><strong>Gas 和交易费用</strong>：</p>
+<ul>
+<li>Solidity 程序的执行依赖于区块链的 Gas 机制。每次执行合约时，用户需要支付一定的费用，称为 Gas，用以补偿网络计算资源的消耗。传统编程语言不涉及这样的资源消耗机制。</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然 Java 和 Python 是非常强大的编程语言，适用于 Web 开发、应用开发等多种场景，但它们并不具备直接与区块链交互的能力。Solidity 是专门为区块链环境设计的，能够编写智能合约、管理去中心化资产和执行区块链上的交易逻辑。只有通过 Solidity，我们才能在去中心化网络上创建能够自动执行、不可篡改的合约，从而支持像 DeFi、NFT、DAO 等新兴的区块链应用。因此，Solidity 是智能合约和去中心化应用开发的首选语言。</p>
+<h2 id="？你说solidity用作去中心，记录资产来去，移动，比如我买了一个链上的资产-所有人都知道了我的资产-10-意思是solidity编写的合约会自动记录我的资产-10，发布到链上"><a href="#？你说solidity用作去中心，记录资产来去，移动，比如我买了一个链上的资产-所有人都知道了我的资产-10-意思是solidity编写的合约会自动记录我的资产-10，发布到链上" class="headerlink" title="？你说solidity用作去中心，记录资产来去，移动，比如我买了一个链上的资产 所有人都知道了我的资产-10 意思是solidity编写的合约会自动记录我的资产-10，发布到链上?"></a>？你说solidity用作去中心，记录资产来去，移动，比如我买了一个链上的资产 所有人都知道了我的资产-10 意思是solidity编写的合约会自动记录我的资产-10，发布到链上?</h2><p>是的，你的理解是正确的！Solidity 编写的智能合约可以自动管理链上资产的转移，并将所有操作记录在区块链上。具体来说，当你通过智能合约购买一个链上的资产时，合约会自动执行相关操作，比如更新你的余额、转移资产，并将这些变化提交到区块链上。这些操作会被所有参与者和节点所验证，并不可篡改地记录在区块链中。</p>
+<p>让我们具体看看这个过程：</p>
+<h3 id="1-资产转移的过程"><a href="#1-资产转移的过程" class="headerlink" title="1. 资产转移的过程"></a>1. <strong>资产转移的过程</strong></h3><p>假设你在一个基于以太坊的去中心化应用（DApp）中购买资产。资产可能是某种代币、NFT（非同质化代币）或者是其他形式的资产。这时，你和智能合约的交互大致会是这样的：</p>
+<ul>
+<li><p><strong>合约定义资产转移逻辑</strong>：Solidity 合约会定义一些函数，用来管理资产的转移。例如，当你购买某个资产时，合约会检查你账户中的余额，确保你有足够的资金，并在成功交易后更新你的余额。</p>
+</li>
+<li><p><strong>发起交易</strong>：你发起购买请求，这通常通过你的钱包（例如 MetaMask）与智能合约进行交互。在这时，你的钱包会通过网络发送交易请求到区块链网络。</p>
+</li>
+<li><p><strong>智能合约执行</strong>：合约接收到你的交易请求后，它会检查条件（例如，你的余额是否足够）。如果条件满足，合约会更新区块链上的数据，比如减少你的余额并转移资产给你。</p>
+</li>
+</ul>
+<h3 id="2-智能合约的工作原理"><a href="#2-智能合约的工作原理" class="headerlink" title="2. 智能合约的工作原理"></a>2. <strong>智能合约的工作原理</strong></h3><p>让我们假设你正在使用一个 ERC-20 代币智能合约来购买资产。智能合约中的代码可能是这样的：</p>
+<p>solidity</p>
+<p>复制代码</p>
+<p><code>pragma solidity ^0.8.0;  interface IERC20 &#123;     function transfer(address recipient, uint256 amount) external returns (bool); &#125;  contract AssetPurchase &#123;     IERC20 public token;      constructor(address tokenAddress) &#123;         token = IERC20(tokenAddress);     &#125;      function buyAsset(address buyer, uint256 amount) public &#123;         require(token.transfer(buyer, amount), &quot;Transfer failed&quot;);     &#125; &#125;</code></p>
+<ul>
+<li><strong>构造函数</strong>：这个合约初始化时会设置代币的合约地址。</li>
+<li><strong><code>buyAsset</code> 函数</strong>：当用户调用 <code>buyAsset</code> 函数时，它会尝试通过 <code>transfer</code> 方法将代币转账给买家。这里的转账实际上就是一个资产的移动，你的余额会被减少，并且这次转账会自动记录在区块链上。</li>
+</ul>
+<h3 id="3-区块链如何记录资产变动"><a href="#3-区块链如何记录资产变动" class="headerlink" title="3. 区块链如何记录资产变动"></a>3. <strong>区块链如何记录资产变动</strong></h3><p>区块链的主要特性是 <strong>不可篡改性</strong> 和 <strong>透明性</strong>。当智能合约执行完毕后，所有操作会被打包进一个区块，并添加到区块链中。这个区块链上的记录是公开的，可以被任何人查询。</p>
+<ul>
+<li><p><strong>公开记录</strong>：交易被打包进区块，并被所有网络节点验证。无论是转账、资产购买还是其他操作，都会被记录为一个区块，并永久存储在链上。</p>
+</li>
+<li><p><strong>无法篡改</strong>：一旦数据写入区块链，它就无法被修改或删除。这意味着你购买资产的记录（例如，资产-10）会永久保存在链上，所有人都可以查看，但无法改变。</p>
+</li>
+</ul>
+<h3 id="4-示例：购买资产并记录到区块链"><a href="#4-示例：购买资产并记录到区块链" class="headerlink" title="4. 示例：购买资产并记录到区块链"></a>4. <strong>示例：购买资产并记录到区块链</strong></h3><p>假设你用以太币（ETH）购买了某种代币。智能合约会执行以下操作：</p>
+<ol>
+<li><strong>检查余额</strong>：合约会检查你的账户中是否有足够的以太币来支付购买价格。</li>
+<li><strong>扣除资产</strong>：如果条件满足，合约会从你的账户中扣除购买代币的费用。</li>
+<li><strong>转移资产</strong>：合约将购买的代币转移到你的账户。</li>
+<li><strong>记录交易</strong>：所有的交易数据（比如转账金额、时间、交易双方）会被提交到区块链，其他用户也能查看这个交易。</li>
+</ol>
+<p>通过这样的机制，Solidity 编写的智能合约能够自动处理所有资产的变动，并将其透明、公开地记录在区块链上，确保没有人能篡改或者隐瞒这些交易记录。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>是的，Solidity 编写的智能合约能够自动管理和记录资产的转移。所有的交易和资产变动都会被记录到区块链上，任何人都可以查询这些记录，确保透明性和不可篡改性。在你的购买过程中，合约会自动更新你的资产（例如余额减少），并将这些变动发布到区块链上，让所有参与者都能看到这些操作。</p>
+<h2 id="链上可以记录交易-初始用户的基本资产从哪来的？"><a href="#链上可以记录交易-初始用户的基本资产从哪来的？" class="headerlink" title="链上可以记录交易 初始用户的基本资产从哪来的？"></a>链上可以记录交易 初始用户的基本资产从哪来的？</h2><p>然而，有一些方法可以间接了解用户资产的来源：</p>
+<h3 id="1-区块链交易历史（链上追溯）"><a href="#1-区块链交易历史（链上追溯）" class="headerlink" title="1. 区块链交易历史（链上追溯）"></a>1. <strong>区块链交易历史（链上追溯）</strong></h3><ul>
+<li><strong>通过链上地址追溯</strong>：区块链是公开透明的，你可以查询一个钱包地址的交易历史，查看它收到的每一笔交易。例如，如果一个用户的钱包地址通过智能合约或其他用户收到了一笔资产转账，你可以查看这笔交易的来源地址，进一步追溯资金的来源。这种追溯过程可以追溯到该用户资产的最早来源。</li>
+<li><strong>链上钱包地址</strong>：用户的钱包地址本身就是一个唯一标识。通过这个地址，你可以查看到所有相关的交易，包括转入和转出。这对于查找资金的来源非常有效。例如，你可以通过查找该地址的历史交易，追溯该钱包的资产来自何处（例如，来自某个交易所的充值，或者某个合约的奖励等）。</li>
+</ul>
+<h3 id="2-智能合约和代币的发行"><a href="#2-智能合约和代币的发行" class="headerlink" title="2. 智能合约和代币的发行"></a>2. <strong>智能合约和代币的发行</strong></h3><ul>
+<li><strong>合约逻辑</strong>：当用户通过智能合约进行交易时，合约本身可能会记录资金的来源。例如，某些代币合约会记录代币的“发行”和“铸造”过程。在某些情况下，你可以通过查阅合约的代码和交易历史，找出用户资产（例如代币）的来源。</li>
+<li><strong>初始代币分发</strong>：很多区块链项目在代币发行时会进行ICO（Initial Coin Offering）或空投（Airdrop），这些代币的来源可以追溯到发行合约。用户如果在某个特定的时刻参与了ICO或者收到空投，那些资产的来源可以在区块链上找到。</li>
+</ul>
+<h3 id="3-Token-Minting-与支付的来源"><a href="#3-Token-Minting-与支付的来源" class="headerlink" title="3. Token Minting 与支付的来源"></a>3. <strong>Token Minting 与支付的来源</strong></h3><ul>
+<li><strong>代币铸造</strong>：在去中心化应用（DApp）中，用户的资产可能通过代币铸造（minting）或购买（buying）获得。代币的来源通常通过智能合约中定义的规则来生成。例如，用户参与某个应用程序或游戏时，可能会通过完成任务、购买、参与流动性挖矿等方式获得资产（比如代币或NFT）。在这种情况下，合约会定义如何创建新资产并将其分配给用户。</li>
+<li><strong>合约中记录的来源</strong>：某些合约会保存资产的来源，例如“通过某平台购买”、“通过某个合约奖励获得”或“通过参与某个活动”获得。</li>
+</ul>
+<h3 id="4-第三方服务提供的交易历史"><a href="#4-第三方服务提供的交易历史" class="headerlink" title="4. 第三方服务提供的交易历史"></a>4. <strong>第三方服务提供的交易历史</strong></h3><ul>
+<li><strong>交易所记录</strong>：如果用户的资产来自中心化交易所（CEX），则交易所通常会记录用户的存取款历史。例如，如果用户从交易所充值了资产，交易所会记录该用户的充值交易。对于去中心化交易所（DEX），链上也会显示资金流动，但资金的初始来源（例如用户是否曾在某个中心化平台交易）通常不会直接显示在链上。</li>
+<li><strong>跨平台追踪</strong>：在跨平台的操作中，例如一个用户从一个链上资产转到另一个链，资产的来源可以通过链上或跨链的桥接（bridge）协议进行追溯。</li>
+</ul>
+<h3 id="5-合约事件与日志"><a href="#5-合约事件与日志" class="headerlink" title="5. 合约事件与日志"></a>5. <strong>合约事件与日志</strong></h3><ul>
+<li><strong>事件日志</strong>：在智能合约中，通常会使用 <code>event</code> 来记录重要操作。通过这些事件日志，开发者和用户可以追踪资产的来源。例如，合约可以在发行代币时发出事件，表明资产的铸造和转账过程。这些事件日志可以在区块链浏览器（如 Etherscan）中查看，进一步帮助追溯资产的来源。</li>
+</ul>
+<h3 id="示例：代币转移与初始来源"><a href="#示例：代币转移与初始来源" class="headerlink" title="示例：代币转移与初始来源"></a>示例：代币转移与初始来源</h3><p>假设一个用户从某个智能合约中购买了代币或资产，以下是这个过程的追溯方式：</p>
+<ol>
+<li><strong>用户购买代币</strong>：用户通过合约购买某种代币，合约会记录代币的发放，更新用户的余额。</li>
+<li><strong>查看代币转账历史</strong>：通过查看智能合约的交易历史（例如 ERC-20 代币的 <code>Transfer</code> 事件），你可以看到代币的发放来源、金额以及时间戳。</li>
+<li><strong>追溯源头</strong>：你还可以通过钱包地址追溯资金的来源。如果该用户的地址曾经接收到某个区块链钱包的充值或某个代币的发行，你可以继续追溯到源头。</li>
+</ol>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p>区块链的透明性让你能够追溯用户资产的来源，但这需要你查阅区块链上的交易记录、智能合约事件和代币的发行历史。对于资产的“初始来源”，你可能需要通过用户的交易历史来追溯，也可以通过合约逻辑了解资产如何生成或转移。尽管区块链上的数据是公开的，但智能合约和资产的来源通常是间接记录的，需要通过相关的交易和事件日志来进行追溯。</p>
+<p>. 从中心化交易所（CEX）购买<br>如果你刚接触区块链和加密货币，最简单的方式是通过中心化交易所（如 Coinbase、Binance、KuCoin、OKEx 等）购买加密资产。这里是一个简要的步骤：</p>
+<p>注册交易所账户：在一个中心化交易所注册账户，并进行身份验证（KYC）。<br>充值法币：将你的法币（例如 USD、EUR、CNY 等）存入交易所账户。通常可以通过银行转账、信用卡或其他支付方式进行充值。<br>购买加密货币：使用你的法币购买加密货币（如比特币 BTC、以太坊 ETH、USDT 稳定币等）。你可以选择通过市场价直接购买，或者设定价格购买。<br>提现到钱包：购买加密货币后，你可以将其从交易所提取到你的个人钱包中。这样，你可以将资产控制在自己手中，避免交易所的风险。<br>一旦你有了这些加密资产，就可以在去中心化平台或智能合约中进行交易或购买商品。</p>
+<ol start="2">
+<li>从去中心化交易所（DEX）交换资产<br>去中心化交易所（如 Uniswap、Sushiswap、PancakeSwap）允许你无需中介即可直接与其他用户交换资产。以下是通过 DEX 交换资产的过程：</li>
+</ol>
+<p>安装数字钱包：首先，你需要一个支持 Web3 的数字钱包（如 MetaMask、Trust Wallet 或 Coinbase Wallet）。<br>连接钱包：将你的钱包与 DEX 连接。一般来说，去中心化交易所会提供一个“连接钱包”的按钮，点击后选择你的钱包。<br>获取加密资产：你可以使用你的现有加密货币（如 ETH 或 USDT）交换其他资产（如你想购买的代币）。比如，你可以通过 Uniswap 用 ETH 交换代币。<br>进行交易：在 DEX 上找到你想交易的资产对，并提交交易。交易成功后，资产将直接转入你的钱包。<br>3. 参与去中心化金融（DeFi）平台<br>如果你已经拥有一些加密资产，并希望通过去中心化平台赚取更多资产（例如通过质押、借贷等方式），你可以参与 DeFi 服务。这些平台通常允许用户通过质押加密资产来获得利息或奖励代币，间接为你提供更多资产。</p>
+<p>使用 DeFi 协议：例如，你可以使用 Compound、Aave、Yearn 等 DeFi 协议，将你的加密资产存入这些平台，获取利息或代币奖励。<br>借贷资产：你还可以通过 DeFi 借贷平台借取加密资产。例如，Aave 和 Compound 都允许你将加密货币作为抵押品进行借款。<br>4. 参加空投（Airdrop）<br>一些新兴的加密项目会通过空投向用户免费赠送代币。这些代币可以用来购买商品、服务或参与 DeFi 操作。空投通常需要你完成一些简单的任务，如关注社交媒体账号、加入社区、参与测试网等。</p>
+<p>关注空投项目：你可以关注一些加密货币的空投网站（例如 AirdropAlert、CoinMarketCap 的 Airdrop 页面等），查看有哪些新项目正在进行空投。<br>参与任务：根据项目要求参与空投任务，完成任务后，你将获得免费的代币。<br>5. 工作赚取加密资产<br>一些平台和个人雇主提供加密货币支付，允许你通过工作赚取加密资产。你可以为提供加密货币支付的公司或平台提供服务（例如编程、设计、写作等），赚取比特币、以太坊等加密货币。</p>
+<p>寻找加密货币工作：可以通过网站如 CryptoJobs、Freelancer、Upwork 等找到加密货币支付的工作。<br>6. 通过挖矿获得资产<br>如果你具备一定的技术条件和硬件设备，也可以通过挖矿来获取加密资产。挖矿是通过为区块链网络提供计算力，帮助验证交易并产生新区块来获得奖励的过程。</p>
+<p>选择挖矿项目：常见的挖矿项目包括比特币、以太坊（ETH）等。你需要配置矿机并选择适合的挖矿池来参与。<br>加入矿池：如果你不是独立矿工，你可以加入矿池。矿池会将多个矿工的计算力合并，共同挖掘区块，并根据贡献的计算力分配奖励。<br>7. 使用信用卡购买加密资产<br>如果你希望快速获得初始资产并直接购买加密货币，一些平台允许你通过信用卡购买加密货币。例如，Coinbase、Binance 和其他平台支持通过信用卡或借记卡购买比特币、以太坊等加密货币。</p>
+<p>选择信用卡支付平台：选择一个支持信用卡购买加密资产的平台，注册并验证你的身份，然后直接使用信用卡购买你需要的资产。</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E5%95%A5solidity%E6%98%AF%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E9%A6%96%E9%80%89%E8%AF%AD%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">为啥solidity是智能合约的首选语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%85%B6%E4%BB%96%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.</span> <span class="toc-text">与其他语言的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solidity%E4%B8%BB%E8%A6%81%E7%94%A8%E5%9C%A8%E5%B9%B2%E4%BB%80%E4%B9%88-%E6%AF%94%E5%A6%82java-python-%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8Cweb%E5%BC%80%E5%8F%91%EF%BC%8C%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9D%9E%E8%A6%81solidity%E5%91%A2"><span class="toc-number">3.</span> <span class="toc-text">?solidity主要用在干什么  比如java python 可以进行web开发，应用开发，为什么非要solidity呢</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6"><span class="toc-number">3.1.</span> <span class="toc-text">1. 智能合约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%BA%94%E7%94%A8%EF%BC%88DApps%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">2. 去中心化应用（DApps）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E9%87%91%E8%9E%8D%EF%BC%88DeFi%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">3. 去中心化金融（DeFi）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%BB%A3%E5%B8%81%E5%92%8CNFT%EF%BC%88%E9%9D%9E%E5%90%8C%E8%B4%A8%E5%8C%96%E4%BB%A3%E5%B8%81%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">4. 代币和NFT（非同质化代币）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%8C%BA%E5%9D%97%E9%93%BE%E6%B2%BB%E7%90%86"><span class="toc-number">3.5.</span> <span class="toc-text">5. 区块链治理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E8%BA%AB%E4%BB%BD%EF%BC%88DID%EF%BC%89"><span class="toc-number">3.6.</span> <span class="toc-text">6. 去中心化身份（DID）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E4%BE%9B%E5%BA%94%E9%93%BE%E7%AE%A1%E7%90%86"><span class="toc-number">3.7.</span> <span class="toc-text">7. 供应链管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-Solidity%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9F"><span class="toc-number">3.8.</span> <span class="toc-text">为什么需要 Solidity，而不是传统的编程语言？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.9.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EF%BC%9F%E4%BD%A0%E8%AF%B4solidity%E7%94%A8%E4%BD%9C%E5%8E%BB%E4%B8%AD%E5%BF%83%EF%BC%8C%E8%AE%B0%E5%BD%95%E8%B5%84%E4%BA%A7%E6%9D%A5%E5%8E%BB%EF%BC%8C%E7%A7%BB%E5%8A%A8%EF%BC%8C%E6%AF%94%E5%A6%82%E6%88%91%E4%B9%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E9%93%BE%E4%B8%8A%E7%9A%84%E8%B5%84%E4%BA%A7-%E6%89%80%E6%9C%89%E4%BA%BA%E9%83%BD%E7%9F%A5%E9%81%93%E4%BA%86%E6%88%91%E7%9A%84%E8%B5%84%E4%BA%A7-10-%E6%84%8F%E6%80%9D%E6%98%AFsolidity%E7%BC%96%E5%86%99%E7%9A%84%E5%90%88%E7%BA%A6%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%AE%B0%E5%BD%95%E6%88%91%E7%9A%84%E8%B5%84%E4%BA%A7-10%EF%BC%8C%E5%8F%91%E5%B8%83%E5%88%B0%E9%93%BE%E4%B8%8A"><span class="toc-number">4.</span> <span class="toc-text">？你说solidity用作去中心，记录资产来去，移动，比如我买了一个链上的资产 所有人都知道了我的资产-10 意思是solidity编写的合约会自动记录我的资产-10，发布到链上?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B5%84%E4%BA%A7%E8%BD%AC%E7%A7%BB%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">1. 资产转移的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">2. 智能合约的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8C%BA%E5%9D%97%E9%93%BE%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E8%B5%84%E4%BA%A7%E5%8F%98%E5%8A%A8"><span class="toc-number">4.3.</span> <span class="toc-text">3. 区块链如何记录资产变动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%B4%AD%E4%B9%B0%E8%B5%84%E4%BA%A7%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E5%8C%BA%E5%9D%97%E9%93%BE"><span class="toc-number">4.4.</span> <span class="toc-text">4. 示例：购买资产并记录到区块链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">4.5.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E4%B8%8A%E5%8F%AF%E4%BB%A5%E8%AE%B0%E5%BD%95%E4%BA%A4%E6%98%93-%E5%88%9D%E5%A7%8B%E7%94%A8%E6%88%B7%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%B5%84%E4%BA%A7%E4%BB%8E%E5%93%AA%E6%9D%A5%E7%9A%84%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">链上可以记录交易 初始用户的基本资产从哪来的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8C%BA%E5%9D%97%E9%93%BE%E4%BA%A4%E6%98%93%E5%8E%86%E5%8F%B2%EF%BC%88%E9%93%BE%E4%B8%8A%E8%BF%BD%E6%BA%AF%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">1. 区块链交易历史（链上追溯）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%92%8C%E4%BB%A3%E5%B8%81%E7%9A%84%E5%8F%91%E8%A1%8C"><span class="toc-number">5.2.</span> <span class="toc-text">2. 智能合约和代币的发行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Token-Minting-%E4%B8%8E%E6%94%AF%E4%BB%98%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-number">5.3.</span> <span class="toc-text">3. Token Minting 与支付的来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BA%A4%E6%98%93%E5%8E%86%E5%8F%B2"><span class="toc-number">5.4.</span> <span class="toc-text">4. 第三方服务提供的交易历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%90%88%E7%BA%A6%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%97%A5%E5%BF%97"><span class="toc-number">5.5.</span> <span class="toc-text">5. 合约事件与日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BB%A3%E5%B8%81%E8%BD%AC%E7%A7%BB%E4%B8%8E%E5%88%9D%E5%A7%8B%E6%9D%A5%E6%BA%90"><span class="toc-number">5.6.</span> <span class="toc-text">示例：代币转移与初始来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">5.7.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-11-12-smart_contract/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&text=智能合约的问和答"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&is_video=false&description=智能合约的问和答"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=智能合约的问和答&body=Check out this article: https://imli.ink/2024/11/13/2024-11-12-smart_contract/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&title=智能合约的问和答"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&name=智能合约的问和答&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-11-12-smart_contract/&t=智能合约的问和答"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

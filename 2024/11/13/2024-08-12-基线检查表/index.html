@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="IDS检查表   分类 测评项 预期结果 评估操作示例 检查情况 结果 整改建议    安全审计 应对网络系统中的网络设备运行状况、网络流量、用户行为等进行日志记录 日志文件包含设备运行状况、网络流量、用户行为 登录到 IDS 中，找到日志管理，任意查询日志，查看日志详情   日志需记录设备运行状况、网络流量、用户行为等，管理员可自行配置调整   安全审计 审计记录应包括：事件的日期和时间、用户、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基线检查表">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="IDS检查表   分类 测评项 预期结果 评估操作示例 检查情况 结果 整改建议    安全审计 应对网络系统中的网络设备运行状况、网络流量、用户行为等进行日志记录 日志文件包含设备运行状况、网络流量、用户行为 登录到 IDS 中，找到日志管理，任意查询日志，查看日志详情   日志需记录设备运行状况、网络流量、用户行为等，管理员可自行配置调整   安全审计 审计记录应包括：事件的日期和时间、用户、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:44.934Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:44.934Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="基线检查">
+<meta property="article:tag" content="IDS">
+<meta property="article:tag" content="安全审计">
+<meta property="article:tag" content="网络设备防护">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>基线检查表</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-08-29-xctf-filter%E8%AE%BE%E8%AE%A1%E7%BC%BA%E9%99%B7%E5%AF%BC%E8%87%B4%E7%9A%84%E6%9D%83%E9%99%90%E7%BB%95%E8%BF%87/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/solr%20%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%20(CVE-2019-12409)/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&text=基线检查表"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&is_video=false&description=基线检查表"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=基线检查表&body=Check out this article: https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&name=基线检查表&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&t=基线检查表"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IDS%E6%A3%80%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">IDS检查表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">Linux基线检查表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E5%AE%8C%E6%95%B4%E6%A3%80%E6%9F%A5%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">MySQL 完整检查表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB"><span class="toc-number">3.1.</span> <span class="toc-text">一、身份鉴别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E9%BB%98%E8%AE%A4%E8%B4%A6%E5%8F%B7%E8%A6%81%E6%B1%82"><span class="toc-number">3.1.1.</span> <span class="toc-text">（一）默认账号要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81%E8%A6%81%E6%B1%82%E9%A1%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text">（二）数据库系统管理用户账号名和密码要求项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%A3%E4%BB%A4%E7%AD%96%E7%95%A5"><span class="toc-number">3.1.3.</span> <span class="toc-text">（三）管理员口令策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E8%B4%A6%E5%8F%B7%E6%9D%83%E9%99%90%E7%AD%96%E7%95%A5"><span class="toc-number">3.1.4.</span> <span class="toc-text">（四）账号权限策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">二、访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89MySQL-%E8%BF%90%E8%A1%8C%E5%9C%A8%E5%8D%95%E7%8B%AC%E7%9A%84%E7%BB%84%E4%B8%8A"><span class="toc-number">3.2.1.</span> <span class="toc-text">（一）MySQL 运行在单独的组上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="toc-number">3.2.2.</span> <span class="toc-text">（二）文件权限控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%BF%9D%E6%8A%A4"><span class="toc-number">3.2.3.</span> <span class="toc-text">（三）命令历史记录保护</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1"><span class="toc-number">3.3.</span> <span class="toc-text">三、安全审计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%90%AF%E7%94%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="toc-number">3.3.1.</span> <span class="toc-text">（一）启用日志记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%A1%E8%AE%A1%E8%AE%B0%E5%BD%95%E5%BA%94%E5%8C%85%E6%8B%AC%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%97%A5%E6%9C%9F%E3%80%81%E6%97%B6%E9%97%B4%E3%80%81%E7%B1%BB%E5%9E%8B%E3%80%81%E4%B8%BB%E4%BD%93%E6%A0%87%E8%AF%86%E3%80%81%E5%AE%A2%E4%BD%93%E6%A0%87%E8%AF%86%E5%92%8C%E7%BB%93%E6%9E%9C%E7%AD%89"><span class="toc-number">3.3.2.</span> <span class="toc-text">（二）审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BA%94%E9%81%B5%E5%BE%AA%E6%9C%80%E5%B0%8F%E5%AE%89%E8%A3%85%E7%9A%84%E5%8E%9F%E5%88%99%EF%BC%8C%E4%BB%85%E5%AE%89%E8%A3%85%E9%9C%80%E8%A6%81%E7%9A%84%E7%BB%84%E4%BB%B6%E5%92%8C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%8C%E5%B9%B6%E9%80%9A%E8%BF%87%E8%AE%BE%E7%BD%AE%E5%8D%87%E7%BA%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AD%89%E6%96%B9%E5%BC%8F%E4%BF%9D%E6%8C%81%E7%B3%BB%E7%BB%9F%E8%A1%A5%E4%B8%81%E5%8F%8A%E6%97%B6%E5%BE%97%E5%88%B0%E6%9B%B4%E6%96%B0"><span class="toc-number">3.3.3.</span> <span class="toc-text">（三）操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9"><span class="toc-number">3.4.</span> <span class="toc-text">四、其他内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E9%99%90%E5%88%B6%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7%E5%85%81%E8%AE%B8%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%95%B0%E9%87%8F"><span class="toc-number">3.4.1.</span> <span class="toc-text">（一）限制单个用户允许的连接数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3"><span class="toc-number">3.4.2.</span> <span class="toc-text">（二）服务监听端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E7%99%BB%E5%BD%95%E7%BB%88%E7%AB%AF%E8%B6%85%E6%97%B6%E9%94%81%E5%AE%9A"><span class="toc-number">3.4.3.</span> <span class="toc-text">（三）登录终端超时锁定</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E7%AD%96%E7%95%A5%E8%B0%83%E7%A0%94%E8%A1%A8"><span class="toc-number">4.</span> <span class="toc-text">防火墙策略调研表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows%E6%A0%87%E5%87%86%E6%A3%80%E6%9F%A5%E8%A1%A8a"><span class="toc-number">5.</span> <span class="toc-text">Windows标准检查表a</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        基线检查表
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:44.934Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:44.934Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5/">基线检查</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/IDS/" rel="tag">IDS</a>, <a class="p-category" href="/tags/%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5/" rel="tag">基线检查</a>, <a class="p-category" href="/tags/%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1/" rel="tag">安全审计</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E9%98%B2%E6%8A%A4/" rel="tag">网络设备防护</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="IDS检查表"><a href="#IDS检查表" class="headerlink" title="IDS检查表"></a>IDS检查表</h1><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>测评项</th>
+<th>预期结果</th>
+<th>评估操作示例</th>
+<th>检查情况</th>
+<th>结果</th>
+<th>整改建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全审计</td>
+<td>应对网络系统中的网络设备运行状况、网络流量、用户行为等进行日志记录</td>
+<td>日志文件包含设备运行状况、网络流量、用户行为</td>
+<td>登录到 IDS 中，找到日志管理，任意查询日志，查看日志详情</td>
+<td></td>
+<td></td>
+<td>日志需记录设备运行状况、网络流量、用户行为等，管理员可自行配置调整</td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td>审计记录应包括：事件的日期和时间、用户、事件类型、事件是否成功及其他与审计相关的信息</td>
+<td>操作日志中应包括上述几种类型</td>
+<td>登录到 IDS 中，找到操作日志，查看操作日志详情</td>
+<td></td>
+<td></td>
+<td>根据不同的 IDS 类型，对操作日志的记录详情进行调整</td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td>应能够根据记录数据进行分析，并生成审计报表</td>
+<td>IDS 应该能够根据记录数据进行分析，生成审计报表</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>网络设备防护</td>
+<td>应对登录网络设备的用户进行身份鉴别</td>
+<td>每个账户都有对应的口令，不存在空口令和弱口令</td>
+<td>用不同的账户和口令登录到系统中</td>
+<td></td>
+<td></td>
+<td>每个用户都要设置口令，不能存在空口令</td>
+</tr>
+<tr>
+<td>网络设备防护</td>
+<td>应对网络设备的管理员登录地址进行限制</td>
+<td>只有固定的 IP 地址才能以管理员的权限登录到系统中</td>
+<td>登录到系统中&gt;系统管理&gt;管理员&gt;管理员设置中有允许登录 IP</td>
+<td></td>
+<td></td>
+<td>登录到系统中&gt;系统管理&gt;管理员&gt;管理员设置中将允许登录 IP 设置为固定的 IP 地址</td>
+</tr>
+<tr>
+<td>网络设备防护</td>
+<td>主要网络设备应对同一用户选择两种或两种以上组合的鉴别技术来进行身份鉴别</td>
+<td>采用了两种及两种以上组合鉴别技术进行身份鉴别</td>
+<td>在登录过程中可以知道</td>
+<td></td>
+<td></td>
+<td>根据实际需求，建议尽量都选用两种或两种以上的组合鉴别技术进行身份鉴别</td>
+</tr>
+<tr>
+<td>网络设备防护</td>
+<td>身份鉴别信息应具有不易被冒用的特点，口令应有复杂度要求并定期更换</td>
+<td>口令长度至少为 10 位，包含数字，字母（大小写），特殊字符三种形式，更换周期为 90 天</td>
+<td>登录到系统中&gt;系统管理&gt;管理员&gt;登录参数设置</td>
+<td></td>
+<td></td>
+<td>建议整改为口令长度至少为 10 位，包含数字，字母（大小写），特殊字符三种形式，更换周期为 90 天</td>
+</tr>
+<tr>
+<td>网络设备防护</td>
+<td>应具有登录失败处理功能，可采取结束会话、限制非法登录次数和当网络登录连接超时自动退出等措施</td>
+<td>限制非法登录次数为 5 次，登录超时退出时间为 300 秒</td>
+<td>登录到系统中&gt;系统管理&gt;管理员&gt;登录参数设置</td>
+<td></td>
+<td></td>
+<td>建议设置为限制非法登录次数为 5 次，登录超时退出时间为 300 秒，避免非法登录的风险</td>
+</tr>
+<tr>
+<td>网络设备防护</td>
+<td>当对网络设备进行远程管理时，应采取必要措施防止鉴别信息在网络传输过程中被窃听</td>
+<td>应采用 SSL 加密方式对传输数据进行加密</td>
+<td>使用 https + IP 登录到管理后台，能成功登录就是采用了 SSL</td>
+<td></td>
+<td></td>
+<td>登录到系统中&gt;系统管理&gt;管理员&gt;web 访问协议设置中选择启用 https</td>
+</tr>
+</tbody></table>
+<h1 id="Linux基线检查表"><a href="#Linux基线检查表" class="headerlink" title="Linux基线检查表"></a>Linux基线检查表</h1><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>测评项</th>
+<th>预期结果</th>
+<th>评估操作示例</th>
+<th>检查情况</th>
+<th>结果</th>
+<th>整改建议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份鉴别</td>
+<td>应对登录操作系统和数据库系统的用户进行身份标识和鉴别</td>
+<td>1) 操作系统使用口令鉴别机制对用户进行身份标识和鉴别；<br>2) 登录时提示输入用户名和口令；以错误口令或空口令登录时提示登录失败，验证了登录控制功能的有效性；<br>3) 操作系统不存在密码为空的用户。</td>
+<td>cat &#x2F;etc&#x2F;passwd，cat &#x2F;etc&#x2F;shadow 查看文件中各用户名状态</td>
+<td></td>
+<td></td>
+<td>操作系统和数据库每个用户都必须设置登录用户名和登录密码，不能存在空密码</td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td>操作系统和数据库系统管理用户身份标识应具有不易被冒用的特点，口令应有复杂度要求并定期更换</td>
+<td>密码策略如下：<br>PASS_MAX_DAYS   90（生命期最大为 90 天）<br>PASS_MIN_DAYS   0（密码最短周期 0 天）<br>PASS_MIN_LEN   10（密码最小长度 10 位）<br>PASS_WARN_AGE 7（密码到期前 7 天提醒）<br>口令复杂度：<br>口令长度 8 位以上，并包含数字、字母、特殊字符三种形式</td>
+<td>more &#x2F;etc&#x2F;login.defs</td>
+<td></td>
+<td></td>
+<td>密码最大生存周期为 90 天</td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td></td>
+<td></td>
+<td>密码最短修改周期为 0 天，可以随时修改密码</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td></td>
+<td></td>
+<td>密码最小长度为 10 位，包含数字，特殊字符，字母（大小写）三种形式</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td></td>
+<td></td>
+<td>密码到期前 7 天必须提醒</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td>应启用登录失败处理功能，可采取结束会话、限制非法登录次数和自动退出等措施</td>
+<td>1) 操作系统已启用登陆失败处理、结束会话、限制非法登录次数等措施；<br>2) 当超过系统规定的非法登陆次数或时间登录操作系统时，系统锁定或自动断开连接</td>
+<td>cat &#x2F;etc&#x2F;pam.d&#x2F;system-auth，查看相应的登录设置</td>
+<td></td>
+<td></td>
+<td>建议限制，密码过期后重设的密码不能和前三次的密码相同</td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td>当对服务器进行远程管理时，应采取必要措施，防止鉴别信息在网络传输过程中被窃听</td>
+<td>1) 操作系统使用 SSH 协议进行远程连接；<br>2) 若未使用 SSH 方式进行远程管理，则查看是否使用 telnet 方式进行远程管理；</td>
+<td>查看是否运行 SSH：<br>cat service -status-all</td>
+<td>grep sshd;<br>查看是否使用 telnet 方式：cat service -status -all</td>
+<td>grep running；</td>
+<td></td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td>为操作系统和数据库的不同用户分配不同的用户名，确保用户名具有唯一性</td>
+<td>用户的标识唯一，若系统允许用户名相同，UID 不同，则 UID 是唯一性标识；若系统允许 UID 相同，则用户名是唯一性标识。</td>
+<td>cat &#x2F;etc&#x2F;passwd 文件中的用户名信息，每个信息用“：”分隔开来，每个字段对应的信息为：<br>注册名：口令（密文用 x 来代替）：UID：GID：用户名：用户主目录：命令解释程序 Shell</td>
+<td></td>
+<td></td>
+<td>UID 是唯一性标识，每个用户必须采用不同的 UID 来区分</td>
+</tr>
+<tr>
+<td>身份鉴别</td>
+<td>应采用两种或两种以上组合的鉴别技术对管理用户进行身份鉴别</td>
+<td>对管理员访谈，对于三级系统，必须使用两种或两种以上组合的鉴别技术实现用户身份鉴别，如密码和口令的组合使用。</td>
+<td>访谈管理员</td>
+<td></td>
+<td></td>
+<td>三级系统建议采用用户名密码 + 证书口令登录的方式；<br>三级以下系统可以采用一种鉴别技术。</td>
+</tr>
+<tr>
+<td>访问控制</td>
+<td>应启用访问控制功能，依据安全策略控制用户对资源的访问</td>
+<td>root 用户：<br>passwd 文件夹只有 rw - r - r 权限<br>shadow 文件夹只有 r - - - 权限<br>r &#x3D; 4 w &#x3D; 2 x &#x3D; 1</td>
+<td>在 root 权限下：ls - l &#x2F;etc&#x2F;passwd<br>ls - l &#x2F;etc&#x2F;shadow<br>查看用户权限。<br>- rw - r–r–：第一个 rw 表示文件所有者有读写权限；<br>第二个 r 表示与文件所有者同一组的用户只有读的权限；<br>第三个 r 表示不与文件所有者同一组的用户只有读的权限</td>
+<td></td>
+<td></td>
+<td>根据实际需求，对每个用户的访问权限进行限制，对敏感的文件夹限制访问用户的权限</td>
+</tr>
+<tr>
+<td>访问控制</td>
+<td>应根据管理用户的角色分配权限，实现管理用户的权限分离，仅授予管理用户所需的最小权限；</td>
+<td>访谈管理员，了解每个用户的作用、权限</td>
+<td></td>
+<td></td>
+<td>给予账户所需最小权限，避免出现特权用户</td>
+<td></td>
+</tr>
+<tr>
+<td>访问控制</td>
+<td>应实现操作系统和数据库系统特权用户的权限分离</td>
+<td>操作系统和数据库的特权用户的权限必须分离，避免一些特权用户拥有过大的权限，减少人为误操作</td>
+<td>访谈管理员</td>
+<td></td>
+<td></td>
+<td>分离数据库和操作系统的特权用户，不能使一个用户权限过大</td>
+</tr>
+<tr>
+<td>访问控制</td>
+<td>应严格限制默认帐户的访问权限，重命名系统默认帐户，修改这些帐户的默认口令</td>
+<td>默认账户已更名，或已被禁用</td>
+<td>cat &#x2F;etc&#x2F;passwd</td>
+<td></td>
+<td></td>
+<td>严格限制默认账户的访问权限，对存在的默认账户的用户名和口令进行修改。<br>使用 usermod - L 用户名，来锁定默认用户。</td>
+</tr>
+<tr>
+<td>访问控制</td>
+<td>应及时删除多余的、过期的帐户，避免共享帐户的存在</td>
+<td>不存在多余、过期和共享账户</td>
+<td>cat &#x2F;etc&#x2F;passwd</td>
+<td></td>
+<td></td>
+<td>删除、禁用例如 uucp，ftp 等多余账户</td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td>审计范围应覆盖到服务器和重要客户端上的每个操作系统用户和数据库用户</td>
+<td>系统开启了安全审计功能或部署了第三方安全审计设备</td>
+<td>service auditd status</td>
+<td></td>
+<td></td>
+<td>开启系统本身的安全审计功能，完整记录用户对操作系统和文件访问情况，或采用第三方的安全审计设备</td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td>审计内容应包括重要用户行为、系统资源的异常使用和重要系统命令的使用等系统内重要的安全相关事件</td>
+<td>审计功能已开启，包括：用户的添加和删除、审计功能的启动和关闭、审计策略的调整、权限变更、系统资源的异常使用、重要的系统操作（如用户登录、退出）等设置</td>
+<td>ps - ef</td>
+<td>grep auditd</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td>审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等</td>
+<td>审计记录包括事件的日期、时间、类型、主体标识、客体标识和结果等内容</td>
+<td>cat &#x2F;etc&#x2F;audit&#x2F;auditd.conf<br>cat &#x2F;etc&#x2F;audit&#x2F;audit.rules</td>
+<td></td>
+<td></td>
+<td>记录事件产生的时间，日期，类型，主客体标识等</td>
+</tr>
+<tr>
+<td>安全审计</td>
+<td>操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新</td>
+<td>1) 系统安装的组件和应用程序遵循了最小安装的原则；<br>2) 不必要的服务没有启动；<br>3) 不必要的端口没有打开；</td>
+<td>service –status-all</td>
+<td>grep running</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>资源控制</td>
+<td>应通过设定终端接入方式、网络地址范围等条件限制终端登录</td>
+<td>已设定终端登录安全策略及措施，非授权终端无法登录管理</td>
+<td>&#x2F;etc&#x2F;hosts.deny、&#x2F;etc&#x2F;hosts.allow 中对终端登录限制的相关配置参数</td>
+<td></td>
+<td></td>
+<td>建议配置固定的终端、特定的网络范围内才能进行终端登录</td>
+</tr>
+<tr>
+<td>资源控制</td>
+<td>应根据安全策略设置登录终端的操作超时锁定</td>
+<td>已在&#x2F;etc&#x2F;profile 中为 TMOUT 设置了合理的操作超时时间</td>
+<td>cat &#x2F;etc&#x2F;profile</td>
+<td></td>
+<td></td>
+<td>超时时间建议设置为 300 秒</td>
+</tr>
+</tbody></table>
+<h1 id="MySQL-完整检查表"><a href="#MySQL-完整检查表" class="headerlink" title="MySQL 完整检查表"></a>MySQL 完整检查表</h1><h2 id="一、身份鉴别"><a href="#一、身份鉴别" class="headerlink" title="一、身份鉴别"></a>一、身份鉴别</h2><h3 id="（一）默认账号要求"><a href="#（一）默认账号要求" class="headerlink" title="（一）默认账号要求"></a>（一）默认账号要求</h3><ul>
+<li>预期结果：不存在默认数据库和默认帐号；不存在匿名账户；应用系统应使用新建用户，不得使用系统默认账户。</li>
+<li>评估操作示例：<ul>
+<li>mysql&gt; show databases;</li>
+<li>mysql&gt; select * from user;</li>
+<li>只保留单个管理员 root 和应用系统专用账户。</li>
+</ul>
+</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：在不影响系统正常运行的情况下删除默认账号，若默认账号下有系统运行，则修改默认账号名。</li>
+</ul>
+<h3 id="（二）数据库系统管理用户账号名和密码要求项"><a href="#（二）数据库系统管理用户账号名和密码要求项" class="headerlink" title="（二）数据库系统管理用户账号名和密码要求项"></a>（二）数据库系统管理用户账号名和密码要求项</h3><ul>
+<li>预期结果：修改 root 用户默认口令，删除空口令；改变默认 mysql 管理员帐号，host 为空。</li>
+<li>评估操作示例：mysql&gt; select * from user;查看列表中 root 用户口令不为空，host 为空。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：修改 root 用户的默认密码，不能有空口令，MySQL 默认的账户为 root，需要新建一个账户。MySQL 账户的 Host&#x3D;%应该为空，这样来禁止远程连接。</li>
+</ul>
+<h3 id="（三）管理员口令策略"><a href="#（三）管理员口令策略" class="headerlink" title="（三）管理员口令策略"></a>（三）管理员口令策略</h3><ul>
+<li>预期结果：至少 8 位，数字、字母（大小写）、特殊字符组成的不规律密码。</li>
+<li>评估操作示例：mysql&gt;select password from user;查看密码。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：密码修改为 8 位以上，包含数字，字母（大小写），特殊字符三种形式。</li>
+</ul>
+<h3 id="（四）账号权限策略"><a href="#（四）账号权限策略" class="headerlink" title="（四）账号权限策略"></a>（四）账号权限策略</h3><ul>
+<li>预期结果：除管理员账户之外的其他账户不得拥有系统数据库的任何权限，不得拥有 File，Grant，Reload，Shutdown，Process 等权限的任意一种。</li>
+<li>评估操作示例：mysql&gt;show grants for root@localhost；查看 root 用户的权限。Show grants for+用户名@地址，可以查看指定账户的权限。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：修改除管理员外其他用户的权限，其他用户不能有 File，Grant，Reload，Shutdown，Process 等权限，不能出现其他高权限用户。</li>
+</ul>
+<h2 id="二、访问控制"><a href="#二、访问控制" class="headerlink" title="二、访问控制"></a>二、访问控制</h2><h3 id="（一）MySQL-运行在单独的组上"><a href="#（一）MySQL-运行在单独的组上" class="headerlink" title="（一）MySQL 运行在单独的组上"></a>（一）MySQL 运行在单独的组上</h3><ul>
+<li>预期结果：不能在 root 账户运行 MySQL 服务器，使用普通非特权用户运行。</li>
+<li>评估操作示例：mysql&gt;id mysql。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：MySQL 不能运行在 root 用户上，需新建一个专用账户给 MySQL 数据库。</li>
+</ul>
+<h3 id="（二）文件权限控制"><a href="#（二）文件权限控制" class="headerlink" title="（二）文件权限控制"></a>（二）文件权限控制</h3><ul>
+<li>预期结果：MySQL 的数据目录、日志目录，以及目录下的文件属主和属组只能是 mysql 账号，不能给予其他账号任何权限。</li>
+<li>评估操作示例：ls –la &#x2F;usr&#x2F;local&#x2F;mysql；查看数据目录所属的账号。ls –la &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;var；查看日志目录所属的账号。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：</li>
+</ul>
+<h3 id="（三）命令历史记录保护"><a href="#（三）命令历史记录保护" class="headerlink" title="（三）命令历史记录保护"></a>（三）命令历史记录保护</h3><ul>
+<li>预期结果：mysql.history 文件中为空，没有命令历史记录。</li>
+<li>评估操作示例：若没有修改存储历史命令的文件名，则是 mysql.history，我们执行 find &#x2F; -name mysql.history 站到文件夹所在的位置；cat 打开查看该文件内容。若修改了存储的文件名，则需要询问管理员确认存储位置。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：将.bash_history，.mysql_history 文件置空。ln -s &#x2F;dev&#x2F;null.bash_history；ln -s &#x2F;dev&#x2F;null.mysql_history；将历史命令缓存直接引向垃圾箱。</li>
+</ul>
+<h2 id="三、安全审计"><a href="#三、安全审计" class="headerlink" title="三、安全审计"></a>三、安全审计</h2><h3 id="（一）启用日志记录"><a href="#（一）启用日志记录" class="headerlink" title="（一）启用日志记录"></a>（一）启用日志记录</h3><ul>
+<li>预期结果：启用了日志记录，记录日志信息。log-error, log, log-slow-queries 这三种日志的状态是 ON 状态。</li>
+<li>评估操作示例：MySQL&gt;show variables like ‘log_%’;</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：进入 my.cnf 中，在[mysqld]下面加 log-error&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;log&#x2F;error.log。log&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;log&#x2F;mysql.log。long_query_time&#x3D;2。log-slow-queries&#x3D; &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;log&#x2F;slowquery.log。log-queries-not-using-indexes。</li>
+</ul>
+<h3 id="（二）审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等"><a href="#（二）审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等" class="headerlink" title="（二）审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等"></a>（二）审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等</h3><ul>
+<li>预期结果：审计记录包括事件的日期、时间、类型、主体标识、客体标识和结果等内容。</li>
+<li>评估操作示例：cat &#x2F;etc&#x2F;audit&#x2F;auditd.conf。cat &#x2F;etc&#x2F;audit&#x2F;audit.rules。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：首先需要开启 logbin 日志（记录数据库修改语句和生效时间），再与 init-connect 相结合，两者结合记录完整的信息。</li>
+</ul>
+<h3 id="（三）操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新"><a href="#（三）操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新" class="headerlink" title="（三）操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新"></a>（三）操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新</h3><ul>
+<li>预期结果：1)系统安装的组件和应用程序遵循了最小安装的原则；2)不必要的服务没有启动。</li>
+<li>评估操作示例：service –status-all | grep running。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：对不必要的服务进行关闭，仅保留系统所需要的最小服务。</li>
+</ul>
+<h2 id="四、其他内容"><a href="#四、其他内容" class="headerlink" title="四、其他内容"></a>四、其他内容</h2><h3 id="（一）限制单个用户允许的连接数量"><a href="#（一）限制单个用户允许的连接数量" class="headerlink" title="（一）限制单个用户允许的连接数量"></a>（一）限制单个用户允许的连接数量</h3><ul>
+<li>预期结果：对单个用户的连接数的最大值做出限制，my.cnf 中的 max_user_connections 系统变量为非零值。</li>
+<li>评估操作示例：MySQL&gt;show global variables like ‘%connect%’。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：根据系统的实际承受能力，限制单个用户连接数，在&#x2F;etc&#x2F;my.cnf 中进行限制。</li>
+</ul>
+<h3 id="（二）服务监听端口"><a href="#（二）服务监听端口" class="headerlink" title="（二）服务监听端口"></a>（二）服务监听端口</h3><ul>
+<li>预期结果：修改 mysql 默认监听端口 3306 为其他端口。</li>
+<li>评估操作示例：show global variables like ‘port’;看一下监听端口是不是 3306。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：vim my.cnf 文件，修改其中的 port 参数为非 3306 且未被占用的端口。</li>
+</ul>
+<h3 id="（三）登录终端超时锁定"><a href="#（三）登录终端超时锁定" class="headerlink" title="（三）登录终端超时锁定"></a>（三）登录终端超时锁定</h3><ul>
+<li>预期结果：设置了超时时间，在时间内没有操作，再次操作时就会提示超时。</li>
+<li>评估操作示例：MYSQL&gt;show VARIABLES like ‘%timeout%’;或访谈了解防火墙等其他安全设备是否做了相关策略。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：设置 interactive_timeout 为 300 秒。Mysql&gt; set global interactive_timeout&#x3D;300;</li>
+</ul>
+<h1 id="防火墙策略调研表"><a href="#防火墙策略调研表" class="headerlink" title="防火墙策略调研表"></a>防火墙策略调研表</h1><p><strong>防火墙策略调研表</strong></p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>设备名称</th>
+<th>所属位置</th>
+<th>设备用途</th>
+<th>部署模式（是否有设备心跳信息）</th>
+<th>本设备IP</th>
+<th>管理端IP</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表1.防火墙策略调研表</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>表2.允许放通的业务信息调研表</td>
+<td>开放的业务</td>
+<td>源IP</td>
+<td>业务端口</td>
+<td>对那些IP开放</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>表3.与其他业务系统互通的调研表</td>
+<td>需要访问的业务</td>
+<td>源IP</td>
+<td>目的IP</td>
+<td>目的端口</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>防火墙策略配置表</strong></p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>源IP</th>
+<th>目的IP</th>
+<th>源端口</th>
+<th>目的端口</th>
+<th>协议类型</th>
+<th>网卡接口</th>
+<th>包流向</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>80</td>
+<td>TCP</td>
+<td>*</td>
+<td>出</td>
+<td>允许</td>
+</tr>
+</tbody></table>
+<h1 id="Windows标准检查表a"><a href="#Windows标准检查表a" class="headerlink" title="Windows标准检查表a"></a>Windows标准检查表a</h1><p>一、身份鉴别</p>
+<ol>
+<li><strong>应对登录操作系统和数据库系统的用户进行身份标识和鉴别</strong><ul>
+<li>预期结果：操作系统使用口令鉴别机制对用户进行身份标识和鉴别，且不存在密码为空的用户。</li>
+<li>评估操作示例：访谈管理员，并查看登录过程中系统账户是否使用了密码进行登录验证。</li>
+<li>检查情况：</li>
+<li>结果：操作系统和数据库每个用户都必须设置登录用户名和登录密码，不能存在空密码。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>操作系统和数据库系统管理用户身份标识应具有不易被冒用的特点，口令应有复杂度要求并定期更换</strong><ul>
+<li>预期结果：密码启用复杂度要求；密码最小长度为8位；密码最短使用期限为1天；密码最长使用期限90天；强制密码历史为0个；用可还原的加密来储存密码已禁用。</li>
+<li>评估操作示例：cmd&gt;secpol.msc&gt;账户策略&gt;密码策略。</li>
+<li>检查情况：</li>
+<li>结果：密码启用复杂度要求；密码最小长度为8位；密码最短使用期限为1天；密码最长使用期限90天；强制密码历史为0个；用可还原的加密来储存密码已禁用。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应启用登录失败处理功能，可采取结束会话、限制非法登录次数和自动退出等措施</strong><ul>
+<li>预期结果：账户锁定时间10分钟；账户锁定阈值5次；重置账户锁定计数器10分钟后。</li>
+<li>评估操作示例：cmd&gt;secpol.msc&gt;账户策略&gt;账户锁定策略。</li>
+<li>检查情况：</li>
+<li>结果：账户锁定时间10分钟；账户锁定阈值5次；重置账户锁定计数器10分钟后。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>当对服务器进行远程管理时，应采取必要措施，防止鉴别信息在网络传输过程中被窃听</strong><ul>
+<li>预期结果：客户端和服务器之间发送数据受加密保护，加密级别根据实际情况来判断，尽量符合FIPS标准。</li>
+<li>评估操作示例：cmd&gt;control&gt;管理工具&gt;终端服务配置&gt;连接&gt;RDP - Tcp&gt;右键属性&gt;加密级别。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;control&gt;管理工具&gt;终端服务配置&gt;连接&gt;RDP - Tcp&gt;右键属性&gt;加密级别，选择尽量高级别的加密。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>为操作系统和数据库的不同用户分配不同的用户名，确保用户名具有唯一性</strong><ul>
+<li>预期结果：不存在重复的用户名。</li>
+<li>评估操作示例：cmd&gt;lusrmgr.msc查看“用户”中是否存在重复的用户名。</li>
+<li>检查情况：</li>
+<li>结果：对重复的用户名进行修改。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应采用两种或两种以上组合的鉴别技术对管理用户进行身份鉴别</strong><ul>
+<li>预期结果：对管理员访谈，对于三级系统，必须使用两种或两种以上组合的鉴别技术实现用户身份鉴别，如密码和口令的组合使用。</li>
+<li>评估操作示例：访谈管理员。</li>
+<li>检查情况：</li>
+<li>结果：三级系统建议采用用户名密码 + 证书口令登录的方式；三级以下系统可以采用一种鉴别技术。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+</ol>
+<p>二、访问控制</p>
+<ol>
+<li><strong>是否开启默认共享</strong><ul>
+<li>预期结果：没有共享文件夹。</li>
+<li>评估操作示例：cmd&gt;fsmgmt.msc，查看共享目录下面的文件夹的内容。</li>
+<li>检查情况：</li>
+<li>结果：关闭默认共享，cmd&gt;fsmgmt.msc，点击共享，右键选择停止共享。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>是否禁止ipc$空连接进行枚举</strong><ul>
+<li>预期结果：restrictanonymous &#x3D; 1。</li>
+<li>评估操作示例：cmd&gt;regedit&gt;HKEY_LOCAL_MACHINE&gt;SYSTEM&gt;CurrentControlSet&gt;Control&gt;LSA，找到LSA中的restrictanonymous值是否等于1。</li>
+<li>检查情况：</li>
+<li>结果：按照上述步骤，在注册表中修改restrictanonymous的值。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应实现操作系统和数据库系统特权用户的权限分离</strong><ul>
+<li>预期结果：操作系统和数据库的特权用户的权限必须分离，避免一些特权用户拥有过大的权限，减少人为误操作。</li>
+<li>评估操作示例：访谈管理员。</li>
+<li>检查情况：</li>
+<li>结果：分离数据库和操作系统的特权用户，不能使一个用户权限过大。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应严格限制默认帐户的访问权限，重命名系统默认帐户，修改这些帐户的默认口令</strong><ul>
+<li>预期结果：管理员账户已更改名称，禁用了guest（来宾）账号。</li>
+<li>评估操作示例：cmd&gt;lusrmgr.msc&gt;用户，管理员账号是否改名（默认为administrator），guest账户是否被禁用。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;lusrmgr.msc&gt;用户，可以修改管理员账号名称和禁用guest账户。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应及时删除多余的、过期的帐户</strong><ul>
+<li>预期结果：不存在多余、过期账户。</li>
+<li>评估操作示例：cmd&gt;lusrmgr.msc&gt;用户。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;lusrmgr.msc&gt;用户，删除一些与设备运行、维护等工作无关的账号。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+</ol>
+<p>三、安全审计</p>
+<ol>
+<li><strong>审计内容应包括重要用户行为、系统资源的异常使用和重要系统命令的使用等系统内重要的安全相关事件</strong><ul>
+<li>预期结果：审计功能已开启，包括：审核策略更改、审核登录事件、审核对象访问、审核过程跟踪、审核目录服务访问、审核特权使用、审核系统事件、审核帐户登录事件、审核帐户管理等设置。</li>
+<li>评估操作示例：cmd&gt;secpol.msc&gt;本地策略&gt;审核策略。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;secpol.msc&gt;本地策略&gt;审核策略，设置为成功或失败。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>日志记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等</strong><ul>
+<li>预期结果：日志记录包括事件的日期、时间、类型、主体标识、客体标识和结果等内容。</li>
+<li>评估操作示例：cmd&gt;eventvwr&gt;系统，查看其中的系统日志详细信息。</li>
+<li>检查情况：</li>
+<li>结果：</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>日志记录缓存的大小和达到上限后的覆盖规则</strong><ul>
+<li>预期结果：日志存储上限为20480kb，达到存储上限后按需要覆盖事件。</li>
+<li>评估操作示例：cmd&gt;eventvwr&gt;系统&gt;右键属性。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;eventvwr&gt;Windows日志&gt;系统&gt;右键属性，可自己调整日志记录规则和日志缓存大小。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+</ol>
+<p>四、入侵防范</p>
+<ol>
+<li><strong>设置升级服务器等方式保持系统补丁及时得到更新</strong><ul>
+<li>预期结果：已经更新到最近的补丁版本。</li>
+<li>评估操作示例：cmd&gt;control&gt;添加删除程序&gt;记录系统补丁号。</li>
+<li>检查情况：</li>
+<li>结果：及时更新最新的系统补丁。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>系统是否已经开启服务中一些不必要的服务</strong><ul>
+<li>预期结果：未开启一些不必要的服务（如Alerter，Remote Registry Service，Messenger，Task Scheduler等）。</li>
+<li>评估操作示例：cmd&gt;services.msc，查看正在运行的服务。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;services.msc，对一些不必要的服务进行关闭。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+</ol>
+<p>五、资源控制</p>
+<ol>
+<li><strong>应根据安全策略设置登录终端的操作超时锁定</strong><ul>
+<li>预期结果：应设置空闲的终端服务会话设置时间限制300秒。</li>
+<li>评估操作示例：cmd&gt;gpedit.msc&gt;计算机配置&gt;管理模板&gt;Windows组件&gt;终端服务&gt;。</li>
+<li>检查情况：</li>
+<li>结果：超时时间建议设置为300秒。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应根据安全策略限制终端连接的数量</strong><ul>
+<li>预期结果：根据系统实际情况，建议限制终端连接数量为5个。</li>
+<li>评估操作示例：cmd&gt;gpedit.msc&gt;计算机配置&gt;管理模板&gt;Windows组件&gt;终端服务&gt;。</li>
+<li>检查情况：</li>
+<li>结果：限制终端连接数量为5个，避免造成系统资源占用过多。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+</ol>
+<p>六、剩余信息保护</p>
+<ol>
+<li><strong>应保证操作系统和数据库管理系统用户的鉴别信息所在的存储空间，被释放或再分配给其他用户前得到完全清除，无论这些信息是存放在硬盘上还是在内存中</strong><ul>
+<li>预期结果：在登录系统时不显示上次的用户登录名。</li>
+<li>评估操作示例：cmd&gt;secpol.msc&gt;本地策略&gt;安全选项&gt;交互式登录不显示上次的用户名是否禁用。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;secpol.msc&gt;本地策略&gt;安全选项&gt;交互式登录不显示上次的用户名，右键属性选择启用。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+<li><strong>应确保系统内的文件、目录和数据库记录等资源所在的存储空间，被释放或重新分配给其他用户前得到完全清除</strong><ul>
+<li>预期结果：系统启用关机前清除虚拟内存页面。</li>
+<li>评估操作示例：cmd&gt;secpol.msc&gt;本地策略&gt;安全选项&gt;关机：清除虚拟内存页面文件。</li>
+<li>检查情况：</li>
+<li>结果：cmd&gt;secpol.msc&gt;本地策略&gt;安全选项&gt;关机：清除虚拟内存页面文件，右键属性选择开启。</li>
+<li>整改建议：</li>
+</ul>
+</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IDS%E6%A3%80%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">IDS检查表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">Linux基线检查表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E5%AE%8C%E6%95%B4%E6%A3%80%E6%9F%A5%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">MySQL 完整检查表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB"><span class="toc-number">3.1.</span> <span class="toc-text">一、身份鉴别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E9%BB%98%E8%AE%A4%E8%B4%A6%E5%8F%B7%E8%A6%81%E6%B1%82"><span class="toc-number">3.1.1.</span> <span class="toc-text">（一）默认账号要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81%E8%A6%81%E6%B1%82%E9%A1%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text">（二）数据库系统管理用户账号名和密码要求项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%A3%E4%BB%A4%E7%AD%96%E7%95%A5"><span class="toc-number">3.1.3.</span> <span class="toc-text">（三）管理员口令策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%9B%9B%EF%BC%89%E8%B4%A6%E5%8F%B7%E6%9D%83%E9%99%90%E7%AD%96%E7%95%A5"><span class="toc-number">3.1.4.</span> <span class="toc-text">（四）账号权限策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">二、访问控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89MySQL-%E8%BF%90%E8%A1%8C%E5%9C%A8%E5%8D%95%E7%8B%AC%E7%9A%84%E7%BB%84%E4%B8%8A"><span class="toc-number">3.2.1.</span> <span class="toc-text">（一）MySQL 运行在单独的组上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="toc-number">3.2.2.</span> <span class="toc-text">（二）文件权限控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%91%BD%E4%BB%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%BF%9D%E6%8A%A4"><span class="toc-number">3.2.3.</span> <span class="toc-text">（三）命令历史记录保护</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1"><span class="toc-number">3.3.</span> <span class="toc-text">三、安全审计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%90%AF%E7%94%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="toc-number">3.3.1.</span> <span class="toc-text">（一）启用日志记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%A1%E8%AE%A1%E8%AE%B0%E5%BD%95%E5%BA%94%E5%8C%85%E6%8B%AC%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%97%A5%E6%9C%9F%E3%80%81%E6%97%B6%E9%97%B4%E3%80%81%E7%B1%BB%E5%9E%8B%E3%80%81%E4%B8%BB%E4%BD%93%E6%A0%87%E8%AF%86%E3%80%81%E5%AE%A2%E4%BD%93%E6%A0%87%E8%AF%86%E5%92%8C%E7%BB%93%E6%9E%9C%E7%AD%89"><span class="toc-number">3.3.2.</span> <span class="toc-text">（二）审计记录应包括事件的日期、时间、类型、主体标识、客体标识和结果等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BA%94%E9%81%B5%E5%BE%AA%E6%9C%80%E5%B0%8F%E5%AE%89%E8%A3%85%E7%9A%84%E5%8E%9F%E5%88%99%EF%BC%8C%E4%BB%85%E5%AE%89%E8%A3%85%E9%9C%80%E8%A6%81%E7%9A%84%E7%BB%84%E4%BB%B6%E5%92%8C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%8C%E5%B9%B6%E9%80%9A%E8%BF%87%E8%AE%BE%E7%BD%AE%E5%8D%87%E7%BA%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AD%89%E6%96%B9%E5%BC%8F%E4%BF%9D%E6%8C%81%E7%B3%BB%E7%BB%9F%E8%A1%A5%E4%B8%81%E5%8F%8A%E6%97%B6%E5%BE%97%E5%88%B0%E6%9B%B4%E6%96%B0"><span class="toc-number">3.3.3.</span> <span class="toc-text">（三）操作系统应遵循最小安装的原则，仅安装需要的组件和应用程序，并通过设置升级服务器等方式保持系统补丁及时得到更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9"><span class="toc-number">3.4.</span> <span class="toc-text">四、其他内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E9%99%90%E5%88%B6%E5%8D%95%E4%B8%AA%E7%94%A8%E6%88%B7%E5%85%81%E8%AE%B8%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%95%B0%E9%87%8F"><span class="toc-number">3.4.1.</span> <span class="toc-text">（一）限制单个用户允许的连接数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E7%9B%91%E5%90%AC%E7%AB%AF%E5%8F%A3"><span class="toc-number">3.4.2.</span> <span class="toc-text">（二）服务监听端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E7%99%BB%E5%BD%95%E7%BB%88%E7%AB%AF%E8%B6%85%E6%97%B6%E9%94%81%E5%AE%9A"><span class="toc-number">3.4.3.</span> <span class="toc-text">（三）登录终端超时锁定</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E7%AD%96%E7%95%A5%E8%B0%83%E7%A0%94%E8%A1%A8"><span class="toc-number">4.</span> <span class="toc-text">防火墙策略调研表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows%E6%A0%87%E5%87%86%E6%A3%80%E6%9F%A5%E8%A1%A8a"><span class="toc-number">5.</span> <span class="toc-text">Windows标准检查表a</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&text=基线检查表"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&is_video=false&description=基线检查表"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=基线检查表&body=Check out this article: https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&title=基线检查表"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&name=基线检查表&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-08-12-%E5%9F%BA%E7%BA%BF%E6%A3%80%E6%9F%A5%E8%A1%A8/&t=基线检查表"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

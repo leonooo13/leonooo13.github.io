@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="态势感知安全检测1234567891011flowchart TD   A[开始] --&gt; B[背景与目标]   B --&gt; C[态势感知部署思路与功能]   C --&gt; D[态势感知监测实施方法]   D --&gt; E[攻防实战]   E --&gt; F[修筑流量监测纵深异构防御战线]   E --&gt; G[修筑重要系统防御战线]   E --&gt; H[构建协同预">
+<meta property="og:type" content="article">
+<meta property="og:title" content="态势感知安全检测">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="态势感知安全检测1234567891011flowchart TD   A[开始] --&gt; B[背景与目标]   B --&gt; C[态势感知部署思路与功能]   C --&gt; D[态势感知监测实施方法]   D --&gt; E[攻防实战]   E --&gt; F[修筑流量监测纵深异构防御战线]   E --&gt; G[修筑重要系统防御战线]   E --&gt; H[构建协同预">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:45.028Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:45.028Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="态势感知">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>态势感知安全检测</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-10-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-05-bypassthenextfirewall%20copy/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&text=态势感知安全检测"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&is_video=false&description=态势感知安全检测"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=态势感知安全检测&body=Check out this article: https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&name=态势感知安全检测&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&t=态势感知安全检测"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B"><span class="toc-number">1.</span> <span class="toc-text">态势感知安全检测</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        态势感知安全检测
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:45.028Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:45.028Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/">态势感知</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5/" rel="tag">态势感知</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="态势感知安全检测"><a href="#态势感知安全检测" class="headerlink" title="态势感知安全检测"></a>态势感知安全检测</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">   A[开始] --&gt; B[背景与目标]</span><br><span class="line">   B --&gt; C[态势感知部署思路与功能]</span><br><span class="line">   C --&gt; D[态势感知监测实施方法]</span><br><span class="line">   D --&gt; E[攻防实战]</span><br><span class="line">   E --&gt; F[修筑流量监测纵深异构防御战线]</span><br><span class="line">   E --&gt; G[修筑重要系统防御战线]</span><br><span class="line">   E --&gt; H[构建协同预警体系]</span><br><span class="line">   H --&gt; I[应用效果]</span><br><span class="line">   I --&gt; J[后续工作]</span><br><span class="line">   J --&gt; K[结束]</span><br></pre></td></tr></table></figure>
+
+<p>该文档中提到的具体措施包括：</p>
+<ol>
+<li><strong>修筑流量监测纵深异构防御战线</strong>：<ul>
+<li>了解各流量监测安全产品优缺点，摸排现有流量镜像网中各流量镜像节点的流量情况。</li>
+<li>统筹规划不同流量监测系统流量探针的流量分配方案，通过重做map、去重、过滤等手段解决“安全设备丢包、流量镜像网带宽占满”的问题。</li>
+<li>收敛对外暴露或跨域暴露的高危端口、弱密码、管理后台等，清理内网失陷机器及违规行为。</li>
+</ul>
+</li>
+<li><strong>修筑重要系统防御战线</strong>：<ul>
+<li>收集网络日志、安全日志、应用日志、资产信息、威胁情报等5大类数据，包括多种具体日志。</li>
+<li>编排数据源监控面板，依据历史基线定义每类数据源的收取频率，对未按时收到的日志进行标红显示并短信告警。</li>
+<li>将重要系统（如堡垒机系统、域控服务器、VPN、数据交换系统等）、重要账号加入重点监控范畴。</li>
+<li>在条件允许的情况下，对重要系统进行攻击测试，保证对其进行攻击或者变更能触发相关告警。</li>
+</ul>
+</li>
+<li><strong>构建协同预警体系</strong>：<ul>
+<li>整合实景化攻防技战术的深入研究成果以及强对抗环境下防御手段的创新应用，以智能化的方式实现海量攻击日志数据的自动关联分析，实时监测HW高危事件。</li>
+<li>通过API对接威胁情报管理平台，对访问【客户名称】资产的全量互联网IP进行威胁情报匹配，根据匹配结果进行相应处理（加入重点关注清单或立即封禁）。</li>
+<li>通过对接蜜罐系统，对攻击者的攻击行为进行捕获，获取攻击者相关信息，提升预警的精准度。</li>
+<li>对攻击模型不断迭代，减少误报率和漏报率，实时扩展攻击模型。</li>
+<li>提升安全态势感知平台中的数据质量，精准匹配数据模型。</li>
+</ul>
+</li>
+<li><strong>后续工作</strong>：<ul>
+<li>增加探针部署与各个网络节点，并与二级单位态势感知平台互联互通，建设中国【客户名称】网络安全态势感知一张图。</li>
+<li>全面利用安全态势感知平台将SIP、情报、沙箱等多维安全产品集中管控，重点做好防守对抗自动化和安全态势可视化。<ul>
+<li>防守对抗自动化：通过安全态势感知平台构建演习相关攻击分析场景，快速发现安全事件根源，确定攻击手段及评估攻击损失，实时、精准生成待封禁IP清单；结合安全技术自动化编排与响应，将封禁&#x2F;解封IP清单下发至两地三中心以及子公司的互联网墙进行实时封禁。</li>
+<li>安全态势可视化：在安全态势感知平台设置多维度的安全风险指标，构建安全运营、安全运维为一体的安全态势总览；借助可视化程度高且细粒度、高精度的风险监测模型，及时发现和处置网络中的可疑事件；通过动态描绘攻击及防守趋势图，实现安全风险及态势的全景可视化管控。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B"><span class="toc-number">1.</span> <span class="toc-text">态势感知安全检测</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&text=态势感知安全检测"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&is_video=false&description=态势感知安全检测"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=态势感知安全检测&body=Check out this article: https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&title=态势感知安全检测"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&name=态势感知安全检测&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-08-%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B/&t=态势感知安全检测"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

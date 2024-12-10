@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1 、身份认证安全1.1、暴力破解在没有验证码限制或者一次验证码可以多次使用的地方，使用已知用户对密码进行暴力破解或者用一个通用密码对用户进行暴力破解。简单的验证码爆破。 1.2、session &amp; cookie类会话固定攻击:利用服务器的session不变机制，借他人之手获得认证和授权，冒充他人。 Cookie仿冒:修改cookie中的某个参数可以登录其他用户。 1.3、弱加密未使用ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="业务逻辑漏洞的挖掘">
+<meta property="og:url" content="https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/index.html">
+<meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
+<meta property="og:description" content="1 、身份认证安全1.1、暴力破解在没有验证码限制或者一次验证码可以多次使用的地方，使用已知用户对密码进行暴力破解或者用一个通用密码对用户进行暴力破解。简单的验证码爆破。 1.2、session &amp; cookie类会话固定攻击:利用服务器的session不变机制，借他人之手获得认证和授权，冒充他人。 Cookie仿冒:修改cookie中的某个参数可以登录其他用户。 1.3、弱加密未使用ht">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-13T11:03:44.778Z">
+<meta property="article:modified_time" content="2024-11-13T11:03:44.778Z">
+<meta property="article:author" content="Leon">
+<meta property="article:tag" content="WebSec">
+<meta property="article:tag" content="BugBounty">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>业务逻辑漏洞的挖掘</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YLDTM3C61"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3YLDTM3C61');
+  </script>
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+      <link rel="alternate" href="/true" title="安全杂谈 | 网络安全、渗透测试、信息安全技术分享" type="application/atom+xml" />
+    
+	<!-- mathjax -->
+	
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/sites/">站点</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-07-29-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-07-28-hackthebox-unified/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&text=业务逻辑漏洞的挖掘"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&is_video=false&description=业务逻辑漏洞的挖掘"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=业务逻辑漏洞的挖掘&body=Check out this article: https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&name=业务逻辑漏洞的挖掘&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&t=业务逻辑漏洞的挖掘"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SRC%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">SRC中的逻辑漏洞总结</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        业务逻辑漏洞的挖掘
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Leon</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-11-13T11:03:44.778Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        
+        (Updated: <time datetime="2024-11-13T11:03:44.778Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/BugBounty/">BugBounty</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/BugBounty/" rel="tag">BugBounty</a>, <a class="p-category" href="/tags/WebSec/" rel="tag">WebSec</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>1 、身份认证安全<br>1.1、暴力破解<br>在没有验证码限制或者一次验证码可以多次使用的地方，使用已知用户对密码进行暴力破解或者用一个通用密码对用户进行暴力破解。简单的验证码爆破。</p>
+<p>1.2、session &amp; cookie类<br>会话固定攻击:利用服务器的session不变机制，借他人之手获得认证和授权，冒充他人。</p>
+<p>Cookie仿冒:修改cookie中的某个参数可以登录其他用户。</p>
+<p>1.3、弱加密<br>未使用https，是功能测试点，不好利用。</p>
+<p>前端加密，用密文去后台校验，并利用smart decode可解</p>
+<p>2、业务一致性安全<br>2.1、手机号篡改<br>抓包修改手机号码参数为其他号码尝试，例如在办理查询页面，输入自己的号码然后抓包，修改手机号码参数为其他人号码，查看是否能查询其他人的业务。</p>
+<p>2.2、邮箱或者用户篡改<br>抓包修改用户或者邮箱参数为其他用户或者邮箱</p>
+<p>2.3、订单id篡改<br>查看自己的订单id，然后修改id(加减一)查看是否能查看其他订单信息。</p>
+<p>2.4、商品编号篡改<br>例如积分兑换处，100个积分只能换商品编号为001,1000个积分只能换商品编号005,在100积分换商品的时候抓包把换商品的编号修改为005，用低积分换取高积分商品</p>
+<p>2.5、用户id篡改<br>抓包查看自己的用户id，然后修改id(加减1)查看是否能查看其他用户id信息。</p>
+<p>3、业务数据篡改<br>3.1、金额数据篡改<br>抓包修改金额等字段，例如在支付页面抓取请求中商品的金额字段，修改成任意数据的金额并提交，查看能否以修改后的金额数据完成业务流程。</p>
+<p>3.2、商品数量篡改<br>抓包修改商品数量等子段，将请求中的商品数量修改成任意数额，如负数并提交，查看能否以修改后的数量完成业务流程。</p>
+<p>3.3、最大数限制突破<br>很多商品限制用户购买数量时，服务器仅在页面通过js脚本限制，未在服务器端校验用户提交的数量，通过抓包修改商品最大数限制，将请求中的商品数量改为大于最大数限制的值，查看能否以修改后的数量完成业务流程。</p>
+<p>3.4、本地js参数修改<br>部分应用程序通过Javascript处理用户提交的请求，通过修改Javascript脚本，测试修改后的数据是否影响到用户。</p>
+<p>4、密码找回漏洞<br>密码找回逻辑测试一般流程</p>
+<p>i.首先尝试正常密码找回流程，选择不同找回方式，记录所有数据包</p>
+<p>ii.分析数据包，找到敏感部分</p>
+<p>iii.分析后台找回机制所采用的验证手段</p>
+<p>iv.修改数据包验证推测</p>
+<p>5、验证码突破<br>验证码不单单在登录、找密码应用，提交敏感数据的地方也有类似应用，故单独分类，并进一步详情说明。</p>
+<p>5.1、验证码暴力破解测试<br>使用burp对特定的验证码进行暴力破解</p>
+<p>5.2、验证码时间、次数测试<br>抓取携带验证码的数据包不断重复提交，例如:在投诉建议处输入要投诉的内容信息，及验证码参数，此时抓包重复提交数据包，查看历史投诉中是否存在重复提交的参数信息。</p>
+<p>5.3、验证码客户端回显测试<br>当客户端有需要和服务器进行交互，发送验证码时，即可使用firefox按F12调出firebuf就可看到客户端与服务器进行交互的详细信息</p>
+<p>5.4、验证码绕过测试<br>当第一步向第二步跳转时，抓取数包，对验证码进行篡改清空测试，验证该步骤验证码是否可以绕过。</p>
+<p>5.5、验证码js绕过<br>短信验证码验证程序逻辑存在缺陷，业务流程的第一步、第二步，第三步都是放在同一个页面里，验证第一步验证码是通过js来判断的，可以修改验证码在没有获取验证码的情况下可以填写实名信息，并且提交成功。</p>
+<p>6、业务授权安全<br>6.1、未授权访问<br>非授权访问是指用户在没有通过认证授权的情况下能够直接访问需要通过认证才能访问到的页面或文本信息。可以尝试在登录某网站前台或后台之后，将相关的页面链接复制于其他浏览器或其他电脑上进行访问，看是否能访问成功。</p>
+<p>6.2、越权访问<br>水平越权</p>
+<p>即用户A和用户B属于同一个权限组，水平越权就是用户A可以看到用户B才可以看到的一些内容。一个简单的例子，就是保单管理系统中，每个人都只可以看到自己的保单，如果出现用户A可以查看到用户B的保单的现象，此时就发生了水平越权。</p>
+<p>垂直越权</p>
+<p>即用户A和用户B属于不同的权限组，如用户A属于普通用户权限组，而用户B属于管理员权限组，垂直越权就是用户A可以看到用户B才可以看到的内容。一个简单的例子，用户A可以看到通讯录界面，用户B可以看到通讯录和用户管理的界面（其中用户管理界面可以看到用户密码）。如果用户A修改一下请求的URL即可以看到作为管理员才可已看到的全部用户密码，此时就发生了垂直越权。</p>
+<p>检测思路</p>
+<p>出现越权访问漏洞的主要原因，是因为开发人员只是在前端界面进行了简单的菜单隐藏，而没有用统一的服务端拦截器&#x2F;中间件对于全部URL请求进行权限判断。这样，攻击者只需要在浏览器或者BurpSuite之类的攻击工具中，发出对于指定URL的请求，即可以实现对于特定接口的越权访问。</p>
+<p>如果将用户A与他所属的权限组&#x2F;不同权限组用户群体的惯常访问URL合集进行比对，可以发现有些URL是多个用户都会访问的，而有的URL（或者请求中含有的特定的参数）是各个用户访问时都存在差异的。这类具有差异性的URL即为敏感URL。</p>
+<p>当用户A访问了不在惯常访问URL合集内的URL，且此URL为敏感URL，即可以判定为发生了越权访问。</p>
+<p>7、业务流程乱序<br>7.1、顺序执行缺陷<br>a) 部分网站逻辑可能是先A过程后B过程然后C过程最后D过程</p>
+<p>b) 用户控制着他们给应用程序发送的每一个请求，因此能够按照任何顺序进行访问。于是，用户就从B直接进入了D过程，就绕过了C。如果C是支付过程，那么用户就绕过了支付过程而买到了一件商品。如果C是验证过程，就会绕过验证直接进入网站程序了。</p>
+<p>8、业务接口调用安全<br>8.1、重放攻击<br>在短信、邮件调用业务或生成业务数据环节中(类:短信验证码，邮件验证码，订单生成，评论提交等),对其业务环节进行调用(重放)测试。如果业务经过调用(重放)后被多次生成有效的业务或数据结果。</p>
+<p>a) 恶意注册</p>
+<p>b) 短信</p>
+<p>在测试的过程中，我们发现众多的金融交易平台仅在前端通过JS校验时间来控制短信发送按钮，但后台并未对发送做任何限制，导致可通过重放包的方式大量发送恶意短信</p>
+<p>8.2、内容编辑<br>点击”获取短信验证码”,并抓取数据包内容。通过分析数据包，可以发现参数sendData&#x2F;insrotext的内容有客户端控制，可以修改为攻击者想要发送的内容</p>
+<p>9、时效绕过测试<br>大多有利用的案例发生在验证码以及业务数据的时效范围上，在之前的总结也有人将12306的作为典型，故，单独分类。</p>
+<p>9.1、时间刷新缺陷<br>12306网站的买票业务是每隔5s，票会刷新一次。但是这个时间确实在本地设置的间隔。于是，在控制台就可以将这个时间的关联变量重新设置成1s或者更小，这样刷新的时间就会大幅度缩短(主要更改autoSearchTime本地参数)。</p>
+<p>9.2、时间范围测试<br>针对某些带有时间限制的业务，修改其时间限制范围，例如在某项时间限制范围内查询的业务，修改含有时间明文字段的请求并提交，查看能否绕过时间限制完成业务流程。例如通过更改查询手机网厅的受理记录的month范围，可以突破默认只能查询六个月的记录。</p>
+<p>新设置成1s或者更小，这样刷新的时间就会大幅度缩短(主要更改autoSearchTime本地参数)。</p>
+<p>9.2、时间范围测试<br>针对某些带有时间限制的业务，修改其时间限制范围，例如在某项时间限制范围内查询的业务，修改含有时间明文字段的请求并提交，查看能否绕过时间限制完成业务流程。例如通过更改查询手机网厅的受理记录的month范围，可以突破默认只能查询六个月的记录。</p>
+<h3 id="SRC中的逻辑漏洞总结"><a href="#SRC中的逻辑漏洞总结" class="headerlink" title="SRC中的逻辑漏洞总结"></a>SRC中的逻辑漏洞总结</h3><ol>
+<li><p>注册：</p>
+<ol>
+<li>短信轰炸</li>
+<li>验证码安全问题</li>
+<li>密码爆破</li>
+<li>邮箱轰炸</li>
+</ol>
+</li>
+<li><p>用户任意注册、批量注册</p>
+</li>
+<li><p>用户名枚举</p>
+</li>
+<li><p>XSS（有框的地方就可以尝试插XSS）</p>
+</li>
+<li><p>登录：</p>
+<ol>
+<li>短信轰炸、验证码安全问题、密码爆破、邮箱轰炸</li>
+<li>SQL注入</li>
+<li>撞库</li>
+<li>抓包把password字段修改为空值发送</li>
+<li>认证凭证替换、比如返回的数据包中包含账号，修改账号就能登录到其他账号</li>
+<li>Cookie仿冒</li>
+<li>修改返回包的相关数据，可能会登陆到其他的用户</li>
+</ol>
+</li>
+<li><p>找回密码：</p>
+<ol>
+<li>短信邮箱轰炸、短信邮箱劫持</li>
+<li>重置任意用户账户密码、验证码手机用户未统一验证</li>
+<li>直接跳过验证步骤</li>
+</ol>
+</li>
+<li><p>购买支付、充值（要利用抓包去仔细查看每一个可用的参数）</p>
+<ol>
+<li>交易金额、数量修改、更换支付模块（比如更换支付的模块金额）</li>
+<li>交易信息订单编码&#x2F;导致信息泄露</li>
+<li>整数溢出，int最大值为2147483647，超过最大值</li>
+<li>修改充值账户</li>
+<li>支付绕过</li>
+</ol>
+</li>
+<li><p>抽奖活动</p>
+<ol>
+<li>刷奖品、积分</li>
+<li>并发</li>
+</ol>
+</li>
+<li><p>优惠卷、代金卷</p>
+<ol>
+<li>并发逻辑漏洞（burp批量获取优惠券）</li>
+<li>修改优惠券金额、数量</li>
+</ol>
+</li>
+<li><p>订单信息</p>
+<ol>
+<li>订单信息遍历、泄露</li>
+<li>订单信息泄露导致用户信息泄露</li>
+<li>删出他人订单</li>
+</ol>
+</li>
+<li><p>会员系统</p>
+<ol>
+<li>修改个人信息上传文件，上传带弹窗的html</li>
+<li>如遇上上传xlsx、docx，可能存在XXE，上传恶意的文档盲测</li>
+<li>图片上传也可能遇到imagereagick命令执行，上传恶意图片</li>
+<li>视频上传如果使用ffmpeg&lt;3.2.4（视频按帧分割成图片），上传恶意avi盲测ssrf</li>
+<li>用户横向越权访问、遍历、导致用户信息泄露</li>
+<li>SQL注入、个人简历处存储XSS个人信息注册的名称也可以插入XSS</li>
+</ol>
+</li>
+<li><p>传输过程</p>
+<ol>
+<li>明文传输账户密码</li>
+<li>修改信息处无session&#x2F;token导致csrf</li>
+<li>POST&#x2F;COOKIE注入</li>
+</ol>
+</li>
+<li><p>评论</p>
+<ol>
+<li>POST注入</li>
+<li>存储型XSS</li>
+<li>无session&#x2F;token导致CSRF</li>
+</ol>
+</li>
+<li><p>验证码问题</p>
+<ol>
+<li>万能验证码</li>
+<li>返回包中存在验证码</li>
+<li>删除验证码或者cookie中的值可以爆破账号密码</li>
+</ol>
+</li>
+<li><p>短信轰炸</p>
+<ol>
+<li>一直重放</li>
+<li>删除修改cookie，重放数据包</li>
+<li>遍历参数发送数据包</li>
+<li>手机号后面加空格或者前面加其他的比如+86或者逗号分号等，然后重发数据包</li>
+<li>请求参数修改大小写，或者添加请求参数比如&amp;id&#x3D;1</li>
+<li>一个站的登录处可能做了防护，但是再找回密码处可能没有安全防护，或者在注册流程中没有安全防护，所以说多测试接口</li>
+<li>如果对手机号一天的次数进行了限制，还可以再发一次短信，DO intercept之后修改为成功回显</li>
+</ol>
+</li>
+<li><p>水平越权</p>
+<ol>
+<li>主要登陆后还是修改参数，主要找到多个接口不断测试</li>
+<li>关注网页源代码，有时候会有表单，但被bidden（隐藏标签）给隐藏起来了，可以修改返回包然后尝试获取数据检测</li>
+<li>多个账号，主要分析请求参数</li>
+</ol>
+</li>
+<li><p>数据泄露</p>
+<ol>
+<li>再找回密码处，填写数据后抓包查看返回信息，有可能存在敏感数据返回</li>
+</ol>
+</li>
+<li><p>任意用户密码重置</p>
+<ol>
+<li>目前大部分都是在修改密码处参数修改</li>
+<li>有些是前端验证</li>
+</ol>
+</li>
+</ol>
+<p>支付逻辑漏洞</p>
+<ol>
+<li>边界值问题 : 正常的逻辑是用户购买商品，然后价格累加得到一个总价进行扣款。这个时候就会产生逻辑问题：如果说用户购买的商品是负数了，那么计算的总数就是负数。反过来钱给用户</li>
+<li>顺序执行缺陷：正常的逻辑是a-b-c-d 循环渐进的进行流程操作。这个时候就会产生逻辑问题：可以直接从中绕过某一个过程进入到下一步操作。如果说有一项是支付的操作，那么也就会产生支付绕过，如果说有一项是验证机制，就会绕过验证直接进入下一步。</li>
+<li>金额直接传输导致篡改：直接对下单的金额进行修改值，这里可以使用fd或者burp抓包</li>
+<li>确定支付之后还可以加入购物车：把商品放入购物车点击下单支付，会跳转到微信，支付宝等第三方支付平台。这个时候还可以继续在购物车中加入商品，支付结束之后，商家发放的商品是现在的购物车里面的东西。</li>
+<li>请求重放：购买成功之后，继续重放请求，可以让购买的商品一直增加。购买成功之后，会有一个银行对商户网站跳转的过程，如果反复进行操作，有几率会导致商品反复购买和增加，但是不需要付更多的钱。</li>
+<li>请求参数干扰：金钱做了签名认证之后，修改后不通过，但是在里面仍然会有一个参数对金额产生影响导致问题产生。</li>
+<li>订单替换：订单替换发生在支付之后的事件处理，同时向服务器发起二次支付请求一个多一个少，支付金额少的，然后支付之后进行替换，告知服务器订单支付完成，并且过程可以反复的回放。</li>
+<li>欺诈:需要两个收款人，一个是正常的商家，一个是伪造的商家</li>
+<li>单位替换：产生在paypal类似的国际支付的场景。</li>
+<li>用户替换：在支付过程中发生用户替换现象，首先登陆自己的账户，然后取得另外一个人的账户名等有效信息，在业务流程中用对方的用户名替换自己的用户名，用对方的余额购买完成后，再替换自己的账户名，这样就形成别人的钱买自己的东西</li>
+<li>强制攻击：强制攻击发生在暴力破解的情况下，如果一个商家运用一个自己的网店，接入第三方支付接口，由于设计上的不当导致商家与第三方支付约定的密钥Key可以单独被MD5加密，导致可以使用MD5碰撞技术对密钥进行破解，攻击者可以设计简单的密钥加密信息使得MD5加密是可以用MD5碰撞技术进行暴力破解。</li>
+<li>秘钥泄漏：内置支付功能的app为了设计上的方便有可能会把Md5或者是RSA的私钥泄漏导致攻击者反编译apk之后获取密钥信息使得交易信息可以被篡改。</li>
+<li>函数修改：apk反编译之后的函数修改，可能导致商家在最后一步向支付方提交订单时未验证信息的准确性，仍然被篡改。</li>
+<li>heart bleed：SSL（安全套接层）协议是使用最为普遍网站加密技术，而OpenSSL则是开源的 SSL 套件，为全球成千上万的web服务器所使用。Web服务器正是通过它来将密钥发送给访客然后在双方的连接之间对信息进行加密。URL中使用 https打头的连接都采用了SSL加密技术。在线购物、网银等活动均采用SSL技术来防止窃密及避免中间人攻击。</li>
+</ol>
+<p>该漏洞被归为缓冲过度读取。缓冲过度读取错误是软件可以读取比应该被允许还多的数据。漏洞让特定版本的openSSL成为无需钥匙即可开启的“废锁”，入侵者每次可以翻检户主的64K信息，只要有足够的耐心和时间，就可以翻检足够多的数据，拼凑出户主的银行密码、私信等敏感数据。产生原因：数据在传输的两端是不加密的。一些数据如果在传输过程中不加密则会泄露个人数据等信息。</p>
+<ol>
+<li>修改返回包的越权<ol>
+<li>修改手机号</li>
+</ol>
+</li>
+</ol>
+<p>一般的逻辑为：认证原手机号-&gt; 填写新手机号-&gt; 提交修改</p>
+<p>如果在下一步操作时，没有校验上一步的认证是否成功时，就会存在逻辑缺陷绕过</p>
+<p>比如在进行第一步认证原手机号时，随意输入验证码，将response包中的相关字段进行修改，比如0改成1，false改成true，即可绕过第一步验证，进入填写新手机号界面，如果第三步提交修改时没有验证第一步的结果，就会造成逻辑漏洞</p>
+<ol>
+<li>登录绕过</li>
+</ol>
+<p>部分网站的身份验证放在了前端，因此只需要将response包中的相关字段进行修改，比如0改成1，false改成true，就可以登录任意用户账号</p>
+<ol>
+<li>水平越权<ol>
+<li>遍历ID</li>
+</ol>
+</li>
+</ol>
+<p>在一些请求中，GET和POST中有明显的ID数字参数（手机号、员工号、账单号、银行卡号、订单号等等），可以尝试进行遍历，如果程序没有对当前权限进行判断，就会存在水平越权问题</p>
+<ol>
+<li>ID替换</li>
+</ol>
+<p>如果程序对用户标识进行了hash或者加密，而无法破解用的什么方式的话，就无法通过遍历ID来获取其它用户的信息了，此时可以尝试注册两个账号，通过替换两个ID加密后的值，判断程序是否对权限进行了验证，如果没有，也会存在越权问题</p>
+<ol>
+<li>垂直越权</li>
+</ol>
+<p>观察cookie中的session字段，可能某些字段或者参数代表身份，尝试修改</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
+  </div>
+</article>
+
+
+    <div class="blog-post-comments">
+        <div id="utterances_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
+        </div>
+    </div>
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/sites/">站点</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">项目</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#SRC%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">SRC中的逻辑漏洞总结</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&text=业务逻辑漏洞的挖掘"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&is_video=false&description=业务逻辑漏洞的挖掘"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=业务逻辑漏洞的挖掘&body=Check out this article: https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&title=业务逻辑漏洞的挖掘"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&name=业务逻辑漏洞的挖掘&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-07-29-bussiness_logic_bug/&t=业务逻辑漏洞的挖掘"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+      
+        
+          2016-2024
+            Leon
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       -->
+          <li><a href="/">
+              首页
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/archives/">
+              归档
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/tags/">
+              标签
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/sites/">
+              站点
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="http://github.com/leonooo13">
+              项目
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/search/">
+              搜索
+            </a></li><!--
+     -->
+          <!--
+       -->
+          <li><a href="/about/">
+              关于
+            </a></li><!--
+     -->
+          
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-center">
+    
+      <!-- 不蒜子统计 -->
+      <span id="busuanzi_container_site_pv">
+        总访问量<span id="busuanzi_value_site_pv"></span>次
+      </span>
+      <span class="post-meta-divider">|</span>
+      <span id="busuanzi_container_site_uv" style='display:none'>
+        访客数<span id="busuanzi_value_site_uv"></span>人
+      </span>
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      
+  </div>
+</footer>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+    <script type="text/javascript">
+      var utterances_repo = 'leonooo13/Talk';
+      var utterances_issue_term = 'pathname';
+      var utterances_label = 'Comment';
+      var utterances_theme = 'photon-dark';
+
+      (function(){
+          var script = document.createElement('script');
+
+          script.src = 'https://utteranc.es/client.js';
+          script.setAttribute('repo', utterances_repo);
+          script.setAttribute('issue-term', 'pathname');
+          script.setAttribute('label', utterances_label);
+          script.setAttribute('theme', utterances_theme);
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          (document.getElementById('utterances_thread')).appendChild(script);
+      }());
+  </script>
+
+
+
+<!-- FancyBox -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+  
+</body>
+</html>

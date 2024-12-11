@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Athena</title>
+      <link href="/2024/12/11/Athena/"/>
+      <url>/2024/12/11/Athena/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>涉及到的知识点<br>commix<br><a href="https://github.com/commixproject/commix">https://github.com/commixproject/commix</a><br>对于代码执行进行测试</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">commix -r r.txt</span><br></pre></td></tr></table></figure><p>pspy<br><a href="https://github.com/DominicBreuker/pspy">https://github.com/DominicBreuker/pspy</a><br>PSPY 是一个命令行工具，旨在窥探不需要 root 权限的进程。 它允许您查看其他用户运行的命令、cron 作业等在执行时运行。 非常适合在 CTF 中枚举 Linux 系统。 也非常适合向你的同事展示为什么在命令行上将 secret 作为参数传递是一个坏主意。</p><p>该工具从 procfs 扫描中收集信息。 放置在文件系统的选定部分上的 Inotify 观察程序会触发这些扫描，以捕获生存期较短的进程。</p><p>sh阅读本领<br>ko逆向的能力</p></div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {        var options = {            selector: '.gallery-item'        };        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);        }</script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> #Linux </tag>
+            
+            <tag> #RCE </tag>
+            
+            <tag> pspy </tag>
+            
+            <tag> commix </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>高级 SQL 注入</title>
       <link href="/2024/12/07/advancedsqlinjection/"/>
       <url>/2024/12/07/advancedsqlinjection/</url>

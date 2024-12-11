@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="涉及到的知识点commixhttps:&#x2F;&#x2F;github.com&#x2F;commixproject&#x2F;commix对于代码执行进行测试 1commix -r r.txt  pspyhttps:&#x2F;&#x2F;github.com&#x2F;DominicBreuker&#x2F;pspyPSPY 是一个命令行工具，旨在窥探不需要 root 权限的进程。 它允许您查看其他用户运行的命令、cron 作业等在执行时运行。 非常适合在 CTF 中">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Athena">
+<meta property="og:title" content="RCE的获取shell">
 <meta property="og:url" content="https://imli.ink/2024/12/11/Athena/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
 <meta property="og:description" content="涉及到的知识点commixhttps:&#x2F;&#x2F;github.com&#x2F;commixproject&#x2F;commix对于代码执行进行测试 1commix -r r.txt  pspyhttps:&#x2F;&#x2F;github.com&#x2F;DominicBreuker&#x2F;pspyPSPY 是一个命令行工具，旨在窥探不需要 root 权限的进程。 它允许您查看其他用户运行的命令、cron 作业等在执行时运行。 非常适合在 CTF 中">
@@ -20,6 +20,7 @@
 <meta property="article:tag" content="#RCE">
 <meta property="article:tag" content="pspy">
 <meta property="article:tag" content="commix">
+<meta property="article:tag" content="smb">
 <meta name="twitter:card" content="summary">
     
     
@@ -40,7 +41,7 @@
       
     
     <!-- title -->
-    <title>Athena</title>
+    <title>RCE的获取shell</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -120,16 +121,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/12/11/Athena/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/11/Athena/&text=Athena"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/11/Athena/&is_video=false&description=Athena"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Athena&body=Check out this article: https://imli.ink/2024/12/11/Athena/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/11/Athena/&name=Athena&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/11/Athena/&t=Athena"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/11/Athena/&text=RCE的获取shell"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/11/Athena/&is_video=false&description=RCE的获取shell"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RCE的获取shell&body=Check out this article: https://imli.ink/2024/12/11/Athena/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/11/Athena/&name=RCE的获取shell&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/11/Athena/&t=RCE的获取shell"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -145,7 +146,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Athena
+        RCE的获取shell
     </h1>
 
 
@@ -170,7 +171,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Linux/" rel="tag">#Linux</a>, <a class="p-category" href="/tags/RCE/" rel="tag">#RCE</a>, <a class="p-category" href="/tags/commix/" rel="tag">commix</a>, <a class="p-category" href="/tags/pspy/" rel="tag">pspy</a>
+        <a class="p-category" href="/tags/Linux/" rel="tag">#Linux</a>, <a class="p-category" href="/tags/RCE/" rel="tag">#RCE</a>, <a class="p-category" href="/tags/commix/" rel="tag">commix</a>, <a class="p-category" href="/tags/pspy/" rel="tag">pspy</a>, <a class="p-category" href="/tags/smb/" rel="tag">smb</a>
     </div>
 
 
@@ -232,16 +233,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/12/11/Athena/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/11/Athena/&text=Athena"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/11/Athena/&is_video=false&description=Athena"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Athena&body=Check out this article: https://imli.ink/2024/12/11/Athena/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=Athena"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/11/Athena/&name=Athena&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/11/Athena/&t=Athena"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/11/Athena/&text=RCE的获取shell"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/11/Athena/&is_video=false&description=RCE的获取shell"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RCE的获取shell&body=Check out this article: https://imli.ink/2024/12/11/Athena/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/11/Athena/&title=RCE的获取shell"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/11/Athena/&name=RCE的获取shell&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/11/Athena/&t=RCE的获取shell"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

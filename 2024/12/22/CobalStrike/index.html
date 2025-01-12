@@ -6,19 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="一直没在用过CS今天玩一玩 if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {         var options &#x3D; {             selector: &#39;.gallery-item&#39;         };         lightGallery(document.getElementsByClassName(&#39;.article-gallery">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MonitorsThree">
-<meta property="og:url" content="https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/index.html">
+<meta property="og:title" content="CobalStrike指南">
+<meta property="og:url" content="https://imli.ink/2024/12/22/CobalStrike/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="一直没在用过CS今天玩一玩 if (typeof lightGallery !&#x3D;&#x3D; &#39;undefined&#39;) {         var options &#x3D; {             selector: &#39;.gallery-item&#39;         };         lightGallery(document.getElementsByClassName(&#39;.article-gallery">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-13T11:03:45.083Z">
-<meta property="article:modified_time" content="2024-11-13T11:03:45.083Z">
+<meta property="article:published_time" content="2024-12-22T14:28:26.698Z">
+<meta property="article:modified_time" content="2024-12-22T14:28:26.698Z">
 <meta property="article:author" content="Leon">
-<meta property="article:tag" content="网络安全">
-<meta property="article:tag" content="HTB">
-<meta property="article:tag" content="靶场">
+<meta property="article:tag" content="网络安全, 渗透测试, 信息安全, 网络攻防, 安全工具, 漏洞研究, 安全技术, 渗透测试教程, Burpsuite, Kali, 渗透测试工具, 网络漏洞, 安全漏洞">
 <meta name="twitter:card" content="summary">
     
     
@@ -39,7 +37,7 @@
       
     
     <!-- title -->
-    <title>MonitorsThree</title>
+    <title>CobalStrike指南</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -104,10 +102,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-09-18-windows%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-16-HTTP%E5%9F%BA%E7%A1%80/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2024/12/11/vulnnetendgame/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -120,17 +116,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&text=MonitorsThree"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&is_video=false&description=MonitorsThree"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=MonitorsThree&body=Check out this article: https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&name=MonitorsThree&description=Here&#39;s something encrypted, password is required to continue reading."><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&t=MonitorsThree"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/12/22/CobalStrike/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/22/CobalStrike/&text=CobalStrike指南"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/22/CobalStrike/&is_video=false&description=CobalStrike指南"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CobalStrike指南&body=Check out this article: https://imli.ink/2024/12/22/CobalStrike/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/22/CobalStrike/&name=CobalStrike指南&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/22/CobalStrike/&t=CobalStrike指南"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -146,7 +142,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        MonitorsThree
+        CobalStrike指南
     </h1>
 
 
@@ -158,45 +154,30 @@
       
     <div class="postdate">
       
-        <time datetime="2024-11-13T11:03:45.083Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        <time datetime="2024-12-22T14:28:26.698Z" class="dt-published" itemprop="datePublished">2024-12-22</time>
         
-        (Updated: <time datetime="2024-11-13T11:03:45.083Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        (Updated: <time datetime="2024-12-22T14:28:26.698Z" class="dt-updated" itemprop="dateModified">2024-12-22</time>)
         
       
     </div>
 
 
       
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/HTB/">HTB</a>
-    </div>
-
 
       
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/HTB/" rel="tag">HTB</a>, <a class="p-category" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a>, <a class="p-category" href="/tags/%E9%9D%B6%E5%9C%BA/" rel="tag">靶场</a>
-    </div>
-
 
     </div>
   </header>
   
 
   <div class="content e-content" itemprop="articleBody">
-    <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d7f3aa31de1bfd118460e57fc4ce1b37b8646eb98e37842c71082b36421335b0">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08293da32110535a518284c8437a5b97318799e9e1ef1917620a3cbe99761b062351ae499996b72b13c1323944a3e8eefe7659db3482da2bcf21718f5e2258a92a9c19cfb470ebc38e81b0c680c49b79f9bf79ae562ae244899b3f082dc4cc9e5f2ef423590e7f615b3c7472b5b58486aa93417c12d231ff2b25b0f429569c95997f4ae911a30c1cf123625348299cdfb76294e50dd7392e2491453e5f9d1ef5e5e6735dd7cceecfa6a0167a7d446c23645e13c7bc9eaae55fe69af8bbbf5c134785662f3184763f2a51fa99371a7fe214420bfb511c93a7c63eab6cdae5333f2afa530227e5d09edd621c24180fd93e4630bdbe84588520bbe07d9ac26ac116a201e87c7e25b0a1b50e09303542d214d2203ad54f92df5d36169602851bfb371fbf8fc7ca72827fc0dcbc00d7a6a9ac4f2e035d7a0ba16c3ab642379d9ee81be585def1f82ffcce44676ccc04461afc9c8989107f00b810204f04a82cbc370361e03f5d3b6c0d58a6d3346dad323dc1abcf0b88df8b281d46ab742431c745914ca6591012a71a0cf1f3ddd5a71822afbb58bc5483c8f740a9a6081096448dcb1549c220ac442b77e7f198747ed02ef3fc66c50c0872f135ccdd20ccdae98503ec32142ce20245222d4285d40cfc86c4fd4c5772de3c941f116396928be90b33d67bfdf68bdecdad522900f91889c7aef07525a3999b0b245de6dbb79959bcbffa</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>一直没在用过CS今天玩一玩</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -237,17 +218,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&text=MonitorsThree"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&is_video=false&description=MonitorsThree"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=MonitorsThree&body=Check out this article: https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&title=MonitorsThree"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&name=MonitorsThree&description=Here&#39;s something encrypted, password is required to continue reading."><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/2024-09-16-MonitorsThree-htb/&t=MonitorsThree"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/12/22/CobalStrike/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/12/22/CobalStrike/&text=CobalStrike指南"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/12/22/CobalStrike/&is_video=false&description=CobalStrike指南"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CobalStrike指南&body=Check out this article: https://imli.ink/2024/12/22/CobalStrike/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/12/22/CobalStrike/&title=CobalStrike指南"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/12/22/CobalStrike/&name=CobalStrike指南&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/12/22/CobalStrike/&t=CobalStrike指南"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -1,3 +1,3 @@
 User-agent: *
 Disallow: 
-Sitemap: https://imli.ink/sitemap.xml
+Sitemap: https://leonooo13.github.io/sitemap.xml

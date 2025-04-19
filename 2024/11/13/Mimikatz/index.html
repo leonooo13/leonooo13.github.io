@@ -9,7 +9,7 @@
     <meta name="description" content="Mimikatz 是一个开源的、功能强大的安全工具，广泛用于渗透测试和网络安全审计。由 Benjamin Delpy 开发，它的主要功能是提取 Windows 系统中的用户凭证，包括密码、哈希、PIN 等。Mimikatz 通常用于模拟真实攻击以验证系统的安全性，并协助管理员理解和改进 Windows 系统的安全防护措施。 Mimikatz 的主要功能 内存中提取明文密码：能够从 Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mimikatzwindwos凭证获取">
-<meta property="og:url" content="https://imli.ink/2024/11/13/Mimikatz/index.html">
+<meta property="og:url" content="https://leonooo13.github.io/2024/11/13/Mimikatz/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
 <meta property="og:description" content="Mimikatz 是一个开源的、功能强大的安全工具，广泛用于渗透测试和网络安全审计。由 Benjamin Delpy 开发，它的主要功能是提取 Windows 系统中的用户凭证，包括密码、哈希、PIN 等。Mimikatz 通常用于模拟真实攻击以验证系统的安全性，并协助管理员理解和改进 Windows 系统的安全防护措施。 Mimikatz 的主要功能 内存中提取明文密码：能够从 Windows">
 <meta property="og:locale" content="zh_CN">
@@ -119,17 +119,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/Mimikatz/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/Mimikatz/&text=Mimikatzwindwos凭证获取"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/Mimikatz/&is_video=false&description=Mimikatzwindwos凭证获取"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Mimikatzwindwos凭证获取&body=Check out this article: https://imli.ink/2024/11/13/Mimikatz/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/Mimikatz/&name=Mimikatzwindwos凭证获取&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/Mimikatz/&t=Mimikatzwindwos凭证获取"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://leonooo13.github.io/2024/11/13/Mimikatz/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&text=Mimikatzwindwos凭证获取"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&is_video=false&description=Mimikatzwindwos凭证获取"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mimikatzwindwos凭证获取&body=Check out this article: https://leonooo13.github.io/2024/11/13/Mimikatz/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&name=Mimikatzwindwos凭证获取&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://leonooo13.github.io/2024/11/13/Mimikatz/&t=Mimikatzwindwos凭证获取"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -270,17 +270,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://imli.ink/2024/11/13/Mimikatz/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://imli.ink/2024/11/13/Mimikatz/&text=Mimikatzwindwos凭证获取"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://imli.ink/2024/11/13/Mimikatz/&is_video=false&description=Mimikatzwindwos凭证获取"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Mimikatzwindwos凭证获取&body=Check out this article: https://imli.ink/2024/11/13/Mimikatz/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://imli.ink/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://imli.ink/2024/11/13/Mimikatz/&name=Mimikatzwindwos凭证获取&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://imli.ink/2024/11/13/Mimikatz/&t=Mimikatzwindwos凭证获取"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://leonooo13.github.io/2024/11/13/Mimikatz/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&text=Mimikatzwindwos凭证获取"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&is_video=false&description=Mimikatzwindwos凭证获取"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mimikatzwindwos凭证获取&body=Check out this article: https://leonooo13.github.io/2024/11/13/Mimikatz/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&title=Mimikatzwindwos凭证获取"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://leonooo13.github.io/2024/11/13/Mimikatz/&name=Mimikatzwindwos凭证获取&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://leonooo13.github.io/2024/11/13/Mimikatz/&t=Mimikatzwindwos凭证获取"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

